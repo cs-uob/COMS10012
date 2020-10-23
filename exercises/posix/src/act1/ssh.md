@@ -7,9 +7,9 @@ We will see in more detail how SSH manages connections later on, but for now ima
   * `ssh` is the client, which you run on your machine to connect to another machine.
   * `sshd` is the server, or _daemon_ in UNIX-speak. It runs in the background on the machine you want to connect to, and needs to be installed by the system administrator.
   
-<div class="advanced"> 
+|||advanced
 SSH uses TCP port 22 by default.
-</div>
+|||
 
 ## Check your client
 
@@ -72,15 +72,13 @@ Let's create a key pair:
   * If it asks you "Overwrite (y/n)", say no (n, then ENTER) as it means you already have a key for something else - either ssh directly or something that uses it, like github. Restart key generation but pick a different file name.
   * When it asks you for a password, I recommend that you just press ENTER which doesn't set a password (good security, maximum convenience). If you do set a password, it will ask you to type it twice and then you will need the password and the key file to use this key (maximum security, less convenient).
 
-<div class="advanced">
-
+|||advanced
 The `-t` parameter selects the cryptographic algorithm to use, in this case `ed25519`, which is modern, peer-reviewed, and generally considered one of the most secure public-key algorithms available. However some older ssh versions don't accept ed25519.
 
 If you ever need to use SSH keys to a machine that doesn't like ed25519, then use the key type "rsa" instead. I would personally avoid the alternatives "dsa" and "ecdsa" if at all possible as there is speculation among cryptographers that there may be a flaw in the design.
 
 For example, although seis supports ed25519, the old cs bastion host `snowy.cs.bris.ac.uk` still uses an older version of SSH, so you would need to generate a rsa key to connect to that.
-
-</div>
+|||
 
 Have a look at the folder where your keys are stored. `ls -l ~/.ssh` will do this, unless you chose somewhere else to store them when you created them:
 
@@ -132,8 +130,7 @@ You can now get into seis with a key, but you want to be on a lab machine to get
 
 To connect from your machine to seis, you need a private key on your machine and a public key on seis. To connect from seis to a lab machine, it would seem like you need a public key on the lab machine and a private key on seis. You do not want to upload your private key to seis though for security reasons, so instead we are going to use a SSH feature called _agent forwarding_ which means that if you SSH into one machine, then when you try and SSH further into another machine SSH will reuse the same key. The way to do this is to use the `-A` command line flag.
 
-<div class="advanced">
-
+|||advanced
 The point of key-based authentication is that your private key never leaves your own machine, so even university administrators never get to see it, which would not be guaranteed if you stored a copy on a university machine.
 
 Logging in to a machine does not send the key to that machine. Instead, the machine sends you a challenge - a long random number - and SSH digitally signs that with the private key on your own machine, and sends the signature back which the remote machine can verify with the public key. Seeing a signature like this does not let the machine create further signatures on your behalf, and it definitely does not reveal the key.
@@ -141,8 +138,7 @@ Logging in to a machine does not send the key to that machine. Instead, the mach
 What agent forwarding does is it allows challenges and signatures to be forwarded across multiple connections, but the key never leaves your own machine.
 
 This way, you can create one SSH key and use it for university, github and anything else that you access over SSH, and even if one service is breached then this does not give the attacker access to your accounts on the other services.
-
-</div>
+|||
 
   * Log in to seis with `ssh USERNAME@seis.bris.ac.uk`. You should not need a password anymore.
   * Copy your public key file to the lab machines with `scp ~/.ssh/id_ed25519.pub "rd-mvb-linuxlab.bristol.ac.uk:~/.ssh"`. 
@@ -188,15 +184,13 @@ This now lets you use simply `ssh lab` to log in to a lab machine via seis (agen
 
  * Try `ssh lab` from your own machine. This will be your main way to log in to a lab machine from now onwards.
 
-<div class="advanced">
-
+|||advanced
 If you want to learn another useful skill as you go along, here is one way to edit files on the command line. Many linux distributions have an editor called `nano` built in which runs in the terminal, so `nano config` edits the file called config (creating it if it doesn't exist, when you save for the first time). It is fairly self-explanatory, the command Control+X quits as you can see on the command bar at the bottom of the screen in nano and if you quit with unsaved changes, it will ask you if you want to save.
 
 Nano is installed on seis and on the lab machines, so you can use it to edit a file remotely.
 
 However, nano is not installed by default on alpine linux which we will be using for a lot of this unit - you can install it yourself with `sudo apk add nano`. 
-
-</div>
+|||
 
 ## Using different keys
 

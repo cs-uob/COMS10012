@@ -50,25 +50,21 @@ int main() {
 }
 ```
 
-<div class="advanced">
-
+|||advanced
 If you install the `nano-syntax` package, you get syntax highlighting in nano, but you need to configure this first. The syntax files themselves live in `/usr/share/nano`, for example `c.nanorc` for the C language, but you have to include the ones you want in a file `~/.nanorc`. For example, if this file contains the line `include /usr/share/nano/c.nanorc` then nano will do syntax highlighting on C files. You can turn this on and off with Alt+Y.
 
 On another note - if you just want to print a simple string in C, then please use puts not printf. Printf with one argument is silly and, depending on how you write it, also insecure.
-
-</div>
+|||
 
 Do a `git status` and you will see `main.c` in red under _untracked files_ - this is a new file that git does not know about yet. Do `git add main.c` followed by another `git status` and the file is now gren under _files to be committed_.
 
 Commit the file with `git commit -m "first file"` or something like that - you need double quotes if you want spaces in your commit message. Try `git status` again and you should see _nothing to commit, working tree clean_ which means git is up to date with your files. Try `git log` and you will see that there is now one commit in the log.
 
-<div class="advanced">
-
+|||advanced
 Every git commit must have a commit message. You can either add one with the `-m` flag, or leave that off and git will drop you into the system default editor to write one. That is normally vi, which has a unique set of keyboard commands (the command to quit is `:q` followed by ENTER). You can run the shell command `export EDITOR=nano` to change your default editor, then a raw `git commit` will launch nano. If you want to keep this setting when you relaunch your shell next time you log in, then the export line has to go in a file called `.bashrc` in your home directory, which is a file that the bash shell processes when it starts up.
 
 To keep a bashrc file around when vagrant rebuilds your VM if you're on a lab machine, I would put the file in `/vagrant/.bashrc` as that is backed up (it ends up in the folder on the host machine with the Vagrantfile) and then put the following command in your non-privileged provisioning block from the last advanced note: `ln -s /vagrant/.bashrc /home/vagrant/.bashrc`. This creates a soft link like you have already seen in `/bin` earlier.
-
-</div>
+|||
 
 ## Ignoring files
 
@@ -96,8 +92,7 @@ Sometimes you want to go back and look at another commit, or undo a commit that 
   * Check the source file, and notice that it is now back on _Hi_.
   * Use `git checkout master` to return to the latest version of your files, and git will set up the HEAD pointer again ready to accept new commits.
 
-<div class="advanced">
-
+|||advanced
 If you actually want to undo a commit, then check out the previous one and run the following three commands:
 
 ```
@@ -109,5 +104,4 @@ git stash pop
 You can now make a new commit, as the files are back in the version of the commit that you checked out earler.
 
 The stash is another feature of git, which works like a stack in that you can push and pop versions of your files on it. Here, we use it to stash away the old version that we want to reset the files to, then we checkout master to set git's internal pointers up to accept commits again, but this overwrites the files with the latest version - so we pop the stash to get back to the old ones.
-
-</div>
+|||

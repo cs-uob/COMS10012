@@ -175,13 +175,28 @@ blockquote {
 
 /* customisations start here */
 
-div.advanced {
-    border-left: 1px solid #448;
-    padding: 1ex;
-    background-color: #efefff;
+div.container {
+    padding: 0;
+    background-color: #efefef;
 }
 
-div.advanced::before {
-    content: "Advanced note:";
-    font-style: italic;
+div.advanced header {
+    background-color: lightskyblue;
+    padding-left: 0.5ex;
+}
+
+span.advanced-title::before {
+    content: "Advanced note"
+}
+
+div.container-content {
+    padding: 1ex;
+}
+
+div.container-content :first-child {
+    margin-top: 0;
+}
+
+div.container-content :last-child {
+    margin-bottom: 0;
 }

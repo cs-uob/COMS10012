@@ -43,11 +43,9 @@ This configuration file is actually a script in the ruby programming language, b
   * The second `config.vm.provision` is tagged with `run: 'always'` so it runs every time the virtual machine starts. It turns out there is a bug in how shared folders work that means alpine linux and virtualbox don't get a long; the three lines of commands after that get the shared folder working correctly again. We will learn what they do later on.
   * The `<<-SHELL` construction is called a "here document", and is a way in some programming languages of writing multi-line strings. It tells ruby to treat everything until the closing keyword SHELL (which is arbitrary) as a string, which can contain several lines.
 
-<div class="advanced">
-
+|||advanced
 Alpine linux uses the musl libc distribution, which is smaller than and has a few distinct differences from the normal GNU libc. To avoid these incompatibilities causing you hard-to-find problems when you are compiling C programs, we are installing `libc6-compat` that makes alpine compatible with the standard libc. `util-linux` contains a few standard linux command line tools that are not installed by default on alpine - it really is that minimal.
-
-</div>
+|||
 
 ## Running vagrant
 
@@ -83,11 +81,9 @@ wget https://raw.githubusercontent.com/cs-uob/COMS10012/master/resources/week1/V
 
 You can call the top folder (softwaretools) anything you like and put it anywhere you want. You can now run `vagrant up` followed by `vagrant ssh` from inside that folder.
 
-<div class="advanced">
-
+|||advanced
 When you `vagrant up`, vagrant internally connects port 22 on the guest (which `sshd` on the guest is listening to) to port 2222 on the host. When you provision a vagrant machine, this creates a key pair on the host and loads the public key into the guest. The private key is actually in the file `.vagrant/machines/default/virtualbox/private_key` on the host, and the public key in `/home/vagrant/.ssh/authorized_keys` on the guest. So what `vagrant ssh` does is launch `ssh -i KEYFILE vagrant@localhost -p 2222`.
-
-</div>
+|||
 
 ## Warning about lab machines - read carefully!
 
