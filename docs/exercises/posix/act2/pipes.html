@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Activity 2 - Exercises</title>
+        <title>Pipes - Exercises</title>
         
         
 
@@ -93,7 +93,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../act1/index.html"><strong aria-hidden="true">1.</strong> Activity 1</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../act1/ssh.html"><strong aria-hidden="true">1.1.</strong> Secure shell</a></li><li class="chapter-item expanded "><a href="../act1/install.html"><strong aria-hidden="true">1.2.</strong> Installing vagrant and alpine linux</a></li><li class="chapter-item expanded "><a href="../act1/admin.html"><strong aria-hidden="true">1.3.</strong> Alpine linux system administration</a></li><li class="chapter-item expanded "><a href="../act1/git1.html"><strong aria-hidden="true">1.4.</strong> Git, part 1</a></li></ol></li><li class="chapter-item expanded "><a href="../act2/index.html" class="active"><strong aria-hidden="true">2.</strong> Activity 2</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../act2/permissions.html"><strong aria-hidden="true">2.1.</strong> File permissions</a></li><li class="chapter-item expanded "><a href="../act2/git2.html"><strong aria-hidden="true">2.2.</strong> Git, part 2</a></li><li class="chapter-item expanded "><a href="../act2/pipes.html"><strong aria-hidden="true">2.3.</strong> Pipes</a></li></ol></li><li class="chapter-item expanded "><a href="../act3/index.html"><strong aria-hidden="true">3.</strong> Activity 3</a></li><li class="chapter-item expanded "><a href="../act4/index.html"><strong aria-hidden="true">4.</strong> Activity 4</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../act4/c_io.html"><strong aria-hidden="true">4.1.</strong> Input/Output in C</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../act1/index.html"><strong aria-hidden="true">1.</strong> Activity 1</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../act1/ssh.html"><strong aria-hidden="true">1.1.</strong> Secure shell</a></li><li class="chapter-item expanded "><a href="../act1/install.html"><strong aria-hidden="true">1.2.</strong> Installing vagrant and alpine linux</a></li><li class="chapter-item expanded "><a href="../act1/admin.html"><strong aria-hidden="true">1.3.</strong> Alpine linux system administration</a></li><li class="chapter-item expanded "><a href="../act1/git1.html"><strong aria-hidden="true">1.4.</strong> Git, part 1</a></li></ol></li><li class="chapter-item expanded "><a href="../act2/index.html"><strong aria-hidden="true">2.</strong> Activity 2</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../act2/permissions.html"><strong aria-hidden="true">2.1.</strong> File permissions</a></li><li class="chapter-item expanded "><a href="../act2/git2.html"><strong aria-hidden="true">2.2.</strong> Git, part 2</a></li><li class="chapter-item expanded "><a href="../act2/pipes.html" class="active"><strong aria-hidden="true">2.3.</strong> Pipes</a></li></ol></li><li class="chapter-item expanded "><a href="../act3/index.html"><strong aria-hidden="true">3.</strong> Activity 3</a></li><li class="chapter-item expanded "><a href="../act4/index.html"><strong aria-hidden="true">4.</strong> Activity 4</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../act4/c_io.html"><strong aria-hidden="true">4.1.</strong> Input/Output in C</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -159,18 +159,43 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#activity-2" id="activity-2">Activity 2</a></h1>
-<h2><a class="header" href="#videos" id="videos">Videos</a></h2>
+                        <h1><a class="header" href="#pipes" id="pipes">Pipes</a></h1>
+<p>The command <code>ls | head</code> runs ls and head and pipes the standard output of ls into the standard input of head.</p>
+<p>The following shell commands are particularly useful in pipes:</p>
 <ul>
-<li><a href="https://ams-hsta-ims-ond.mediasite.com/MediasiteDeliver/vol01/bristoluniversity/MP4Video/09947229-01c2-42f4-913a-47e0f408b65a.mp4/QualityLevels(698000)">Permissions</a> (49 minutes) (<a href="https://mediasite.bris.ac.uk/Mediasite/Play/59ae0300ae054920a37768c1c4b437ee1d">mediasite</a>)</li>
-<li><a href="https://ams-hsta-ims-ond.mediasite.com/MediasiteDeliver/vol01/bristoluniversity/MP4Video/65e03330-3058-4f80-a8a9-91dab2b975ac.mp4/QualityLevels(698000)">Git, part 2</a> (27 minutes) (<a href="https://mediasite.bris.ac.uk/Mediasite/Play/381294eb61ff4e4cb62368ebd743f7a81d">mediasite</a>)</li>
-<li><a href="https://ams-hsta-ims-ond.mediasite.com/MediasiteDeliver/vol01/bristoluniversity/MP4Video/33932285-e7fb-4a31-8af9-7d0de41299b0.mp4/QualityLevels(698000)">Pipes</a> (37 minutes) (<a href="https://mediasite.bris.ac.uk/Mediasite/Play/de6ff5b226534e13824d766fee59ec0a1d">mediasite</a>)</li>
+<li><code>cat [FILENAME [FILENAME...]]</code> writes the contents of one or more files to standard output. This is a good way of starting a pipe. If you leave off all the filenames, cat just reads its standard input and writes it to standard output.</li>
+<li><code>head [-n N]</code> reads its standard input and writes only the first N lines (default is 10 if you leave the option off) to standard output. You can also put a minus before the argument e.g. <code>head -n -2</code> to <em>skip the last 2 lines</em> and write all the rest.</li>
+<li><code>tail [-n N]</code> is like head except that it writes the last N lines (with a minus, it skips the first N ones).</li>
+<li><code>sort</code> reads all its standard input into a memory buffer, then sorts the lines and writes them all to standard output.</li>
+<li><code>uniq</code> reads standard input and writes to standard output, but skips repeated lines that immediately follow each other, for example if there are three lines A, A, B then it would only write A, B but if it gets A, B, A it would write all three. A common way to remove duplicate lines is <code>... | sort | uniq | ...</code>.</li>
+<li><code>grep [-iv] EXPRESSION</code> reads standard input and prints only lines that match the regular expression to standard output. With <code>-i</code> it is case-insensitive, and with <code>-v</code> it only prints lines that do <em>not</em> match the expression.</li>
+<li><code>sed -e COMMAND</code> reads lines from standard input, transforms them according to the command and writes the results to standard output. <code>sed</code> has its own command language but the most common one is <code>s/SOURCE/DEST/</code> which changes substrings matching the source regular expression into the destination one.</li>
+<li><code>wc [-l]</code> stands for word count, but with <code>-l</code> it counts lines instead. Putting a <code>wc -l</code> on the very end of a pipe is useful if you just want to know how many results a particular command or pipe produces, assuming the results come one per line.</li>
 </ul>
-<h2><a class="header" href="#exercises" id="exercises">Exercises</a></h2>
+<p>All these commands actually take an optional extra filename as argument, in which case they read from this file as input. For example, to display the first 10 lines of a file called <code>Readme.txt</code>, you could do either <code>cat Readme.txt | head</code> or <code>head Readme.txt</code>.</p>
+<h2><a class="header" href="#word-list-exercises" id="word-list-exercises">Word list exercises</a></h2>
+<p>Most linux distributions come with a dictionary file <code>/usr/dict/words</code> that contains a list of English words in alphabetical order, for use in spell-checking programs. The list includes a selection of proper nouns, for example countries and cities. Alpine linux, true to its principles of being minimal, omits this file - but you can download one yourself with</p>
+<pre><code>wget https://users.cs.duke.edu/~ola/ap/linuxwords -O words
+</code></pre>
+<p><code>wget</code> is one of two utilities for downloading files, the other being <code>curl</code>. Note that the option for output file name is a capital O, not a lowercase one or a zero.</p>
+<p>Find one-line commands, possibly with pipes, to print the following to your terminal. You can either start each command with <code>cat words | ...</code> or do it without cat by providing the words file as an argument to the first command in your pipeline.</p>
+<p><em>If English is not your native language, ignore the guessing part - it is not assessed.</em></p>
 <ul>
-<li><a href="./permissions.html">File permissions</a></li>
-<li><a href="./git2.html">Git, part 2</a></li>
-<li><a href="./pipes.html">Pipes</a></li>
+<li>The first word in the file. <em>Can you guess what it will be, it is a city in Europe?</em></li>
+<li>The last word in the file. <em>Can you guess this one, another city in Europe?</em></li>
+<li>The number of words in the words file - there is one word per line.</li>
+<li>The 6171st word in the file. <em>Can you read my mind and guess this word directly?</em></li>
+<li>All words containing the letter Q, capitalised. (A regular expression containing a string of one or more letters matches all strings that contain the expression as a substring.)</li>
+<li>All words starting with the letter X. The regular expression <code>X</code> would match an X anywhere in the word, but <code>^X</code> matches an X only at the start of the string.</li>
+<li>All words ending in j. (The expression <code>'j$'</code> matches a j only at the end of the string, but you have to single-quote it to stop the shell from interpreting the dollar sign). <em>Can you guess the word - it is a city in eastern Europe?</em></li>
+<li>The number of words containing the letter Q, ignoring case (e.g. capitalised or not).</li>
+<li>The first five words containing the letter sequence <code>cl</code>.</li>
+<li>All words containing the sequence &quot;kp&quot;, but not &quot;ckp&quot;. <em>Can you guess any of these?</em></li>
+<li>The last 15 words of exactly two letters. The expression <code>.</code> (period) matches a single character, and <code>'^...$'</code> for example would match all strings of the format <em>exactly three characters between start and end of string</em>. You need to quote it because of the dollar sign.</li>
+<li>All words from the first 100 words on the list, which contain the letter y.</li>
+<li>The first five words that are among the last 100 words on the list, and contain the letter y (whether capitalised or not).</li>
+<li>All three-letter words with no vowels (aeiou).The regular expression <code>'[aeiou]'</code> matches any string that contains one of the bracketed characters; you need quotes to stop the shell from interpreting the brackets. Remember to exclude words with capitalised vowels as well. <em>There are 12 of these, can you guess them all before looking?</em></li>
+<li>All words of exactly 7 letters, where the third one is an e and the word ends &quot;-ded&quot;. <em>This kind of search is really useful for crosswords. There are 9 words of this form, can you guess them?</em></li>
 </ul>
 
                     </main>
@@ -178,13 +203,13 @@
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="../act1/git1.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../act2/git2.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
 
                         
-                            <a rel="next" href="../act2/permissions.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="../act3/index.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -196,13 +221,13 @@
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a rel="prev" href="../act1/git1.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../act2/git2.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
 
                 
-                    <a rel="next" href="../act2/permissions.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="../act3/index.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 

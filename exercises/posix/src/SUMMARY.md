@@ -8,6 +8,7 @@
 - [Activity 2](./act2/index.md)
   - [File permissions](./act2/permissions.md)
   - [Git, part 2](./act2/git2.md)
+  - [Pipes](./act2/pipes.md)
 - [Activity 3](./act3/index.md)
 - [Activity 4](./act4/index.md)
   - [Input/Output in C](./act4/c_io.md)

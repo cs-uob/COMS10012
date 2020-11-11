@@ -10,3 +10,4 @@
 
   * [File permissions](./permissions.md)
   * [Git, part 2](./git2.md)
+  * [Pipes](./pipes.md)
