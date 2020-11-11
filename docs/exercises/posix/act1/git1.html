@@ -93,7 +93,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../act1/index.html"><strong aria-hidden="true">1.</strong> Activity 1</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../act1/ssh.html"><strong aria-hidden="true">1.1.</strong> Secure shell</a></li><li class="chapter-item expanded "><a href="../act1/install.html"><strong aria-hidden="true">1.2.</strong> Installing vagrant and alpine linux</a></li><li class="chapter-item expanded "><a href="../act1/admin.html"><strong aria-hidden="true">1.3.</strong> Alpine linux system administration</a></li><li class="chapter-item expanded "><a href="../act1/git1.html" class="active"><strong aria-hidden="true">1.4.</strong> Git, part 1</a></li></ol></li><li class="chapter-item expanded "><a href="../act2/index.html"><strong aria-hidden="true">2.</strong> Activity 2</a></li><li class="chapter-item expanded "><a href="../act3/index.html"><strong aria-hidden="true">3.</strong> Activity 3</a></li><li class="chapter-item expanded "><a href="../act4/index.html"><strong aria-hidden="true">4.</strong> Activity 4</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../act4/c_io.html"><strong aria-hidden="true">4.1.</strong> Input/Output in C</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../act1/index.html"><strong aria-hidden="true">1.</strong> Activity 1</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../act1/ssh.html"><strong aria-hidden="true">1.1.</strong> Secure shell</a></li><li class="chapter-item expanded "><a href="../act1/install.html"><strong aria-hidden="true">1.2.</strong> Installing vagrant and alpine linux</a></li><li class="chapter-item expanded "><a href="../act1/admin.html"><strong aria-hidden="true">1.3.</strong> Alpine linux system administration</a></li><li class="chapter-item expanded "><a href="../act1/git1.html" class="active"><strong aria-hidden="true">1.4.</strong> Git, part 1</a></li></ol></li><li class="chapter-item expanded "><a href="../act2/index.html"><strong aria-hidden="true">2.</strong> Activity 2</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../act2/git2.html"><strong aria-hidden="true">2.1.</strong> Git, part 2</a></li></ol></li><li class="chapter-item expanded "><a href="../act3/index.html"><strong aria-hidden="true">3.</strong> Activity 3</a></li><li class="chapter-item expanded "><a href="../act4/index.html"><strong aria-hidden="true">4.</strong> Activity 4</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../act4/c_io.html"><strong aria-hidden="true">4.1.</strong> Input/Output in C</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -191,15 +191,21 @@ int main() {
     return 0;
 }
 </code></pre>
-<div class="advanced">
+<div class="advanced container">
+<header><span class="advanced-title"></span></header>
+<div class="container-content">
 <p>If you install the <code>nano-syntax</code> package, you get syntax highlighting in nano, but you need to configure this first. The syntax files themselves live in <code>/usr/share/nano</code>, for example <code>c.nanorc</code> for the C language, but you have to include the ones you want in a file <code>~/.nanorc</code>. For example, if this file contains the line <code>include /usr/share/nano/c.nanorc</code> then nano will do syntax highlighting on C files. You can turn this on and off with Alt+Y.</p>
 <p>On another note - if you just want to print a simple string in C, then please use puts not printf. Printf with one argument is silly and, depending on how you write it, also insecure.</p>
 </div>
+</div>
 <p>Do a <code>git status</code> and you will see <code>main.c</code> in red under <em>untracked files</em> - this is a new file that git does not know about yet. Do <code>git add main.c</code> followed by another <code>git status</code> and the file is now gren under <em>files to be committed</em>.</p>
 <p>Commit the file with <code>git commit -m &quot;first file&quot;</code> or something like that - you need double quotes if you want spaces in your commit message. Try <code>git status</code> again and you should see <em>nothing to commit, working tree clean</em> which means git is up to date with your files. Try <code>git log</code> and you will see that there is now one commit in the log.</p>
-<div class="advanced">
+<div class="advanced container">
+<header><span class="advanced-title"></span></header>
+<div class="container-content">
 <p>Every git commit must have a commit message. You can either add one with the <code>-m</code> flag, or leave that off and git will drop you into the system default editor to write one. That is normally vi, which has a unique set of keyboard commands (the command to quit is <code>:q</code> followed by ENTER). You can run the shell command <code>export EDITOR=nano</code> to change your default editor, then a raw <code>git commit</code> will launch nano. If you want to keep this setting when you relaunch your shell next time you log in, then the export line has to go in a file called <code>.bashrc</code> in your home directory, which is a file that the bash shell processes when it starts up.</p>
 <p>To keep a bashrc file around when vagrant rebuilds your VM if you're on a lab machine, I would put the file in <code>/vagrant/.bashrc</code> as that is backed up (it ends up in the folder on the host machine with the Vagrantfile) and then put the following command in your non-privileged provisioning block from the last advanced note: <code>ln -s /vagrant/.bashrc /home/vagrant/.bashrc</code>. This creates a soft link like you have already seen in <code>/bin</code> earlier.</p>
+</div>
 </div>
 <h2><a class="header" href="#ignoring-files" id="ignoring-files">Ignoring files</a></h2>
 <p>Compile your code with <code>gcc main.c -o program</code>, and check with <code>./program</code> that it runs and prints <em>Hi</em>. (If you get an error that <code>stdio.h</code> doesn't exist, then you have installed gcc but not <code>musl-dev</code> which is the package that contains the header files.)</p>
@@ -221,7 +227,9 @@ int main() {
 <li>Check the source file, and notice that it is now back on <em>Hi</em>.</li>
 <li>Use <code>git checkout master</code> to return to the latest version of your files, and git will set up the HEAD pointer again ready to accept new commits.</li>
 </ul>
-<div class="advanced">
+<div class="advanced container">
+<header><span class="advanced-title"></span></header>
+<div class="container-content">
 <p>If you actually want to undo a commit, then check out the previous one and run the following three commands:</p>
 <pre><code>git stash
 git checkout master
@@ -229,6 +237,7 @@ git stash pop
 </code></pre>
 <p>You can now make a new commit, as the files are back in the version of the commit that you checked out earler.</p>
 <p>The stash is another feature of git, which works like a stack in that you can push and pop versions of your files on it. Here, we use it to stash away the old version that we want to reset the files to, then we checkout master to set git's internal pointers up to accept commits again, but this overwrites the files with the latest version - so we pop the stash to get back to the old ones.</p>
+</div>
 </div>
 
                     </main>

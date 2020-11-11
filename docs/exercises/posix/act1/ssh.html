@@ -93,7 +93,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../act1/index.html"><strong aria-hidden="true">1.</strong> Activity 1</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../act1/ssh.html" class="active"><strong aria-hidden="true">1.1.</strong> Secure shell</a></li><li class="chapter-item expanded "><a href="../act1/install.html"><strong aria-hidden="true">1.2.</strong> Installing vagrant and alpine linux</a></li><li class="chapter-item expanded "><a href="../act1/admin.html"><strong aria-hidden="true">1.3.</strong> Alpine linux system administration</a></li><li class="chapter-item expanded "><a href="../act1/git1.html"><strong aria-hidden="true">1.4.</strong> Git, part 1</a></li></ol></li><li class="chapter-item expanded "><a href="../act2/index.html"><strong aria-hidden="true">2.</strong> Activity 2</a></li><li class="chapter-item expanded "><a href="../act3/index.html"><strong aria-hidden="true">3.</strong> Activity 3</a></li><li class="chapter-item expanded "><a href="../act4/index.html"><strong aria-hidden="true">4.</strong> Activity 4</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../act4/c_io.html"><strong aria-hidden="true">4.1.</strong> Input/Output in C</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../act1/index.html"><strong aria-hidden="true">1.</strong> Activity 1</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../act1/ssh.html" class="active"><strong aria-hidden="true">1.1.</strong> Secure shell</a></li><li class="chapter-item expanded "><a href="../act1/install.html"><strong aria-hidden="true">1.2.</strong> Installing vagrant and alpine linux</a></li><li class="chapter-item expanded "><a href="../act1/admin.html"><strong aria-hidden="true">1.3.</strong> Alpine linux system administration</a></li><li class="chapter-item expanded "><a href="../act1/git1.html"><strong aria-hidden="true">1.4.</strong> Git, part 1</a></li></ol></li><li class="chapter-item expanded "><a href="../act2/index.html"><strong aria-hidden="true">2.</strong> Activity 2</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../act2/git2.html"><strong aria-hidden="true">2.1.</strong> Git, part 2</a></li></ol></li><li class="chapter-item expanded "><a href="../act3/index.html"><strong aria-hidden="true">3.</strong> Activity 3</a></li><li class="chapter-item expanded "><a href="../act4/index.html"><strong aria-hidden="true">4.</strong> Activity 4</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../act4/c_io.html"><strong aria-hidden="true">4.1.</strong> Input/Output in C</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -166,8 +166,11 @@
 <li><code>ssh</code> is the client, which you run on your machine to connect to another machine.</li>
 <li><code>sshd</code> is the server, or <em>daemon</em> in UNIX-speak. It runs in the background on the machine you want to connect to, and needs to be installed by the system administrator.</li>
 </ul>
-<div class="advanced"> 
-SSH uses TCP port 22 by default.
+<div class="advanced container">
+<header><span class="advanced-title"></span></header>
+<div class="container-content">
+<p>SSH uses TCP port 22 by default.</p>
+</div>
 </div>
 <h2><a class="header" href="#check-your-client" id="check-your-client">Check your client</a></h2>
 <p>First of all, let's check that the ssh client is working.</p>
@@ -224,10 +227,13 @@ SSH uses TCP port 22 by default.
 <li>If it asks you &quot;Overwrite (y/n)&quot;, say no (n, then ENTER) as it means you already have a key for something else - either ssh directly or something that uses it, like github. Restart key generation but pick a different file name.</li>
 <li>When it asks you for a password, I recommend that you just press ENTER which doesn't set a password (good security, maximum convenience). If you do set a password, it will ask you to type it twice and then you will need the password and the key file to use this key (maximum security, less convenient).</li>
 </ul>
-<div class="advanced">
+<div class="advanced container">
+<header><span class="advanced-title"></span></header>
+<div class="container-content">
 <p>The <code>-t</code> parameter selects the cryptographic algorithm to use, in this case <code>ed25519</code>, which is modern, peer-reviewed, and generally considered one of the most secure public-key algorithms available. However some older ssh versions don't accept ed25519.</p>
 <p>If you ever need to use SSH keys to a machine that doesn't like ed25519, then use the key type &quot;rsa&quot; instead. I would personally avoid the alternatives &quot;dsa&quot; and &quot;ecdsa&quot; if at all possible as there is speculation among cryptographers that there may be a flaw in the design.</p>
 <p>For example, although seis supports ed25519, the old cs bastion host <code>snowy.cs.bris.ac.uk</code> still uses an older version of SSH, so you would need to generate a rsa key to connect to that.</p>
+</div>
 </div>
 <p>Have a look at the folder where your keys are stored. <code>ls -l ~/.ssh</code> will do this, unless you chose somewhere else to store them when you created them:</p>
 <pre><code>-rw-------. 1 vagrant vagrant  411 Oct  7 10:50 id_ed25519
@@ -256,11 +262,14 @@ chmod 600 authorized_keys
 <h2><a class="header" href="#setting-up-keys-for-lab-machines" id="setting-up-keys-for-lab-machines">Setting up keys for lab machines</a></h2>
 <p>You can now get into seis with a key, but you want to be on a lab machine to get work done.</p>
 <p>To connect from your machine to seis, you need a private key on your machine and a public key on seis. To connect from seis to a lab machine, it would seem like you need a public key on the lab machine and a private key on seis. You do not want to upload your private key to seis though for security reasons, so instead we are going to use a SSH feature called <em>agent forwarding</em> which means that if you SSH into one machine, then when you try and SSH further into another machine SSH will reuse the same key. The way to do this is to use the <code>-A</code> command line flag.</p>
-<div class="advanced">
+<div class="advanced container">
+<header><span class="advanced-title"></span></header>
+<div class="container-content">
 <p>The point of key-based authentication is that your private key never leaves your own machine, so even university administrators never get to see it, which would not be guaranteed if you stored a copy on a university machine.</p>
 <p>Logging in to a machine does not send the key to that machine. Instead, the machine sends you a challenge - a long random number - and SSH digitally signs that with the private key on your own machine, and sends the signature back which the remote machine can verify with the public key. Seeing a signature like this does not let the machine create further signatures on your behalf, and it definitely does not reveal the key.</p>
 <p>What agent forwarding does is it allows challenges and signatures to be forwarded across multiple connections, but the key never leaves your own machine.</p>
 <p>This way, you can create one SSH key and use it for university, github and anything else that you access over SSH, and even if one service is breached then this does not give the attacker access to your accounts on the other services.</p>
+</div>
 </div>
 <ul>
 <li>Log in to seis with <code>ssh USERNAME@seis.bris.ac.uk</code>. You should not need a password anymore.</li>
@@ -281,7 +290,7 @@ chmod 600 authorized_keys
 <h2><a class="header" href="#setting-up-a-configuration-file" id="setting-up-a-configuration-file">Setting up a configuration file</a></h2>
 <p>You now have a log in command that works, but you still have to type a lot, and you need to type your username twice. We can improve this by using a configuration file.</p>
 <p>SSH reads two configuration files: one for all users at <code>/etc/ssh/ssh_config</code> (<code>/etc</code> is where POSIX programs typically store global settings) and a per-user one at <code>~/.ssh/config</code>. The site <a href="https://www.ssh.com/ssh/config/">https://www.ssh.com/ssh/config/</a> or just <code>man ssh_config | less</code> on a terminal contain the documentation (<code>man</code> means manual page, and <code>less</code> is a program that shows a file on page at a time and lets you scroll and search).</p>
-<p>Create a file called simply 'config' in your <code>.ssh</code> directory on your own machine. You can do this for example with <code>touch config</code>, and then editing it in your favourite text editor. Add the following lines, replacing USERNAME with your username twice:</p>
+<p>Create a file called simply <code>config</code> in your <code>.ssh</code> directory on your own machine. You can do this for example with <code>touch config</code>, and then editing it in your favourite text editor. Add the following lines, replacing USERNAME with your username twice:</p>
 <pre><code>Host seis
   HostName seis.bris.ac.uk
   User USERNAME
@@ -295,10 +304,13 @@ Host lab
 <ul>
 <li>Try <code>ssh lab</code> from your own machine. This will be your main way to log in to a lab machine from now onwards.</li>
 </ul>
-<div class="advanced">
+<div class="advanced container">
+<header><span class="advanced-title"></span></header>
+<div class="container-content">
 <p>If you want to learn another useful skill as you go along, here is one way to edit files on the command line. Many linux distributions have an editor called <code>nano</code> built in which runs in the terminal, so <code>nano config</code> edits the file called config (creating it if it doesn't exist, when you save for the first time). It is fairly self-explanatory, the command Control+X quits as you can see on the command bar at the bottom of the screen in nano and if you quit with unsaved changes, it will ask you if you want to save.</p>
 <p>Nano is installed on seis and on the lab machines, so you can use it to edit a file remotely.</p>
 <p>However, nano is not installed by default on alpine linux which we will be using for a lot of this unit - you can install it yourself with <code>sudo apk add nano</code>. </p>
+</div>
 </div>
 <h2><a class="header" href="#using-different-keys" id="using-different-keys">Using different keys</a></h2>
 <p>You do not need this for the lab, but if you are ever managing different systems and accounts then you might use a different key file for each one. In this case, ssh on the command line lets you do <code>-i FILENAME</code> to select a private key file, and in the configuration file you can select a file for a particular host with the <code>IdentityFile FILENAME</code> line. By default, ssh will search for files in <code>.ssh</code> with names <code>id_CIPHER</code>, as you can see if you launch a connection with the <code>-vv</code> parameter which shows detailed debugging information.</p>
