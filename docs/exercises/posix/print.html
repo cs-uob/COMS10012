@@ -95,7 +95,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="act1/index.html"><strong aria-hidden="true">1.</strong> Activity 1</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="act1/ssh.html"><strong aria-hidden="true">1.1.</strong> Secure shell</a></li><li class="chapter-item expanded "><a href="act1/install.html"><strong aria-hidden="true">1.2.</strong> Installing vagrant and alpine linux</a></li><li class="chapter-item expanded "><a href="act1/admin.html"><strong aria-hidden="true">1.3.</strong> Alpine linux system administration</a></li><li class="chapter-item expanded "><a href="act1/git1.html"><strong aria-hidden="true">1.4.</strong> Git, part 1</a></li></ol></li><li class="chapter-item expanded "><a href="act2/index.html"><strong aria-hidden="true">2.</strong> Activity 2</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="act2/git2.html"><strong aria-hidden="true">2.1.</strong> Git, part 2</a></li></ol></li><li class="chapter-item expanded "><a href="act3/index.html"><strong aria-hidden="true">3.</strong> Activity 3</a></li><li class="chapter-item expanded "><a href="act4/index.html"><strong aria-hidden="true">4.</strong> Activity 4</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="act4/c_io.html"><strong aria-hidden="true">4.1.</strong> Input/Output in C</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="act1/index.html"><strong aria-hidden="true">1.</strong> Activity 1</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="act1/ssh.html"><strong aria-hidden="true">1.1.</strong> Secure shell</a></li><li class="chapter-item expanded "><a href="act1/install.html"><strong aria-hidden="true">1.2.</strong> Installing vagrant and alpine linux</a></li><li class="chapter-item expanded "><a href="act1/admin.html"><strong aria-hidden="true">1.3.</strong> Alpine linux system administration</a></li><li class="chapter-item expanded "><a href="act1/git1.html"><strong aria-hidden="true">1.4.</strong> Git, part 1</a></li></ol></li><li class="chapter-item expanded "><a href="act2/index.html"><strong aria-hidden="true">2.</strong> Activity 2</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="act2/permissions.html"><strong aria-hidden="true">2.1.</strong> File permissions</a></li><li class="chapter-item expanded "><a href="act2/git2.html"><strong aria-hidden="true">2.2.</strong> Git, part 2</a></li></ol></li><li class="chapter-item expanded "><a href="act3/index.html"><strong aria-hidden="true">3.</strong> Activity 3</a></li><li class="chapter-item expanded "><a href="act4/index.html"><strong aria-hidden="true">4.</strong> Activity 4</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="act4/c_io.html"><strong aria-hidden="true">4.1.</strong> Input/Output in C</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -581,12 +581,131 @@ git stash pop
 <ul>
 <li><a href="https://ams-hsta-ims-ond.mediasite.com/MediasiteDeliver/vol01/bristoluniversity/MP4Video/09947229-01c2-42f4-913a-47e0f408b65a.mp4/QualityLevels(698000)">Permissions</a> (49 minutes) (<a href="https://mediasite.bris.ac.uk/Mediasite/Play/59ae0300ae054920a37768c1c4b437ee1d">mediasite</a>)</li>
 <li><a href="https://ams-hsta-ims-ond.mediasite.com/MediasiteDeliver/vol01/bristoluniversity/MP4Video/65e03330-3058-4f80-a8a9-91dab2b975ac.mp4/QualityLevels(698000)">Git, part 2</a> (27 minutes) (<a href="https://mediasite.bris.ac.uk/Mediasite/Play/381294eb61ff4e4cb62368ebd743f7a81d">mediasite</a>)</li>
+<li><a href="https://ams-hsta-ims-ond.mediasite.com/MediasiteDeliver/vol01/bristoluniversity/MP4Video/33932285-e7fb-4a31-8af9-7d0de41299b0.mp4/QualityLevels(698000)">Pipes</a> (37 minutes) (<a href="https://mediasite.bris.ac.uk/Mediasite/Play/de6ff5b226534e13824d766fee59ec0a1d">mediasite</a>)</li>
 </ul>
 <h2><a class="header" href="#exercises-1" id="exercises-1">Exercises</a></h2>
 <ul>
-<li><a href="act2/permissions.html">File permissions</a></li>
-<li><a href="act2/git2.html">Git, part 2</a></li>
+<li><a href="act2/./permissions.html">File permissions</a></li>
+<li><a href="act2/./git2.html">Git, part 2</a></li>
 </ul>
+<h1><a class="header" href="#file-permissions" id="file-permissions">File permissions</a></h1>
+<p>Log in to your vagrant VM for the following exercises.</p>
+<h2><a class="header" href="#show-the-current-user" id="show-the-current-user">Show the current user</a></h2>
+<p>First, use the command <code>whoami</code> to see the current user name: it should be <code>vagrant</code>.</p>
+<p>For this exercise it will be useful to display the user in the prompt, so do <code>sudo nano /etc/profile</code>. This file is a configuration file that is read by the shell when it starts up. Notice the lines:</p>
+<pre><code>export CHARSET=UTF-8
+export LANG=C.UTF-8
+export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+export PAGER=less
+export PS1='\h:\w\$ '
+umask 022
+</code></pre>
+<p>The <code>export</code> ones set environment variables, for example the default <code>PATH</code> where the shell looks for programs. The <code>PAGER</code> is what programs such as the manual page viewer (<code>man</code>) use to display information one page at a time.</p>
+<p>The <code>PS1</code> (prompt level 1) controls your shell prompt. Here <code>\h</code> means the hostname, <code>\w</code> the working directory and <code>\$</code> is the appropriate prompt symbol (<code>$</code> for normal users, <code>#</code> for root). This gets you a default prompt that looks like <code>alpine310:~$ </code> (note the space after the dollar sign, which is also in the PS1). Let's add the username: change the line to <code>export PS1='\u@\h:\w\$ '</code>. When you log out and in again, your prompt will now be <code>vagrant@alpine310:~$ </code>.</p>
+<p>While you're here, you can <code>export EDITOR=nano</code> so that every user gets nano instead of vi as their default editor. Then save the file (Control+X in nano).</p>
+<ul>
+<li>Research online what <code>umask 022</code> does, note that the number is in base 8.</li>
+</ul>
+<h2><a class="header" href="#create-a-user-and-a-group" id="create-a-user-and-a-group">Create a user and a group</a></h2>
+<p>Create a new user with <code>sudo adduser NAME</code> - I'm going to be using <code>fred</code> as an example name in these notes. When it asks for a password, you can just use <code>fred</code> or something; it will complain about the password being too short but it will create the user anyway.</p>
+<p>Check the user and group files with <code>tail /etc/passwd</code> and <code>tail /etc/group</code> to check that the new user has been created - <code>tail</code> displays the last 10 lines of a file by default; <code>tail -n N FILE</code> would display the last N lines. Check with <code>ls -l /home</code> that the home directory for Fred exists and is set to the correct user and group.</p>
+<p>Time to change user: <code>su fred</code> and enter the password. Notice that the prompt has changed to <code>fred@alpine310:/home/vagrant$</code> (at least if you started off in that folder). So the user has changed, and because <code>/home/vagrant</code> is no longer the current user's home directory, it gets written out in full. Run <code>cd</code> to go home followed by <code>pwd</code> and check that you are now in <code>/home/fred</code> or whatever you called your new user.</p>
+<p>Next, create a user <code>george</code> (or some other name) add both your two new users, but not <code>vagrant</code>, to the group <code>users</code> (which already exists). Note: <code>fred</code> cannot use sudo, so you have to exit his terminal to get back to one running as vagrant for this.</p>
+<h2><a class="header" href="#explore-file-permissions" id="explore-file-permissions">Explore file permissions</a></h2>
+<p>As user <code>fred</code> (or whatever you called your first new user), set up your home directory so that</p>
+<ul>
+<li>You can do everything (rwx).</li>
+<li>Members of the <code>users</code> group can list files and change to your home directory, but not add/remove files. You will need to change the group of your home directory to <code>users</code> for this.</li>
+<li>Everyone else cannot do anything with your home directory.</li>
+</ul>
+<p>Create a file in your home directory, e.g. <code>nano readme.txt</code> then add some content.</p>
+<p>Check, by using <code>su USERNAME</code> to log in as the different users, that <code>george</code> can view Fred's home directory but not create files there; <code>george</code> can view but not edit Fred's readme file; and <code>vagrant</code> cannot list files in or enter Fred's home directory at all. What happens when you try?</p>
+<p><em>Of course, vagrant can use sudo to get around all these restrictions. Permissions do not protect you from anyone who can become root.</em></p>
+<p>Also as <code>fred</code>, make a <code>private</code> subdirectory in your home folder that no-one but you can access (read, write or execute). Create a file <code>secret.txt</code> in there with <code>nano private/secret.txt</code> as user <code>fred</code> from Fred's home directory, and put something in it. Do not change any permissions on <code>secret.txt</code> itself.</p>
+<p>Check as George that you can see the folder itself, but not cd into it nor list the file. Check that even knowing the file name (<code>cat /home/fred/private/secret.txt</code>) as George doesn't work.</p>
+<p>Using <code>ls -l</code> as Fred in both <code>~</code> and <code>~/private</code>, compare the entries for the files <code>~/readme.txt</code>, <code>~/private/secret.txt</code> and the folder <code>~/private</code>. Why do the groups of the two files differ?</p>
+<p>Note that, even though the secret file has read permissions for everyone by default, George cannot read it. The rule is that you need permissions on the whole path from <code>/</code> to a file to be able to access it.</p>
+<p><em>This is another reminder that if you want to store coursework on a lab machine, then put it in a folder that is only accessible to you. Other students can read your home directory by default, and they would be able to steal your work and submit it as their own otherwise: this has happened in the past.</em></p>
+<p><em>Altenatively you could remove permissions from everyone else on your home directory there, but this prevents you from being able to share files in specific folders that you do want to share with other students.</em></p>
+<h2><a class="header" href="#setuid" id="setuid">Setuid</a></h2>
+<p>We are going to create a file to let George (and others in the users group) send Fred messages which go in a file in his home directory.</p>
+<p>As Fred, create a file <code>message-fred.c</code> in your home directory and add the following lines:</p>
+<pre><code class="language-C">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+const char *filename =&quot;/home/fred/messages.txt&quot;;
+
+int main(int argc, char **argv) {
+  if (argc != 2) {
+    puts(&quot;Usage: message-fred MESSAGE&quot;);
+    return 1;
+  }
+  FILE *file = fopen(filename, &quot;a&quot;);
+  if (file == NULL) {
+    puts(&quot;Error opening file&quot;);
+    return 2;
+  }
+  int r = fputs(argv[1], file);
+  if (r == EOF) {
+    puts(&quot;Error writing message&quot;);
+    return 2;
+  }
+  r = fputc('\n', file);
+  if (r == EOF) {
+    puts(&quot;Error writing newline&quot;);
+    return 2;
+  }
+  fclose(file);
+  return 0;
+}
+</code></pre>
+<p>Compile it with <code>gcc -Wall message-fred.c -o message-fred</code> (you should not get any warnings) and check with <code>ls -l</code>, you will see a line like</p>
+<pre><code>-rwxr-xr-x    1 fred     fred         19984 Oct 28 13:26 message-fred
+</code></pre>
+<p>These are the default permissions for a newly created executable file; note that gcc has set the three <code>+x</code> bits for you. Still as Fred, run <code>chmod u+s message-fred</code> and check the file again: you should now see <code>-rwsr-xr-x</code> for the file permissions. The <code>s</code> is the setuid bit.</p>
+<p>As George (<code>su george</code>), go into Fred's home directory and run <code>./message-fred &quot;Hi from George!&quot;</code>. The quotes are needed here because the program accepts only a single argument.</p>
+<p>Now run <code>ls -l</code> and notice that a <code>messages.txt</code> has appeared with owner and group <code>fred</code>. Check the contents with <code>cat messages.txt</code>. Although George cannot create and edit files in Fred's home directory himself (he can't edit <code>messages.txt</code> for example, although he can read it), the program <code>message-fred</code> ran as Fred, which let it create the file. George can send another message like this (<code>./message-fred &quot;Hi again!&quot;</code>), which gets appended to the file: try this out.</p>
+<p>This shows how setuid programs can be used to allow other users to selectively perform specific tasks under a different user account.</p>
+<p><strong>Warning</strong>: writing your own setuid programs is extremely dangerous if you don't know the basics of secure coding and hacking C programs, because a bug in such a program could let someone take over your user account. The absolute minimum you should know is the contents of our security units up to and including 4th year.</p>
+<p>A general task for a security analyst might be finding all files with the setuid bit set on a system. You can try this yourself, but return to a vagrant shell first so that you're allowed to use sudo:</p>
+<pre><code>sudo find / -perm /4000
+</code></pre>
+<p>You might get some errors relating to <code>/proc</code> files, which you can ignore: these are subprocesses that find uses to look at individual files.</p>
+<p>Apart from <code>message-fred</code>, on alpine there are four such files by default: <code>sudo</code>, <code>mount</code>, <code>umount</code> and <code>bbsuid</code>. The first one you already know; look up what the next two do and think about why they are setuid. Specifically, what kinds of (un)mounting are non-root users allowed to do according to the manual pages?</p>
+<p>The last one is busybox' general-purpose setuid helper. For example,</p>
+<pre><code>ls -l /bin | grep bbsuid
+</code></pre>
+<p>shows that <code>/bin/su</code> is in fact a link to bbsuid on this system (a symlink to a setuid program inherits the setuid property). <code>grep STRING</code> here filters its input and only returns lines containing the string (or regular expression).</p>
+<p>Have a look at the output of the following:</p>
+<pre><code>ls -l /usr/bin | grep bbsuid
+</code></pre>
+<p>Look up what these programs do and think about why they have to be setuid root.</p>
+<p>Also have a look at the <a href="https://github.com/alpinelinux/aports/blob/master/main/busybox/bbsuid.c">source code of bbsuid</a>: it's only around 100 lines of C and all it does is check that you're calling it from an approved filename, then launch busybox (still as root) to handle the command. The check is important because anyone can make a symlink to bbsuid and call it say <code>rm</code>, and if bbsuid didn't check for this then it would allow anyone to remove any file on the system as root.</p>
+<h2><a class="header" href="#sudo" id="sudo">Sudo</a></h2>
+<p>Make sure your terminal is running as <code>fred</code> and try a <code>sudo ls</code>. You will see a general message, you will be asked for your password, and then you will get the error <code>fred is not in the sudoers file.  This incident will be reported.</code> (This means that an entry has been logged in <code>/var/log/messages</code>.)</p>
+<p>So, <code>fred</code> can currently not use sudo. Switch back to <code>vagrant</code> and run the command <code>sudo cat /etc/sudoers</code>. Everything is commented out except <code>root ALL=(ALL) ALL</code> and the last line <code>#includedir /etc/sudoers.d</code> (this is not a comment!) which contains a single file <code>vagrant</code> with the line <code>vagrant ALL=(ALL) NOPASSWD: ALL</code> which is why vagrant can use sudo in the first place.</p>
+<p>However, note the commented lines such as</p>
+<pre><code># %wheel ALL=(ALL) NOPASSWD: ALL
+# %sudo ALL=(ALL) ALL
+</code></pre>
+<p>If uncommented, the first one would let everyone in group wheel run commands using sudo (this is the default on some other linux distributions), whereas the second one would allow everyone in the group <code>sudo</code> to do this, but would prompt for their own password beforehand.</p>
+<p>Let's allow people in the users group to reboot the machine. Open a root shell with <code>sudo su</code> as vagrant; this is so we don't get locked out if we break sudo.</p>
+<p>Add the following line (<code>nano /etc/sudoers</code> as root):</p>
+<pre><code>%users ALL=(ALL) /sbin/reboot
+</code></pre>
+<p>and save the sudoers file.</p>
+<p>If you read the comment at the top of the file, it suggests using <code>visudo</code> to edit the file. Since we don't want to use vi, we can instead check the syntax with <code>visudo -c</code> and check that we get &quot;parsed OK&quot;; if not then we edit the file again to fix it (this is why we opened a root shell: if there's a syntax error in the file, sudo would refuse to run at all).</p>
+<p>You can now switch back to <code>fred</code> (check the prompt to make sure you are Fred) and do <code>sudo reboot</code>. After asking for Fred's password, the virtual machine will now reboot, which you notice because you get kicked out of your ssh connection. Another <code>vagrant ssh</code> after a few seconds will get you back in again.</p>
+<h2><a class="header" href="#mounting" id="mounting">Mounting</a></h2>
+<p>However, your <code>/vagrant</code> folder will now not work properly, because when vagrant starts the VM it will run some commands as root automatically, but when you manually reboot then they don't get run again. Specifically, in the Vagrantfile:</p>
+<pre><code>config.vm.provision :shell, run: 'always', inline: &lt;&lt;-SHELL
+    umount /vagrant
+    /sbin/mount.vboxsf -o uid=1000 -o gid=1000 vagrant /vagrant
+    chmod go+rx /vagrant
+SHELL
+</code></pre>
+<p>This is a workaround for a bug in the interface between virtualbox (that vagrant uses to run the VM) and alpine linux: although the shared folder is mounted automatically, it gets the wrong permissions and only root can use it.</p>
+<p>To fix this, you can either run the three commands as root (with sudo) or you can leave the VM and do <code>vagrant halt</code> followed by <code>vagrant up</code>, which will have vagrant reboot the machine again and re-run the commands indicated as <code>run: 'always'</code> in the Vagrantfile. (Commands without this flag only run when a VM is set up for the first time.)</p>
 <h1><a class="header" href="#git-part-2" id="git-part-2">Git, part 2</a></h1>
 <p>In this exercise we will set up and use a git account on a remote provider. The &quot;big 3&quot; for hosting git repositories are:</p>
 <ul>
@@ -599,7 +718,9 @@ git stash pop
 <p>Go to <a href="https://github.com">github.com</a> and register with a username, an e-mail address and a password. You might have to click a confirmation link in an e-mail sent to you.</p>
 <p>We are going to use git over SSH, so you need to let git know your public key (remember, you never give anyone your private key!). Click the icon in the top right corner of the screen that represents your avatar (you can of course set a custom one if you like) and choose <em>Settings</em> in the menu, then on the settings page choose <em>SSH and GPG keys</em>.</p>
 <p>Choose <em>New SSH key</em>, and paste your SSH public key in the <code>Key</code> box - this is the file <code>~/.ssh/id_ed25519.pub</code> that you created in the last activity. (The file <code>id_ed25519</code> without <code>.pub</code> in the same folder is your private key, and you never paste that anywhere.) Give your key a title if you like, then add it with the green button. Github supports all common SSH key formats, but will warn you if you do something silly like upload a private key or a key in an outdated and weak cipher.</p>
-<div class="advanced">
+<div class="advanced container">
+<header><span class="advanced-title"></span></header>
+<div class="container-content">
 <p>If you have many devices (desktop, laptop) that you work from and many servers (github, gitlab, lab machine etc.) that you connect to, how do you manage keys?</p>
 <p>Using the same public key for different services is not a security problem: even if one service gets hacked and you connect to it while it's under the hacker's control, that does not leak your private key. Unlike passwords, you can safely reuse public keys.</p>
 <p>However, reusing public keys can be a privacy problem, because every service that you use the same public key (or e-mail address, or phone number etc.) can potentially work with the others to know that you are the same individual. It is no problem to use different keypairs for different services, in which case you probably want a block in your <code>~/.ssh/config</code> file with something like </p>
@@ -609,6 +730,7 @@ git stash pop
 <p>to tell SSH that the key for this host is named something other than the default <code>id_ed25519</code>.</p>
 <p>You can copy the same private key to different devices that you own, or you can set up a different key for each device and add the public keys of all of them to github and the different providers. This is a security/convenience trade-off, the security angle being what happens if one of your devices gets stolen or otherwise compromised.</p>
 <p>If you are running this exercise on an alpine VM hosted on a lab machine, then because the lab machine does not belong to you, I would not use the same private key on your VM than on your own computer, especially not if you use your own computer to access other services than the university. If you want to use Github both from your own machine and from the lab machines, then create a separate keypair for each and enrol both the public keys with Github.</p>
+</div>
 </div>
 <p>I am assuming that you will be running the git commands in the rest of this section on an alpine linux VM, either on your machine or on a lab machine, however if you have git installed on your own machine directly (which is a good idea) then you can run this exercise there too.</p>
 <h2><a class="header" href="#create-a-repository" id="create-a-repository">Create a repository</a></h2>

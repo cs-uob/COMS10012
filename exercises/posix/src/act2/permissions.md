@@ -43,11 +43,11 @@ As user `fred` (or whatever you called your first new user), set up your home di
 
 Create a file in your home directory, e.g. `nano readme.txt` then add some content.
 
-Check, by using `su USERNAME` to log in as the different users, that `george` can view Fred's home directory but not create files there; George can view but not edit Fred's readme file; and vagrant cannot list files in or enter Fred's home directory at all. What happens when you try?
+Check, by using `su USERNAME` to log in as the different users, that `george` can view Fred's home directory but not create files there; `george` can view but not edit Fred's readme file; and `vagrant` cannot list files in or enter Fred's home directory at all. What happens when you try?
 
 _Of course, vagrant can use sudo to get around all these restrictions. Permissions do not protect you from anyone who can become root._
 
-Also as fred, make a `private` subdirectory in your home folder that no-one but you can access (read, write or execute). Create a file `secret.txt` in there with `nano private/secret.txt` as user `fred` from Fred's home directory, and put something in it.
+Also as `fred`, make a `private` subdirectory in your home folder that no-one but you can access (read, write or execute). Create a file `secret.txt` in there with `nano private/secret.txt` as user `fred` from Fred's home directory, and put something in it. Do not change any permissions on `secret.txt` itself.
 
 Check as George that you can see the folder itself, but not cd into it nor list the file. Check that even knowing the file name (`cat /home/fred/private/secret.txt`) as George doesn't work.
 
@@ -100,7 +100,7 @@ Compile it with `gcc -Wall message-fred.c -o message-fred` (you should not get a
 
     -rwxr-xr-x    1 fred     fred         19984 Oct 28 13:26 message-fred
 
-These are the default permissions for a newly created executable file; note that gcc has set the three `+x` bits for you. Still as Fred, run `chmod +s message-fred` and check the file again: you should now see `-rwsrws` at the start of the file permissions. This is the setuid bit.
+These are the default permissions for a newly created executable file; note that gcc has set the three `+x` bits for you. Still as Fred, run `chmod u+s message-fred` and check the file again: you should now see `-rwsr-xr-x` for the file permissions. The `s` is the setuid bit.
 
 As George (`su george`), go into Fred's home directory and run `./message-fred "Hi from George!"`. The quotes are needed here because the program accepts only a single argument.
 
@@ -169,3 +169,4 @@ However, your `/vagrant` folder will now not work properly, because when vagrant
 
 This is a workaround for a bug in the interface between virtualbox (that vagrant uses to run the VM) and alpine linux: although the shared folder is mounted automatically, it gets the wrong permissions and only root can use it.
 
+To fix this, you can either run the three commands as root (with sudo) or you can leave the VM and do `vagrant halt` followed by `vagrant up`, which will have vagrant reboot the machine again and re-run the commands indicated as `run: 'always'` in the Vagrantfile. (Commands without this flag only run when a VM is set up for the first time.)
