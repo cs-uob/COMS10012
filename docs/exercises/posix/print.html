@@ -95,7 +95,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="act1/index.html"><strong aria-hidden="true">1.</strong> Activity 1</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="act1/ssh.html"><strong aria-hidden="true">1.1.</strong> Secure shell</a></li><li class="chapter-item expanded "><a href="act1/install.html"><strong aria-hidden="true">1.2.</strong> Installing vagrant and alpine linux</a></li><li class="chapter-item expanded "><a href="act1/admin.html"><strong aria-hidden="true">1.3.</strong> Alpine linux system administration</a></li><li class="chapter-item expanded "><a href="act1/git1.html"><strong aria-hidden="true">1.4.</strong> Git, part 1</a></li></ol></li><li class="chapter-item expanded "><a href="act2/index.html"><strong aria-hidden="true">2.</strong> Activity 2</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="act2/permissions.html"><strong aria-hidden="true">2.1.</strong> File permissions</a></li><li class="chapter-item expanded "><a href="act2/git2.html"><strong aria-hidden="true">2.2.</strong> Git, part 2</a></li><li class="chapter-item expanded "><a href="act2/pipes.html"><strong aria-hidden="true">2.3.</strong> Pipes</a></li></ol></li><li class="chapter-item expanded "><a href="act3/index.html"><strong aria-hidden="true">3.</strong> Activity 3</a></li><li class="chapter-item expanded "><a href="act4/index.html"><strong aria-hidden="true">4.</strong> Activity 4</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="act4/c_io.html"><strong aria-hidden="true">4.1.</strong> Input/Output in C</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="act1/index.html"><strong aria-hidden="true">1.</strong> Activity 1</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="act1/ssh.html"><strong aria-hidden="true">1.1.</strong> Secure shell</a></li><li class="chapter-item expanded "><a href="act1/install.html"><strong aria-hidden="true">1.2.</strong> Installing vagrant and alpine linux</a></li><li class="chapter-item expanded "><a href="act1/admin.html"><strong aria-hidden="true">1.3.</strong> Alpine linux system administration</a></li><li class="chapter-item expanded "><a href="act1/git1.html"><strong aria-hidden="true">1.4.</strong> Git, part 1</a></li></ol></li><li class="chapter-item expanded "><a href="act2/index.html"><strong aria-hidden="true">2.</strong> Activity 2</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="act2/permissions.html"><strong aria-hidden="true">2.1.</strong> File permissions</a></li><li class="chapter-item expanded "><a href="act2/git2.html"><strong aria-hidden="true">2.2.</strong> Git, part 2</a></li><li class="chapter-item expanded "><a href="act2/pipes.html"><strong aria-hidden="true">2.3.</strong> Pipes</a></li></ol></li><li class="chapter-item expanded "><a href="act3/index.html"><strong aria-hidden="true">3.</strong> Activity 3</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="act3/git3.html"><strong aria-hidden="true">3.1.</strong> Git, part 3</a></li></ol></li><li class="chapter-item expanded "><a href="act4/index.html"><strong aria-hidden="true">4.</strong> Activity 4</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="act4/c_io.html"><strong aria-hidden="true">4.1.</strong> Input/Output in C</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -890,7 +890,7 @@ Created by NAME1.
 <li><code>wc [-l]</code> stands for word count, but with <code>-l</code> it counts lines instead. Putting a <code>wc -l</code> on the very end of a pipe is useful if you just want to know how many results a particular command or pipe produces, assuming the results come one per line.</li>
 </ul>
 <p>All these commands actually take an optional extra filename as argument, in which case they read from this file as input. For example, to display the first 10 lines of a file called <code>Readme.txt</code>, you could do either <code>cat Readme.txt | head</code> or <code>head Readme.txt</code>.</p>
-<h2><a class="header" href="#word-list-exercises" id="word-list-exercises">Word list exercises</a></h2>
+<h2><a class="header" href="#word-list-exercises---pipes-and-regular-expressions" id="word-list-exercises---pipes-and-regular-expressions">Word list exercises - pipes and regular expressions</a></h2>
 <p>Most linux distributions come with a dictionary file <code>/usr/dict/words</code> that contains a list of English words in alphabetical order, for use in spell-checking programs. The list includes a selection of proper nouns, for example countries and cities. Alpine linux, true to its principles of being minimal, omits this file - but you can download one yourself with</p>
 <pre><code>wget https://users.cs.duke.edu/~ola/ap/linuxwords -O words
 </code></pre>
@@ -914,8 +914,129 @@ Created by NAME1.
 <li>All three-letter words with no vowels (aeiou).The regular expression <code>'[aeiou]'</code> matches any string that contains one of the bracketed characters; you need quotes to stop the shell from interpreting the brackets. Remember to exclude words with capitalised vowels as well. <em>There are 12 of these, can you guess them all before looking?</em></li>
 <li>All words of exactly 7 letters, where the third one is an e and the word ends &quot;-ded&quot;. <em>This kind of search is really useful for crosswords. There are 9 words of this form, can you guess them?</em></li>
 </ul>
+<p>Bonus regular expression question:</p>
+<ul>
+<li>Find all words that start with a P (whether capitalised or not), and contain at least four instances of the letter a. Putting a <code>*</code> after something in a regular expression searches for <em>any number of repetitions of this, including 0</em> so for example <code>'a*'</code> would find words with any number of the letter a, including 0 (which is not what you want here). You need single quotes to stop the shell from expanding the <code>*</code>. <em>Can you guess the words? There are essentially four of them, two demonyms (for some reason one of them has a plural in the list, the other doesn't), and two nouns which are not proper nouns.</em></li>
+</ul>
 <h1><a class="header" href="#activity-3" id="activity-3">Activity 3</a></h1>
+<h2><a class="header" href="#videos-2" id="videos-2">Videos</a></h2>
+<ul>
+<li><a href="https://ams-hsta-ims-ond.mediasite.com/MediasiteDeliver/vol01/bristoluniversity/MP4Video/f36e52ac-9803-4ea4-99f0-11d9f7e5b653.mp4/QualityLevels(698000)">Git, part 3</a> 19 minutes (<a href="https://mediasite.bris.ac.uk/Mediasite/Play/85ae77ff8d3243fda8b87f147dc041941d">mediasite</a>)</li>
+<li><a href="https://ams-hsta-ims-ond.mediasite.com/MediasiteDeliver/vol01/bristoluniversity/MP4Video/4c809979-5293-48ea-b7ab-b8fffad18195.mp4/QualityLevels(698000)">inodes</a> 28 minutes (<a href="https://mediasite.bris.ac.uk/Mediasite/Play/a3d5a630d65b43d5a052422bb265ee561d">mediasite</a>)</li>
+<li><a href="https://ams-hsta-ims-ond.mediasite.com/MediasiteDeliver/vol01/bristoluniversity/MP4Video/4cec82bd-2d0f-4ec9-a7ab-66b89eabf4c1.mp4/QualityLevels(698000)">shell scripting</a> 38 minutes (<a href="https://mediasite.bris.ac.uk/Mediasite/Play/f2f15c55f3c74b7a91a0c35eaf6aea311d">mediasite</a>)</li>
+</ul>
+<h2><a class="header" href="#exercises-2" id="exercises-2">Exercises</a></h2>
+<ul>
+<li><a href="act3/./git3.html">Git, part 3</a></li>
+</ul>
+<h1><a class="header" href="#git-part-3" id="git-part-3">Git, part 3</a></h1>
+<p>In this activity you will practice Git the way it is used in real teams. You will need to form a group for this activity, ideally more than two students.</p>
+<h2><a class="header" href="#set-up" id="set-up">Set-up</a></h2>
+<p>One member makes a Git repository on one of the online providers, adds the other team members and shares the cloning URL. Everyone clones the repository.</p>
+<p>The repository must have at least one commit for the following to work. This condition is satisfied if you chose your provider's option to create a readme file; if not then make a file now, commit it and push.</p>
+<h2><a class="header" href="#the-develop-branch" id="the-develop-branch">The develop branch</a></h2>
+<p>By default, your repository has one branch named <code>master</code>. One team member creates a <code>develop</code> branch with the command</p>
+<pre><code>git checkout -b develop
+</code></pre>
+<p>The team member who created the develop branch should now make a commit on it.</p>
+<p>This branch currently exists only in their local repository, and if they try and push they would get a warning about this.
+What they need to do is</p>
+<pre><code>git push --set-upstream origin develop
+</code></pre>
+<p>This adds an &quot;upstream&quot; entry on the local develop branch to say that it is linked to the copy of your repository called <code>origin</code>, which is the default name for the one you cloned the repository from.</p>
+<p>You can check this with <code>git remote show origin</code>, which should display among other things:</p>
+<pre><code>Remote branches:
+  develop tracked
+  master  tracked
+Local branches configured for 'git pull':
+  develop merges with remote develop
+  master  merges with remote master
+Local refs configured for 'git push':
+  develop pushes to develop (up to date)
+  master  pushes to master  (up to date)
+</code></pre>
+<p>Everyone else can now <code>git pull</code> and see the branch. They can switch to it with <code>git checkout develop</code>, which should show:</p>
+<pre><code>Branch 'develop' set up to track remote branch 'develop' from 'origin'.
+Switched to a new branch 'develop'
+</code></pre>
+<h2><a class="header" href="#feature-branches" id="feature-branches">Feature branches</a></h2>
+<p>Every team member now independently tries the following:</p>
+<ul>
+<li>Make a new branch with <code>git checkout -b NAME</code>, choosing a unique name for their feature branch.</li>
+<li>Make a few commits on this branch.</li>
+<li>Push your feature branch with <code>git push --set-upstream origin NAME</code>.</li>
+<li>Make a few more commits.</li>
+<li>Do a simple <code>git push</code> since you've already linked your branch to <code>origin</code>.</li>
+</ul>
+<p>Since everyone is working on a different branch, you will never get a conflict this way.</p>
+<p>Anyone who is a project member can visit the github page can see all the feature branches there, but a normal <code>git branch</code> will not show other people's branches that you've never checked out yourself. Instead, you want to do <code>git branch -a</code> (a is for &quot;all&quot; here) that will show you all the branches, with names like <code>remotes/origin/NAME</code> for branches that so far only exist on the origin repository. You can check these out like any other branch to see their contents in your working copy.</p>
+<h2><a class="header" href="#merging" id="merging">Merging</a></h2>
+<p>When a feature is done, you want to merge it into develop. Everyone should try this, the procedure for this is</p>
+<ol>
+<li>Commit all your changes and push.</li>
+<li>Fetch the latest changes from origin (a simple <code>git fetch</code> does this).</li>
+<li><code>git checkout develop</code>, which switches you to the develop branch (the changes for your latest feature will disappear in the working copy, but they're still in the repository). You always merge into the currently active branch, so you need to be on <code>develop</code> to merge into it.</li>
+<li><code>git status</code> to see if someone else has updated develop since you started your feature. If so, then <code>git pull</code> (you will be <em>behind</em> rather than <em>diverged</em> because you have not changed develop yourself yet).</li>
+<li><code>git merge NAME</code> with the name of your feature branch.</li>
+<li>Resolve conflicts, if necessary (see below).</li>
+<li><code>git push</code> to share your new feature with the rest of the team.</li>
+</ol>
+<p>If no-one else has changed <code>develop</code> since you started your branch, or if you have only changed files that no-one else has changed, then the merge might succeed on the first attempt. It's still a good idea to check that the project is in a good state (for example, compile it again) just in case, and fix anything that's broken on the develop branch.</p>
+<p>If the merge fails with a conflict, then you need to manually edit all the conflicted files (git will tell you which ones these are, do <code>git status</code> if you need a reminder) and <code>git commit</code> again.</p>
+<p>The workflow for merging and resolving conflicts is essentially the same as the one from the last session, but since everyone is developing on a separate branch, the only time when you have to deal with a possible merge conflict is when you are merging your changes into develop - your own branches are &quot;private&quot; and you don't have to worry about hitting a conflict if you quickly want to commit and push your changes as the last thing you do before going home at the end of a long day's work.</p>
+<h2><a class="header" href="#pull-requests" id="pull-requests">Pull requests</a></h2>
+<p>Pull requests are not a feature of the git software itself, but of the online providers. They let a team discuss and review a commit before merging it into a shared branch such as develop or master. Depending on the provider, branches can also be protected or assigned owners so that only the branch owner or developers with the right permissions can commit on certain branches.</p>
+<p>The procedure for merging with a pull request on github, which you should try out:</p>
+<ul>
+<li>Commit and push your feature branch.</li>
+<li>On github.com in your repository, choose <em>Pull Requests</em> in the top bar, then <em>New Pull Request</em> .</li>
+<li>Set the <em>base</em> branch as the one you want to merge into, e.g. develop, and the <em>compare</em> branch as the one with your changes. Select <em>Create Pull Request</em>.</li>
+<li>Add a title and description to start a discussion, then press <em>Create Pull Request</em> again to create the request.</li>
+</ul>
+<p>Anyone in the team can now go to <em>Pull Requests</em> in the top bar of the repository page and see the open requests. You can either comment on them, or if it is your role in the team to approve the request for this branch, you can approve the pull request which creates a merge.</p>
+<p>Since a pull request is linked to a branch, you can use it for code review as follows:</p>
+<ol>
+<li>A developer creates a feature branch and submits a pull request.</li>
+<li>The reviewer looks at the request. If they find bugs or other problems, they add a comment to the discussion.</li>
+<li>The developer can address reviewer comments by making a new commit on their feature branch and pushing it, which automatically gets added to the discussion.</li>
+<li>When the reviewer is happy, they approve the request which merges the latest version of the feature branch into the base branch (for example <code>develop</code>).</li>
+</ol>
+<p>There is just one complication left. Suppose the following happens:</p>
+<ul>
+<li>Your project starts out with commit <code>develop-1</code> setting up the initial version of the develop branch. Imagine there are two files, A and B.</li>
+<li>You create a feature branch and make a commit <code>feature-1</code> which changes only file B.</li>
+<li>In the meantime, someone else makes a feature that changes file A, and merges it as <code>develop-2</code> to the develop branch.</li>
+</ul>
+<p>You are now in the situation that <code>develop-2</code> has (new A, old B) and your <code>feature-1</code> has (old A, new B). Neither of these is what you want, you presumably want (new A, new B). We have met this situation before, but without branches. Graphically:</p>
+<p><img src="act3/../resources/pr-before-rebase.png" alt="diagram of commits before rebase" /></p>
+<p>The solution here is to <em>rebase</em> your branch onto the latest commit on develop with <code>git rebase develop</code> and fix any conflicts that that causes, which produces the following situation:</p>
+<p><img src="act3/../resources/pr-after-rebase.png" alt="diagram of commits after rebase" /></p>
+<p>If you now try and push your feature branch, you might get an error because the version of your feature branch on the origin repository stil has the old version. The solution here is to force the push, which overwrites the old version, with</p>
+<pre><code>git push --force origin BRANCHNAME
+</code></pre>
+<p>This is a <em>think before you type</em> kind of command because it can break things for other developers if you do it on a shared branch. The basic safety rules are:</p>
+<ul>
+<li>Only rebase on <em>private</em> branches.</li>
+<li>Only force push on <em>private</em> branches, and only if it is absolutely necessary (for example to tidy up a rebase).</li>
+</ul>
+<p>A private branch is one that you know no-one else is working on, for example your own feature branches.</p>
+<p>If you ever get into a situation where you need to rebase or force push on a shared branch such as develop or master, you generally need to make sure that everyone on the team knows what is going on, synchronises their repositories both before and after the dangerous operation, and does not make any commits or pushes while someone is working on it - basically they need, in concurrency terms, an exclusive lock on the whole repository while doing this operation.</p>
+<p>This is one reason why the master and develop branches are kept separate - and some workflows even include a third branch called <code>release</code>. If merges into master or release only ever come from the develop branch, then a situation where you need to rebase these branches can never happen.</p>
+<p>To summarise, the pull request workflow is:</p>
+<ol>
+<li>Commit and push your changes.</li>
+<li>If necessary, rebase your feature branch on the develop branch.</li>
+<li>Create a pull request.</li>
+<li>If necessary, participate in a discussion or review and make extra commits to address points that other developers have raised.</li>
+<li>Someone - usually not the developer who created the pull request - approves it, creating a merge commit in develop (or master).</li>
+</ol>
 <h1><a class="header" href="#activity-4" id="activity-4">Activity 4</a></h1>
+<h2><a class="header" href="#videos-3" id="videos-3">Videos</a></h2>
+<ul>
+<li><a href="https://ams-hsta-ims-ond.mediasite.com/MediasiteDeliver/vol01/bristoluniversity/MP4Video/e5f9f31d-d6b1-44c6-8ba9-3bea3637fc94.mp4/QualityLevels(698000)">The TTY, part 1</a> 29 minutes (<a href="https://mediasite.bris.ac.uk/Mediasite/Play/ed98603ce01b43aaadb7c45386af1a8f1d">mediasite</a>)</li>
+<li><a href="https://ams-hsta-ims-ond.mediasite.com/MediasiteDeliver/vol01/bristoluniversity/MP4Video/302f4e9c-c1bc-4200-ae5c-f9fde30ccadb.mp4/QualityLevels(698000)">The TTY, part 2</a> 23 minutes (<a href="https://mediasite.bris.ac.uk/Mediasite/Play/e802738b6fd44a9eb753446da4a0c0401d">mediasite</a>)</li>
+<li><a href="https://ams-hsta-ims-ond.mediasite.com/MediasiteDeliver/vol01/bristoluniversity/MP4Video/c7031bf2-3ecf-41cb-a179-29e110736492.mp4/QualityLevels(698000)">The TTY, part 3</a> 30 minutes (<a href="https://mediasite.bris.ac.uk/Mediasite/Play/031a53c97f5a493eb57969b511a5f70c1d">mediasite</a>)</li>
+</ul>
 <h1><a class="header" href="#inputoutput-in-c" id="inputoutput-in-c">Input/Output in C</a></h1>
 <h2><a class="header" href="#reminder-c-file-handling" id="reminder-c-file-handling">Reminder: C file handling</a></h2>
 <p>You should already be familiar with the following C functions from <code>&lt;stdio.h&gt;</code>, though you can look up details with <code>man 3 FUNCNAME</code> on a lab machine:</p>
@@ -942,7 +1063,7 @@ Created by NAME1.
 <li>The return value is not equal to the number of items, <code>ferror</code> returns nonzero on the file: an error occurred. The return value indicates how many items were successfully read or written before the error occurred. <code>errno</code> contains more information about what happened.</li>
 <li>The return value is not equal to the number of items, <code>ferror</code> returns zero on the file: end of file. Calling <code>feof</code> on the file will return nonzero. End of file when reading means exactly what it says; end of file when writing to something with a program on the other side (pipe, socket, pty) means the other side has closed the connection.</li>
 </ol>
-<h2><a class="header" href="#exercises-2" id="exercises-2">Exercises</a></h2>
+<h2><a class="header" href="#exercises-3" id="exercises-3">Exercises</a></h2>
 <p>For our first exercise, we investigate how the C library file functions interact with the terminal. Compile this program:</p>
 <pre><code class="language-C">// program: input1.c //
 #include &lt;stdio.h&gt;

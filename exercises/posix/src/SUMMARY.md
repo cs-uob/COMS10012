@@ -10,5 +10,6 @@
   - [Git, part 2](./act2/git2.md)
   - [Pipes](./act2/pipes.md)
 - [Activity 3](./act3/index.md)
+  - [Git, part 3](./act3/git3.md)
 - [Activity 4](./act4/index.md)
   - [Input/Output in C](./act4/c_io.md)
