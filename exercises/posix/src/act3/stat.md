@@ -14,13 +14,15 @@ Install the `musl-dev` package, which provides the header files for the C librar
 
 Have a look at the manual page `man stat` for the `stat` system call. The abbreviated headers are:
 
-    #include <sys/stat.h>
+```C
+#include <sys/stat.h>
 
-    int stat(const char *pathname, struct stat *statbuf);
-    int fstat(int fd, struct stat *statbuf);
-    int lstat(const char *pathname, struct stat *statbuf);
+int stat(const char *pathname, struct stat *statbuf);
+int fstat(int fd, struct stat *statbuf);
+int lstat(const char *pathname, struct stat *statbuf);
+```
 
-Stat is the main system call: you give it a pathname and it fills a `struct stat` for you with information about the inode associated with this pathname, however if the pathname is a symbolic link then it follows the link and returns information about the target inode. If you do not want this behaviour, you can use `lstat` instead.
+`stat` is the main system call: you give it a pathname and it fills a `struct stat` for you with information about the inode associated with this pathname, however if the pathname is a symbolic link then it follows the link and returns information about the target inode. If you do not want this behaviour, you can use `lstat` instead.
 
 `fstat` takes an open file descriptor instead of a file name: this is fine for getting the inode information (in the kernel, a file descriptor contains an inode number) but you will not be able to get a file name back from this - remember, _files don't have names; names have files_.
 
@@ -32,34 +34,38 @@ Later in the manual page, it explains the `struct stat` contents. Let's have a l
 
 Run the following short C program to check the size of your `struct stat`; I get 144 bytes but note down if you get something different:
 
-    #include <sys/stat.h>
-    #include <stdio.h>
-    int main() {
-        printf("Size: %ul bytes\n", sizeof(struct stat));
-        return 0;
-    }
+```C
+#include <sys/stat.h>
+#include <stdio.h>
+int main() {
+    printf("Size: %lu bytes\n", sizeof(struct stat));
+    return 0;
+}
+```
 
 ## The assembly level
 
 Create a file with the following content - the convention for assembly files is usually to end in `.s`, so I've called mine `dostat.s`:
 
-    .section .text
-    .global  _start
+```asm
+.section .text
+.global  _start
 
-    _start:
-      mov $6,  %rax
-      lea str, %rdi
-      lea buf, %rsi
-      syscall
+_start:
+    mov $6,  %rax
+    lea str, %rdi
+    lea buf, %rsi
+    syscall
 
-      mov $60, %rax
-      mov $0,  %rdi
-      syscall
+    mov $60, %rax
+    mov $0,  %rdi
+    syscall
 
-    str: .asciz "/dev/stdin"
+str: .asciz "/dev/stdin"
 
-    .section .data
-    buf: .skip 144
+.section .data
+buf: .skip 144
+```
 
 Change the 144 in the last line if you got a different size for your structure.
 
@@ -94,28 +100,30 @@ You can then quit gdb with `q`, and answer yes when it askes whether you want to
 
 We will now do the same in C. Create this program, I've called it `exstat.c`, then compile and run it:
 
-    #include <sys/stat.h>
-    #include <stdio.h>
-    
-    int main() {
-        struct stat buf;
-        char *str = "/dev/stdin";
-        int r = lstat(str, &buf);
-        if (r != 0) {
-            puts("An error occurred.");
-            return 1;
-        }
-        printf("The inode number is %lu.\n", buf.st_ino);
-        if (S_ISDIR(buf.st_mode)) { puts("It's a directory.");}
-        if (S_ISCHR(buf.st_mode)) { puts("It's a character device.");}
-        if (S_ISBLK(buf.st_mode)) { puts("It's a block device.");}
-        if (S_ISREG(buf.st_mode)) { puts("It's a regular file.");}
-        if (S_ISFIFO(buf.st_mode)) { puts("It's a FIFO.");}
-        if (S_ISLNK(buf.st_mode)) { puts("It's a soft link.");}
-        if (S_ISSOCK(buf.st_mode)) { puts("It's a socket.");}
+```C
+#include <sys/stat.h>
+#include <stdio.h>
 
-        return 0;
+int main() {
+    struct stat buf;
+    char *str = "/dev/stdin";
+    int r = lstat(str, &buf);
+    if (r != 0) {
+        puts("An error occurred.");
+        return 1;
     }
+    printf("The inode number is %lu.\n", buf.st_ino);
+    if (S_ISDIR(buf.st_mode)) { puts("It's a directory.");}
+    if (S_ISCHR(buf.st_mode)) { puts("It's a character device.");}
+    if (S_ISBLK(buf.st_mode)) { puts("It's a block device.");}
+    if (S_ISREG(buf.st_mode)) { puts("It's a regular file.");}
+    if (S_ISFIFO(buf.st_mode)) { puts("It's a FIFO.");}
+    if (S_ISLNK(buf.st_mode)) { puts("It's a soft link.");}
+    if (S_ISSOCK(buf.st_mode)) { puts("It's a socket.");}
+
+    return 0;
+}
+```
 
 Here we can see that we:
 
@@ -129,8 +137,10 @@ Check that you get the same inode number and file type as you did with the assem
 
 The point of checking the file type is that `/dev/stdin` is a symbolic link. To find out where it points, you can use this function:
 
-    #include <unistd.h>
-    ssize_t readlink(const char *pathname, char *buf, size_t bufsiz)
+```C
+#include <unistd.h>
+ssize_t readlink(const char *pathname, char *buf, size_t bufsiz)
+```
 
 This is another system call wrapper (readlink is system call 89) which takes the pathname of a symbolic link and writes its contents (e.g. the file it points at) in a buffer. However, be aware of the following:
 
@@ -154,7 +164,7 @@ Call your program for `/dev/stdin` and `/dev/stdout` to follow the chain of soft
 
 ## On the command line
 
-To check the results of your program, the `stat` command line program (`/bin/stat`, in fact yet another soft link to busybox) calls stat and prints the output to the terminal. You can see with `stat --help` that it offers lots of custom format.
+To check the results of your program, the `stat` command line program (`/bin/stat`, in fact yet another soft link to busybox) calls stat and prints the output to the terminal. You can see with `stat --help` that it offers lots of custom formats.
 
 Note that the `stat` command line tool calls the `lstat` system call by default, e.g. it does not follow soft links. `stat -L` gets you the link-following version.
 
@@ -170,10 +180,12 @@ First, it allocates a `struct stat` buffer like we did before.
 
 The key line is currently line 605 and following:
 
-    if ((option_mask32 & OPT_DEREFERENCE ? stat : lstat) (filename, &statbuf) != 0) {
-      bb_perror_msg("can't stat '%s'", filename);
-      return 0;
-    }
+```C
+if ((option_mask32 & OPT_DEREFERENCE ? stat : lstat) (filename, &statbuf) != 0) {
+    bb_perror_msg("can't stat '%s'", filename);
+    return 0;
+}
+```
 
 Based on the value of `OPT_DEREFERENCE` (the `-L` command line flag), we call either the `stat` or `lstat` system call wrapper in the C library, and complain and exit if we don't get a success return value - remember, in case of errors, `struct stat statbuf` could be corrupted so we shouldn't look at it.
 

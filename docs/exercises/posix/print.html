@@ -1042,13 +1042,13 @@ Switched to a new branch 'develop'
 <h2><a class="header" href="#preparation" id="preparation">Preparation</a></h2>
 <p>Install the <code>musl-dev</code> package, which provides the header files for the C library, as well as <code>gcc</code> if you have not installed that yet.</p>
 <p>Have a look at the manual page <code>man stat</code> for the <code>stat</code> system call. The abbreviated headers are:</p>
-<pre><code>#include &lt;sys/stat.h&gt;
+<pre><code class="language-C">#include &lt;sys/stat.h&gt;
 
 int stat(const char *pathname, struct stat *statbuf);
 int fstat(int fd, struct stat *statbuf);
 int lstat(const char *pathname, struct stat *statbuf);
 </code></pre>
-<p>Stat is the main system call: you give it a pathname and it fills a <code>struct stat</code> for you with information about the inode associated with this pathname, however if the pathname is a symbolic link then it follows the link and returns information about the target inode. If you do not want this behaviour, you can use <code>lstat</code> instead.</p>
+<p><code>stat</code> is the main system call: you give it a pathname and it fills a <code>struct stat</code> for you with information about the inode associated with this pathname, however if the pathname is a symbolic link then it follows the link and returns information about the target inode. If you do not want this behaviour, you can use <code>lstat</code> instead.</p>
 <p><code>fstat</code> takes an open file descriptor instead of a file name: this is fine for getting the inode information (in the kernel, a file descriptor contains an inode number) but you will not be able to get a file name back from this - remember, <em>files don't have names; names have files</em>.</p>
 <p>Later in the manual page, it explains the <code>struct stat</code> contents. Let's have a look at the sources directly though:</p>
 <ul>
@@ -1057,27 +1057,27 @@ int lstat(const char *pathname, struct stat *statbuf);
 <li>The types of the fields in the structure (<code>dev_t</code>) etc. are yet in another file - <code>bits/alltypes.h</code> if you're curious - but eventually they get defined as <code>long</code>, through intermediate definitions of <code>_Int64</code> etc. Basically, on a 64-bit machine, most of these fields are 64 bits.</li>
 </ul>
 <p>Run the following short C program to check the size of your <code>struct stat</code>; I get 144 bytes but note down if you get something different:</p>
-<pre><code>#include &lt;sys/stat.h&gt;
+<pre><code class="language-C">#include &lt;sys/stat.h&gt;
 #include &lt;stdio.h&gt;
 int main() {
-    printf(&quot;Size: %ul bytes\n&quot;, sizeof(struct stat));
+    printf(&quot;Size: %lu bytes\n&quot;, sizeof(struct stat));
     return 0;
 }
 </code></pre>
 <h2><a class="header" href="#the-assembly-level" id="the-assembly-level">The assembly level</a></h2>
 <p>Create a file with the following content - the convention for assembly files is usually to end in <code>.s</code>, so I've called mine <code>dostat.s</code>:</p>
-<pre><code>.section .text
+<pre><code class="language-asm">.section .text
 .global  _start
 
 _start:
-  mov $6,  %rax
-  lea str, %rdi
-  lea buf, %rsi
-  syscall
+    mov $6,  %rax
+    lea str, %rdi
+    lea buf, %rsi
+    syscall
 
-  mov $60, %rax
-  mov $0,  %rdi
-  syscall
+    mov $60, %rax
+    mov $0,  %rdi
+    syscall
 
 str: .asciz &quot;/dev/stdin&quot;
 
@@ -1111,7 +1111,7 @@ buf: .skip 144
 <p>You can then quit gdb with <code>q</code>, and answer yes when it askes whether you want to terminate the program.</p>
 <h2><a class="header" href="#the-c-level" id="the-c-level">The C level</a></h2>
 <p>We will now do the same in C. Create this program, I've called it <code>exstat.c</code>, then compile and run it:</p>
-<pre><code>#include &lt;sys/stat.h&gt;
+<pre><code class="language-C">#include &lt;sys/stat.h&gt;
 #include &lt;stdio.h&gt;
 
 int main() {
@@ -1143,7 +1143,7 @@ int main() {
 <p>Check that you get the same inode number and file type as you did with the assembly version.</p>
 <h2><a class="header" href="#symbolic-links" id="symbolic-links">Symbolic links</a></h2>
 <p>The point of checking the file type is that <code>/dev/stdin</code> is a symbolic link. To find out where it points, you can use this function:</p>
-<pre><code>#include &lt;unistd.h&gt;
+<pre><code class="language-C">#include &lt;unistd.h&gt;
 ssize_t readlink(const char *pathname, char *buf, size_t bufsiz)
 </code></pre>
 <p>This is another system call wrapper (readlink is system call 89) which takes the pathname of a symbolic link and writes its contents (e.g. the file it points at) in a buffer. However, be aware of the following:</p>
@@ -1178,9 +1178,9 @@ ssize_t readlink(const char *pathname, char *buf, size_t bufsiz)
 </ul>
 <p>First, it allocates a <code>struct stat</code> buffer like we did before. </p>
 <p>The key line is currently line 605 and following:</p>
-<pre><code>if ((option_mask32 &amp; OPT_DEREFERENCE ? stat : lstat) (filename, &amp;statbuf) != 0) {
-  bb_perror_msg(&quot;can't stat '%s'&quot;, filename);
-  return 0;
+<pre><code class="language-C">if ((option_mask32 &amp; OPT_DEREFERENCE ? stat : lstat) (filename, &amp;statbuf) != 0) {
+    bb_perror_msg(&quot;can't stat '%s'&quot;, filename);
+    return 0;
 }
 </code></pre>
 <p>Based on the value of <code>OPT_DEREFERENCE</code> (the <code>-L</code> command line flag), we call either the <code>stat</code> or <code>lstat</code> system call wrapper in the C library, and complain and exit if we don't get a success return value - remember, in case of errors, <code>struct stat statbuf</code> could be corrupted so we shouldn't look at it.</p>
