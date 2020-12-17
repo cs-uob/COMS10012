@@ -11,5 +11,6 @@
   - [Pipes](./act2/pipes.md)
 - [Activity 3](./act3/index.md)
   - [Git, part 3](./act3/git3.md)
+  - [inodes and system calls](./act3/stat.md)
 - [Activity 4](./act4/index.md)
   - [Input/Output in C](./act4/c_io.md)

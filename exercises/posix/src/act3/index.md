@@ -9,3 +9,4 @@
 ## Exercises
 
   - [Git, part 3](./git3.md)
+  - [inodes and system calls](./stat.md)
