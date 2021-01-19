@@ -1,6 +1,6 @@
 # Alpine linux system administration
 
-Log in to your alpine linux box (`vagrant ssh`). We are going to get to know linux in general and alpine in particular a bit.
+Start your alpine box if necessary by going to the folder with the `Vagrantfile` in your terminal, and typing `vagrant up`. Log in to your alpine linux box with `vagrant ssh`. We are going to get to know linux in general and alpine in particular a bit.
 
 ## The file system
 
@@ -66,7 +66,7 @@ sudo apk add nano
   * `apk` is the alpine linux package manager.
   * `add PACKAGE` adds a package, which means download and install it and all its dependencies (nano is so small that it has none).
 
-You can now do `nano FILENAME` to edit a file. The keyboard shortcuts are at the bottom of the screen, the main one you need is Control+X to exit (it will ask if you want to save, if you have unasved changes).
+You can now do `nano FILENAME` to edit a file. The keyboard shortcuts are at the bottom of the screen, the main one you need is Control+X to exit (it will ask if you want to save, if you have unsaved changes).
 
 Next, install git with `sudo apk add git`. Git requires two dependencies (apart from the ones already installed on the base system), as you can see in the output:
 

@@ -202,8 +202,8 @@
 <li>Try <code>whoami</code> and <code>uname -a</code> to check who you are logged in as, and where; also try <code>hostname</code> which just prints the machine name.</li>
 <li>Type <code>exit</code> twice to get back to your own machine. (Once gets you back to seis, twice closes the ssh connection completely.)</li>
 </ul>
-<p>Connecting to one machine through another machine (in this case seis) as a proxy is such a common use case that ssh in fact has an option for it:</p>
-<pre><code>ssh -J USERNAME@bristol.ac.uk USERNAME@rd-mvb-linuxlab.bristol.ac.uk
+<p>Connecting to one machine through another machine (in this case seis) as a proxy is such a common use case that ssh in fact has an option for it. Note however that this will not normally work from a windows CMD terminal, although it does work on Windows Subsystem for Linux (and on Mac and Linux).</p>
+<pre><code>ssh -J USERNAME@seis.bris.ac.uk USERNAME@rd-mvb-linuxlab.bristol.ac.uk
 </code></pre>
 <p>The <code>-J</code> for &quot;jump through this host&quot; even accepts a comma-separated list of hosts if you need to connect through more than one. However, you need to repeat your username for every machine.</p>
 <p>You now know how to log in to a lab machine, but in both methods you had to type your password twice - let's make that easier. The answer is not to store your password in a file, but to use keys instead.</p>
@@ -223,7 +223,7 @@
 <p>Let's create a key pair:</p>
 <ul>
 <li>Type the command <code>ssh-keygen -t ed25519</code>. (If you get an &quot;unknown key type&quot; error, then you are using an outdated version of OpenSSH and for security reasons you should upgrade immediately.)</li>
-<li>When it asks you where to save the file, just press ENTER to accept the default, but make a not of the path - normally it's a folder <code>.ssh</code> in your home directory.</li>
+<li>When it asks you where to save the file, just press ENTER to accept the default, but make a note of the path - normally it's a folder <code>.ssh</code> in your home directory.</li>
 <li>If it asks you &quot;Overwrite (y/n)&quot;, say no (n, then ENTER) as it means you already have a key for something else - either ssh directly or something that uses it, like github. Restart key generation but pick a different file name.</li>
 <li>When it asks you for a password, I recommend that you just press ENTER which doesn't set a password (good security, maximum convenience). If you do set a password, it will ask you to type it twice and then you will need the password and the key file to use this key (maximum security, less convenient).</li>
 </ul>
@@ -290,7 +290,7 @@ chmod 600 authorized_keys
 <h2><a class="header" href="#setting-up-a-configuration-file" id="setting-up-a-configuration-file">Setting up a configuration file</a></h2>
 <p>You now have a log in command that works, but you still have to type a lot, and you need to type your username twice. We can improve this by using a configuration file.</p>
 <p>SSH reads two configuration files: one for all users at <code>/etc/ssh/ssh_config</code> (<code>/etc</code> is where POSIX programs typically store global settings) and a per-user one at <code>~/.ssh/config</code>. The site <a href="https://www.ssh.com/ssh/config/">https://www.ssh.com/ssh/config/</a> or just <code>man ssh_config | less</code> on a terminal contain the documentation (<code>man</code> means manual page, and <code>less</code> is a program that shows a file on page at a time and lets you scroll and search).</p>
-<p>Create a file called simply <code>config</code> in your <code>.ssh</code> directory on your own machine. You can do this for example with <code>touch config</code>, and then editing it in your favourite text editor. Add the following lines, replacing USERNAME with your username twice:</p>
+<p>Create a file called simply <code>config</code> in your <code>.ssh</code> directory on your own machine. You can do this for example with <code>touch config</code> (make sure you're in the <code>.ssh</code> directory first, <code>cd ~/.ssh</code> gets you there), and then editing it in your favourite text editor. Add the following lines, replacing USERNAME with your username twice:</p>
 <pre><code>Host seis
   HostName seis.bris.ac.uk
   User USERNAME

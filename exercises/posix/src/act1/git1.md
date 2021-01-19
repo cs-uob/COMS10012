@@ -56,14 +56,14 @@ If you install the `nano-syntax` package, you get syntax highlighting in nano, b
 On another note - if you just want to print a simple string in C, then please use puts not printf. Printf with one argument is silly and, depending on how you write it, also insecure.
 |||
 
-Do a `git status` and you will see `main.c` in red under _untracked files_ - this is a new file that git does not know about yet. Do `git add main.c` followed by another `git status` and the file is now gren under _files to be committed_.
+Do a `git status` and you will see `main.c` in red under _untracked files_ - this is a new file that git does not know about yet. Do `git add main.c` followed by another `git status` and the file is now green under _files to be committed_.
 
 Commit the file with `git commit -m "first file"` or something like that - you need double quotes if you want spaces in your commit message. Try `git status` again and you should see _nothing to commit, working tree clean_ which means git is up to date with your files. Try `git log` and you will see that there is now one commit in the log.
 
 |||advanced
-Every git commit must have a commit message. You can either add one with the `-m` flag, or leave that off and git will drop you into the system default editor to write one. That is normally vi, which has a unique set of keyboard commands (the command to quit is `:q` followed by ENTER). You can run the shell command `export EDITOR=nano` to change your default editor, then a raw `git commit` will launch nano. If you want to keep this setting when you relaunch your shell next time you log in, then the export line has to go in a file called `.bashrc` in your home directory, which is a file that the bash shell processes when it starts up.
+Every git commit must have a commit message. You can either add one with the `-m` flag, or leave that off and git will drop you into the system default editor to write one. That is normally vi, which has a unique set of keyboard commands (the command to quit is `:q` followed by ENTER). You can run the shell command `export EDITOR=nano` to change your default editor, then a raw `git commit` will launch nano. If you want to keep this setting when you relaunch your shell next time you log in, then the export line has to go in a file called `.profile` in your home directory, which is a file that the bash shell processes when it starts up.
 
-To keep a bashrc file around when vagrant rebuilds your VM if you're on a lab machine, I would put the file in `/vagrant/.bashrc` as that is backed up (it ends up in the folder on the host machine with the Vagrantfile) and then put the following command in your non-privileged provisioning block from the last advanced note: `ln -s /vagrant/.bashrc /home/vagrant/.bashrc`. This creates a soft link like you have already seen in `/bin` earlier.
+To keep a profile file around when vagrant rebuilds your VM if you're on a lab machine, I would put the file in `/vagrant/.profile` as that is backed up (it ends up in the folder on the host machine with the Vagrantfile) and then put the following command in your non-privileged provisioning block from the last advanced note: `ln -s /vagrant/.profile /home/vagrant/.profile`. This creates a soft link like you have already seen in `/bin` earlier.
 |||
 
 ## Ignoring files
@@ -93,15 +93,8 @@ Sometimes you want to go back and look at another commit, or undo a commit that 
   * Use `git checkout master` to return to the latest version of your files, and git will set up the HEAD pointer again ready to accept new commits.
 
 |||advanced
-If you actually want to undo a commit, then check out the previous one and run the following three commands:
+If you actually want to undo a commit, then you have two options:
 
-```
-git stash
-git checkout master
-git stash pop
-```
-
-You can now make a new commit, as the files are back in the version of the commit that you checked out earler.
-
-The stash is another feature of git, which works like a stack in that you can push and pop versions of your files on it. Here, we use it to stash away the old version that we want to reset the files to, then we checkout master to set git's internal pointers up to accept commits again, but this overwrites the files with the latest version - so we pop the stash to get back to the old ones.
+  * `git revert HASH` adds a new commit that returns the files to the state they were in at the commit with the given hash. This is safe to use during team development, as it's just adding a new commit.
+  * `git reset HASH` undoes commits by moving the HEAD pointer back to the commit with the given hash. This will break things if you have shared your newer commits with other developers, but it's safe to use to undo changes that you haven't pushed yet (we'll learn about this next time).
 |||

@@ -40,7 +40,7 @@ This configuration file is actually a script in the ruby programming language, b
   * `config.vm.box` selects the virtual machine image, or box in vagrant-speak, to use. You can see a list of available ones at https://app.vagrantup.com/boxes/search.
   * `config.vm.synced_folder` sets up a shared folder between the guest (virtual machine) and host (your machine).
   * The first `config.vm.provision` runs a provisioning command when the box is first downloaded and installed. These commands run as root on the virtual machine, and in this case we are using the `apk` package manager (we will talk about this later on) to install two packages `libc6-compat` and `util-linux`.
-  * The second `config.vm.provision` is tagged with `run: 'always'` so it runs every time the virtual machine starts. It turns out there is a bug in how shared folders work that means alpine linux and virtualbox don't get a long; the three lines of commands after that get the shared folder working correctly again. We will learn what they do later on.
+  * The second `config.vm.provision` is tagged with `run: 'always'` so it runs every time the virtual machine starts. It turns out there is a bug in how shared folders work that means alpine linux and virtualbox don't get along; the three lines of commands after that get the shared folder working correctly again. We will learn what they do later on.
   * The `<<-SHELL` construction is called a "here document", and is a way in some programming languages of writing multi-line strings. It tells ruby to treat everything until the closing keyword SHELL (which is arbitrary) as a string, which can contain several lines.
 
 |||advanced

@@ -40,10 +40,10 @@ Try the following:
   * Try `whoami` and `uname -a` to check who you are logged in as, and where; also try `hostname` which just prints the machine name.
   * Type `exit` twice to get back to your own machine. (Once gets you back to seis, twice closes the ssh connection completely.)
 
-Connecting to one machine through another machine (in this case seis) as a proxy is such a common use case that ssh in fact has an option for it:
+Connecting to one machine through another machine (in this case seis) as a proxy is such a common use case that ssh in fact has an option for it. Note however that this will not normally work from a windows CMD terminal, although it does work on Windows Subsystem for Linux (and on Mac and Linux).
 
 ```
-ssh -J USERNAME@bristol.ac.uk USERNAME@rd-mvb-linuxlab.bristol.ac.uk
+ssh -J USERNAME@seis.bris.ac.uk USERNAME@rd-mvb-linuxlab.bristol.ac.uk
 ```
 
 The `-J` for "jump through this host" even accepts a comma-separated list of hosts if you need to connect through more than one. However, you need to repeat your username for every machine.
@@ -68,7 +68,7 @@ The keys that SSH uses implement digital signatures. Each key comes as a pair of
 Let's create a key pair:
 
   * Type the command `ssh-keygen -t ed25519`. (If you get an "unknown key type" error, then you are using an outdated version of OpenSSH and for security reasons you should upgrade immediately.)
-  * When it asks you where to save the file, just press ENTER to accept the default, but make a not of the path - normally it's a folder `.ssh` in your home directory.
+  * When it asks you where to save the file, just press ENTER to accept the default, but make a note of the path - normally it's a folder `.ssh` in your home directory.
   * If it asks you "Overwrite (y/n)", say no (n, then ENTER) as it means you already have a key for something else - either ssh directly or something that uses it, like github. Restart key generation but pick a different file name.
   * When it asks you for a password, I recommend that you just press ENTER which doesn't set a password (good security, maximum convenience). If you do set a password, it will ask you to type it twice and then you will need the password and the key file to use this key (maximum security, less convenient).
 
@@ -167,7 +167,7 @@ You now have a log in command that works, but you still have to type a lot, and 
 
 SSH reads two configuration files: one for all users at `/etc/ssh/ssh_config` (`/etc` is where POSIX programs typically store global settings) and a per-user one at `~/.ssh/config`. The site [https://www.ssh.com/ssh/config/](https://www.ssh.com/ssh/config/) or just `man ssh_config | less` on a terminal contain the documentation (`man` means manual page, and `less` is a program that shows a file on page at a time and lets you scroll and search).
 
-Create a file called simply `config` in your `.ssh` directory on your own machine. You can do this for example with `touch config`, and then editing it in your favourite text editor. Add the following lines, replacing USERNAME with your username twice:
+Create a file called simply `config` in your `.ssh` directory on your own machine. You can do this for example with `touch config` (make sure you're in the `.ssh` directory first, `cd ~/.ssh` gets you there), and then editing it in your favourite text editor. Add the following lines, replacing USERNAME with your username twice:
 
 ```
 Host seis

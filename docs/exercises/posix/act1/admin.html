@@ -160,7 +160,7 @@
                 <div id="content" class="content">
                     <main>
                         <h1><a class="header" href="#alpine-linux-system-administration" id="alpine-linux-system-administration">Alpine linux system administration</a></h1>
-<p>Log in to your alpine linux box (<code>vagrant ssh</code>). We are going to get to know linux in general and alpine in particular a bit.</p>
+<p>Start your alpine box if necessary by going to the folder with the <code>Vagrantfile</code> in your terminal, and typing <code>vagrant up</code>. Log in to your alpine linux box with <code>vagrant ssh</code>. We are going to get to know linux in general and alpine in particular a bit.</p>
 <h2><a class="header" href="#the-file-system" id="the-file-system">The file system</a></h2>
 <p>Linux (and other POSIX-like operating systems) work with a single file hierarchy with a root folder <code>/</code>, although there may be different file systems mounted at different places under that. How files are organised in here are documented in the <a href="https://refspecs.linuxfoundation.org/FHS_3.0/fhs-3.0.html">Filesystem Hierarchy Standard (FHS)</a>. Have a look with the command <code>ls /</code>:</p>
 <p><code>/bin</code> stands for binaries, that is programs that you can run. Have a look with <code>ls /bin</code>: there will be a lot of commands in here, including ls itself. Indeed you can find out where a program is with <code>which</code>, so <code>which ls</code> will show you <code>/bin/ls</code> for example.</p>
@@ -205,7 +205,7 @@ will act like whatever it was invoked as.
 <li><code>apk</code> is the alpine linux package manager.</li>
 <li><code>add PACKAGE</code> adds a package, which means download and install it and all its dependencies (nano is so small that it has none).</li>
 </ul>
-<p>You can now do <code>nano FILENAME</code> to edit a file. The keyboard shortcuts are at the bottom of the screen, the main one you need is Control+X to exit (it will ask if you want to save, if you have unasved changes).</p>
+<p>You can now do <code>nano FILENAME</code> to edit a file. The keyboard shortcuts are at the bottom of the screen, the main one you need is Control+X to exit (it will ask if you want to save, if you have unsaved changes).</p>
 <p>Next, install git with <code>sudo apk add git</code>. Git requires two dependencies (apart from the ones already installed on the base system), as you can see in the output:</p>
 <pre><code>(1/3) Installing expat (2.2.8-r0)
 (2/3) Installing pcre2 (10.33-r0)
