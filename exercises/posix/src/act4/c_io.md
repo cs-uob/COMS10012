@@ -28,7 +28,7 @@ Fread (and fwrite) can return in one of three different states:
 
 ## Exercises
 
-For our first exercise, we investigate how the C library file functions interact with the terminal. Compile this program:
+For our next exercise, we investigate how the C library file functions interact with the terminal. Compile this program:
 
 ```C
 // program: input1.c //

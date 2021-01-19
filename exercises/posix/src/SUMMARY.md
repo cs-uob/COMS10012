@@ -14,4 +14,8 @@
   - [inodes and system calls](./act3/stat.md)
   - [shell scripting](./act3/script.md)
 - [Activity 4](./act4/index.md)
+  - [Concurrent programming in POSIX](./act4/concurrent.md)
+  - [Pipes in C](./act4/cpipe.md)
   - [Input/Output in C](./act4/c_io.md)
+  - [Input/Output in POSIX](./act4/posix_io.md)
+  - [The final challenge](./act4/final.md)

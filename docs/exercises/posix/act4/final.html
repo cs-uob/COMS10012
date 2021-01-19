@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Activity 3 - Exercises</title>
+        <title>The final challenge - Exercises</title>
         
         
 
@@ -93,7 +93,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../act1/index.html"><strong aria-hidden="true">1.</strong> Activity 1</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../act1/ssh.html"><strong aria-hidden="true">1.1.</strong> Secure shell</a></li><li class="chapter-item expanded "><a href="../act1/install.html"><strong aria-hidden="true">1.2.</strong> Installing vagrant and alpine linux</a></li><li class="chapter-item expanded "><a href="../act1/admin.html"><strong aria-hidden="true">1.3.</strong> Alpine linux system administration</a></li><li class="chapter-item expanded "><a href="../act1/git1.html"><strong aria-hidden="true">1.4.</strong> Git, part 1</a></li></ol></li><li class="chapter-item expanded "><a href="../act2/index.html"><strong aria-hidden="true">2.</strong> Activity 2</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../act2/permissions.html"><strong aria-hidden="true">2.1.</strong> File permissions</a></li><li class="chapter-item expanded "><a href="../act2/git2.html"><strong aria-hidden="true">2.2.</strong> Git, part 2</a></li><li class="chapter-item expanded "><a href="../act2/pipes.html"><strong aria-hidden="true">2.3.</strong> Pipes</a></li></ol></li><li class="chapter-item expanded "><a href="../act3/index.html" class="active"><strong aria-hidden="true">3.</strong> Activity 3</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../act3/git3.html"><strong aria-hidden="true">3.1.</strong> Git, part 3</a></li><li class="chapter-item expanded "><a href="../act3/stat.html"><strong aria-hidden="true">3.2.</strong> inodes and system calls</a></li><li class="chapter-item expanded "><a href="../act3/script.html"><strong aria-hidden="true">3.3.</strong> shell scripting</a></li></ol></li><li class="chapter-item expanded "><a href="../act4/index.html"><strong aria-hidden="true">4.</strong> Activity 4</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../act4/concurrent.html"><strong aria-hidden="true">4.1.</strong> Concurrent programming in POSIX</a></li><li class="chapter-item expanded "><a href="../act4/cpipe.html"><strong aria-hidden="true">4.2.</strong> Pipes in C</a></li><li class="chapter-item expanded "><a href="../act4/c_io.html"><strong aria-hidden="true">4.3.</strong> Input/Output in C</a></li><li class="chapter-item expanded "><a href="../act4/posix_io.html"><strong aria-hidden="true">4.4.</strong> Input/Output in POSIX</a></li><li class="chapter-item expanded "><a href="../act4/final.html"><strong aria-hidden="true">4.5.</strong> The final challenge</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../act1/index.html"><strong aria-hidden="true">1.</strong> Activity 1</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../act1/ssh.html"><strong aria-hidden="true">1.1.</strong> Secure shell</a></li><li class="chapter-item expanded "><a href="../act1/install.html"><strong aria-hidden="true">1.2.</strong> Installing vagrant and alpine linux</a></li><li class="chapter-item expanded "><a href="../act1/admin.html"><strong aria-hidden="true">1.3.</strong> Alpine linux system administration</a></li><li class="chapter-item expanded "><a href="../act1/git1.html"><strong aria-hidden="true">1.4.</strong> Git, part 1</a></li></ol></li><li class="chapter-item expanded "><a href="../act2/index.html"><strong aria-hidden="true">2.</strong> Activity 2</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../act2/permissions.html"><strong aria-hidden="true">2.1.</strong> File permissions</a></li><li class="chapter-item expanded "><a href="../act2/git2.html"><strong aria-hidden="true">2.2.</strong> Git, part 2</a></li><li class="chapter-item expanded "><a href="../act2/pipes.html"><strong aria-hidden="true">2.3.</strong> Pipes</a></li></ol></li><li class="chapter-item expanded "><a href="../act3/index.html"><strong aria-hidden="true">3.</strong> Activity 3</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../act3/git3.html"><strong aria-hidden="true">3.1.</strong> Git, part 3</a></li><li class="chapter-item expanded "><a href="../act3/stat.html"><strong aria-hidden="true">3.2.</strong> inodes and system calls</a></li><li class="chapter-item expanded "><a href="../act3/script.html"><strong aria-hidden="true">3.3.</strong> shell scripting</a></li></ol></li><li class="chapter-item expanded "><a href="../act4/index.html"><strong aria-hidden="true">4.</strong> Activity 4</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../act4/concurrent.html"><strong aria-hidden="true">4.1.</strong> Concurrent programming in POSIX</a></li><li class="chapter-item expanded "><a href="../act4/cpipe.html"><strong aria-hidden="true">4.2.</strong> Pipes in C</a></li><li class="chapter-item expanded "><a href="../act4/c_io.html"><strong aria-hidden="true">4.3.</strong> Input/Output in C</a></li><li class="chapter-item expanded "><a href="../act4/posix_io.html"><strong aria-hidden="true">4.4.</strong> Input/Output in POSIX</a></li><li class="chapter-item expanded "><a href="../act4/final.html" class="active"><strong aria-hidden="true">4.5.</strong> The final challenge</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -159,34 +159,47 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#activity-3" id="activity-3">Activity 3</a></h1>
-<h2><a class="header" href="#videos" id="videos">Videos</a></h2>
+                        <h2><a class="header" href="#the-final-challenge" id="the-final-challenge">The final challenge</a></h2>
+<p>The final challenge for this part of the unit is to write a C program that uses pipes to interact with bc to add the numbers from 1 to 10, as an example of concurrency and inter-process communication in action. For this, you will need to put together items from the previous pages for this activity.</p>
+<p>The general ideas are:</p>
+<ol>
+<li>Create two pipe variables called <code>up</code> and <code>down</code>.</li>
+<li>Fork the process. This shares the pipes between both copies of the process.</li>
+<li>The parent process will write to the down pipe and read from the up pipe, so it should close the down reader and the up writer.</li>
+<li>The child process closes the down writer and the up reader, redirects its standard input to the down reader and its standard output to the up writer, and then execs <code>bc</code>. This keeps the redirected standard input and output.</li>
+<li>The parent process now writes its sums starting with <code>1+2</code> to the down writer with <code>write</code> and then uses <code>read</code> on the up reader to get the result. You can use a function <code>evaluate()</code> like in the previous example that handles the reading/writing and prints debug information to standard output (we don't need standard error as the pipe is a separate file descriptor).</li>
+<li>The parent cleanly closes the pipes when it is done, and writes the result to standard output.</li>
+</ol>
+<p>Two constraints here:</p>
 <ul>
-<li><a href="https://ams-hsta-ims-ond.mediasite.com/MediasiteDeliver/vol01/bristoluniversity/MP4Video/f36e52ac-9803-4ea4-99f0-11d9f7e5b653.mp4/QualityLevels(698000)">Git, part 3</a> 19 minutes (<a href="https://mediasite.bris.ac.uk/Mediasite/Play/85ae77ff8d3243fda8b87f147dc041941d">mediasite</a>)</li>
-<li><a href="https://ams-hsta-ims-ond.mediasite.com/MediasiteDeliver/vol01/bristoluniversity/MP4Video/4c809979-5293-48ea-b7ab-b8fffad18195.mp4/QualityLevels(698000)">inodes</a> 28 minutes (<a href="https://mediasite.bris.ac.uk/Mediasite/Play/a3d5a630d65b43d5a052422bb265ee561d">mediasite</a>)</li>
-<li><a href="https://ams-hsta-ims-ond.mediasite.com/MediasiteDeliver/vol01/bristoluniversity/MP4Video/4cec82bd-2d0f-4ec9-a7ab-66b89eabf4c1.mp4/QualityLevels(698000)">shell scripting</a> 38 minutes (<a href="https://mediasite.bris.ac.uk/Mediasite/Play/f2f15c55f3c74b7a91a0c35eaf6aea311d">mediasite</a>)</li>
+<li>All calls to Posix or file I/O functions <em>must</em> be checked for error return values. It is ok to terminate the program in case of fatal errors rather than try and fix the cause, but not to just carry on ignoring the return value. You can reuse the <code>check()</code> function for this.</li>
+<li>Calls to <code>read</code> and <code>write</code> must be assumed to be able to fail with <code>EINTR</code>, in which case they need to be retried, so these functions must be called from within loops as you saw in the busybox sources.</li>
 </ul>
-<h2><a class="header" href="#exercises" id="exercises">Exercises</a></h2>
-<ul>
-<li><a href="./git3.html">Git, part 3</a></li>
-<li><a href="./stat.html">inodes and system calls</a></li>
-<li><a href="./script.html">shell scripting</a></li>
-</ul>
+<p>The one new function you need to know is <code>int dup2(int src, int dest)</code> which redirects the destination to be a duplicate of the source. For example if <code>dr</code> is a file decriptor for the down reader, then <code>ok = dup2(dr, 0)</code> redirects standard input (file descriptor 0) to read from the down reader. Of course, you have to check the return value <code>ok</code>!</p>
+<div class="advanced container">
+<header><span class="advanced-title"></span></header>
+<div class="container-content">
+<p>One way of using <code>dup2</code> is to redirect your own standard output to a file, then any calls to <code>printf</code> or other functions from then on should end up in the file. If you later on want to restore the original standard output, you can first call <code>int dup(int fd)</code> which makes a copy of the file descriptor - for example, if a file is open on file descriptor 3, then</p>
+<pre><code class="language-C">saved = dup(1);      check(saved, &quot;duplicating standard output&quot;);
+ok = dup2(3, 1);     check(ok, &quot;redirecting standard output&quot;);
+/* any printf etc here will go to the file on fd 3 */
+ok = dup2(saved, 1); check(ok, &quot;restoring standard output&quot;);
+ok = close(saved);   check(ok, &quot;closing duplicate&quot;);
+</code></pre>
+<p>shows how you can restore the original standard output by making a copy. If no other file descriptors are open, then <code>saved</code> will likely have a value of 4, as file descriptors are just numbers to communicate with the kernel and the kernel usually gives you the next consecutive unused one when you open or duplicate a file descriptor.</p>
+</div>
+</div>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="../act2/pipes.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../act4/posix_io.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
 
-                        
-                            <a rel="next" href="../act3/git3.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <i class="fa fa-angle-right"></i>
-                            </a>
                         
 
                         <div style="clear: both"></div>
@@ -196,15 +209,11 @@
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a rel="prev" href="../act2/pipes.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../act4/posix_io.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
 
-                
-                    <a rel="next" href="../act3/git3.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                        <i class="fa fa-angle-right"></i>
-                    </a>
                 
             </nav>
 

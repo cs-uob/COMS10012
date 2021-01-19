@@ -17,8 +17,10 @@ This is not yet a fully concurrent system though, as data is only flowing in one
 As a little example of something that does have a loop, we are going to use the `bc` calculator program, which reads a line from standard input, evaluates it as a formula, and writes the result to standard output:
 
     alpine$ bc
-    (you type) 2+3
+    (you type ) 2+3
     (bc prints) 5
+    (you type ) 1+1
+    (bc prints) 2
 
 `bc` reads in a loop, so type `^D` to close its standard input, then you get back to the terminal.
 
@@ -32,9 +34,11 @@ We are going to write a program that can talk to `bc`. This means we have two pr
 
 ![pipe digram for a program controlling bc](../resources/pipe3.png)
 
-_In this diagram, data flows through pipes from left to write, but logically the "down" pipe is for data flowing from our program downwards to bc, and the "up" pipe is for data flowing back up again. Standard error is not shown (it still goes to the terminal)._
+_In this diagram, data flows through pipes from left to right, but logically the "down" pipe is for data flowing from our program downwards to bc, and the "up" pipe is for data flowing back up again. Standard error is not shown (it still goes to the terminal)._
 
 The `bc` program does not need to know about any of this: it still reads expressions from its standard input, evaluates them, and writes them to standard output.
+
+Notice that when we used a pipe character `|` in the shell, it automatically set up the pipes for us so each pipe had one reader and one writer. When we set the pipes up ourselves, we will have to take care of this ourselves too.
 
 ## The first program
 
@@ -93,10 +97,26 @@ int main() {
 
 The program also prints a copy of all its input and output to standard error so you can see what data is being transferred. The transfer happens in `evaluate`:
 
-  1. First, it prints the buffer to standard error (you can ignore this for now).
+  1. First, it prints the buffer to standard error.
   2. Then, it prints the buffer to standard output with printf. Checking the return value of printf is extremely paranoid, but we're about to use the program in a situation where standard output is not the terminal, so it could potentially fail.
   3. Next, it reads a line from standard input with fgets. Checking the return value here is good practice even if you're not paranoid.
   4. Finally, it prints the received value to standard error - note that if `fgets` had returned NULL, then it would not be safe to access the buffer.
+
+Once you are familiar with how the program works, you can comment out the lines that print to standard error if you like and run it again to see exactly what happens on standard input/output and nothing else. Then, uncomment the lines again.
+
+|||advanced
+You could also use another trick to disambiguate standard output/error (for programs that don't, like this one, indicate which is which: the lines starting `>` or `<` are standard error).
+
+```sh
+escape=$(printf '\033')
+./ipc 2> >(sed -e "s/\(.*\)/${escape}[32m\1${escape}[0m/")
+```
+
+This might mess up the last line on your terminal a bit, but you can reset it with Control+L.
+The first command sets a shell variable to the ANSI escape character. The second line redirects standard error (`2>`) to a subprocess (`>(...)`) which calls the stream editor `sed` to replace each line with the line surrounded by `\e[32m` (set colour to green) and `\e[0m` (reset colour). This will make the standard error lines appear in green. 
+
+Incidentally, some versions of sed support the `\e` escape sequence directly, or at least the version `\x1b` that creates a character from its ASCII code in hexadecimal, but alpine's sed does not so you need the shell variable trick with a fall back to octal (033) notation!
+|||
 
 And now for the interesting part:
 
@@ -119,71 +139,3 @@ Both processes should now terminate, and although you won't see the pipes direct
     The result is 55
 
 Note that the program printed the "The result is ..." line to standard error too, otherwise you would not see it here.
-
-## Types of inter-process communication
-
-You can use any of the following for one process to talk to another:
-
-  - Pipes in the shell, e.g. `cat FILE | grep STRING`. We are going to learn how to manage these pipes ourselves from a C program.
-  - Named pipes (FIFOs), which are pipes that have filenames.
-  - `popen`, a C function that launches a new process with a pipe either for reading or writing, but not both.
-  - TTYs, as explained in the lectures. The C interface for using TTYs starts with `posix_openpt()` and is fairly complicated.
-  - Sockets. This includes both network sockets (TCP) and also UNIX sockets, which are another type of special file. Unlike pipes, sockets provide bidirectional communication.
-
-We are going to be using pairs of pipes, since a single pipe only works in one direction.
-
-## C functions
-
-We will need the following functions for our task, all from `unistd.h`:
-
-  - `int pipe(int fd[2])` creates a pipe. It takes an array of two integers and creates two file descriptors in them, one for the reading and one for the writing end of the pipe. Details in `man 2 pipe`, and like all system calls, you need to check the return value and look at `errno` if it is negative.
-  - `int dup2(int oldfd, int newfd)` changes `newfd` to point to the same file descriptor as `oldfd`. This is the system call version of the shell redirect.
-  - `pid_t fork()` creates a copy of the current process, and is the starting point for launching another process. Once you are sure that it has not returned an error, then the child process will see return value 0 and the parent process will see a return value >0, which is the process id of the child process.
-  - `int execve(const char *path, char *const argv[], char *const envp[])` replaces the current process by the indicated process, this is the C version of typing a shell command except that (1) the shell does fork-then-exec and (2) there is no shell involved, so you cannot use shell features like `*` expansion or builtin commands like cd here.
-
-Here is the basic way to launch a program from another, keeping the original program running:
-
-```C
-/* launch.c */
-#include <unistd.h>
-#include <stdio.h>
-#include <errno.h>
-#include <string.h>
-
-char* command = "/bin/echo";
-char* argv[] = {"echo", "Hello", NULL};
-char* envp[] = {NULL};
-/* both argv and envp must be NULL-terminated arrays,
-   also argv[0] has to be the program name (busybox cares about this)
- */
-
-int main() {
-    int ok = fork();
-    if (ok < 0) {
-        printf("fork() failed: %s\n", strerror(errno));
-        return 1;
-    }
-    /* ok, fork succeeded and the following code will now be running TWICE */
-    if (ok == 0) {
-        /* This is the child process */
-        ok = execve(command, argv, envp);
-        if (ok < 0) {
-            printf("execve() failed: %s\n", strerror(errno));
-            return 1;
-        }
-        /* we will never get here as if execve succeeded, we're gone */
-    }
-    
-    /* if we got here, then we're the parent process */
-    printf("Launched a child process, it has pid %u.\n", ok);
-    
-    return 0;
-}
-```
-If you run this several times in a row, you might see the PID of the child increasing by 2 each time, why is this?
-
-And here is the basic way to work with pipes:
-
-```C
-
-```
