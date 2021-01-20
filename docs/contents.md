@@ -10,7 +10,7 @@ Here you will learn how to administer a Linux/POSIX system. We will be using Alp
 
 The material for these weeks is hosted on [exercises/posix](./exercises/posix). This includes both video links and workshop content.
 
-  * Activity 1 is for the Tuesday workshop in Week 13 (9-11am, 2 February). Ideally you have watched the videos for activity 1 on Monday, but you can catch up later if you like as it's the first week of term.
-  * Activity 2 is for the Friday workshop in Week 13 (11am-1pm, 5 February).
-  * Activity 3 is for the Tuesday workshop in Week 14.
-  * Activity 4 is for the Friday workshop in Week 14.
+  * [Activity 1](./exercises/posix/act1/index.html) is for the Tuesday workshop in Week 13 (9-11am, 2 February). Ideally you have watched the videos for activity 1 on Monday, but you can catch up later if you like as it's the first week of term.
+  * [Activity 2](./exercises/posix/act2/index.html) is for the Friday workshop in Week 13 (11am-1pm, 5 February).
+  * [Activity 3](./exercises/posix/act3/index.html) is for the Tuesday workshop in Week 14.
+  * [Activity 4](./exercises/posix/act4/index.html) is for the Friday workshop in Week 14.

@@ -81,13 +81,37 @@ Note: what happens when you install the mariadb package (or install it from a ZI
 
 ## Importing sample data
 
-I have prepared some sample data that we will be using in this and the following weeks. Load it with
+I have prepared some sample data that we will be using in this and the following weeks.
 
-```sh
-$ mysql -u root -p -e "source /vagrant/sampledata.sql"
+First, download the following three files and place them in the same folder as your Vagrantfile. You can do this for example with `wget ADDRESS` in Alpine linux; `wget` is a download program.
+
+```
+https://cs-uob.github.io/COMS10012/resources/databases/sample-data.sql
+https://cs-uob.github.io/COMS10012/resources/databases/secure-setup.sql
+https://cs-uob.github.io/COMS10012/resources/databases/sampledata.tar
 ```
 
-This pulls in some data in CSV files and creates a default user "vagrant" who can log in to the database without a password, but can only read and not write the two sample databases "census" and "elections". There is another database called "data" which starts out empty, and you can both read and write it.
+If you are using a local copy of this repository, you can find the files under `/resources/databases`.
+
+The `tar` file is a _tape archive_: a file that contains further files and folders, as if it were a folder itself. Extract it by going to `/vagrant` in Alpine and run
+
+    tar xvf sampledata.tar
+
+This creates a folder sampledata with the files we need.
+
+|||advanced
+Note that `tar` uses an older convention where options are not prefixed with a dash; the options here are x=extract a file, v=verify (print the name of every processed file to standard output), f=the filename is in the following argument.
+
+To create a tar file yourself, the command would be `tar cvf ARCHIVE.tar FILE1 FILE2...` where c=create the archive if it doesn't exist, and assume all arguments not consumed by another flag refer to files to be added. In fact, `tar xvf ARCHIVE.tar FILES...` also works and only extracts the named files from the archive.
+|||
+
+Load the sample data with the following command, which will ask for your root password:
+
+```sh
+$ mysql -u root -p -e "source /vagrant/sample-data.sql"
+```
+
+This pulls in some data in CSV files (have a look at the script if you want) and creates a default user "vagrant" who can log in to the database without a password, but can only read and not write the two sample databases "census" and "elections". There is another database called "data" which starts out empty, and "vagrant" can both read and write it.
 
 You can now log in to the database and try the following:
 
@@ -99,12 +123,16 @@ You can now log in to the database and try the following:
   * You could also use `DESCRIBE Party;` to show a list of columns and types in the Party table.
   * Finally, `exit` or Control+D on a line of its own gets you back to the shell.
 
-## Provisioning the VM
+You can open the SQL and CSV files under `/vagrant/sampledata` to compare with the output you get from MariaDB. Study this until it makes sense to you. The `setup.sql` files contain the database schemas and the `import.sql` ones pull in the sample data.
+
+## On a lab machine
 
 On a lab machine, to save disk space your VMs may not remain between reboots - and because they are not hosted on the network file system, if you log in to a different machine next time, your changes will not be saved either but you will get the VM reinstalled from scratch. To make sure the database is ready whenever you need it, open the `Vagrantfile` in a text editor and make the following changes.
 
-  * On the line starting `apk add`, add the packages "mariadb" and "mariadb-client" to the end, separated by spaces.
-  * Following this line, add the following lines:
+  * On the line starting `apk add`, add the packages `mariadb` and `mariadb-client` to the end, separated by spaces.
+  * Download and save the three setup files (`sample-data.sql`, `secure-setup.sql` and `sampledata.tar`) in the same folder as your Vagrantfile (this is on the host machine, so it will not get deleted along with the VM).
+  * Extract the tar file so that there is a folder `sampledata/` in the same folder as your Vagrantfile.
+  * Following the `apk add` line in your Vagrantfile, add the following lines:
 
 ```sh
 /etc/init.d/mariadb setup
