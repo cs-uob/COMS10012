@@ -28,3 +28,5 @@ Between weeks 20 and 21, there is a three-week break for Easter.
 In weeks 22 and 23, you will learn about the cloud, with lectures provided by our resident cloud experts. These will not just be useful for your 2nd year software project, but also if you choose to take the Cloud Computing and Big Data (COMSM0072) in your final year.
 
 Week 24 is revision week. There will be drop-ins instead of workshops; these are neither mandatory nor do they count towards your attendance hurdle. There will be no new material.
+
+For detailed contents, see the [content page](contents.md).

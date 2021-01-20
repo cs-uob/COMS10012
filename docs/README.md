@@ -7,6 +7,7 @@ _This unit page is for the **undergraduate** version of the unit. There is a sim
 ## Links
 
   - [Schedule](schedule.md)
+  - [Contents](contents.md)
   - [Assessment](assessment.md)
   - [Attendance policy](attendance.md)
 
