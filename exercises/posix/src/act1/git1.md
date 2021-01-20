@@ -95,6 +95,8 @@ Sometimes you want to go back and look at another commit, or undo a commit that 
 |||advanced
 If you actually want to undo a commit, then you have two options:
 
-  * `git revert HASH` adds a new commit that returns the files to the state they were in at the commit with the given hash. This is safe to use during team development, as it's just adding a new commit.
-  * `git reset HASH` undoes commits by moving the HEAD pointer back to the commit with the given hash. This will break things if you have shared your newer commits with other developers, but it's safe to use to undo changes that you haven't pushed yet (we'll learn about this next time).
+  * `git revert HASH` adds a new commit that returns the files to the state they were before the commit with the given hash. This is safe to use during team development, as it's just adding a new commit. If you have commits A, B and do `git revert B` then you get a new commit C so anyone else using the repository sees a sequence of commits A, B, C; but the state of the files in C is the same as in A.
+  * `git reset HASH` undoes commits by moving the HEAD pointer back to the commit with the given hash, but leaves the working copy alone (you can use the `--hard` option to change the files as well). This will break things if you have shared your newer commits with other developers, but it's safe to use to undo changes that you haven't pushed yet (we'll learn about this next time). The effect is as if the commits which you've reset had never happened.
+
+Note: if you want to revert a commit because you accidentally commited a file with secret information, and you've already pushed the commit, then you also have to look up online how to "force push" your changes to erase all traces of the file on github (or other online providers). If the secret file contained any passwords, even if you reverted the commit immediately, then you should consider the passwords compromised and change them at once.
 |||
