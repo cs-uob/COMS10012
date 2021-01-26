@@ -109,7 +109,7 @@ Go to that folder, and try `git remote show origin`. Here, `origin` is the defau
     master pushes to master (up to date)
 ```
 
-The bits about `master` are to do with branches, which we will discuss in another activity. _You might see `main` instead of master, in which case please use `main` instead of `master` from now on.
+The bits about `master` are to do with branches, which we will discuss in another activity in more detail. _You might see `main` instead of master, in which case please use `main` instead of `master` from now on._
 
 |||advanced
 You can have several remotes with different names - for example if you fork (create your own copy of someone else's repository) then you get the original one as a second remote named _upstream_, so you can share changes back with them - this is the way you create new content for the [CSS website](https://cssbristol.co.uk) for example.
