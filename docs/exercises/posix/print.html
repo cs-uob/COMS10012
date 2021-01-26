@@ -608,18 +608,23 @@ umask 022
 </ul>
 <h2><a class="header" href="#create-a-user-and-a-group" id="create-a-user-and-a-group">Create a user and a group</a></h2>
 <p>Create a new user with <code>sudo adduser NAME</code> - I'm going to be using <code>fred</code> as an example name in these notes. When it asks for a password, you can just use <code>fred</code> or something; it will complain about the password being too short but it will create the user anyway.</p>
-<p>Check the user and group files with <code>tail /etc/passwd</code> and <code>tail /etc/group</code> to check that the new user has been created - <code>tail</code> displays the last 10 lines of a file by default; <code>tail -n N FILE</code> would display the last N lines. Check with <code>ls -l /home</code> that the home directory for Fred exists and is set to the correct user and group.</p>
+<p>Check the user and group files with <code>tail /etc/passwd</code> and <code>tail /etc/group</code> to check that the new user has been created - <code>tail</code> displays the last 10 lines of a file by default; <code>tail -n N FILE</code> would display the last N lines. Your new user <code>fred</code> (or whatever you called them) should appear in both files. Also check with <code>ls -l /home</code> that the home directory for Fred exists and is set to the correct user and group.</p>
 <p>Time to change user: <code>su fred</code> and enter the password. Notice that the prompt has changed to <code>fred@alpine310:/home/vagrant$</code> (at least if you started off in that folder). So the user has changed, and because <code>/home/vagrant</code> is no longer the current user's home directory, it gets written out in full. Run <code>cd</code> to go home followed by <code>pwd</code> and check that you are now in <code>/home/fred</code> or whatever you called your new user.</p>
-<p>Next, create a user <code>george</code> (or some other name) add both your two new users, but not <code>vagrant</code>, to the group <code>users</code> (which already exists). Note: <code>fred</code> cannot use sudo, so you have to exit his terminal to get back to one running as vagrant for this.</p>
+<p>Next, create a user <code>george</code> (or some other name) add both your two new users, but not <code>vagrant</code>, to the group <code>users</code> (which already exists) as described in the video. Note: <code>fred</code> cannot use sudo, so you have to exit his terminal to get back to one running as vagrant for this.</p>
 <h2><a class="header" href="#explore-file-permissions" id="explore-file-permissions">Explore file permissions</a></h2>
-<p>As user <code>fred</code> (or whatever you called your first new user), set up your home directory so that</p>
+<p>As user <code>fred</code> (or whatever you called your first new user), set up your home directory using what you learnt in the videos so that</p>
 <ul>
 <li>You can do everything (rwx).</li>
-<li>Members of the <code>users</code> group can list files and change to your home directory, but not add/remove files. You will need to change the group of your home directory to <code>users</code> for this.</li>
+<li>Members of the <code>users</code> group can list files and change to your home directory, but not add/remove files. You will need to change the group of your home directory to <code>users</code> for this, as described in the videos.</li>
 <li>Everyone else cannot do anything with your home directory.</li>
 </ul>
 <p>Create a file in your home directory, e.g. <code>nano readme.txt</code> then add some content.</p>
-<p>Check, by using <code>su USERNAME</code> to log in as the different users, that <code>george</code> can view Fred's home directory but not create files there; <code>george</code> can view but not edit Fred's readme file; and <code>vagrant</code> cannot list files in or enter Fred's home directory at all. What happens when you try?</p>
+<p>Check, by using <code>su USERNAME</code> to log in as the different users, that:</p>
+<ul>
+<li><code>george</code> can view Fred's home directory but not create files there; </li>
+<li><code>george</code> can view but not edit Fred's readme file; </li>
+<li><code>vagrant</code> cannot list files in or enter Fred's home directory at all. What happens when you try?</li>
+</ul>
 <p><em>Of course, vagrant can use sudo to get around all these restrictions. Permissions do not protect you from anyone who can become root.</em></p>
 <p>Also as <code>fred</code>, make a <code>private</code> subdirectory in your home folder that no-one but you can access (read, write or execute). Create a file <code>secret.txt</code> in there with <code>nano private/secret.txt</code> as user <code>fred</code> from Fred's home directory, and put something in it. Do not change any permissions on <code>secret.txt</code> itself.</p>
 <p>Check as George that you can see the folder itself, but not cd into it nor list the file. Check that even knowing the file name (<code>cat /home/fred/private/secret.txt</code>) as George doesn't work.</p>
@@ -690,7 +695,7 @@ int main(int argc, char **argv) {
 </code></pre>
 <p>If uncommented, the first one would let everyone in group wheel run commands using sudo (this is the default on some other linux distributions), whereas the second one would allow everyone in the group <code>sudo</code> to do this, but would prompt for their own password beforehand.</p>
 <p>Let's allow people in the users group to reboot the machine. Open a root shell with <code>sudo su</code> as vagrant; this is so we don't get locked out if we break sudo.</p>
-<p>Add the following line (<code>nano /etc/sudoers</code> as root):</p>
+<p>Edit the sudoers file with <code>nano /etc/sudoers</code> as root, and add the following line:</p>
 <pre><code>%users ALL=(ALL) /sbin/reboot
 </code></pre>
 <p>and save the sudoers file.</p>
@@ -733,6 +738,25 @@ SHELL
 </div>
 </div>
 <p>I am assuming that you will be running the git commands in the rest of this section on an alpine linux VM, either on your machine or on a lab machine, however if you have git installed on your own machine directly (which is a good idea) then you can run this exercise there too.</p>
+<h2><a class="header" href="#a-note-on-naming" id="a-note-on-naming">A note on naming</a></h2>
+<p>When git first appeared, whenever you created a repository you started with one branch called <code>master</code>. Different workflows and branch naming conventions appeared over time (we will see one of these in the next activity).</p>
+<p>As far as git is concerned, a branch name is just a string and any other name would do just as well (as long as it does not contain spaces, slashes or a few other special characters). As far as humans go, in 2020 it came to developers' attention that the term <code>master</code> is sometimes used in problematic ways in engineering in general and computing in partciular, specifically, a system where several components perform similar roles but one of them is the authoritative one in case of discrepancy has historically been called a <em>master/slave</em> system.</p>
+<p>The git developers' first reaction was to make it easier to choose a different name for your first branch; the latest version of git prints a message on how to do this when you create a repository (the configuration setting is <code>init.defaultBranch</code>) and the online providers such as github offer a text field for this too. At the moment, <code>main</code> seems to be the most popular alternative name for the first branch, but at the time of writing there does not seem to be a clear consensus yet. I have seen both <code>default</code> and <code>root</code> suggested as first branch names, neither of which seems to have gained much traction though. Another contender for workflows which use a <code>develop</code> branch anyway is to use that as the initial branch. The latest post on the matter from <a href="https://sfconservancy.org/news/2020/jun/23/gitbranchname/">software freedom conservancy</a> is dated June 2020 and states that the matter is &quot;currently being discussed on our mailing list&quot;.</p>
+<p>There has been some debate about whether the name &quot;master&quot; in git traces back to <em>master/slave</em> or another, less problematic use of word e.g. the phrase <em>master copy/master recording</em> from the music industry - the most authoritative source I can find on the matter is <a href="https://git.github.io/rev_news/2020/07/29/edition-65/">git rev news 65, July 2020</a> from the git developers themselves, which also states that a change of the default branch name might happen in Git 3.0 (the version installed in Alpine at the time of writing is 2.30.0).</p>
+<p>There is another line of argument that the word <em>master</em> as a default branch name (and thus something developers will refer to a lot) is inherently problematic even if it came from a different origin than <em>master/slave</em>. This is a complicated issue as, among other things, half the cohort taking Software Tools is probably on a <em>Master's Degree</em> and one of the criteria for a first-class mark is showing <em>mastery</em> of the unit material - all terms that will be much harder to change than a simple repository name which is one line of commands to change. Git does not care what your branches are called after all, one string is as good as another (as long as it doesn't contain special characters or spaces).</p>
+<p>However, a fresh installation of git will still call the branch <code>master</code> unless you change a configuration setting, and any book, tutorial, forum or stackexchange post online written about git before around mid-2020 will refer to <code>master</code> so there is currently no way around knowing that in the context of git, the term <code>master</code> refers to a branch with a particular role, but as a future developer you should also have an understanding of the community and conventions around your tools and you should definitely know that there is a currently ongoing discussion around this term.</p>
+<p>For the 2020-21 academic year, I have decided to go with <code>master</code> for this unit as I don't feel it's my job to pre-empt a decision on the new default name - github is in favour of <code>main</code> but the git developers do not seem to have made a final decision yet; and because you will encounter the term <code>master</code> in git itself and in a lot of existing repositories and documentation (including the official <a href="https://git-scm.com/book/en/v2">git book</a> at the time of writing); it will be easy enough to update these notes for 2021-22 if everyone has switched to <code>main</code> or something else by then.</p>
+<p>For your own repositories, you are free to choose whatever name you like, and you can configure this with the command</p>
+<pre><code>git config --global init.defaultBranch NAME
+</code></pre>
+<p>and then follow the rest of the git exercises, mentally replacing <code>master</code> by <code>main</code> or your choice of other name. </p>
+<p>When you create a repository on github, the default name you get depends on your settings, which seems to depend on when you created your account - if you create an account today, you will get <code>main</code> as the default name but on my account (which has been around for years) I still get <code>master</code>. The page you want to check while logged in to github is https://github.com/settings/repositories; if you get <code>main</code> as your default then please use that in the rest of this tutorial.</p>
+<p>To finish with a quote from the git book:</p>
+<blockquote>
+<p>The &quot;master&quot; branch in Git is not a special branch. It is exactly like any other
+branch. The only reason nearly every repository has one is that the git init
+command creates it by default and most people don't bother to change it.</p>
+</blockquote>
 <h2><a class="header" href="#create-a-repository" id="create-a-repository">Create a repository</a></h2>
 <p>On the main page, you should see an empty <em>Repositories</em> bar on the left, with a new button. Use that to create a repository, on the next page give it a name and tick the <em>Add a README file</em> box.</p>
 <p>On the repository page, there is a green <em>Code</em> button. Clicking that opens a box with three tabs: <em>HTTPS</em>, <em>SSH</em> and <em>GitHub CLI</em>.</p>
@@ -743,6 +767,11 @@ SHELL
 </ul>
 <p>Click the SSH tab and copy the URL there - it should be something like <code>git@github.com:USERNAME/REPONAME.git</code>.</p>
 <p>On the command line, run the command <code>git clone git@github.com:USERNAME/REPONAME.git</code> where you replace USERNAME and REPONAME with the parts from the SSH tab of your repository. Git clones your repository and puts the content in a subfolder named after the repository name - you can change this by providing a different folder name as an extra command-line argument to <code>git clone</code>, or you can just move or rename the folder later on.</p>
+<p><em>Note: certain OS/ISP/DNS combinations might get you &quot;resource temporarily unavailable&quot; when you try and access github via ssh. The problem is that the actual address is <code>ssh.github.com</code> and not all set-ups correctly pass on the redirection when you try and connect to github directly. If you are experiencing this error, you can either use <code>ssh.github.com</code> in place of <code>github.com</code>, or add an entry in your <code>~/.ssh/config</code> file as follows (if you have to create this file first, make sure it is not writable by anyone except yourself or ssh will refuse to accept it):</em></p>
+<pre><code>Host github.com
+  Hostname ssh.github.com
+  Port 22
+</code></pre>
 <div class="advanced container">
 <header><span class="advanced-title"></span></header>
 <div class="container-content">
@@ -762,7 +791,7 @@ SHELL
   Local ref configured for 'git push':
     master pushes to master (up to date)
 </code></pre>
-<p>The bits about <code>master</code> are to do with branches, which we will discuss in another activity.</p>
+<p>The bits about <code>master</code> are to do with branches, which we will discuss in another activity. _You might see <code>main</code> instead of master, in which case please use <code>main</code> instead of <code>master</code> from now on.</p>
 <div class="advanced container">
 <header><span class="advanced-title"></span></header>
 <div class="container-content">
@@ -796,7 +825,7 @@ git clone remote user2
 <p>For this exercise, you should work in pairs or larger groups.</p>
 <p>One person creates a private repository (tick the box to add a README file) and adds everyone else in the group to it. You all need to have an account with the same provider for this to work.</p>
 <ul>
-<li>On Github, the way to add people to a repository is on the repository page: choose <em>Settings</em> in the top menu, then <em>Manage access</em>. Here you can press <em>Invite a collaborator</em> and enter their Github username. This causes Github to send them an e-mail with a link they need to click to accept the invitation and be added to the repository.</li>
+<li>On Github, the way to add people to a repository is on the repository page: choose <em>Settings</em> in the top menu, then <em>Manage access</em>. Here you can press <em>Invite a collaborator</em> and enter their Github username. This causes Github to send them an e-mail with a link they need to click to accept the invitation and be added to the repository. <em>Note: you must be logged in to github when you click the link on the invitation e-mail, otherwise you will get an error message.</em></li>
 <li>On Gitlab, the place to add people is under <em>Members</em> in the left menu on the repository page, and there are different access levels - give them  <em>Maintainer</em> access to let them push commits.</li>
 </ul>
 <p>Everyone <code>git clone</code>s the repository to their own alpine VM (or their own machine directly).</p>
@@ -841,7 +870,7 @@ git clone remote user2
 <li>The second team member starts the push workflow: fetch, status - notice you've <code>diverged</code>.</li>
 </ol>
 <p>The second member's commit graph looks similar to the previous one before the rebase, perhaps with more commits in place of the <em>initial</em> one.</p>
-<p>The second member is about to do a merge, which can either succeed (as it would have in the previous example, because different people edited different files) or fail with a merge conflict (as it will do in this case). If a merge succeeds, then git will make a merge commit and will drop them into their system's default editor, which is normally <code>vi</code>. Because we don't want to learn that right now, the second member should type <code>echo $EDITOR</code> in their shell and see what they get - if they get <code>nano</code> then they're fine, if they get an empty line then they should do <code>export EDITOR=nano</code>.</p>
+<p>The second member is about to do a merge, which can either succeed (as it should here, because different people edited different files) or fail with a merge conflict (for example if different people edited the same file). If a merge succeeds, then git will make a merge commit and will drop them into their system's default editor, which is normally <code>vi</code>. Because we don't want to learn that right now, the second member should type <code>echo $EDITOR</code> in their shell and see what they get - if they get <code>nano</code> then they're fine, if they get an empty line then they should do <code>export EDITOR=nano</code>.</p>
 <p>The second team member types <code>git pull</code>. Since this is a fake conflict (different files), this gets you into your editor, and you can see that on the first line is a suggested commit message starting with <code>Merge branch master</code>, which it is conventional to accept without changes - exit your editor again. Git replies <code>Merge made by the recursive strategy.</code> and your commit graph now looks something like this (the <code>...</code> stands for the last commit from the previous section):</p>
 <p><img src="act2/../resources/after-merge.png" alt="diagram of commits after merge" /></p>
 <h2><a class="header" href="#resolving-a-real-conflict" id="resolving-a-real-conflict">Resolving a real conflict</a></h2>
@@ -893,7 +922,7 @@ Created by NAME1.
 <p>Most linux distributions come with a dictionary file <code>/usr/dict/words</code> that contains a list of English words in alphabetical order, for use in spell-checking programs. The list includes a selection of proper nouns, for example countries and cities. Alpine linux, true to its principles of being minimal, omits this file - but you can download one yourself with</p>
 <pre><code>wget https://users.cs.duke.edu/~ola/ap/linuxwords -O words
 </code></pre>
-<p><code>wget</code> is one of two utilities for downloading files, the other being <code>curl</code>. Note that the option for output file name is a capital O, not a lowercase one or a zero.</p>
+<p><code>wget</code> is one of two utilities for downloading files, the other being <code>curl</code>. Note that the option for output file name is a capital O, not a lowercase o or a zero.</p>
 <p>Find one-line commands, possibly with pipes, to print the following to your terminal. You can either start each command with <code>cat words | ...</code> or do it without cat by providing the words file as an argument to the first command in your pipeline.</p>
 <p><em>If English is not your native language, ignore the guessing part - it is not assessed.</em></p>
 <ul>

@@ -179,18 +179,23 @@ umask 022
 </ul>
 <h2><a class="header" href="#create-a-user-and-a-group" id="create-a-user-and-a-group">Create a user and a group</a></h2>
 <p>Create a new user with <code>sudo adduser NAME</code> - I'm going to be using <code>fred</code> as an example name in these notes. When it asks for a password, you can just use <code>fred</code> or something; it will complain about the password being too short but it will create the user anyway.</p>
-<p>Check the user and group files with <code>tail /etc/passwd</code> and <code>tail /etc/group</code> to check that the new user has been created - <code>tail</code> displays the last 10 lines of a file by default; <code>tail -n N FILE</code> would display the last N lines. Check with <code>ls -l /home</code> that the home directory for Fred exists and is set to the correct user and group.</p>
+<p>Check the user and group files with <code>tail /etc/passwd</code> and <code>tail /etc/group</code> to check that the new user has been created - <code>tail</code> displays the last 10 lines of a file by default; <code>tail -n N FILE</code> would display the last N lines. Your new user <code>fred</code> (or whatever you called them) should appear in both files. Also check with <code>ls -l /home</code> that the home directory for Fred exists and is set to the correct user and group.</p>
 <p>Time to change user: <code>su fred</code> and enter the password. Notice that the prompt has changed to <code>fred@alpine310:/home/vagrant$</code> (at least if you started off in that folder). So the user has changed, and because <code>/home/vagrant</code> is no longer the current user's home directory, it gets written out in full. Run <code>cd</code> to go home followed by <code>pwd</code> and check that you are now in <code>/home/fred</code> or whatever you called your new user.</p>
-<p>Next, create a user <code>george</code> (or some other name) add both your two new users, but not <code>vagrant</code>, to the group <code>users</code> (which already exists). Note: <code>fred</code> cannot use sudo, so you have to exit his terminal to get back to one running as vagrant for this.</p>
+<p>Next, create a user <code>george</code> (or some other name) add both your two new users, but not <code>vagrant</code>, to the group <code>users</code> (which already exists) as described in the video. Note: <code>fred</code> cannot use sudo, so you have to exit his terminal to get back to one running as vagrant for this.</p>
 <h2><a class="header" href="#explore-file-permissions" id="explore-file-permissions">Explore file permissions</a></h2>
-<p>As user <code>fred</code> (or whatever you called your first new user), set up your home directory so that</p>
+<p>As user <code>fred</code> (or whatever you called your first new user), set up your home directory using what you learnt in the videos so that</p>
 <ul>
 <li>You can do everything (rwx).</li>
-<li>Members of the <code>users</code> group can list files and change to your home directory, but not add/remove files. You will need to change the group of your home directory to <code>users</code> for this.</li>
+<li>Members of the <code>users</code> group can list files and change to your home directory, but not add/remove files. You will need to change the group of your home directory to <code>users</code> for this, as described in the videos.</li>
 <li>Everyone else cannot do anything with your home directory.</li>
 </ul>
 <p>Create a file in your home directory, e.g. <code>nano readme.txt</code> then add some content.</p>
-<p>Check, by using <code>su USERNAME</code> to log in as the different users, that <code>george</code> can view Fred's home directory but not create files there; <code>george</code> can view but not edit Fred's readme file; and <code>vagrant</code> cannot list files in or enter Fred's home directory at all. What happens when you try?</p>
+<p>Check, by using <code>su USERNAME</code> to log in as the different users, that:</p>
+<ul>
+<li><code>george</code> can view Fred's home directory but not create files there; </li>
+<li><code>george</code> can view but not edit Fred's readme file; </li>
+<li><code>vagrant</code> cannot list files in or enter Fred's home directory at all. What happens when you try?</li>
+</ul>
 <p><em>Of course, vagrant can use sudo to get around all these restrictions. Permissions do not protect you from anyone who can become root.</em></p>
 <p>Also as <code>fred</code>, make a <code>private</code> subdirectory in your home folder that no-one but you can access (read, write or execute). Create a file <code>secret.txt</code> in there with <code>nano private/secret.txt</code> as user <code>fred</code> from Fred's home directory, and put something in it. Do not change any permissions on <code>secret.txt</code> itself.</p>
 <p>Check as George that you can see the folder itself, but not cd into it nor list the file. Check that even knowing the file name (<code>cat /home/fred/private/secret.txt</code>) as George doesn't work.</p>
@@ -261,7 +266,7 @@ int main(int argc, char **argv) {
 </code></pre>
 <p>If uncommented, the first one would let everyone in group wheel run commands using sudo (this is the default on some other linux distributions), whereas the second one would allow everyone in the group <code>sudo</code> to do this, but would prompt for their own password beforehand.</p>
 <p>Let's allow people in the users group to reboot the machine. Open a root shell with <code>sudo su</code> as vagrant; this is so we don't get locked out if we break sudo.</p>
-<p>Add the following line (<code>nano /etc/sudoers</code> as root):</p>
+<p>Edit the sudoers file with <code>nano /etc/sudoers</code> as root, and add the following line:</p>
 <pre><code>%users ALL=(ALL) /sbin/reboot
 </code></pre>
 <p>and save the sudoers file.</p>

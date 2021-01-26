@@ -37,6 +37,36 @@ If you are running this exercise on an alpine VM hosted on a lab machine, then b
 
 I am assuming that you will be running the git commands in the rest of this section on an alpine linux VM, either on your machine or on a lab machine, however if you have git installed on your own machine directly (which is a good idea) then you can run this exercise there too.
 
+## A note on naming
+
+When git first appeared, whenever you created a repository you started with one branch called `master`. Different workflows and branch naming conventions appeared over time (we will see one of these in the next activity).
+
+As far as git is concerned, a branch name is just a string and any other name would do just as well (as long as it does not contain spaces, slashes or a few other special characters). As far as humans go, in 2020 it came to developers' attention that the term `master` is sometimes used in problematic ways in engineering in general and computing in partciular, specifically, a system where several components perform similar roles but one of them is the authoritative one in case of discrepancy has historically been called a _master/slave_ system.
+
+The git developers' first reaction was to make it easier to choose a different name for your first branch; the latest version of git prints a message on how to do this when you create a repository (the configuration setting is `init.defaultBranch`) and the online providers such as github offer a text field for this too. At the moment, `main` seems to be the most popular alternative name for the first branch, but at the time of writing there does not seem to be a clear consensus yet. I have seen both `default` and `root` suggested as first branch names, neither of which seems to have gained much traction though. Another contender for workflows which use a `develop` branch anyway is to use that as the initial branch. The latest post on the matter from [software freedom conservancy](https://sfconservancy.org/news/2020/jun/23/gitbranchname/) is dated June 2020 and states that the matter is "currently being discussed on our mailing list".
+
+There has been some debate about whether the name "master" in git traces back to _master/slave_ or another, less problematic use of word e.g. the phrase _master copy/master recording_ from the music industry - the most authoritative source I can find on the matter is [git rev news 65, July 2020](https://git.github.io/rev_news/2020/07/29/edition-65/) from the git developers themselves, which also states that a change of the default branch name might happen in Git 3.0 (the version installed in Alpine at the time of writing is 2.30.0).
+
+There is another line of argument that the word _master_ as a default branch name (and thus something developers will refer to a lot) is inherently problematic even if it came from a different origin than _master/slave_. This is a complicated issue as, among other things, half the cohort taking Software Tools is probably on a _Master's Degree_ and one of the criteria for a first-class mark is showing _mastery_ of the unit material - all terms that will be much harder to change than a simple repository name which is one line of commands to change. Git does not care what your branches are called after all, one string is as good as another (as long as it doesn't contain special characters or spaces).
+
+However, a fresh installation of git will still call the branch `master` unless you change a configuration setting, and any book, tutorial, forum or stackexchange post online written about git before around mid-2020 will refer to `master` so there is currently no way around knowing that in the context of git, the term `master` refers to a branch with a particular role, but as a future developer you should also have an understanding of the community and conventions around your tools and you should definitely know that there is a currently ongoing discussion around this term.
+
+For the 2020-21 academic year, I have decided to go with `master` for this unit as I don't feel it's my job to pre-empt a decision on the new default name - github is in favour of `main` but the git developers do not seem to have made a final decision yet; and because you will encounter the term `master` in git itself and in a lot of existing repositories and documentation (including the official [git book](https://git-scm.com/book/en/v2) at the time of writing); it will be easy enough to update these notes for 2021-22 if everyone has switched to `main` or something else by then.
+
+For your own repositories, you are free to choose whatever name you like, and you can configure this with the command
+
+    git config --global init.defaultBranch NAME
+
+and then follow the rest of the git exercises, mentally replacing `master` by `main` or your choice of other name. 
+
+When you create a repository on github, the default name you get depends on your settings, which seems to depend on when you created your account - if you create an account today, you will get `main` as the default name but on my account (which has been around for years) I still get `master`. The page you want to check while logged in to github is https://github.com/settings/repositories; if you get `main` as your default then please use that in the rest of this tutorial.
+
+To finish with a quote from the git book:
+
+> The "master" branch in Git is not a special branch. It is exactly like any other
+> branch. The only reason nearly every repository has one is that the git init
+> command creates it by default and most people don't bother to change it.
+
 ## Create a repository
 
 On the main page, you should see an empty _Repositories_ bar on the left, with a new button. Use that to create a repository, on the next page give it a name and tick the _Add a README file_ box.
@@ -51,6 +81,12 @@ Each repository has a two-part name: the first part is the owner's github userna
 Click the SSH tab and copy the URL there - it should be something like `git@github.com:USERNAME/REPONAME.git`.
 
 On the command line, run the command `git clone git@github.com:USERNAME/REPONAME.git` where you replace USERNAME and REPONAME with the parts from the SSH tab of your repository. Git clones your repository and puts the content in a subfolder named after the repository name - you can change this by providing a different folder name as an extra command-line argument to `git clone`, or you can just move or rename the folder later on.
+
+_Note: certain OS/ISP/DNS combinations might get you "resource temporarily unavailable" when you try and access github via ssh. The problem is that the actual address is `ssh.github.com` and not all set-ups correctly pass on the redirection when you try and connect to github directly. If you are experiencing this error, you can either use `ssh.github.com` in place of `github.com`, or add an entry in your `~/.ssh/config` file as follows (if you have to create this file first, make sure it is not writable by anyone except yourself or ssh will refuse to accept it):_
+
+    Host github.com
+      Hostname ssh.github.com
+      Port 22
 
 |||advanced
 Notice that git did not ask for your username. It can determine your identity from your public key, as that is stored in your user account.
@@ -73,7 +109,7 @@ Go to that folder, and try `git remote show origin`. Here, `origin` is the defau
     master pushes to master (up to date)
 ```
 
-The bits about `master` are to do with branches, which we will discuss in another activity.
+The bits about `master` are to do with branches, which we will discuss in another activity. _You might see `main` instead of master, in which case please use `main` instead of `master` from now on.
 
 |||advanced
 You can have several remotes with different names - for example if you fork (create your own copy of someone else's repository) then you get the original one as a second remote named _upstream_, so you can share changes back with them - this is the way you create new content for the [CSS website](https://cssbristol.co.uk) for example.
@@ -117,7 +153,7 @@ For this exercise, you should work in pairs or larger groups.
 
 One person creates a private repository (tick the box to add a README file) and adds everyone else in the group to it. You all need to have an account with the same provider for this to work.
 
-  * On Github, the way to add people to a repository is on the repository page: choose _Settings_ in the top menu, then _Manage access_. Here you can press _Invite a collaborator_ and enter their Github username. This causes Github to send them an e-mail with a link they need to click to accept the invitation and be added to the repository.
+  * On Github, the way to add people to a repository is on the repository page: choose _Settings_ in the top menu, then _Manage access_. Here you can press _Invite a collaborator_ and enter their Github username. This causes Github to send them an e-mail with a link they need to click to accept the invitation and be added to the repository. _Note: you must be logged in to github when you click the link on the invitation e-mail, otherwise you will get an error message._
   * On Gitlab, the place to add people is under _Members_ in the left menu on the repository page, and there are different access levels - give them  _Maintainer_ access to let them push commits.
 
 Everyone `git clone`s the repository to their own alpine VM (or their own machine directly).
@@ -167,7 +203,7 @@ The other way to fix conflicts - and the only one that some people will use - is
 
 The second member's commit graph looks similar to the previous one before the rebase, perhaps with more commits in place of the _initial_ one.
 
-The second member is about to do a merge, which can either succeed (as it would have in the previous example, because different people edited different files) or fail with a merge conflict (as it will do in this case). If a merge succeeds, then git will make a merge commit and will drop them into their system's default editor, which is normally `vi`. Because we don't want to learn that right now, the second member should type `echo $EDITOR` in their shell and see what they get - if they get `nano` then they're fine, if they get an empty line then they should do `export EDITOR=nano`.
+The second member is about to do a merge, which can either succeed (as it should here, because different people edited different files) or fail with a merge conflict (for example if different people edited the same file). If a merge succeeds, then git will make a merge commit and will drop them into their system's default editor, which is normally `vi`. Because we don't want to learn that right now, the second member should type `echo $EDITOR` in their shell and see what they get - if they get `nano` then they're fine, if they get an empty line then they should do `export EDITOR=nano`.
 
 The second team member types `git pull`. Since this is a fake conflict (different files), this gets you into your editor, and you can see that on the first line is a suggested commit message starting with `Merge branch master`, which it is conventional to accept without changes - exit your editor again. Git replies `Merge made by the recursive strategy.` and your commit graph now looks something like this (the `...` stands for the last commit from the previous section):
 

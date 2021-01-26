@@ -21,7 +21,7 @@ Most linux distributions come with a dictionary file `/usr/dict/words` that cont
 
     wget https://users.cs.duke.edu/~ola/ap/linuxwords -O words
 
-`wget` is one of two utilities for downloading files, the other being `curl`. Note that the option for output file name is a capital O, not a lowercase one or a zero.
+`wget` is one of two utilities for downloading files, the other being `curl`. Note that the option for output file name is a capital O, not a lowercase o or a zero.
 
 Find one-line commands, possibly with pipes, to print the following to your terminal. You can either start each command with `cat words | ...` or do it without cat by providing the words file as an argument to the first command in your pipeline.
 

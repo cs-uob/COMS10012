@@ -27,23 +27,26 @@ While you're here, you can `export EDITOR=nano` so that every user gets nano ins
 
 Create a new user with `sudo adduser NAME` - I'm going to be using `fred` as an example name in these notes. When it asks for a password, you can just use `fred` or something; it will complain about the password being too short but it will create the user anyway.
 
-Check the user and group files with `tail /etc/passwd` and `tail /etc/group` to check that the new user has been created - `tail` displays the last 10 lines of a file by default; `tail -n N FILE` would display the last N lines. Check with `ls -l /home` that the home directory for Fred exists and is set to the correct user and group.
+Check the user and group files with `tail /etc/passwd` and `tail /etc/group` to check that the new user has been created - `tail` displays the last 10 lines of a file by default; `tail -n N FILE` would display the last N lines. Your new user `fred` (or whatever you called them) should appear in both files. Also check with `ls -l /home` that the home directory for Fred exists and is set to the correct user and group.
 
 Time to change user: `su fred` and enter the password. Notice that the prompt has changed to `fred@alpine310:/home/vagrant$` (at least if you started off in that folder). So the user has changed, and because `/home/vagrant` is no longer the current user's home directory, it gets written out in full. Run `cd` to go home followed by `pwd` and check that you are now in `/home/fred` or whatever you called your new user.
 
-Next, create a user `george` (or some other name) add both your two new users, but not `vagrant`, to the group `users` (which already exists). Note: `fred` cannot use sudo, so you have to exit his terminal to get back to one running as vagrant for this.
+Next, create a user `george` (or some other name) add both your two new users, but not `vagrant`, to the group `users` (which already exists) as described in the video. Note: `fred` cannot use sudo, so you have to exit his terminal to get back to one running as vagrant for this.
 
 ## Explore file permissions
 
-As user `fred` (or whatever you called your first new user), set up your home directory so that
+As user `fred` (or whatever you called your first new user), set up your home directory using what you learnt in the videos so that
 
   * You can do everything (rwx).
-  * Members of the `users` group can list files and change to your home directory, but not add/remove files. You will need to change the group of your home directory to `users` for this.
+  * Members of the `users` group can list files and change to your home directory, but not add/remove files. You will need to change the group of your home directory to `users` for this, as described in the videos.
   * Everyone else cannot do anything with your home directory.
 
 Create a file in your home directory, e.g. `nano readme.txt` then add some content.
 
-Check, by using `su USERNAME` to log in as the different users, that `george` can view Fred's home directory but not create files there; `george` can view but not edit Fred's readme file; and `vagrant` cannot list files in or enter Fred's home directory at all. What happens when you try?
+Check, by using `su USERNAME` to log in as the different users, that:
+  * `george` can view Fred's home directory but not create files there; 
+  * `george` can view but not edit Fred's readme file; 
+  * `vagrant` cannot list files in or enter Fred's home directory at all. What happens when you try?
 
 _Of course, vagrant can use sudo to get around all these restrictions. Permissions do not protect you from anyone who can become root._
 
@@ -147,7 +150,7 @@ If uncommented, the first one would let everyone in group wheel run commands usi
 
 Let's allow people in the users group to reboot the machine. Open a root shell with `sudo su` as vagrant; this is so we don't get locked out if we break sudo.
 
-Add the following line (`nano /etc/sudoers` as root):
+Edit the sudoers file with `nano /etc/sudoers` as root, and add the following line:
 
     %users ALL=(ALL) /sbin/reboot
 
