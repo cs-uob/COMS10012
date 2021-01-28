@@ -8,7 +8,7 @@ In the video for this activity you have only seen a very brief introduction.
 Write a shell script in a file called `b` (for build) that does the following:
 
   * Your script should run under any Bourne-compatible shell (e.g. not just `bash`), and it should be written so that you can call it with `./b`.
-  * `./b compile NAME` should compile the file of the given name, so for example `./b compile hello` should run `gcc -Wall -std=C11 -g hello.c -o hello`.
+  * `./b compile NAME` should compile the file of the given name, so for example `./b compile hello` should run `gcc -Wall -std=c11 -g hello.c -o hello`.
   * However, your script should accept both `./b compile hello` and `./b compile hello.c` as input, and do the same thing in both cases, namely compile `hello.c`. The output file for gcc in both cases should be called just `hello`.
   * If the source file you provided as an argument does not exist (adding `.c` if necessary) then the script should print an error message and return a nonzero exit status - _not_ invoke the C compiler.
   * `./b run NAME` should run the program, assuming it exists in the current folder, so both `./b run hello` and `./b run hello.c` should run `./hello`. If it does not exist, again print an error message and exit with a nonzero status, don't try and run the program.

@@ -161,11 +161,12 @@
                     <main>
                         <h1><a class="header" href="#inodes-and-system-calls" id="inodes-and-system-calls">Inodes and System Calls</a></h1>
 <p>In this exercise we will look under the hood of the <code>stat</code> system call, which returns information about an inode.</p>
+<p><em>Note: for this exercise it's even more important than usual that you are using Alpine linux in the emulator, as you will get different results if you try it on Windows Subsystem for Linux or on a Mac for example.</em></p>
 <p>A system call is a way for a linux user or program to interact with the kernel, and there are usually at least three ways of calling each one:</p>
 <ol>
 <li>Execute the system call directly in assembly.</li>
 <li>Use the wrapper function provided by your C library.</li>
-<li>Use a command-line program probided by your distribution.</li>
+<li>Use a command-line program provided by your distribution.</li>
 </ol>
 <h2><a class="header" href="#preparation" id="preparation">Preparation</a></h2>
 <p>Install the <code>musl-dev</code> package, which provides the header files for the C library, as well as <code>gcc</code> if you have not installed that yet.</p>
@@ -181,7 +182,7 @@ int lstat(const char *pathname, struct stat *statbuf);
 <p>Later in the manual page, it explains the <code>struct stat</code> contents. Let's have a look at the sources directly though:</p>
 <ul>
 <li><code>nano /usr/include/sys/stat.h</code> shows you the header file and the function definitions, including the bitmasks for the mode bits e.g. <code>#define S_IRUSR 0400</code> is the &quot;user can read&quot; bit and the file type bits e.g. <code>#define S_IFDIR 0040000</code>. Note, in C, numbers with a leading 0 are octal!</li>
-<li>The definition of the <code>struct stat</code> is in another file included from <code>sys/stat.h</code>; open that in your editor too and have a look at it.</li>
+<li>The definition of the <code>struct stat</code> is in another file included from <code>sys/stat.h</code>, namely <code>bits/stat.h</code>; open that in your editor too and have a look at it.</li>
 <li>The types of the fields in the structure (<code>dev_t</code>) etc. are yet in another file - <code>bits/alltypes.h</code> if you're curious - but eventually they get defined as <code>long</code>, through intermediate definitions of <code>_Int64</code> etc. Basically, on a 64-bit machine, most of these fields are 64 bits.</li>
 </ul>
 <p>Run the following short C program to check the size of your <code>struct stat</code>; I get 144 bytes but note down if you get something different:</p>
@@ -215,10 +216,11 @@ buf: .skip 144
 <p>Change the 144 in the last line if you got a different size for your structure.</p>
 <p>Let's see what's going on here:</p>
 <ol>
-<li><code>.section .text</code> is an assembly directive to say <em>the following is code</em>, more precisely <em>it goes in the code section</em>.</li>
+<li><code>.section .text</code> is an assembly directive to say <em>the following is code</em>, more precisely <em>it goes in the code section (which we named 'text' for obscure historical reasons)</em>.</li>
 <li><code>.global _start</code> says to export the label <code>_start</code> to the linker, which is the assembly version of <code>main</code>: in fact, C programs really start at <code>_start</code> too as you can check by setting a breakpoint on this label in a debugger, this function is part of the C library and it sets a few things up and then calls <code>main</code>. When you return from <code>main</code>, then <code>_start</code> does some cleanup and exits the program cleanly with the correct return value.</li>
 <li>The way you invoke a system call is you put the system call number in the <code>rax</code> register, and parameters according to the platform convention - on Intel/AMD 64 bit, the first parameter goes in the <code>rdi</code> register, the second one in the <code>rsi</code> register. System calls and their parameters are documented <a href="https://blog.rchapman.org/posts/Linux_System_Call_Table_for_x86_64/">in this table</a> for example. Return values from system calls end up in the <code>rax</code> register again. Looking ahead a bit in our assembly code, system call 60 is <code>sys_exit</code> and takes an exit code in <code>rdi</code>, so the lines <code>mov $60, %rax; mov $0,  %rdi; syscall</code> are the equivalent of <code>return 0;</code> in a main function of a C program or <code>exit(0);</code> anywhere else (indeed, that is the last thing the C library <code>_start</code> will do when <code>main</code> returns to it).</li>
 <li>System call 6 is <code>sys_lstat</code>, so the lines <code>mov $6,  %rax; lea str, %rdi; lea buf, %rsi; syscall</code> call <code>sys_lstat(str, buf)</code> where both <code>str</code> and <code>buf</code> are pointers. (<code>lea</code> stands for <em>load effective address</em> and is similar to the <code>&amp;var</code> address-of operator in C).</li>
+<li><code>syscall</code> is an assembly instruction that hands control over to the operating system. It is comparable to a software interrupt as you might have learnt in Computer Architecture, but it is an optimised version (since many programs do a lot of system calls) that doesn't have the full overhead of the older interrupt mechanism on x86.</li>
 <li><code>.asciz</code> is a zero-terminated string in C style (which is what the kernel expects). <code>.section .data</code> says <em>the following goes in the data section</em>, which we need because the buffer variable needs to be written to and the code section is read-only when a program is running. <code>.skip</code> reserves a block of the given size in bytes, similar to <code>byte buf[144];</code> in C (you can read <code>char</code> for <code>byte</code> if you want).</li>
 </ol>
 <p>Assemble the program with</p>
@@ -227,7 +229,7 @@ buf: .skip 144
 <li><code>ld dostat.o -o dostat</code></li>
 </ul>
 <p>The first command is the assembler itself, which produces and object file (C compilers usually do this too, but you don't see it unless you ask for it). <code>-g</code> is the same as for gcc, it includes debug information. <code>ld</code> is the linker which produces an executable.</p>
-<p>You can run the program with <code>./dostat</code>, but it will simply exit with status 0. What we want to do is debug it with <code>gdb dostat</code>, then do the following:</p>
+<p>You can run the program with <code>./dostat</code>, but it will simply exit with status 0. What we want to do is debug it with <code>gdb dostat</code> (install <code>gdb</code> with <code>apk</code> if you don't have it installed already), then do the following:</p>
 <ul>
 <li><code>break _start</code> to set a breakpoint.</li>
 <li><code>run</code> to start running (and hit the breakpoint).</li>

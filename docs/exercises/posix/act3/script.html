@@ -166,7 +166,7 @@ In the video for this activity you have only seen a very brief introduction.</p>
 <p>Write a shell script in a file called <code>b</code> (for build) that does the following:</p>
 <ul>
 <li>Your script should run under any Bourne-compatible shell (e.g. not just <code>bash</code>), and it should be written so that you can call it with <code>./b</code>.</li>
-<li><code>./b compile NAME</code> should compile the file of the given name, so for example <code>./b compile hello</code> should run <code>gcc -Wall -std=C11 -g hello.c -o hello</code>.</li>
+<li><code>./b compile NAME</code> should compile the file of the given name, so for example <code>./b compile hello</code> should run <code>gcc -Wall -std=c11 -g hello.c -o hello</code>.</li>
 <li>However, your script should accept both <code>./b compile hello</code> and <code>./b compile hello.c</code> as input, and do the same thing in both cases, namely compile <code>hello.c</code>. The output file for gcc in both cases should be called just <code>hello</code>.</li>
 <li>If the source file you provided as an argument does not exist (adding <code>.c</code> if necessary) then the script should print an error message and return a nonzero exit status - <em>not</em> invoke the C compiler.</li>
 <li><code>./b run NAME</code> should run the program, assuming it exists in the current folder, so both <code>./b run hello</code> and <code>./b run hello.c</code> should run <code>./hello</code>. If it does not exist, again print an error message and exit with a nonzero status, don't try and run the program.</li>

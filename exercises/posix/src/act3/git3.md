@@ -10,7 +10,7 @@ The repository must have at least one commit for the following to work. This con
 
 ## The develop branch
 
-By default, your repository has one branch named `master`. One team member creates a `develop` branch with the command
+By default, your repository has one branch named `master` (or `main` depending on how you or your provider set it up). But you don't want to do your work on this branch directly. Instead, one team member creates a `develop` branch with the command
 
     git checkout -b develop
 
@@ -35,7 +35,7 @@ You can check this with `git remote show origin`, which should display among oth
       develop pushes to develop (up to date)
       master  pushes to master  (up to date)
 
-Everyone else can now `git pull` and see the branch. They can switch to it with `git checkout develop`, which should show:
+Everyone else can now `git pull` and see the branch with `git branch -a`, the `-a` (all) option means include branches that only exist on the remote. They can switch to the develop branch with `git checkout develop`, which should show:
 
     Branch 'develop' set up to track remote branch 'develop' from 'origin'.
     Switched to a new branch 'develop'
@@ -52,7 +52,7 @@ Every team member now independently tries the following:
 
 Since everyone is working on a different branch, you will never get a conflict this way.
 
-Anyone who is a project member can visit the github page can see all the feature branches there, but a normal `git branch` will not show other people's branches that you've never checked out yourself. Instead, you want to do `git branch -a` (a is for "all" here) that will show you all the branches, with names like `remotes/origin/NAME` for branches that so far only exist on the origin repository. You can check these out like any other branch to see their contents in your working copy.
+Anyone who is a project member can visit the github page can see all the feature branches there, but a normal `git branch` will not show other people's branches that you've never checked out yourself. Instead, you want to do `git branch -a`  again that will show you all the branches, with names like `remotes/origin/NAME` for branches that so far only exist on the origin repository. You can check these out like any other branch to see their contents in your working copy.
 
 ## Merging
 
@@ -106,7 +106,7 @@ The solution here is to _rebase_ your branch onto the latest commit on develop w
 
 ![diagram of commits after rebase](../resources/pr-after-rebase.png)
 
-If you now try and push your feature branch, you might get an error because the version of your feature branch on the origin repository stil has the old version. The solution here is to force the push, which overwrites the old version, with
+If you now try and push your feature branch, you might get an error because the version of your feature branch on the origin repository still has the old version. The solution here is to force the push, which overwrites the old version, with
 
     git push --force origin BRANCHNAME
 

@@ -165,7 +165,7 @@
 <p>One member makes a Git repository on one of the online providers, adds the other team members and shares the cloning URL. Everyone clones the repository.</p>
 <p>The repository must have at least one commit for the following to work. This condition is satisfied if you chose your provider's option to create a readme file; if not then make a file now, commit it and push.</p>
 <h2><a class="header" href="#the-develop-branch" id="the-develop-branch">The develop branch</a></h2>
-<p>By default, your repository has one branch named <code>master</code>. One team member creates a <code>develop</code> branch with the command</p>
+<p>By default, your repository has one branch named <code>master</code> (or <code>main</code> depending on how you or your provider set it up). But you don't want to do your work on this branch directly. Instead, one team member creates a <code>develop</code> branch with the command</p>
 <pre><code>git checkout -b develop
 </code></pre>
 <p>The team member who created the develop branch should now make a commit on it.</p>
@@ -185,7 +185,7 @@ Local refs configured for 'git push':
   develop pushes to develop (up to date)
   master  pushes to master  (up to date)
 </code></pre>
-<p>Everyone else can now <code>git pull</code> and see the branch. They can switch to it with <code>git checkout develop</code>, which should show:</p>
+<p>Everyone else can now <code>git pull</code> and see the branch with <code>git branch -a</code>, the <code>-a</code> (all) option means include branches that only exist on the remote. They can switch to the develop branch with <code>git checkout develop</code>, which should show:</p>
 <pre><code>Branch 'develop' set up to track remote branch 'develop' from 'origin'.
 Switched to a new branch 'develop'
 </code></pre>
@@ -199,7 +199,7 @@ Switched to a new branch 'develop'
 <li>Do a simple <code>git push</code> since you've already linked your branch to <code>origin</code>.</li>
 </ul>
 <p>Since everyone is working on a different branch, you will never get a conflict this way.</p>
-<p>Anyone who is a project member can visit the github page can see all the feature branches there, but a normal <code>git branch</code> will not show other people's branches that you've never checked out yourself. Instead, you want to do <code>git branch -a</code> (a is for &quot;all&quot; here) that will show you all the branches, with names like <code>remotes/origin/NAME</code> for branches that so far only exist on the origin repository. You can check these out like any other branch to see their contents in your working copy.</p>
+<p>Anyone who is a project member can visit the github page can see all the feature branches there, but a normal <code>git branch</code> will not show other people's branches that you've never checked out yourself. Instead, you want to do <code>git branch -a</code>  again that will show you all the branches, with names like <code>remotes/origin/NAME</code> for branches that so far only exist on the origin repository. You can check these out like any other branch to see their contents in your working copy.</p>
 <h2><a class="header" href="#merging" id="merging">Merging</a></h2>
 <p>When a feature is done, you want to merge it into develop. Everyone should try this, the procedure for this is</p>
 <ol>
@@ -241,7 +241,7 @@ Switched to a new branch 'develop'
 <p><img src="../resources/pr-before-rebase.png" alt="diagram of commits before rebase" /></p>
 <p>The solution here is to <em>rebase</em> your branch onto the latest commit on develop with <code>git rebase develop</code> and fix any conflicts that that causes, which produces the following situation:</p>
 <p><img src="../resources/pr-after-rebase.png" alt="diagram of commits after rebase" /></p>
-<p>If you now try and push your feature branch, you might get an error because the version of your feature branch on the origin repository stil has the old version. The solution here is to force the push, which overwrites the old version, with</p>
+<p>If you now try and push your feature branch, you might get an error because the version of your feature branch on the origin repository still has the old version. The solution here is to force the push, which overwrites the old version, with</p>
 <pre><code>git push --force origin BRANCHNAME
 </code></pre>
 <p>This is a <em>think before you type</em> kind of command because it can break things for other developers if you do it on a shared branch. The basic safety rules are:</p>
