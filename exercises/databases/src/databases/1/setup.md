@@ -138,8 +138,8 @@ On a lab machine, to save disk space your VMs may not remain between reboots - a
 /etc/init.d/mariadb setup
 rc-update add mariadb default
 rc-service mariadb start
-mysql –u root –e 'source /vagrant/sample-data.sql'
-mysql –u root –e 'source /vagrant/secure-setup.sql'
+mysql -u root -e 'source /vagrant/sample-data.sql'
+mysql -u root -e 'source /vagrant/secure-setup.sql'
 ```
 
 This ensures that whenever vagrant recreates the VM, it installs the database for us. The commands are basically the ones that we have done just now, except that we source the sample data before running the secure setup. This is so that the sample data command does not need a password, as none has been set so far - that only happens during the secure setup command.

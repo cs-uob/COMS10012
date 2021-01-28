@@ -20,3 +20,4 @@ The first video is optional but should help you if you are having problems insta
 
   - [Set up the database](./setup.md)
   - [ER diagrams](./er-diagram.md)
+  - [More modelling](./er2.md)

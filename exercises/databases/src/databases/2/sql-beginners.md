@@ -20,3 +20,4 @@ The normal forms one continues where the introduction to relational modelling le
   - [Explore the database](./explore-database.md)
   - [Bristol elections](./elections.md)
   - [The UK census](./census.md)
+  - [Normal forms](./normalforms.md)
