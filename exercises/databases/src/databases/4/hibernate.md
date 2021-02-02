@@ -6,7 +6,7 @@ Hibernate is an object-relational mapping (ORM) framework, that is to say it aut
 
 In a real application, you will be using an ORM most of the time, but you can fall back to SQL for more advanced queries that the ORM cannot support easily.
 
-## Example application
+## Example application - set-up
 
 There is an example application in [resources/orm/orm.tar](../resources/jdbc-example.tar) which you can download and extract in your VM.
 
@@ -90,3 +90,195 @@ private Party party;
 
   - `@ManyToOne` tells Hibernate that this is a foreign key for a many-to-one relationship (there is also `@ManyToMany`).
   - `@JoinColumn` sets the name of the foreign key column, as the default here would be `party_id`.
+
+## Example application - querying
+
+Let's look at the main class (Example.java). First, Hibernate uses a session factory to manage its own database connections and sessions:
+
+```java
+import org.hibernate.SessionFactory;
+import org.hibernate.Session;
+import org.hibernate.cfg.Configuration;
+
+public class Example implements AutoCloseable {
+
+  SessionFactory sessionFactory;
+
+  public Example() {
+    sessionFactory = new Configuration().configure().buildSessionFactory();
+  }
+
+  public void close() {
+    sessionFactory.close();
+  }
+
+  // ...
+}
+```
+
+You get one from the global `Configuration` class, to which you could pass parameters to override the ones in the XML file if you wanted to (this would let you change settings in response to command line arguments, for example). A session factory is a resource, so we make our own example class a resource too which lets us run it like this:
+
+```java
+public static void main(String[] args) {
+    try (Example example = new Example()) {
+        example.run();
+    }
+  System.out.println("Done.");
+  System.exit(0);
+}
+```
+
+The exit command at the end makes sure the program exits even if Hibernate still has a background thread running.
+
+In the `run()` method, we use a Hibernate session, which manages a database connection:
+
+```java
+try (Session session = sessionFactory.openSession()) {
+    // code
+}
+```
+
+We then have three examples of using Hibernate.
+
+### Loading an entity by ID
+
+```java
+Party p1 = session.get(Party.class, 1);
+System.out.println("    The party with id=1 is: " + p1.getName());
+```
+
+To fetch an instance by id, we just call `get` on the session with the class we want and the id. Passing the class both tells Hibernate which table to load from, and it tells the compiler what type of object to return - the way Java generics work, this lets us assign the result to a `Party` variable directly without having to do a cast.
+
+### Loading with a query
+
+```java
+TypedQuery<Ward> query = session.createQuery("FROM Ward", Ward.class);
+List<Ward> wards = query.getResultList();
+System.out.println("  Wards:");
+for (Ward ward : wards) {
+    System.out.println("    " + ward.getName());
+}
+```
+
+A `TypedQuery` object takes a string in HQL, Hibernate's own query language (based on SQL) and the class of the object to return - this is so that the Java compiler can figure out the return type. `getResultList` returns all results as a list.
+
+|||advanced
+The `TypedQuery` interface is part of JPA and is declared roughly as follows:
+
+```java
+interface TypedQuery<T> {
+  // ...
+  List<T> getResultList();
+}
+```
+
+This use of generics allows the compiler to be sure that the return type matches the type parameter you gave when you created the query. Of course, you don't create it directly but you ask for a query object from the Hibernate session, but behind the scenes there's an [org.hibernate.query.internal.QueryImpl<T>](https://docs.jboss.org/hibernate/orm/5.2/javadocs/org/hibernate/query/internal/QueryImpl.html) as well as many other Hibernate-related implementation classes.
+
+These classes could take the type parameter as an argument to their constructor, but if you [look at the sources](https://github.com/hibernate/hibernate-orm/blob/master/hibernate-core/src/main/java/org/hibernate/query/internal/QueryImpl.java), they don't: it seems that Hibernate does a cast internally to get the types right, which is safe as long as the Hibernate developers know what they're doing.
+|||
+
+### Queries with joins and parameters
+
+For a more involved example, we look at the following:
+
+```java
+TypedQuery<Candidate> q = session.createQuery("FROM Candidate c WHERE c.party.name = :name", Candidate.class);
+q.setParameter("name", "Labour");
+List<Candidate> candidates = q.getResultList();
+System.out.println("  Labour Candidates:");
+for (Candidate c : candidates) {
+    System.out.println("    " + c.getName() + " (" + c.getWard().getName() + ")");
+}
+```
+
+HQL, like SQL, allows a WHERE clause to filter results. It also allows prepared statements, but goes one better than JDBC in that parameters can have names. You declare a parameter with a colon in the query string (`:name`) and then use `setParameter(name, value)` to bind it - this method is written so that it can take a value of any type, presumably with a combination of overloading for int/float types and `Object` for everything else.
+
+Hibernate will automatically do the JOINs necessary to fetch the party associated with each Candidate, the SQL it runs for this query looks like this on my machine:
+
+```SQL
+select party0_.id as id1_1_0_, party0_.name as name2_1_0_ from Party party0_ 
+where party0_.id=?
+
+select candidate0_.id as id1_0_, candidate0_.name as name2_0_, 
+candidate0_.party as party4_0_, candidate0_.votes as votes3_0_, 
+candidate0_.ward as ward5_0_ from Candidate candidate0_ 
+cross join Party party1_ where candidate0_.party=party1_.id and party1_.name=?
+```
+
+Hibernate has decided to do two queries here (maybe in parallel, so the order the statements are printed on the terminal may not be accurate). The first one is because if there is no party with the supplied name, then Hibernate can stop and return an empty list; if there is then it continues with the second query to join the two tables.
+
+## The N+1 problem
+
+Note that in the queries above, Hibernate does not fetch the ward names. It doesn't matter here because they are already in Hibernate's cache from the previous query. However, if you comment out the first two queries and leave only the third one (lines 41-50 in Example.java), something horrible happens:
+
+```SQL
+select candidate0_.id as id1_0_, candidate0_.name as name2_0_, candidate0_.party as party4_0_, candidate0_.votes as votes3_0_, candidate0_.ward as ward5_0_ from Candidate candidate0_ cross join Party party1_ where candidate0_.party=party1_.id and party1_.name=?
+select party0_.id as id1_1_0_, party0_.name as name2_1_0_ from Party party0_ where party0_.id=?
+select ward0_.id as id1_2_0_, ward0_.electorate as electora2_2_0_, ward0_.name as name3_2_0_ from Ward ward0_ where ward0_.id=?
+select ward0_.id as id1_2_0_, ward0_.electorate as electora2_2_0_, ward0_.name as name3_2_0_ from Ward ward0_ where ward0_.id=?
+select ward0_.id as id1_2_0_, ward0_.electorate as electora2_2_0_, ward0_.name as name3_2_0_ from Ward ward0_ where ward0_.id=?
+select ward0_.id as id1_2_0_, ward0_.electorate as electora2_2_0_, ward0_.name as name3_2_0_ from Ward ward0_ where ward0_.id=?
+select ward0_.id as id1_2_0_, ward0_.electorate as electora2_2_0_, ward0_.name as name3_2_0_ from Ward ward0_ where ward0_.id=?
+select ward0_.id as id1_2_0_, ward0_.electorate as electora2_2_0_, ward0_.name as name3_2_0_ from Ward ward0_ where ward0_.id=?
+select ward0_.id as id1_2_0_, ward0_.electorate as electora2_2_0_, ward0_.name as name3_2_0_ from Ward ward0_ where ward0_.id=?
+select ward0_.id as id1_2_0_, ward0_.electorate as electora2_2_0_, ward0_.name as name3_2_0_ from Ward ward0_ where ward0_.id=?
+select ward0_.id as id1_2_0_, ward0_.electorate as electora2_2_0_, ward0_.name as name3_2_0_ from Ward ward0_ where ward0_.id=?
+select ward0_.id as id1_2_0_, ward0_.electorate as electora2_2_0_, ward0_.name as name3_2_0_ from Ward ward0_ where ward0_.id=?
+select ward0_.id as id1_2_0_, ward0_.electorate as electora2_2_0_, ward0_.name as name3_2_0_ from Ward ward0_ where ward0_.id=?
+select ward0_.id as id1_2_0_, ward0_.electorate as electora2_2_0_, ward0_.name as name3_2_0_ from Ward ward0_ where ward0_.id=?
+select ward0_.id as id1_2_0_, ward0_.electorate as electora2_2_0_, ward0_.name as name3_2_0_ from Ward ward0_ where ward0_.id=?
+select ward0_.id as id1_2_0_, ward0_.electorate as electora2_2_0_, ward0_.name as name3_2_0_ from Ward ward0_ where ward0_.id=?
+select ward0_.id as id1_2_0_, ward0_.electorate as electora2_2_0_, ward0_.name as name3_2_0_ from Ward ward0_ where ward0_.id=?
+select ward0_.id as id1_2_0_, ward0_.electorate as electora2_2_0_, ward0_.name as name3_2_0_ from Ward ward0_ where ward0_.id=?
+select ward0_.id as id1_2_0_, ward0_.electorate as electora2_2_0_, ward0_.name as name3_2_0_ from Ward ward0_ where ward0_.id=?
+select ward0_.id as id1_2_0_, ward0_.electorate as electora2_2_0_, ward0_.name as name3_2_0_ from Ward ward0_ where ward0_.id=?
+select ward0_.id as id1_2_0_, ward0_.electorate as electora2_2_0_, ward0_.name as name3_2_0_ from Ward ward0_ where ward0_.id=?
+select ward0_.id as id1_2_0_, ward0_.electorate as electora2_2_0_, ward0_.name as name3_2_0_ from Ward ward0_ where ward0_.id=?
+select ward0_.id as id1_2_0_, ward0_.electorate as electora2_2_0_, ward0_.name as name3_2_0_ from Ward ward0_ where ward0_.id=?
+select ward0_.id as id1_2_0_, ward0_.electorate as electora2_2_0_, ward0_.name as name3_2_0_ from Ward ward0_ where ward0_.id=?
+select ward0_.id as id1_2_0_, ward0_.electorate as electora2_2_0_, ward0_.name as name3_2_0_ from Ward ward0_ where ward0_.id=?
+select ward0_.id as id1_2_0_, ward0_.electorate as electora2_2_0_, ward0_.name as name3_2_0_ from Ward ward0_ where ward0_.id=?
+```
+
+Hibernate is firing off one query per ward! This is called the N+1 problem, because one HQL query that returns N results ends up producing N+1 SQL queries, which is horribly inefficient expecialy for large N.
+
+Looking at the loop structure:
+
+```java
+TypedQuery<Candidate> q = session.createQuery("FROM Candidate c WHERE c.party.name = :name", Candidate.class);
+q.setParameter("name", "Labour");
+List<Candidate> candidates = q.getResultList();
+System.out.println("  Labour Candidates:");
+for (Candidate c : candidates) {
+    System.out.println("    " + c.getName() + " (" + c.getWard().getName() + ")");
+}
+```
+
+From the query itself, it is not clear to Hibernate whether ward names will be needed or not, so Hibernate does not JOIN them by default which would be more efficient if you don't actually need them. In the for loop at the bottom however, you do access the names, so on every pass through the loop, Hibernate is forced to run a new query to get the name of the relevant ward.
+
+|||advanced
+How does Hibernate trigger a query off a simple `.getWard().getName()`, that you have implemented yourself in the Candidate and Ward classes?
+
+The answer is that instead of actual Candidate objects, Hibernate creates a proxy subclass of Candidate at runtime and returns instances of this instead. These proxy objects have `getWard()` overridden to fire off another query if, and only if, they are actually called.
+|||
+
+The solution here is to tell Hibernate at query time that you'll need the wards:
+
+```java
+TypedQuery<Candidate> q = session.createQuery("FROM Candidate c JOIN FETCH c.ward WHERE c.party.name = :name", Candidate.class);
+```
+
+This is HQL for "I'm going to use the wards, so please do a JOIN to load them too". And Hibernate now uses a single query for the Candidates again:
+
+```SQL
+select party0_.id as id1_1_0_, party0_.name as name2_1_0_ from Party party0_ where party0_.id=?
+
+select candidate0_.id as id1_0_0_, ward1_.id as id1_2_1_, candidate0_.name as name2_0_0_,
+candidate0_.party as party4_0_0_, candidate0_.votes as votes3_0_0_,
+candidate0_.ward as ward5_0_0_, ward1_.electorate as electora2_2_1_,
+ward1_.name as name3_2_1_
+from Candidate candidate0_
+inner join Ward ward1_ on candidate0_.ward=ward1_.id
+cross join Party party2_
+where candidate0_.party=party2_.id and party2_.name=?
+```
