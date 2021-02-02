@@ -95,7 +95,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="act1/index.html"><strong aria-hidden="true">1.</strong> Activity 1</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="act1/ssh.html"><strong aria-hidden="true">1.1.</strong> Secure shell</a></li><li class="chapter-item expanded "><a href="act1/install.html"><strong aria-hidden="true">1.2.</strong> Installing vagrant and alpine linux</a></li><li class="chapter-item expanded "><a href="act1/admin.html"><strong aria-hidden="true">1.3.</strong> Alpine linux system administration</a></li><li class="chapter-item expanded "><a href="act1/git1.html"><strong aria-hidden="true">1.4.</strong> Git, part 1</a></li></ol></li><li class="chapter-item expanded "><a href="act2/index.html"><strong aria-hidden="true">2.</strong> Activity 2</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="act2/permissions.html"><strong aria-hidden="true">2.1.</strong> File permissions</a></li><li class="chapter-item expanded "><a href="act2/git2.html"><strong aria-hidden="true">2.2.</strong> Git, part 2</a></li><li class="chapter-item expanded "><a href="act2/pipes.html"><strong aria-hidden="true">2.3.</strong> Pipes</a></li></ol></li><li class="chapter-item expanded "><a href="act3/index.html"><strong aria-hidden="true">3.</strong> Activity 3</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="act3/git3.html"><strong aria-hidden="true">3.1.</strong> Git, part 3</a></li><li class="chapter-item expanded "><a href="act3/stat.html"><strong aria-hidden="true">3.2.</strong> inodes and system calls</a></li><li class="chapter-item expanded "><a href="act3/script.html"><strong aria-hidden="true">3.3.</strong> shell scripting</a></li></ol></li><li class="chapter-item expanded "><a href="act4/index.html"><strong aria-hidden="true">4.</strong> Activity 4</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="act4/concurrent.html"><strong aria-hidden="true">4.1.</strong> Concurrent programming in POSIX</a></li><li class="chapter-item expanded "><a href="act4/cpipe.html"><strong aria-hidden="true">4.2.</strong> Pipes in C</a></li><li class="chapter-item expanded "><a href="act4/c_io.html"><strong aria-hidden="true">4.3.</strong> Input/Output in C</a></li><li class="chapter-item expanded "><a href="act4/posix_io.html"><strong aria-hidden="true">4.4.</strong> Input/Output in POSIX</a></li><li class="chapter-item expanded "><a href="act4/final.html"><strong aria-hidden="true">4.5.</strong> The final challenge</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="act1/index.html"><strong aria-hidden="true">1.</strong> Activity 1</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="act1/ssh.html"><strong aria-hidden="true">1.1.</strong> Secure shell</a></li><li class="chapter-item expanded "><a href="act1/install.html"><strong aria-hidden="true">1.2.</strong> Installing vagrant and alpine linux</a></li><li class="chapter-item expanded "><a href="act1/admin.html"><strong aria-hidden="true">1.3.</strong> Alpine linux system administration</a></li><li class="chapter-item expanded "><a href="act1/shell.html"><strong aria-hidden="true">1.4.</strong> Shell expansion</a></li><li class="chapter-item expanded "><a href="act1/git1.html"><strong aria-hidden="true">1.5.</strong> Git, part 1</a></li></ol></li><li class="chapter-item expanded "><a href="act2/index.html"><strong aria-hidden="true">2.</strong> Activity 2</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="act2/permissions.html"><strong aria-hidden="true">2.1.</strong> File permissions</a></li><li class="chapter-item expanded "><a href="act2/git2.html"><strong aria-hidden="true">2.2.</strong> Git, part 2</a></li><li class="chapter-item expanded "><a href="act2/pipes.html"><strong aria-hidden="true">2.3.</strong> Pipes</a></li></ol></li><li class="chapter-item expanded "><a href="act3/index.html"><strong aria-hidden="true">3.</strong> Activity 3</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="act3/git3.html"><strong aria-hidden="true">3.1.</strong> Git, part 3</a></li><li class="chapter-item expanded "><a href="act3/stat.html"><strong aria-hidden="true">3.2.</strong> inodes and system calls</a></li><li class="chapter-item expanded "><a href="act3/script.html"><strong aria-hidden="true">3.3.</strong> shell scripting</a></li></ol></li><li class="chapter-item expanded "><a href="act4/index.html"><strong aria-hidden="true">4.</strong> Activity 4</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="act4/concurrent.html"><strong aria-hidden="true">4.1.</strong> Concurrent programming in POSIX</a></li><li class="chapter-item expanded "><a href="act4/cpipe.html"><strong aria-hidden="true">4.2.</strong> Pipes in C</a></li><li class="chapter-item expanded "><a href="act4/c_io.html"><strong aria-hidden="true">4.3.</strong> Input/Output in C</a></li><li class="chapter-item expanded "><a href="act4/posix_io.html"><strong aria-hidden="true">4.4.</strong> Input/Output in POSIX</a></li><li class="chapter-item expanded "><a href="act4/final.html"><strong aria-hidden="true">4.5.</strong> The final challenge</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -524,6 +524,79 @@ will act like whatever it was invoked as.
 <li>Log in with <code>vagrant ssh</code> and check that git and nano are installed.</li>
 </ul>
 <p>For the next exercise, please also install the <code>gcc</code> package that gets you a C compiler, as well as <code>musl-dev</code> which contains header files like <code>stdio.h</code>. These, in case you wondered, live in <code>/usr/include</code>.</p>
+<h1><a class="header" href="#shell-expansion" id="shell-expansion">Shell expansion</a></h1>
+<p>This exercise is about studying shell expansion. You should run it on your alpine linux VM in vagrant, and you should have installed the <code>gcc</code> compiler.</p>
+<p>Create a C program <code>arguments.c</code> with the following contents. You can use <code>nano arguments.c</code> for this, for example.</p>
+<pre><code class="language-C">#include &lt;stdio.h&gt;
+
+int main(int argc, char** argv) {
+  for(int i=0; i &lt; argc; i++) {
+    printf(&quot;Argument #%i: [%s]\n&quot;, i, argv[i]);
+  }
+  return 0;
+}
+</code></pre>
+<p>Compile this with <code>gcc -Wall arguments.c -o arguments</code>. </p>
+<h2><a class="header" href="#whitespace" id="whitespace">Whitespace</a></h2>
+<p>The program prints all its arguments, one per line. The program gets its arguments from the program that started it - in this case the shell.
+Try running the program with the following commands:</p>
+<pre><code>./arguments
+./arguments hello
+./arguments one two three
+</code></pre>
+<p>Now that you are familiar with what the program does, try the following:</p>
+<pre><code>./arguments one       two
+./arguments &quot;one two&quot;
+./arguments &quot;one      two&quot;
+</code></pre>
+<p>How, based on these examples, does the shell handle whitespace in the line you type?</p>
+<h2><a class="header" href="#pattern-matching" id="pattern-matching">Pattern matching</a></h2>
+<p>Try the following:</p>
+<ul>
+<li><code>./arguments *</code> in the folder that contains the arguments program, and its source code arguments.c.</li>
+<li>Make an empty subfolder with <code>mkdir empty</code>, switch to it with <code>cd empty</code> and then run <code>../arguments *</code>. Since you are now in the subfolder, we need two dots at the start to say &quot;run the program arguments in the folder <em>above</em>&quot;. What happens?</li>
+<li>Go back to the folder with the program by running <code>cd ..</code> and then do <code>ls</code> to check you're back in the right folder. In this folder, find three different ways to get the program to produce the following output:</li>
+</ul>
+<pre><code>Argument #0: [./arguments]
+Argument #1: [*] 
+</code></pre>
+<h2><a class="header" href="#files-with-spaces-in-their-names" id="files-with-spaces-in-their-names">Files with spaces in their names</a></h2>
+<p>The command <code>touch FILENAME</code> creates a file. Create a file with a space in its name by typing <code>touch &quot;silly named file&quot;</code>. What would happen if you left the quuotes off (you can try it, then do <code>ls</code>)?</p>
+<p>Start typing <code>ls sill</code> and then press TAB to autocomplete. Assuming you have no other files whose name starts with <em>sill</em>, what happens? Use this method to get the arguments program to print the following:</p>
+<pre><code>Argument #0: [./arguments]
+Argument #1: [Hello world!] 
+</code></pre>
+<p>The command <code>rm</code> (remove) deletes files again. Use it to remove your file with spaces in its name, using one of several methods to get the shell to pass the spaces through to <code>rm</code>.</p>
+<h2><a class="header" href="#shell-variables" id="shell-variables">Shell variables</a></h2>
+<p>In the shell, <code>VARIABLE=VALUE</code> sets a variable to a value and <code>$VARIABLE</code> retrieves its value. For example, to save typing a filename twice:</p>
+<pre><code>p=arguments
+gcc -Wall $p.c -o $p
+</code></pre>
+<p>which expands to <code>gcc -Wall arguments.c -o arguments</code>. If you want to use a variable inside a word, you can use curly braces: <code>${a}b</code> means the value of the variable <code>a</code> followed by the letter b, whereas <code>$ab</code> would mean the value of the variable <code>ab</code>.</p>
+<p>It is good practice to double-quote variables used like this, because if you tried for example to compile a program called <code>silly name.c</code> with a space in its name, then</p>
+<pre><code>program=&quot;silly name&quot;
+gcc -Wall $program.c -o $program
+</code></pre>
+<p>would expand to</p>
+<pre><code>gcc -Wall silly name.c -o silly name
+</code></pre>
+<p>and this would confuse your compiler because you are telling it to compile three source files called <code>silly</code>, <code>name.c</code> and <code>name</code> to a program called <code>silly</code>. Correct would be:</p>
+<pre><code>program=&quot;silly name&quot;
+gcc -Wall &quot;$program.c&quot; -o &quot;$program&quot;
+</code></pre>
+<p>which expands to</p>
+<pre><code>gcc -Wall &quot;silly name.c&quot; -o &quot;silly name&quot;
+</code></pre>
+<p>which does what you want - if you indeed want a program with a space in its name!</p>
+<p>There is no harm in double-quoting a shell variable every time you want to use it, and this is good practice as it still works if the variable is set to a value that contains spaces.</p>
+<p>Note that we also had to quote setting the variable name in the first place, because</p>
+<pre><code>program=silly name
+</code></pre>
+<p>would translate as: set the variable <code>program</code> to the value <code>silly</code>, then execute the program <code>name</code>. Variable assignments only apply to the first argument following them, although you can assign more than one variable.</p>
+<p>Note that this does not work as expected either:</p>
+<pre><code>file=arguments gcc -Wall &quot;$file.c&quot; -o &quot;$file&quot;
+</code></pre>
+<p>The problem here is that the shell first reads the line and substitutes in the value of <code>$file</code> (unset variables expand to the empty string by default) before starting to execute the command, so you are reading the variable's value before writing it. Leaving off the quotes doesn't help: you need to set the variable on a separate line.</p>
 <h1><a class="header" href="#git-part-1" id="git-part-1">Git, part 1</a></h1>
 <p>For this exercise, I am assuming that you are working on alpine linux and have nano, git and gcc with musl-dev installed as in the last exercise.</p>
 <h2><a class="header" href="#configuring-your-identity" id="configuring-your-identity">Configuring your identity</a></h2>
