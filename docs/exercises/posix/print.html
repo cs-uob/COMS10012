@@ -242,7 +242,7 @@
 </ul>
 <p>Let's create a key pair:</p>
 <ul>
-<li>Type the command <code>ssh-keygen -t ed25519</code>. (If you get an &quot;unknown key type&quot; error, then you are using an outdated version of OpenSSH and for security reasons you should upgrade immediately.)</li>
+<li>Type the command <code>ssh-keygen -t ed25519</code>. (If you get an &quot;unknown key type&quot; error, then you are using an outdated version of OpenSSH and for security reasons you should upgrade immediately.) <em>Note: type <code>ed25519</code> directly, do not replace this with your username. It stands for the &quot;Edwards curve over the prime <code>2^255-19</code>&quot; cryptographic group, if you want to know.</em></li>
 <li>When it asks you where to save the file, just press ENTER to accept the default, but make a note of the path - normally it's a folder <code>.ssh</code> in your home directory.</li>
 <li>If it asks you &quot;Overwrite (y/n)&quot;, say no (n, then ENTER) as it means you already have a key for something else - either ssh directly or something that uses it, like github. Restart key generation but pick a different file name.</li>
 <li>When it asks you for a password, I recommend that you just press ENTER which doesn't set a password (good security, maximum convenience). If you do set a password, it will ask you to type it twice and then you will need the password and the key file to use this key (maximum security, less convenient).</li>

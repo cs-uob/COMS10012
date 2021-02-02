@@ -67,7 +67,7 @@ The keys that SSH uses implement digital signatures. Each key comes as a pair of
 
 Let's create a key pair:
 
-  * Type the command `ssh-keygen -t ed25519`. (If you get an "unknown key type" error, then you are using an outdated version of OpenSSH and for security reasons you should upgrade immediately.)
+  * Type the command `ssh-keygen -t ed25519`. (If you get an "unknown key type" error, then you are using an outdated version of OpenSSH and for security reasons you should upgrade immediately.) _Note: type `ed25519` directly, do not replace this with your username. It stands for the "Edwards curve over the prime `2^255-19`" cryptographic group, if you want to know._
   * When it asks you where to save the file, just press ENTER to accept the default, but make a note of the path - normally it's a folder `.ssh` in your home directory.
   * If it asks you "Overwrite (y/n)", say no (n, then ENTER) as it means you already have a key for something else - either ssh directly or something that uses it, like github. Restart key generation but pick a different file name.
   * When it asks you for a password, I recommend that you just press ENTER which doesn't set a password (good security, maximum convenience). If you do set a password, it will ask you to type it twice and then you will need the password and the key file to use this key (maximum security, less convenient).
