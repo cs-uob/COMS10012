@@ -282,3 +282,39 @@ inner join Ward ward1_ on candidate0_.ward=ward1_.id
 cross join Party party2_
 where candidate0_.party=party2_.id and party2_.name=?
 ```
+
+There is another way to solve this problem: if every time you load a Candidate, you want the ward name to be loaded as well, then you can declare this on the JPA annotation:
+
+```java
+@ManyToOne(fetch = FetchType.EAGER)
+```
+
+## Exercise 1
+
+Implement a JPA/Hibernate example application for the census database using the Country, Region, County and Ward tables (ignore Statistic/Occupation for this exercise). You could implement the following in your main program for example:
+
+  - Given a ward code, load the ward and print out all related information (ward name, county name etc.).
+  - Given a ward name, print out all the counties that have a ward with that name.
+
+Pay attention to avoiding the N+1 problem in the second case.
+
+## Exercise 2
+
+What you have learnt so far will allow you to navigate upwards in the hierarchy, e.g. given a ward you can find its associated county. This exercise is about the other way round: given a county object, you want to find all wards in it.
+
+To do this, add the following property to your County class:
+
+```java
+@OneToMany(mappedBy = "county")
+private List<Ward> wards;
+```
+
+The argument to `mappedBy` must be the field name of the field in the Ward class that contains the county reference - you might have called it `parent` or something else in your class.
+
+Then, add a getter and setter for this list property.
+
+You have now created what is called a _bidirectional association_: a ward contains a county property, and a county contains a list of wards. You can navigate in both directions in your Java code.
+
+Write a query that loads the City of Bristol county (E06000023) and prints a list of all its ward names with a Java for loop starting from the county object. Make sure you write your HQL query so that you don't cause an N+1 problem here.
+
+This example also helps to explain why we don't make everything eager fetched by default: if you did that with bidirectional associations, then loading any object at all would load the entire database into memory!

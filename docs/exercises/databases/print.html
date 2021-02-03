@@ -1042,6 +1042,27 @@ inner join Ward ward1_ on candidate0_.ward=ward1_.id
 cross join Party party2_
 where candidate0_.party=party2_.id and party2_.name=?
 </code></pre>
+<p>There is another way to solve this problem: if every time you load a Candidate, you want the ward name to be loaded as well, then you can declare this on the JPA annotation:</p>
+<pre><code class="language-java">@ManyToOne(fetch = FetchType.EAGER)
+</code></pre>
+<h2><a class="header" href="#exercise-1-1" id="exercise-1-1">Exercise 1</a></h2>
+<p>Implement a JPA/Hibernate example application for the census database using the Country, Region, County and Ward tables (ignore Statistic/Occupation for this exercise). You could implement the following in your main program for example:</p>
+<ul>
+<li>Given a ward code, load the ward and print out all related information (ward name, county name etc.).</li>
+<li>Given a ward name, print out all the counties that have a ward with that name.</li>
+</ul>
+<p>Pay attention to avoiding the N+1 problem in the second case.</p>
+<h2><a class="header" href="#exercise-2-1" id="exercise-2-1">Exercise 2</a></h2>
+<p>What you have learnt so far will allow you to navigate upwards in the hierarchy, e.g. given a ward you can find its associated county. This exercise is about the other way round: given a county object, you want to find all wards in it.</p>
+<p>To do this, add the following property to your County class:</p>
+<pre><code class="language-java">@OneToMany(mappedBy = &quot;county&quot;)
+private List&lt;Ward&gt; wards;
+</code></pre>
+<p>The argument to <code>mappedBy</code> must be the field name of the field in the Ward class that contains the county reference - you might have called it <code>parent</code> or something else in your class.</p>
+<p>Then, add a getter and setter for this list property.</p>
+<p>You have now created what is called a <em>bidirectional association</em>: a ward contains a county property, and a county contains a list of wards. You can navigate in both directions in your Java code.</p>
+<p>Write a query that loads the City of Bristol county (E06000023) and prints a list of all its ward names with a Java for loop starting from the county object. Make sure you write your HQL query so that you don't cause an N+1 problem here.</p>
+<p>This example also helps to explain why we don't make everything eager fetched by default: if you did that with bidirectional associations, then loading any object at all would load the entire database into memory!</p>
 
                     </main>
 
