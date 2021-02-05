@@ -40,6 +40,14 @@ Something (your internet provider, firewall, VPN) is blocking the file download.
 
 I seem to hear this one particularly from Chinese students, and I can't do anything about it. I would suggest that you keep on trying on different days in case you get through, and if not, then use vagrant on the lab machines via ssh instead.
 
+  * I'm on Mac OS and I get an `NS_ERROR_FAILURE` error.
+
+This could mean three things:
+
+  1. Virtualbox is not installed correctly - try reinstalling (especially if you installed a while ago and are not on the latest version).
+  2. Mac's security features are blocking parts of VirtualBox. Go to your system settings, Security and Privacy, and if there's a message that "System software from Oracle ... was blocked" then click "Allow" (Oracle owns VirtualBox).
+  3. A recent Mac OS update has broken VirtualBox on Mac. This seems to have happened more than once in the past according to user reports - you have to wait for the developers to bring out a patch, and use the lab machines until then.
+
 ## Git
 
   * I'm making a git repo somewhere under `/vagrant` and I get `insufficient permission for adding an object to repository database`.
