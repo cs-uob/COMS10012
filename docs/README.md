@@ -10,6 +10,7 @@ _This unit page is for the **undergraduate** version of the unit. There is a sim
   - [Contents](contents.md)
   - [Assessment](assessment.md)
   - [Attendance policy](attendance.md)
+  - [Technical FAQ](faq.md)
 
 ## Unit Organisation
 
@@ -18,3 +19,11 @@ This unit is worth 20 credit points, which is one third of your second teaching 
 This unit's main aim is to prepare you for the second-year unit COMS20006 Software Engineering Project, where you work in groups to solve a real problem for a real client using software. Many of the technologies you learn in this unit are ones that most groups will use in their 2nd year projects. There is also material in this unit that is relevant for the 2nd year units COMS20008 Computer Systems A (concurrency) and COMS20009 Computer Systems B (operating systems, security).
 
 This unit has an attendance and engagement hurdle, like Mathematics A from TB1: you must attend at least 75% of the labs and engage with their exercises. See the [attendance policy](attendance.md) for details.
+
+## Git
+
+  * I'm making a git repo somewhere under `/vagrant` and I get `insufficient permission for adding an object to repository database`.
+
+Your `/vagrant` folder on the guest OS (alpine) is mapped to the folder on the host OS containing your Vagrantfile. This error happens because for git to create and "lock" its database, both the guest and host OS permissions have to allow this, and in this case the host is most likely the problem.
+
+I would recommend you create your git repos under `/home/vagrant` not `/vagrant`, as the former is not mapped to the host. Although this means you files are not backed up if you have to delete and recreate the VM, these are git repos we're talking about - you can back them up on github and just clone them again after rebuilding the VM.
