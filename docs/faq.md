@@ -16,17 +16,29 @@ The `>` means you're inside a string, because you've typed an opening double quo
 
 ## Setting up Vagrant
 
-* I'm Chinese and I get an error about `incompatible character encodings: GBK and UTF-8` when trying to start vagrant.
+  * I'm Chinese and I get an error about `incompatible character encodings: GBK and UTF-8` when trying to start vagrant.
 
 The full answer is [here](https://stackoverflow.com/questions/26086424/vagrant-windows-1251-encoding-error) but basically vagrant doesn't like its program files being installed under a folder that contains characters in a different encoding (e.g. GBK for Chinese) than the encoding it uses in its own scripts. Try reinstalling vagrant in `c:\hashicorp\vagrant` as recommended by the installer, and if that doesn't help then follow the steps in the linked article.
 
-* I get a `Not in a hpyervisor partition: VERR_NEM_NOT_AVAILABLE` error on WIndows 10.
+  * I get a `Not in a hypervisor partition: VERR_NEM_NOT_AVAILABLE` error on Windows 10.
 
 This means that either
   1. Your processor does not support virtualisation (unlikely, but if so you'll need to use a lab machine over ssh instead).
   2. Your processor's virtualisation has been disabled in the BIOS. This seems to be the case for Windows 10 Pro machines from some PC manufacturers.
 
 If you trust yourself and know what you are doing, then in case 2 you can look online for instructions to change BIOS settings for your PC manufacturer and model. Otherwise, you'll need to use vagrant over ssh on a lab machine.
+
+  * I'm using Windows subsystem for Linux and I get a message that `Vagrant failed to initialize at a very early stage ...`
+
+If you try and use Vagrant from WSL, there are three operating systems involved: Windows, WSL and the guest (Alpine). That gets complicated - you can follow the instructions on the linked page [http://vagrantup.com/docs/other/wsl.html](http://vagrantup.com/docs/other/wsl.html) if you want to, but there's no guarantee that shared folders will work nicely, especially on Alpine which already is a bit non-standard here.
+
+The easiest solution is to install the Windows version of vagrant and just run `vagrant up` and similar commands from a Windows terminal. Once you're in the VM, the difference won't really matter - you can install [the new Windows Terminal](https://www.microsoft.com/en-us/p/windows-terminal/9n0dx20hk701?activetab=pivot:overviewtab) if you want a slightly better terminal experience, e.g. for copy-pasting.
+
+  * I get an error message `OpenSSL SSL_read: Connection was reset` when vagrant tries to download the VM, often preceded by `An error occurred while downloading ...`
+
+Something (your internet provider, firewall, VPN) is blocking the file download. It might also be that the website hosting the file is temporarily having problems.
+
+I seem to hear this one particularly from Chinese students, and I can't do anything about it. I would suggest that you keep on trying on different days in case you get through, and if not, then use vagrant on the lab machines via ssh instead.
 
 ## Git
 
