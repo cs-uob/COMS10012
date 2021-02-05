@@ -28,3 +28,10 @@ This means that either
 
 If you trust yourself and know what you are doing, then in case 2 you can look online for instructions to change BIOS settings for your PC manufacturer and model. Otherwise, you'll need to use vagrant over ssh on a lab machine.
 
+## Git
+
+  * I'm making a git repo somewhere under `/vagrant` and I get `insufficient permission for adding an object to repository database`.
+
+Your `/vagrant` folder on the guest OS (alpine) is mapped to the folder on the host OS containing your Vagrantfile. This error happens because for git to create and "lock" its database, both the guest and host OS permissions have to allow this, and in this case the host is most likely the problem.
+
+I would recommend you create your git repos under `/home/vagrant` not `/vagrant`, as the former is not mapped to the host. Although this means you files are not backed up if you have to delete and recreate the VM, these are git repos we're talking about - you can back them up on github and just clone them again after rebuilding the VM.
