@@ -14,3 +14,7 @@ The material for these weeks is hosted on [exercises/posix](./exercises/posix). 
   * [Activity 2](./exercises/posix/act2/index.html) is for the Friday workshop in Week 13 (11am-1pm, 5 February).
   * [Activity 3](./exercises/posix/act3/index.html) is for the Tuesday workshop in Week 14.
   * [Activity 4](./exercises/posix/act4/index.html) is for the Friday workshop in Week 14.
+
+  ## Week 15 - Consolidation week
+
+In Week 15, there will be no new material. You can use this week to revise or catch up on material from Weeks 13-14. The workshops become drop-in sessions which are optional to attend, and do not count towards your attendance target.

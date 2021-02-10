@@ -13,11 +13,13 @@ Attending the workshops in teaching weeks (see below) is mandatory, TAs take att
 
 In weeks 13 and 14, you will learn the basics of Linux/POSIX system administration, the shell, and git. We will use a custom virtual machine with the Alpine linux distribution for this, which you can either run on your own machine or you can log in to a lab machine via ssh and run it there. As Alpine is text/terminal only, no graphical user interface, it should work even over a slow connection.
 
-In week 15, you will learn about build systems and environments in different programming languages, and how to use a debugger.
+_Change of schedule, 10 Feb 2021: we're pausing in week 15 instead of 16._
 
-In week 16, we will hold a catch-up/Q&A week: the workshops will take place but will not be mandatory and will not count towards your attendance. Apart from functioning as a Q&A session, this week will give us lecturers a chance to talk about interesting questions we have been asked by students in previous weeks in more depth, and to possibly prepare some extra explanations based on how the unit has been going so far.
+In week 15, we will hold a catch-up/consolidation week: the workshops will become drop-ins that are not mandatory and do not count towards your attendance target.
 
-Week 17 is reading week. There will be no material and no workshops.
+In week 16, you will learn about build systems and environments in different programming languages, and how to use a debugger.
+
+Week 17 is reading week. There will be no new material.
 
 In weeks 18 and 19, you will learn about databases using the MariaDB fork of the popular MySQL database. By the end of week 19 you will have learnt enough Java in the parallel unit that you will be able to understand how to operate a database from a Java program.
 
