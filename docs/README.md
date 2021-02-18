@@ -11,6 +11,7 @@ _This unit page is for the **undergraduate** version of the unit. There is a sim
   - [Assessment](assessment.md)
   - [Attendance policy](attendance.md)
   - [Technical FAQ](faq.md)
+  - [Padlet](https://uob.padlet.org/csxdb/s2j0oxgyrwujiebk) (university login required)
 
 ## Unit Organisation
 
@@ -19,3 +20,5 @@ This unit is worth 20 credit points, which is one third of your second teaching 
 This unit's main aim is to prepare you for the second-year unit COMS20006 Software Engineering Project, where you work in groups to solve a real problem for a real client using software. Many of the technologies you learn in this unit are ones that most groups will use in their 2nd year projects. There is also material in this unit that is relevant for the 2nd year units COMS20008 Computer Systems A (concurrency) and COMS20009 Computer Systems B (operating systems, security).
 
 This unit has an attendance and engagement hurdle, like Mathematics A from TB1: you must attend at least 75% of the labs and engage with their exercises. See the [attendance policy](attendance.md) for details.
+
+Update of 18 February: we now have a [padlet](https://uob.padlet.org/csxdb/s2j0oxgyrwujiebk) (university login required). You can ask questions anonymously here, and I will repost them and answer them in the Teams "Ask a TA" channel.
