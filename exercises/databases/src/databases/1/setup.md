@@ -52,7 +52,7 @@ You now have a running database and you can log in with `mysql`. However, the da
 
 Most distributions come with a `mysql_secure_installation` script that prompts you for a database root password and sets up accounts. We are going to do a similar thing, but with a custom setup for our purposes.
 
-The setup file is located at the address given below. You can download it for example with `wget ADDRESS` in Alpine linux; `wget` is a download program. Place it in the same folder as your Vagrantfile.
+The setup file is located at the address given below. You can download it for example with `wget ADDRESS` in Alpine linux; `wget` is a download program. Place it in the same folder as your Vagrantfile (in `/vagrant`, if you're doing the download from within Alpine).
 
 ```
 https://cs-uob.github.io/COMS10012/resources/databases/secure-setup.sql
@@ -96,7 +96,7 @@ https://cs-uob.github.io/COMS10012/resources/databases/sample-data.sql
 https://cs-uob.github.io/COMS10012/resources/databases/sampledata.tar
 ```
 
-If you are using a local copy of this repository, you can find the files under `/resources/databases`.
+If you are using a local copy of this repository, you can also find the files under `/resources/databases`.
 
 The `tar` file is a _tape archive_: a file that contains further files and folders, as if it were a folder itself. Extract it by going to `/vagrant` in Alpine and run
 
