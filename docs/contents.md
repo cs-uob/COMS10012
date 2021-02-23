@@ -18,3 +18,16 @@ The material for these weeks is hosted on [exercises/posix](./exercises/posix). 
 ## Week 15 - Consolidation week
 
 In Week 15, there will be no new material. You can use this week to revise or catch up on material from Weeks 13-14. The workshops become drop-in sessions which are optional to attend, and do not count towards your attendance target.
+
+## Week 16
+
+On Tuesday, we had a live lecture on debugging that you can find here on [Microsoft Streams](https://web.microsoftstream.com/video/b920571e-e55c-4dbc-b29c-162c5a565486?list=studio) (uni login required). We then did some debugging exercises that you can find here:
+
+  * Text: [text.c](/COMS10012/resources/debugging/text.c) and [text.h](/COMS10012/resources/debugging/text.h). Compile with `gcc -Dtest_text -g text.c -o text`.
+  * Stackcalc: [stackcalc.c](/COMS10012/resources/debugging/stackcalc.c) and [stackcalc.txt](/COMS10012/resources/debugging/stackcalc.txt). You need to `sudo apk add readline-dev` then compile with `gcc -g stackcalc.c -o stackcalc -l readline`.
+
+_I am still working on material for Friday ..._
+
+## Week 17 - Reading week
+
+In Week 15, there will be no new material. The workshops become drop-in sessions which are optional to attend, and do not count towards your attendance target.
