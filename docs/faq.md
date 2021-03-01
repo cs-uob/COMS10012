@@ -65,3 +65,11 @@ If you get an error about not finding github.com, first check you're online, the
 If you get `Permission denied (publickey)`, the first thing you want to do is check that your public key is enrolled on github: go to github then _Settings / SSH and GPG keys_ in a browser and see whether your key is listed there. The page shows the SHA256 hashes of the keys rather than the keys itself, so do `ssh-keygen -l -f ~/.ssh/id_ed25519.pub` to get the hash of your own key file and make sure that matches one on github. The only part of the string that has to match is the part starting `SHA256:` until the next space following that.
 
 Next, run `ssh -vv git@ssh.github.com` to turn on two levels of debugging information. You want to look for the lines _Trying private key_, a successful authentication should have `debug1: Offering public key: PATH ...` shortly followed by `Server accepts key`. This should tell you whether it's the server not accepting your key (for example you have several ssh keys set up and you're using the wrong one) or it's ssh refusing to use your key, for example because other people have read permissions on it (see the ssh and permissions videos for how to fix this).
+
+## Compiling etc.
+
+  * Weird things happen when I try and compile or run programs under `/vagrant`.
+
+If your host file system is not POSIX (e.g. Windows), then because `/vagrant` is mapped to a folder on the host, it shares file system characteristics (such as permission bits) with the host OS. The main difference is that Windows does not have an `x` bit to mark a file as executable, so when the compiler finishes off the executable file with a system call that does the equivalent of `chmod +x PROGRAM`, this does nothing. Then when you try and run `./PROGRAM`, your shell complains because the executable bit is not set. If you try and configure/make a C program (like sqlite) under `/vagrant` then the configure script will hit the same problem and complain that the C compiler can't produce executable files.
+
+The solution is to move the files from `/vagrant` or a subfolder of that into `/home/vagrant` or somewhere else that's not mapped to the host, then it should work absolutely fine. This is, by the way, why the VM is not set up to map your home directory to the host.
