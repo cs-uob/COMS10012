@@ -37,3 +37,9 @@ The exercises for the Friday workshop start [here](buildtools/c.md).
 ## Week 17 - Reading week
 
 In Week 17, there will be no new material. The workshops become drop-in sessions which are optional to attend, and do not count towards your attendance target.
+
+## Weeks 18 and 19 - Databases
+
+In these weeks you will be learning SQL and the MariaDB database. Instructions to install it on Alpine linux are provided; you can also install it on your host OS if you want to, but we will not provide technical support for this.
+
+The videos and activities for these weeks can be found under [exercises/databases](exercises/databases).
