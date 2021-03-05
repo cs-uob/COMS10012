@@ -19,10 +19,10 @@ Draw an ER diagram for the following scenario.
 > The University of Bristol Hoverboard Society (HovSoc) wants to create a database to manage its membership and events. Each member has a name, an optional student number, a contact e-mail address and a hoverboard riding skill level (represented as an integer, minimum 0). We assume that e-mail addresses are unique among members.
 > 
 > The committee consists of some of the members, each of which has a unique committee role. We assume that committee roles do not change during the year and that each committee role must be filled every year.
-> 
+>  
 > An event has a date, a name, a location, an optional description and an organiser who must be a society member (not necessarily a committee member). An event is attended by a set of members. There is never more than one event at the same location on the same date but event names are not unique.
 
-You can draw the diagram with pen and paper or you can use a free modelling tool like [draw.io](draw.io). 
+You can draw the diagram with pen and paper or you can use a free modelling tool like [draw.io](https://draw.io). 
 
   * For draw.io, open the "Entity Relation" section in the menu on the left and use the "Table" (first item) object for tables. Clicking on it adds a table to your diagram.
   * To add a row to a table, select an existing row and press Control-D (duplicate item). To delete a row, press the delete key.
@@ -46,7 +46,7 @@ USE data;
 
 to select the (initially empty) database called `data`, on which you have read and write permissions. Note that there is a semicolon at the end.
 
-As long as you started your MariaDB session in the folder with your script, you can now run the command `\. SCRTIPNAME.SQL`, that is a backslash, a period, a space and then the name of the script. As this is a command directly for the MariaDB client rather than a command to be run on the server, it does not take a semicolon.
+As long as you started your MariaDB session in the folder with your script, you can now run the command `\. SCRIPTNAME.SQL`, that is a backslash, a period, a space and then the name of the script. As this is a command directly for the MariaDB client rather than a command to be run on the server, it does not take a semicolon.
 
 If you get any errors, then `SHOW ERRORS;` will display more information. If not, check with `SHOW TABLES;` that your tables exist.
 
