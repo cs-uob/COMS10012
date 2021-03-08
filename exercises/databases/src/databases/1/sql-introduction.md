@@ -18,6 +18,6 @@ The first video is optional but should help you if you are having problems insta
 
 ## Exercises
 
-  - [Set up the database](./setup.md)
-  - [ER diagrams](./er-diagram.md)
-  - [More modelling](./er2.md)
+  - [Set up the database](./databases/1/setup.md)
+  - [ER diagrams](./databases/1/er-diagram.md)
+  - [More modelling](./databases/1/er2.md)

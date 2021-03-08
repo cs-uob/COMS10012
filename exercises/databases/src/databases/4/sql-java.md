@@ -16,6 +16,6 @@ The videos for this activity are:
 
 The exercises for this activity are:
 
-  - [JDBC](./jdbc.md)
-  - [Hibernate](./hibernate.md)
-  - [SQLite](./sqlite.md)
+  - [JDBC](./databases/4/jdbc.md)
+  - [Hibernate](./databases/4/hibernate.md)
+  - [SQLite](./databases/4/sqlite.md)

@@ -18,4 +18,4 @@ The videos for this activity are:
 
 The exercises for this activity are all on one page:
 
-  - [Intermediate SQL](./exercises.md)
+  - [Intermediate SQL](./databases/3/exercises.md)
