@@ -116,9 +116,9 @@ It prints the line number before each matching line.
 
   - (pipes) You have a file names.txt with a list of usernames, but some of them appear more than once. How would you produce a file users.txt that contains each username exactly once - they don't have to be in the same order as the original file? 
 
-For example sort names.txt | uniq > users.txt or other commands to that effect, e.g. you could use an input redirect instead of calling sort with an argument, or use cat to start the pipeline. You can't just use uniq unless you're sure the names are consecutive, e.g. never "a, b, a", and you're not sure here. 
+For example `sort names.txt | uniq > users.txt` or other commands to that effect, e.g. you could use an input redirect instead of calling sort with an argument, or use cat to start the pipeline. You can't just use uniq unless you're sure the names are consecutive, e.g. never "a, b, a", and you're not sure here. 
 
-  - (pipes) What does the >> operator do on the command line? 
+  - (pipes) What does the `>>` operator do on the command line? 
 
 It redirects the output to the following file, but if the file exists already, then it appends to the file rather than overwriting it. 
 
@@ -234,7 +234,7 @@ It implements a more advanced version of line discipline, e.g. it lets you use u
 
 Simple ones include pico (originally "pine composer" from the pine e-mail client), or nano (a pun on pico, originally a pico clone with a different software licence); complex ones include vi (visual editor, the one with the "modes") and emacs (editor with macros, the one with the built in LISP). micro, although I like it personally, is not "standard" I'm afraid. 
 
-  - (tty3) If you do e.g. ls | less then colours like blue for folders don't appear anymore. How does ls know this, and how can you override it? 
+  - (tty3) If you do e.g. `ls | less` then colours like blue for folders don't appear anymore. How does ls know this, and how can you override it? 
 
 By default, ls checks if its output is a tty; if not (in this case it's a pipe) it omits the colours. You can override this with `--color=always`. 
 
