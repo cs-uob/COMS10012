@@ -42,4 +42,4 @@ In Week 17, there will be no new material. The workshops become drop-in sessions
 
 In these weeks you will be learning SQL and the MariaDB database. Instructions to install it on Alpine linux are provided; you can also install it on your host OS if you want to, but we will not provide technical support for this.
 
-The videos and activities for these weeks can be found under [exercises/databases](exercises/databases).
+The videos and activities for these weeks can be found under [exercises/databases](https://cs-uob.github.io/COMS10012/exercises/databases/databases/1/sql-introduction.html).

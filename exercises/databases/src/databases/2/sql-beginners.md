@@ -17,7 +17,7 @@ The normal forms one continues where the introduction to relational modelling le
 
 ## Exercises
 
-  - [Explore the database](./databases/2/explore-database.md)
-  - [Bristol elections](./databases/2/elections.md)
-  - [The UK census](./databases/2/census.md)
-  - [Normal forms](./databases/2/normalforms.md)
+  - [Explore the database](./explore-database.md)
+  - [Bristol elections](.//elections.md)
+  - [The UK census](./census.md)
+  - [Normal forms](./normalforms.md)
