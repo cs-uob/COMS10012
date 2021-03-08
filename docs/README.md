@@ -8,6 +8,7 @@ _This unit page is for the **undergraduate** version of the unit. There is a sim
 
   - [Schedule](schedule.md)
   - [Contents](contents.md)
+  - [Comprehension Questions](questions.md)
   - [Assessment](assessment.md)
   - [Attendance policy](attendance.md)
   - [Technical FAQ](faq.md)
