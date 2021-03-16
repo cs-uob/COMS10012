@@ -43,3 +43,13 @@ In Week 17, there will be no new material. The workshops become drop-in sessions
 In these weeks you will be learning SQL and the MariaDB database. Instructions to install it on Alpine linux are provided; you can also install it on your host OS if you want to, but we will not provide technical support for this.
 
 The videos and activities for these weeks can be found under [exercises/databases](https://cs-uob.github.io/COMS10012/exercises/databases/databases/1/sql-introduction.html).
+
+## Week 20 - Databases catch-up week
+
+In this week the workshops become drop-ins: they are optional, attendance is not take and this week doesn't count for your 75% attendance hurdle.
+
+There is no new material - you can work on any of the previous material you haven't finished yet, and ask questions in Ask a TA or on the padlet or in the drop-ins.
+
+## Easter break
+
+Make sure you all take at least one full week off over Easter!
