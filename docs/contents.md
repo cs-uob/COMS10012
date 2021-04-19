@@ -4,7 +4,7 @@ This website is hosted on github at [github.com/cs-uob/COMS10012](https://github
 
 Videos are hosted externally on the university systems, but we are using a trick that allows you (at the moment) to access the raw mp4 files. You can download them for offline watching if you like, but you may not share them with non-students or reupload them anywhere else online as it's not your intellectual property.
 
-## Weeks 13 and 14 - an introduction to POSIX and Git
+## Weeks 13 and 14 - An introduction to POSIX and Git
 
 Here you will learn how to administer a Linux/POSIX system. We will be using Alpine linux.
 
@@ -54,4 +54,4 @@ There is no new material - you can work on any of the previous material you have
 
 Make sure you all take at least one full week off over Easter!
 
-## Weeks 21 and 22 - an introducton to web technologies
+## Weeks 21 and 22 - An introduction to web technologies
