@@ -59,6 +59,7 @@ Make sure you all take at least one full week off over Easter!
 [Introduction to the web and HTTP](https://mediasite.bris.ac.uk/Mediasite/Play/15d48070d3b24991a7b6fee432c6f95e1d)(28 minutes) [slides](./slides/IntroductionToTheWebAndHTTP.pdf)
 [Introduction to the web and HTTP](https://mediasite.bris.ac.uk/Mediasite/Play/15d48070d3b24991a7b6fee432c6f95e1d)(28 minutes) 
 ## Weeks 21 and 22 - An introduction to web technology
+[Introduction to the web and HTTP](https://mediasite.bris.ac.uk/Mediasite/Play/15d48070d3b24991a7b6fee432c6f95e1d)(28 minutes)
 HTML
 CSS
 Activity for the Tuesday workshop in week 21
