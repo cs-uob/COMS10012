@@ -66,3 +66,4 @@ Videos and slides
 
 * [Introduction to CSS](https://mediasite.bris.ac.uk/Mediasite/Play/e6ef7bb5b20349f5923f063dc4a106141d) (22 minutes) [slides](./slides/CSSIntroduction.pdf)
 
+* [Activity sheet] (./slides/ActivitySheet.pdf)
