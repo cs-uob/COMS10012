@@ -62,7 +62,6 @@ Videos
 
 * [Introduction to the web and HTTP](https://mediasite.bris.ac.uk/Mediasite/Play/15d48070d3b24991a7b6fee432c6f95e1d) (28 minutes) [slides](./slides/IntroductionToTheWebAndHTTP.pdf)
 
-* HTML
 * HTML [Introduction to HTML] (https://mediasite.bris.ac.uk/Mediasite/Play/7c3f70ca5d754a8b998bfadcac2207271d) (27 minutes) [slides](./slides/HTMLIntroduction.pdf)
 
 * CSS
