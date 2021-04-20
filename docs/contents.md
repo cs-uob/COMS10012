@@ -46,7 +46,6 @@ The videos and activities for these weeks can be found under [exercises/database
 
 ## Week 20 - Databases catch-up week
 
-In this week the workshops become drop-ins: they are optional, attendance is not take and this week doesn't count for your 75% attendance hurdle.
 In this week the workshops become drop-ins: they are optional, attendance is not taken and this week doesn't count for your 75% attendance hurdle.
 
 There is no new material - you can work on any of the previous material you haven't finished yet, and ask questions in Ask a TA or on the padlet or in the drop-ins.
@@ -56,11 +55,8 @@ There is no new material - you can work on any of the previous material you have
 Make sure you all take at least one full week off over Easter!
 
 ## Weeks 21 and 22 - An introduction to web technologies
-[Introduction to the web and HTTP](https://mediasite.bris.ac.uk/Mediasite/Play/15d48070d3b24991a7b6fee432c6f95e1d)(28 minutes) [slides](./slides/IntroductionToTheWebAndHTTP.pdf)
-[Introduction to the web and HTTP](https://mediasite.bris.ac.uk/Mediasite/Play/15d48070d3b24991a7b6fee432c6f95e1d)(28 minutes) 
-## Weeks 21 and 22 - An introduction to web technology
 
-[Introduction to the web and HTTP](https://mediasite.bris.ac.uk/Mediasite/Play/15d48070d3b24991a7b6fee432c6f95e1d)(28 minutes) [slides](./slides/IntroductionToTheWebAndHTTP.pdf)
+[Introduction to the web and HTTP](https://mediasite.bris.ac.uk/Mediasite/Play/15d48070d3b24991a7b6fee432c6f95e1d) (28 minutes) [slides](./slides/IntroductionToTheWebAndHTTP.pdf)
 HTML
 CSS
 Activity for the Tuesday workshop in week 21
