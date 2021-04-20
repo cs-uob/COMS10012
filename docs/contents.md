@@ -58,7 +58,7 @@ Make sure you all take at least one full week off over Easter!
 
 Tuesday Week 21
 
-Videos and slides
+Videos, slides and activity sheet
 
 * [Introduction to the web and HTTP](https://mediasite.bris.ac.uk/Mediasite/Play/15d48070d3b24991a7b6fee432c6f95e1d) (28 minutes) [slides](./slides/IntroductionToTheWebAndHTTP.pdf)
 
@@ -66,4 +66,4 @@ Videos and slides
 
 * [Introduction to CSS](https://mediasite.bris.ac.uk/Mediasite/Play/e6ef7bb5b20349f5923f063dc4a106141d) (22 minutes) [slides](./slides/CSSIntroduction.pdf)
 
-* [Activity sheet] (./slides/ActivitySheet.pdf)
+* [Activity sheet](./slides/ActivitySheet.pdf)
