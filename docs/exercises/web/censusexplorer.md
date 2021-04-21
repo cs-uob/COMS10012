@@ -8,7 +8,7 @@ We will work on a Java application that uses a database connection and that you 
 
 You will only need to run the following steps once (unless you rebuild the VM).
 
-\1. Open the Vagrantfile for your VM and add the following line, just beneath the `synced_folder` one:
+1. Open the Vagrantfile for your VM and add the following line, just beneath the `synced_folder` one:
 
     config.vm.network "forwarded_port", guest: 3306, host: 3306
 
@@ -18,14 +18,14 @@ If you want to develop on the VM, then add another copy of the line with both in
 
 Restart your VM by logging out and doing `vagrant halt` then `vagrant up`.
 
-\2. Start the VM and enter the command `netstat -tan` which shows which services are listening on which ports. You should see one on `0.0.0.0:22` (that's the ssh server), but nothing on 3306 yet. Run `cat /etc/my.cnf` to display the main mariadb configuration file, and notice the line `!includedir /etc/my.cnf.d`. Do a `ls` on that folder to see there is one file `mariadb-server.cnf`, edit it as root (e.g. with nano). Notice these lines:
+2. Start the VM and enter the command `netstat -tan` which shows which services are listening on which ports. You should see one on `0.0.0.0:22` (that's the ssh server), but nothing on 3306 yet. Run `cat /etc/my.cnf` to display the main mariadb configuration file, and notice the line `!includedir /etc/my.cnf.d`. Do a `ls` on that folder to see there is one file `mariadb-server.cnf`, edit it as root (e.g. with nano). Notice these lines:
 
     [mysqld]
     skip-networking
 
 This means that the server is not listening on port 3306 (remember, we were connecting over a socket file) but we need to change that as a socket file won't allow a connection from a different machine. Comment out the `skip-networking` line by putting a `#` in front, save the file, then reload mariadb with `sudo rc-service mariadb restart`. Try another `netstat -tan`, and you should see a row with state LISTEN and a local address like `:::3306` which is the mariadb server now listening on a network port.
 
-\3. The server is now listening on the network, but it will refuse connections for security reasons from remote machines. Find the mariadb root password (it's in `/vagrant/secure-setup.sql` if you followed my instructions) and log in to mariadb as root (`mysql -u root -p` then enter the password).
+3. The server is now listening on the network, but it will refuse connections for security reasons from remote machines. Find the mariadb root password (it's in `/vagrant/secure-setup.sql` if you followed my instructions) and log in to mariadb as root (`mysql -u root -p` then enter the password).
 
 Run the command `SELECT name, host FROM mysql.user;` and you should see an entry with user vagrant and host localhost. We now want to allow vagrant to log in from anywhere, so run this:
 
@@ -44,7 +44,7 @@ Mariadb will now let vagrant log in and access the census and other databases re
 
 After this crash course in mariadb user administration, you can now log out of mariadb, but keep the VM running. It is now working as a database server that your host machine can access.
 
-\4. On your development machine where you have Java/JDK and Maven installed, and hopefully git too,
+4. On your development machine where you have Java/JDK and Maven installed, and hopefully git too,
 
     git clone git@github.com:cs-uob/COMS10012.git
 
@@ -52,7 +52,7 @@ This is the repository behind the unit page for this unit, but it also contains 
 
 If you have Java installed but not Maven, you can get Maven from [https://maven.apache.org/](https://maven.apache.org/) - it's just a ZIP file that you unzip, but you do need to add its `bin/` folder to your `PATH` variable after that. You may also have to set the `JAVA_HOME` variable to point to your JDK, if this isn't done already.
 
-\5. If you are developing on the Alpine VM directly, and you have skipped steps 2 and 3, then you need to make one minor change to tell the application to use a socket rather than a network connection: in `code/censusexplorer/src/main/resources/application.properties`, add the following string to the end of the `spring.datasource.url` line, with no space before it and the previous text:
+5. If you are developing on the Alpine VM directly, and you have skipped steps 2 and 3, then you need to make one minor change to tell the application to use a socket rather than a network connection: in `code/censusexplorer/src/main/resources/application.properties`, add the following string to the end of the `spring.datasource.url` line, with no space before it and the previous text:
 
     &localSocket=/var/run/mysqld/mysqld.sock
 
