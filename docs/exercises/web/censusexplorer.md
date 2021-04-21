@@ -67,3 +67,51 @@ When the application is running, open a web browser on your host machine, and go
 Whenever you make changes to the code, you can stop the server with Control+C (press this _twice_ if you're on windows, for technical reasons), then rerun the maven command which will recompile any changed java files and bring the server up again.
 
 If there is a compiler error, the application won't start; if there is a spring error, the application will start but will throw an exception either at startup, or when you try and access whichever page is causing the error. The exception text in your terminal might be useful to determine what the problem is.
+
+## Structure of the application
+
+When you open `http://localhost:8080` in your browser, the HTTP request goes to the server that spring sets up, and lands with a class called `DispatcherServlet` which is responsible for deciding which of your functions to call. Classes that can react to web requests are called _Controllers_, and when spring starts, it scans all the classes in the packages below the application class for ones with an annotation that declares them to be a controller. 
+
+All java classes are in `src/main/java`, and in this folder the normal Java folder naming conventions apply - I've chosen to make a package `uk.ac.bristol.cs.censusexplorer` so there are subfolders with those names. From now on, when I say `censusexplorer.SOMETHING`, I am referring to that folder structure, so the full path to `censusexplorer.controller.MainController` from the root of the repository is
+
+    code/censusexplorer/src/main/java/uk/ac/bristol/cs/censusexplorer/controller/MainController.java
+
+If you have an editor that understands this naming convention, for example Visual Studio Code or a Java IDE, then you should be able to find the class quite easily in the tree view that is normally on the left of your screen.
+
+In the class `censusexplorer.controller.MainController`, you can see that:
+
+  - The class is annotated with `@RestController`. This is what spring picks up to know that there are methods in this class that can react to web requests.
+  - The method is annotated `@GetRequest("/")`, which means HTTP requests for `GET /` are sent by the `DispatcherServlet` to this method.
+  - The method itself just displays an `index.html` (which lives in `src/main/resources/templates`), after running it through the thymeleaf templating engine. More on this soon.
+  - The `@Autowired` annotation on the templates instance (in the `censusexplorer` package) tells spring that when we use this controller, we would like an instance of the `Templates` class to be ready for us to use. It is up to spring how it does this (e.g. different calls to the same method might get the same instance of the class, or not) unless we tell spring otherwise in its configuration. In principle, the `Templates` class itself could contain `@Autowired` members of other classes, and spring would then have to sort out in what order to create everything. This is the heart of what the spring framework is built for, and is sometimes called _Dependency Injection_ or _Inversion of Control (IoC)_.
+  - The `censusexplorer.Templates` class itself is not too interesting: it just sets up Thymeleaf, as we saw earlier, except that it now uses the `HTML` template mode. Note the `@Component` annotation which tells spring that it's in charge of managing this class.
+  - In the `index.html` file (in `src/main/resources/templates`), we see some tags annotated with `th:` which means thymeleaf. The idea here is that some parts of the application, like the left menu and the stylesheet, are the same on all pages and we don't want to repeat them for every page we write. The `th:replace` tells thymeleaf to replace this tag with a fragment of another file (`layout.html`). Fragments can take parameters, for example we pass a title along to the `head` fragment since that is where the page title goes.
+  - `layout.html` (in the same folder) contains some blocks annotated with `th:fragment` which can be reused on other pages. The interesting line is `<title th:text="${title}"></title>` which means replace the contents of this tag with the value of the parameter `title`.
+
+## Viewing the countries list
+
+Click the countries link in the left bar. The following sequence of steps happens:
+
+  - The browser interprets the link `<a href="/country/all">Countries</a>` (from the source in `layout.html`) and sends a HTTP request `GET /country/all HTTP/1.1` as you can see in your browser's F12 tools on the Network tab (you need to open the tab before clicking the link for this to work).
+  - The request arrives at spring's `DispatcherServlet` which maps it to `displayCountries()` in the `censusexplorer.controller.CountryController` class.
+  - The method has an `@Autowired` instance of `censusexplorer.repository.CountryRepository`, so spring provides one. This class is actually just an interface that inherits from the `JpaRepository` class, whose documentation you can see [in the spring javadocs](https://docs.spring.io/spring-data/jpa/docs/2.4.5/api/index.html?org/springframework/data/jpa/repository/JpaRepository.html). It is one of many ways to access a database, and provides methods such as `findAll()` and `getOne(ID)`. Spring and the database client (in our case, Hibernate) sort out which class to return for the repository implementation.
+  - The `CountryRepository` is declared as a sub-interface of `JpaRepository<Country, String>` where the first parameter is the entity class, and the second is the class of the primary key type. The entity class is `censusexplorer.model.Country` which carries the usual JPA annotations to explain how it maps to a database table. For example, `@OneToMany(mappedBy = "parent") private List<Region> regions;` manages the one-to-many association that one country can contains many regions.
+  - In case you wondered, the database connection string itself is in `src/main/resources/application.properties`.
+  - Back to the `CountryController`, the first line in the method ends up doing the equivalent of `SELECT * FROM Country`; you can see the actual SQL queries in the terminal where the spring server is running.
+  - Next, we ask thymeleaf to render the `country_list.html` template (from `src/main/resources/templates/`), with the parameter "countries" set to the list of countries that we just loaded (this is what the thymeleaf context class is for). In the html file, we first use thymeleaf to import the standard header and navigation bar, then we create a list with one item per country:
+  
+        <ul th:each="country: ${countries}">
+          <li><span th:text="${country.name}"></span> (<a th:href="'/country/show/' + ${country.code}" th:text="${country.code}"></a>)</li>
+        </ul>
+    
+    The `th:each` is the equivalent of the Java code `for (country : countries)`, at least if this were allowed without mentioning the type of the variable explicitly. If the list is empty, thymeleaf skips the `ul` tag completely; if not, it writes out the tag (and the closing tag) and runs the body once per element in the list. The basic rules for thymeleaf in HTML mode are that you can prefix `th:` on an attribute to tell thymeleaf to evaluate its value and then set the attribute to that, and you can use the special `th:text` to refer to the body of the current tag. Within these expressions, `${...}` interpolates a variable. Since you already use double quotes for the attributes themselves, you use single quotes for strings inside the attributes such as the `'/country/show'` prefix.
+
+_Exercise_: mentally go through the same list as above, but for viewing an individual country (e.g. when you click the link after "England" on the countries page). There is one extra step to deal with the URL parameter, and the html file is a different one. Look at the files and try and make sense of how the different parts come together to produce the page that you see.
+
+## Coding exercise
+
+The demo application can display countries, regions and counties. There is no link for all counties in the menu because there are a lot of them, but you can view a region and click one of its counties to view its details.
+
+Your exercise is to implement a `WardController` and the other necessary files to view the details of a ward, in the same way as viewing the details of a county (except that wards don't have "children"). Finally, edit the county files to implement the TO DO part so that when you view a county, you can select its wards from a list.
+
+About half this exercise is copy-pasting, and the other half is figuring out what you need to change. For every piece of code that you change, try and explain to yourself (or to someone else) what it does.
