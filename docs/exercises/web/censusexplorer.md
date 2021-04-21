@@ -114,4 +114,31 @@ The demo application can display countries, regions and counties. There is no li
 
 Your exercise is to implement a `WardController` and the other necessary files to view the details of a ward, in the same way as viewing the details of a county (except that wards don't have "children"). Finally, edit the county files to implement the TO DO part so that when you view a county, you can select its wards from a list.
 
-About half this exercise is copy-pasting, and the other half is figuring out what you need to change. For every piece of code that you change, try and explain to yourself (or to someone else) what it does.
+About half this exercise is copy-pasting, and the other half is figuring out what you need to change. For every piece of code that you change, try and explain to yourself (or to someone else) what it does and how it fits in to the request lifecyle (the list of everything that happens to handle a HTTP request, like I showed above).
+
+## Optional advanced exercise
+
+If you want to add some client-side scripting, here is how you get the server to produce JSON:
+
+  1. On all the model classes, implement the `java.io.Serializable` interface. This does not contain any methods, it just tells Java that it's ok to turn these objects into JSON and other formats.
+  2. On the county class that we'll be using, add the annotation `@JsonIgnoreProperties(value = {"parent", "country"})` which is in package `com.fasterxml.jackson.annotation` (this is automatically pulled in as a dependency of spring). This solves the problem that when writing out a county, the JSON processor tries to write out the parent (region), which in turn contains a list of counties, which contain a region as parent ... so you end up in an infinite loop.
+  3. If you want, add this method to county so that you get the code of the parent (region) but not the region object itself:
+  
+          public String getParentCode() {
+              return parent.getCode();
+          }
+  
+  4. In the county controller, add this method:
+
+          @GetMapping("/county/json")
+          public List<County> allCounties() {
+              List<County> cs = repository.findAll();
+              return cs;
+          }
+  
+  If a controller method returns an object (or a list of objects) rather than a string, then spring assumes you want the objects rendered as JSON.
+
+You can now go to `http://localhost:8080/county/json` and get back a JSON list of all counties, including their names, codes and codes of their parents with content-type `applicaton/json`. This is exactly the data format you want to consume if you are building a client-side application with react or similiar tools.
+
+The advanced optional exercise is to use react or some other client-side tool so that when you go to `/county/show`, you see the counties in some nice to browse format, by making an AJAX call to the `/county/json` endpoint. Maybe you want to display them 10 at a time and implement searching and paging, or anything else that takes your fancy. You have also seen how you would code a controller to return a JSON representation of a single object: just return the object!
+  
