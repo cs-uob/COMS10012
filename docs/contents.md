@@ -72,6 +72,6 @@ Friday Week 21
 
 Videos, slides and activity sheet
 
-* [Introduction to JavaScript, the HTML DOM and JSON](https://www.ole.bris.ac.uk/webapps/portal/execute/tabs/tabAction?tab_tab_group_id=_307_1) (27 minutes) [slides](./slides/JavaScript_DOM_JSON.pdf)
+* [Introduction to JavaScript, the HTML DOM and JSON](https://mediasite.bris.ac.uk/Mediasite/Play/2bfce318d4b84c12b9ee12dd9f2729a51d) (27 minutes) [slides](./slides/JavaScript_DOM_JSON.pdf)
 
 * [Activity sheet](./exercises/web/ActivitySheet_Week21_Friday.pdf)
