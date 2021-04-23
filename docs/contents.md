@@ -66,4 +66,12 @@ Videos, slides and activity sheet
 
 * [Introduction to CSS](https://mediasite.bris.ac.uk/Mediasite/Play/e6ef7bb5b20349f5923f063dc4a106141d) (22 minutes) [slides](./slides/CSSIntroduction.pdf)
 
-* [Activity sheet](./slides/ActivitySheet.pdf)
+* [Activity sheet](./exercises/web/ActivitySheet_Week21_Tuesday.pdf)
+
+Friday Week 21
+
+Videos, slides and activity sheet
+
+* [Introduction to JavaScript, the HTML DOM and JSON](https://www.ole.bris.ac.uk/webapps/portal/execute/tabs/tabAction?tab_tab_group_id=_307_1) (27 minutes) [slides](./slides/JavaScript_DOM_JSON.pdf)
+
+* [Activity sheet](./exercises/web/ActivitySheet_Week21_Friday.pdf)
