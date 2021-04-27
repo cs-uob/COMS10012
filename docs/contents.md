@@ -75,3 +75,13 @@ Videos, slides and activity sheet
 * [Introduction to JavaScript, the HTML DOM and JSON](https://mediasite.bris.ac.uk/Mediasite/Play/2bfce318d4b84c12b9ee12dd9f2729a51d) (27 minutes) [slides](./slides/JavaScript_DOM_JSON.pdf)
 
 * [Activity sheet](./exercises/web/ActivitySheet_Week21_Friday.pdf)
+
+Tuesday Week 22
+
+There are no lectures for this session. The activity sheet gives a series of coding exercises that involve accessing Web APIs and dynamically loading data into an HTML page. This builds on the activity from Friday Week 21 and introduces you to a number of different Web APIs and also the fetch function. Here are three files to get you started:
+
+*[index.html](./resources/week22/index.html)
+*[style.css](./resources/week22/style.css)
+*[script.js](./resources/week22/script.js)
+
+*[Activity sheet](./resources/week22/ActivitySheetTuesdayWeek22.pdf)
