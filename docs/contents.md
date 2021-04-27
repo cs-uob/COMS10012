@@ -75,3 +75,32 @@ Videos, slides and activity sheet
 * [Introduction to JavaScript, the HTML DOM and JSON](https://mediasite.bris.ac.uk/Mediasite/Play/2bfce318d4b84c12b9ee12dd9f2729a51d) (27 minutes) [slides](./slides/JavaScript_DOM_JSON.pdf)
 
 * [Activity sheet](./exercises/web/ActivitySheet_Week21_Friday.pdf)
+
+## Week 23: The Cloud
+
+We have selected a subset of lectures from a later-year unit on _Cloud Computing_ to give you an introduction to the topic.
+
+The Tuesday workshop will be a continuation of the Week 22 activities, but we still suggest that you watch the first cloud lectures before Tuesday week 23.
+
+**For Tuesday**:
+
+  - [Introduction](https://mediasite.bris.ac.uk/Mediasite/Play/0ad3ecd639aa4f67a9b0d1d162c5f7a21d) (19 minutes)
+  - [Economics](https://mediasite.bris.ac.uk/Mediasite/Play/135444aa12ff4c26b8a9c7ad693e1fa61d) (16 minutes)
+  - [As A Service](https://mediasite.bris.ac.uk/Mediasite/Play/ff04fe5695bf4604bf478405fc9266f81d) (6 minutes)
+  - [Amazon Web Services examples](https://mediasite.bris.ac.uk/Mediasite/Play/3d1ac0e5b012470f9be58c40e000c7c01d) (7 minutes)
+  - [Amazon Web Services: IaaS](https://mediasite.bris.ac.uk/Mediasite/Play/ea34704392794239b5ecc9517de691771d) (10 minutes)
+  - [Google App Engine / PaaS](https://mediasite.bris.ac.uk/Mediasite/Play/7874354926e846ec8cbfb206d6c6047f1d) (8 minutes)
+  - [Other providers](https://mediasite.bris.ac.uk/Mediasite/Play/c4eb1e2b73c544d7bed5a6df828de4281d) (6 minutes)
+
+**For Friday**:
+
+  - [Introduction](https://mediasite.bris.ac.uk/Mediasite/Play/06ceda3dd34c49b9b802a6f2e8cb9a6c1d) (10 minutes)
+  - [Key-Value Databases](https://mediasite.bris.ac.uk/Mediasite/Play/9b125a5499554316be6cb73449e7aaf71d) (16 minutes)
+  - [Document Databases](https://mediasite.bris.ac.uk/Mediasite/Play/4a9cece0618a429295d6d5254202c8f61d)  (7 minutes)
+  - [Column-Family Databases](https://mediasite.bris.ac.uk/Mediasite/Play/785791610bb54851b7b3a347b448f4181d) (9 minutes)
+  - [Graph Databases](https://mediasite.bris.ac.uk/Mediasite/Play/cf8bf402b10546e9af85ea1b502929811d) (13 minutes)
+  - [Choosing a Database](https://mediasite.bris.ac.uk/Mediasite/Play/2f523af23cdf470c8a612ca8277985011d) (9 minutes) 
+
+## Week 24
+
+Week 24 is revision week. The workshops become drop-ins, they are not mandatory and also do not count towards your attendance. There is no new content this week.
