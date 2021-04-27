@@ -76,6 +76,18 @@ Videos, slides and activity sheet
 
 * [Activity sheet](./exercises/web/ActivitySheet_Week21_Friday.pdf)
 
+Tuesday Week 22
+
+There are no lectures for this session. The activity sheet gives a series of coding exercises that involve accessing Web APIs and dynamically loading data into an HTML page. This builds on the activity from Friday Week 21 and introduces you to a number of different Web APIs and also the fetch function. Here are three files to get you started:
+
+* [index.html](./resources/week22/index.txt)
+
+* [style.css](./resources/week22/style.css)
+
+* [script.js](./resources/week22/script.js)
+
+* [Activity sheet](./resources/week22/ActivitySheetTuesdayWeek22.pdf)
+
 ## Week 23: The Cloud
 
 We have selected a subset of lectures from a later-year unit on _Cloud Computing_ to give you an introduction to the topic.
