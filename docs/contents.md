@@ -88,6 +88,12 @@ There are no lectures for this session. The activity sheet gives a series of cod
 
 * [Activity sheet](./resources/week22/ActivitySheetTuesdayWeek22.pdf)
 
+Friday Week 22
+
+There are no lectures for this session. The activity involves modifying a sample Spring web application that displays information about UK geography, which you hopefully already know from your databases exercises. On Tuesday the activity will build on this Spring web application and focus on using React to display the county information.
+
+* [Activity sheet](./exercises/web/censusexplorer.html)
+
 ## Week 23: The Cloud
 
 We have selected a subset of lectures from a later-year unit on _Cloud Computing_ to give you an introduction to the topic.
