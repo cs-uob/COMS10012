@@ -27,9 +27,9 @@ This means that the server is not listening on port 3306 (remember, we were conn
 
 3\. The server is now listening on the network, but it will refuse connections for security reasons from remote machines. Find the mariadb root password (it's in `/vagrant/secure-setup.sql` if you followed my instructions) and log in to mariadb as root (`mysql -u root -p` then enter the password).
 
-Run the command `SELECT name, host FROM mysql.user;` and you should see an entry with user vagrant and host localhost. We now want to allow vagrant to log in from anywhere, so run this:
+Run the command `SELECT user, host FROM mysql.user;` and you should see an entry with user vagrant and host localhost. We now want to allow vagrant to log in from anywhere, so run this:
 
-    UPDATE mysql.user SET host='%' WHERE name='vagrant';
+    UPDATE mysql.user SET host='%' WHERE user='vagrant';
 
 `vagrant` can now log in from anywhere, but back when we created the databases, the `sample-data.sql` contained the line `GRANT ALL ON census.* to 'vagrant'@'localhost';` which we need to update now to allow remote access. Grants are entries in `mysql.db`, try this:
 
