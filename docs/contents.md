@@ -100,6 +100,7 @@ We have selected a subset of lectures from a later-year unit on _Cloud Computing
 
 The Tuesday workshop will be a continuation of the Week 22 activities, but we still suggest that you watch the first cloud lectures before Tuesday week 23.
 
+
 **For Tuesday**:
 
   - [Introduction](https://mediasite.bris.ac.uk/Mediasite/Play/0ad3ecd639aa4f67a9b0d1d162c5f7a21d) (19 minutes)
@@ -109,6 +110,10 @@ The Tuesday workshop will be a continuation of the Week 22 activities, but we st
   - [Amazon Web Services: IaaS](https://mediasite.bris.ac.uk/Mediasite/Play/ea34704392794239b5ecc9517de691771d) (10 minutes)
   - [Google App Engine / PaaS](https://mediasite.bris.ac.uk/Mediasite/Play/7874354926e846ec8cbfb206d6c6047f1d) (8 minutes)
   - [Other providers](https://mediasite.bris.ac.uk/Mediasite/Play/c4eb1e2b73c544d7bed5a6df828de4281d) (6 minutes)
+
+  If you have completed last week's activities, then you can start on the activity for this workshop, which  introduces you to React, a JavaScript library that is used to build user interfaces and single page web applications. You will first follow parts of one of the best online introductory React tutorials. You will then explore a React app that pulls data from the Petstore API that we were using last Tuesday. This is a more complex React app than the ones you will have developed as part of the introductory tutorial. You will make some changes to the app to extend its functionality.
+  
+  * [Activity sheet](./resources/week23/ActivitySheetTuesdayWeek23.pdf)
 
 **For Friday**:
 
