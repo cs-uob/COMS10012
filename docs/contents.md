@@ -98,7 +98,9 @@ There are no lectures for this session. The activity involves modifying a sample
 
 We have selected a subset of lectures from a later-year unit on _Cloud Computing_ to give you an introduction to the topic.
 
-The Tuesday workshop will be a continuation of the Week 22 activities, but we still suggest that you watch the first cloud lectures before Tuesday week 23.
+Both workshops this week will be a continuation of the Week 22 activities, but we still suggest that you watch the first cloud lectures before Tuesday week 23.
+
+Both workshops this week still count towards your 75% attendance hurdle.
 
 **For Tuesday**:
 
