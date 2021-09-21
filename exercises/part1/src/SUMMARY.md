@@ -29,3 +29,21 @@
 
 # Databases
 
+- [SQL introduction](./db1/sql-introduction.md)
+  - [Set up the database](./db1/setup.md)
+  - [ER diagram](./db1/er-diagram.md)
+  - [More modelling](./db1/er2.md)
+
+- [SQL for beginners](./db2/sql-beginners.md)
+  - [Explore the database](./db2/explore-database.md)
+  - [Bristol elections](./db2/elections.md)
+  - [The UK census](./db2/census.md)
+  - [Normal forms](./db2/normalforms.md)
+
+- [Intermediate SQL](./db3/sql-intermediate.md)
+  - [Exercises](./db3/exercises.md)
+
+- [SQL and Java](./db4/sql-java.md)
+  - [JDBC](./db4/jdbc.md)
+  - [Hibernate](./db4/hibernate.md)
+  - [SQLite](./db4/sqlite.md)

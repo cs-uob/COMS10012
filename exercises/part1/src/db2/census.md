@@ -30,7 +30,7 @@ An interactive online map of the statistical units of the UK is available online
 
 The `census` database has the following schema.
 
-![census ER diagram](../img/census.png)
+![census ER diagram](../resources/census.png)
 
 For wards in England, the `parent` FK points at the county table and identifies the CLU (county-level unit) to which the ward belongs. For wards in Wales, the `Ward.parent` column is `NULL` which you need to take into account when working out a JOIN strategy.
 

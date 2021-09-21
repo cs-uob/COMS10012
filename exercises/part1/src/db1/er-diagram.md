@@ -2,7 +2,7 @@
 
 Here is an ER diagram for a fictional university database:
 
-![ER diagram](../img/uni-diagram.png)
+![ER diagram](../resources/uni-diagram.png)
 
 The foreign key columns are not included in the tables - in this diagram, they are implied by the relationships, e.g. the `Unit.director` column comes from the "directs" relationship.
 

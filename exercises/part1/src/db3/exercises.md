@@ -7,7 +7,7 @@ Where an identifier is given in the question you may use it, e.g. when I say "th
 
 ## Elections
 
-![elections ER diagram](../img/elections.png)
+![elections ER diagram](../resources/elections.png)
 
   1. How many votes were cast in all of Bristol in the 2014 elections?
   2. How many votes were cast in the 'Windmill Hill' ward and what percentage of the electorate in this ward does this represent? Your statement should produce a table with one row and two columns called 'votes' and 'percentage'.
@@ -19,7 +19,7 @@ Where an identifier is given in the question you may use it, e.g. when I say "th
 
 ## Census
 
-![census ER diagram](../img/census.png)
+![census ER diagram](../resources/census.png)
 
   1. How many _women_ work in sales and customer service occupations and live in the Cabot ward of Bristol (E05001979)?
   2. How many _people_ work in sales and customer service occupations and live in the Cabot ward of Bristol (E05001979)?

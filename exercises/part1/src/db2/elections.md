@@ -2,7 +2,7 @@
 
 In 2014, Bristol held council elections for 24 of its wards. Each ward elected one councillor to represent the ward on the city council. The results are in the `elections` database, with the following schema as you have hopefully just discovered:
 
-![elections ER diagram](../img/elections.png)
+![elections ER diagram](../resources/elections.png)
 
 From an ER diagram you can derive a _JOIN strategy_, a way of representing all the useful information in a database. For individual queries, you may only need a subset of this information so you can leave off unnecessary parts of the full JOIN strategy. In this case, the following would work:
 
