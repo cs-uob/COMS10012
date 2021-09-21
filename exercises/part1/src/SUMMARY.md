@@ -27,6 +27,9 @@
 
 # Build Tools
 
+- [Build Tools 1](./build1/index.md)
+- [Build Tools 2](./build2/index.md)
+
 # Databases
 
 - [SQL introduction](./db1/sql-introduction.md)
