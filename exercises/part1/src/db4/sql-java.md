@@ -6,11 +6,11 @@ In this activity you will learn how to connect to an SQL database from a Java pr
 
 The videos for this activity are:
 
-| Video | Length | Mediasite Link | Slides |
-|-------|-------:|----------------|--------|
-| [JDBC](https://ams-hsta-ims-ond.mediasite.com/MediasiteDeliver/vol01/bristoluniversity/MP4Video/be367d65-a5a2-4f4f-830e-0ed927529394.mp4/QualityLevels(698000)) | 27 minutes | [mediasite](https://mediasite.bris.ac.uk/Mediasite/Play/cedf58e80c864e45a14701f27820b5cf1d) | [PDF](https://cs-uob.github.io/COMS10012/slides/JDBC.pdf) |
-| [Hibernate](https://ams-hsta-ims-ond.mediasite.com/MediasiteDeliver/vol01/bristoluniversity/MP4Video/77bd3dff-6d29-4c08-9daa-b36f83ee7cd3.mp4/QualityLevels(698000)) | 19 minutes | [mediasite](https://mediasite.bris.ac.uk/Mediasite/Play/6dfd04f0ea2a4ecc8b864ca8c0d127021d) | [PDF](https://cs-uob.github.io/COMS10012/slides/Hibernate.pdf) |
-| [SQLite](https://ams-hsta-ims-ond.mediasite.com/MediasiteDeliver/vol01/bristoluniversity/MP4Video/1341a6b4-1fdb-49a2-b5f4-50eabbc8eaf9.mp4/QualityLevels(698000)) | 13 minutes | [mediasite](https://mediasite.bris.ac.uk/Mediasite/Play/2d38e379917043b18447e46b96cc5fe61d) | [PDF](https://cs-uob.github.io/COMS10012/slides/SQLite.pdf) |
+| Video | Length | Slides |
+|-------|-------:|--------|
+| [JDBC](https://web.microsoftstream.com/video/2e9205a2-cb47-4ee7-9d3a-cd86d5e945c5?channelId=793a8a65-ed73-4803-820f-dd7f2c675f46) | 27 minutes | [PDF](https://uob.sharepoint.com/:b:/r/teams/UnitTeams-COMS10012-2021-22-TB-2-A/Shared%20Documents/Documents/JDBC.pdf) |
+| [Hibernate](https://web.microsoftstream.com/video/d42cec3f-4531-4441-b543-b42a5601d835?channelId=793a8a65-ed73-4803-820f-dd7f2c675f46) | 19 minutes | [PDF](https://uob.sharepoint.com/:b:/r/teams/UnitTeams-COMS10012-2021-22-TB-2-A/Shared%20Documents/Documents/Hibernate.pdf) |
+| [SQLite](https://web.microsoftstream.com/video/abe90adf-5faa-431e-b355-7c06875d6887?channelId=793a8a65-ed73-4803-820f-dd7f2c675f46) | 13 minutes | [PDF](https://uob.sharepoint.com/:b:/r/teams/UnitTeams-COMS10012-2021-22-TB-2-A/Shared%20Documents/Documents/SQLite.pdf) |
 
 ## Exercises
 

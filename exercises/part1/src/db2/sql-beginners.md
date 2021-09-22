@@ -6,14 +6,15 @@ This is the second activity of four to teach you relational databases and the SQ
 
 The videos for this activity are:
 
-| Video | Length | Mediasite Link | Slides |
-|-------|-------:|----------------|--------|
-| [SQL JOIN, part 1](https://ams-hsta-ims-ond.mediasite.com/MediasiteDeliver/vol01/bristoluniversity/MP4Video/bab37acb-e69a-4718-8ba8-a2dceee71a99.mp4/QualityLevels(699000)) | 10 minutes | [mediasite link](https://mediasite.bris.ac.uk/Mediasite/Play/87fc5f25f4d446f99149a58289899e8d1d) | [PDF](https://cs-uob.github.io/COMS10012/slides/SQL%20JOIN%20part%201.pdf) |
-| [SQL JOIN, part 2](https://ams-hsta-ims-ond.mediasite.com/MediasiteDeliver/vol01/bristoluniversity/MP4Video/ab90d187-69b6-43fa-a9ed-3a9a9ea0a3b3.mp4/QualityLevels(699000)) | 10 minutes | [mediasite link](https://mediasite.bris.ac.uk/Mediasite/Play/26c1ecb043034568987acc2d3eedc8371d) | [PDF](https://cs-uob.github.io/COMS10012/slides/SQL%20JOIN%20part%202.pdf) |
-| [SQL ORDER BY](https://ams-hsta-ims-ond.mediasite.com/MediasiteDeliver/vol01/bristoluniversity/MP4Video/f050a7fb-3341-44ab-84f0-59268215ed70.mp4/QualityLevels(699000)) | 9 minutes | [mediasite link](https://mediasite.bris.ac.uk/Mediasite/Play/135220e25bf542099703ca40a900722e1d) | [PDF](https://cs-uob.github.io/COMS10012/slides/SQL%20ORDER%20BY.pdf) |
-| [Normal Forms](https://ams-hsta-ims-ond.mediasite.com/MediasiteDeliver/vol01/bristoluniversity/MP4Video/d68cd782-7813-4280-b650-6111bed23469.mp4/QualityLevels(699000)) | 56 minutes | [mediasite link](https://mediasite.bris.ac.uk/Mediasite/Play/6a2edd198312428e846371a3bfd0625c1d) | [PDF](https://cs-uob.github.io/COMS10012/slides/Normal%20forms.pdf) |
-
-The normal forms one continues where the introduction to relational modelling left off. It is a long but connected piece of content (1 hour) that you will probably want to watch pieces of several times.
+| Video | Length | Slides |
+|-------|-------:|--------|
+| [SQL JOIN, part 1](https://web.microsoftstream.com/video/159003c7-3c66-4256-9955-c0746fb54ca4?channelId=793a8a65-ed73-4803-820f-dd7f2c675f46) | 10 minutes | [PDF](https://uob.sharepoint.com/:b:/r/teams/UnitTeams-COMS10012-2021-22-TB-2-A/Shared%20Documents/Documents/SQL%20JOIN%20part%201.pdf) |
+| [SQL JOIN, part 2](https://web.microsoftstream.com/video/c3db4481-31ac-48f2-9a87-05bf0e4f3006?channelId=793a8a65-ed73-4803-820f-dd7f2c675f46) | 10 minutes | [PDF](https://uob.sharepoint.com/:b:/r/teams/UnitTeams-COMS10012-2021-22-TB-2-A/Shared%20Documents/Documents/SQL%20JOIN%20part%202.pdf) |
+| [SQL ORDER BY](https://web.microsoftstream.com/video/e2a860f3-9fbe-4d24-b579-e1fc79b50ca9?channelId=793a8a65-ed73-4803-820f-dd7f2c675f46)     |  9 minutes | [PDF](https://uob.sharepoint.com/:b:/r/teams/UnitTeams-COMS10012-2021-22-TB-2-A/Shared%20Documents/Documents/SQL%20ORDER%20BY.pdf) |
+| [Normal Forms 1](https://web.microsoftstream.com/video/23bf5561-f7bd-44af-986f-4a5038a1ea88?channelId=793a8a65-ed73-4803-820f-dd7f2c675f46)   |  5 minutes | [PDF](https://uob.sharepoint.com/:b:/r/teams/UnitTeams-COMS10012-2021-22-TB-2-A/Shared%20Documents/Documents/Normal%20forms%201.pdf) |
+| [Normal Forms 2](https://web.microsoftstream.com/video/1170b646-b19a-4a92-a59a-0ba9eecad6cd?channelId=793a8a65-ed73-4803-820f-dd7f2c675f46)   | 20 minutes | [PDF](https://uob.sharepoint.com/:b:/r/teams/UnitTeams-COMS10012-2021-22-TB-2-A/Shared%20Documents/Documents/Normal%20forms%202.pdf) |
+| [Normal Forms 3](https://web.microsoftstream.com/video/5805bf00-b9ae-4fe0-b7f3-ce5dc93ef213?channelId=793a8a65-ed73-4803-820f-dd7f2c675f46)   |  6 minutes | [PDF](https://uob.sharepoint.com/:b:/r/teams/UnitTeams-COMS10012-2021-22-TB-2-A/Shared%20Documents/Documents/Normal%20forms%203.pdf) |
+| [Normal Forms 4](https://web.microsoftstream.com/video/dc6ee719-d36b-41f2-b8a6-01ba638cbe7d?channelId=793a8a65-ed73-4803-820f-dd7f2c675f46)   | 24 minutes | [PDF](https://uob.sharepoint.com/:b:/r/teams/UnitTeams-COMS10012-2021-22-TB-2-A/Shared%20Documents/Documents/Normal%20forms%204.pdf) |
 
 ## Exercises
 

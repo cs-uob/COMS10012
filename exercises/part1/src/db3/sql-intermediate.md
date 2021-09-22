@@ -6,13 +6,13 @@ This is the third of four activities to teach you relational databases and SQL.
 
 The videos for this activity are:
 
-| Video | Length | Mediasite Link | Slides |
-|-------|-------:|----------------|--------|
-| [SQL insert/delete](https://ams-hsta-ims-ond.mediasite.com/MediasiteDeliver/vol01/bristoluniversity/MP4Video/95f4f114-d85c-47f5-a533-0cb32f69b58c.mp4/QualityLevels(698000))  | 8 minutes | [mediasite link](https://mediasite.bris.ac.uk/Mediasite/Play/4f83435e7b3d46299042952b63d010bf1d) | [PDF](https://cs-uob.github.io/COMS10012/slides/SQL%20insert%20and%20delete.pdf) |
-| [SQL subqueries](https://ams-hsta-ims-ond.mediasite.com/MediasiteDeliver/vol01/bristoluniversity/MP4Video/f477bbcf-dbc3-4ca3-b684-679df2b7bfae.mp4/QualityLevels(698000))  | 13 minutes | [mediasite link](https://mediasite.bris.ac.uk/Mediasite/Play/8b40ddf3273c4d4684a17a0d915b9fba1d) | [PDF](https://cs-uob.github.io/COMS10012/slides/SQL%20Subqueries.pdf) |
-| [SQL statistics](https://ams-hsta-ims-ond.mediasite.com/MediasiteDeliver/vol01/bristoluniversity/MP4Video/abdfca9a-7cc2-489e-ab55-bf4033a89ee2.mp4/QualityLevels(698000)))  | 22 minutes | [mediasite link](https://mediasite.bris.ac.uk/Mediasite/Play/deb1e6b1bf0542ebaabf0b60849e1a181d) | [PDF](https://cs-uob.github.io/COMS10012/slides/SQL%20statistics.pdf) |
-| [SQL NULL](https://ams-hsta-ims-ond.mediasite.com/MediasiteDeliver/vol01/bristoluniversity/MP4Video/48f9ce6e-ae99-47e3-9e7f-2a91f7fd4f11.mp4/QualityLevels(698000))  | 7 minutes | [mediasite link](https://mediasite.bris.ac.uk/Mediasite/Play/2530533262754ce0a05e801f45562be41d) | [PDF](https://cs-uob.github.io/COMS10012/slides/SQL%20NULL.pdf) |
-| [SQL tips](https://ams-hsta-ims-ond.mediasite.com/MediasiteDeliver/vol01/bristoluniversity/MP4Video/7e570b3a-50d1-4547-8c31-bc6df22f43b3.mp4/QualityLevels(698000))  | 17 minutes | [mediasite link](https://mediasite.bris.ac.uk/Mediasite/Play/df78631257674700916b7bc94ba67ea31d) | [PDF](https://cs-uob.github.io/COMS10012/slides/SQL%20tips.pdf) |
+| Video | Length | Slides |
+|-------|-------:|--------|
+| [SQL insert/delete](https://web.microsoftstream.com/video/b3075b96-6f51-420a-830c-0324441d0b6b?channelId=793a8a65-ed73-4803-820f-dd7f2c675f46)  | 8 minutes | [PDF](https://uob.sharepoint.com/:b:/r/teams/UnitTeams-COMS10012-2021-22-TB-2-A/Shared%20Documents/Documents/SQL%20insert%20and%20delete.pdf) |
+| [SQL subqueries](https://web.microsoftstream.com/video/4828f5ac-66e0-4b5b-89d4-7f4ecb01c734?channelId=793a8a65-ed73-4803-820f-dd7f2c675f46)  | 13 minutes | [PDF](https://uob.sharepoint.com/:b:/r/teams/UnitTeams-COMS10012-2021-22-TB-2-A/Shared%20Documents/Documents/SQL%20Subqueries.pdf) |
+| [SQL statistics](https://web.microsoftstream.com/video/011e902d-e640-4940-beac-54c10a6ac09b?channelId=793a8a65-ed73-4803-820f-dd7f2c675f46)  | 22 minutes | [PDF](https://uob.sharepoint.com/:b:/r/teams/UnitTeams-COMS10012-2021-22-TB-2-A/Shared%20Documents/Documents/SQL%20statistics.pdf) |
+| [SQL NULL](https://web.microsoftstream.com/video/89c1e2e3-7704-49b3-9ce4-c8a9f89bfb3a?channelId=793a8a65-ed73-4803-820f-dd7f2c675f46)  | 7 minutes | [PDF](https://uob.sharepoint.com/:b:/r/teams/UnitTeams-COMS10012-2021-22-TB-2-A/Shared%20Documents/Documents/SQL%20NULL.pdf) |
+| [SQL tips](https://web.microsoftstream.com/video/83086484-7a0a-4c79-b8f4-6052d2e57753?channelId=793a8a65-ed73-4803-820f-dd7f2c675f46)  | 17 minutes | [PDF](https://uob.sharepoint.com/:b:/r/teams/UnitTeams-COMS10012-2021-22-TB-2-A/Shared%20Documents/Documents/SQL%20tips.pdf) |
 
 ## Exercises
 
