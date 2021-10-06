@@ -12,15 +12,15 @@ Proceed directly to [exploring HTTP](explore.md).
 
 ## Lab machine, with vagrant
 
-If you are using vagrant on a lab machine directly (e.g. not over ssh) then you will need to tell vagrant which ports to forward, that is which ports within the VM to make available outside the VM. Open your vagrantfile and add the line
+If you want to run a server inside a vagrant VM and connect to it with a browser directly on the lab machine (outside the VM), then you will need to tell vagrant which ports within the VM to make available outside the VM. Open your vagrantfile and add the line
 
     config.vm.network "forwarded_port", guest: 8000, host: 8000
 
-in the main block (just before the `config.vm.provision` line will do), then restart your VM if it is already running. This tells vagrant to open a server on port 8000 on the host, and forward any traffic to port 8000 on the VM.
+in the main block (just before the `config.vm.provision` line will do), then restart your VM if it is already running. This tells vagrant to open a server on port 8000 on the host (the lab machine), and forward any traffic it receives to port 8000 on the VM.
 
-You can now start the VM, run a server in the VM, and connect to it from the browser on the lab machine.
+You can now start the VM, run a server inside the VM, and connect to it from the browser on the lab machine.
 
-Proceed to [exploring HTTP](explore.md) and run the server (the `nc` command) inside the VM, but use the browser on the lab machine directly. Note that the `http-response` file mentioned on that page needs to go in the correct folder on the VM, where you started the server.
+Proceed to [exploring HTTP](explore.md) and run the server (the `nc` command) inside the VM, but use the browser on the lab machine directly. Note that the `http-response` file mentioned on that page needs to go in the correct folder inside the VM, where you started the server.
 
 ## Your own machine, without vagrant
 
@@ -34,19 +34,12 @@ Configure vagrant as in the section "Lab machine, with vagrant" above, that is a
 
     config.vm.network "forwarded_port", guest: 8000, host: 8000
 
-to the vagrantfile and restart vagrant. You can now run servers in the VM and clients (such as your favourite browser) on your own machine, but you can also run clients (such as `wget`) in the VM itself. To do this, either log in to Vagrant and then use tmux to get multiple terminals, or log in to the VM twice from two different terminals, then use one for the server and one for the client.
+to the vagrantfile and restart vagrant. You can now run servers in the VM and clients (such as your favourite browser) on your own machine.
 
 You might get firewall warning pop-ups, which you will have to "allow".
 
+Proceed to [exploring HTTP](explore.md). If you don't have `wget` on your own machine, you can open a second terminal and log in to the VM from there, then run both `wget` and the server inside the VM that way - then later on, when you're using a browser instead of `wget` for the client, you can just open the browser on your own machine.
+
 ## Over SSH
 
-If you SSH into a lab machine and run a server there, then you need a way for your own machine to be able to connect to that server: this is called port forwarding, and ssh supports it if you ask for it.
-
-However, it comes with some drawbacks:
-
-  1. Port forwarding can be abused in many ways, some of which count as "hacking" and some of which put you at risk of getting hacked. Don't experiment with it unless you understand what you're doing (more on that, maybe, in 2nd year Computer Systems B).
-
-
-The command
-
-    ssh 
+For security reasons, you will not be able to run a web server on a lab machine (whether in a VM or not) and connect to it from your local web browser. If you have no other option than to use a remote connection, you should use [x2go](https://wiki.x2go.org/doku.php/download:start) to connect to a lab machine with a graphical user interface, and run both the server and browser through that. This software uses ssh internally so you need to connect to `rd-mvb-linuxlab.bristol.ac.uk` using `seis.bris.ac.uk` as the proxy server.
