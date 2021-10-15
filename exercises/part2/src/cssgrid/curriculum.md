@@ -23,7 +23,9 @@ Each unit is a `<div>` with class `unit` and further classes declaring its teach
 
 We are being pedantic here about separating content/structure (in the HTML file) and styling/layout (which you will write in a CSS file). There is no hint in the HTML file that the aim of the exercise is to lay the units out on a grid!
 
+|||advanced
 Our class names are purely semantic - they describe attributes of the units (academic year, teaching block, credit points), not how they should be displayed. There is some debate among web developers and designers just how far you should take this separation; we are being absolutely purist for this exercise, but even bootstrap, one of the most widely used web libraries, has classes like `.col-4` to make something four columns wide. In practice the answer to how you separate concerns between HTML and CSS is really a case of "it depends".
+|||
 
 Some general styles that you can apply in your `curriculum.css`:
 
@@ -53,7 +55,7 @@ This sets the colour scheme (derived from the official University of Bristol one
 
 We used `<b>` tags for the title bars that are normally inline elements, but we redefined them to be block elements here (this is allowed) so they span the whole width of their grid cell.
 
-## Over to you:
+## Exercise
 
   - The grid should be applied to the `<main>` element, with 12 equally wide columns and a maximum width of 1500px overall; you can center the grid for even wider screens with `margin: 0 auto;` on the main element.
   - The gap between grid cells is `15px`.

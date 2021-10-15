@@ -14,5 +14,6 @@
   - [Templates](./html5/templates.md)
 - [CSS](./css/index.md)
 - [CSS grids](./cssgrid/index.md)
+  - [Introduction](./cssgrid/intro.md)
   - [Curriculum exercise](./cssgrid/curriculum.md)
   - [Trees exercise (responsive layout)](./cssgrid/trees.md)

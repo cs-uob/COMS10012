@@ -32,7 +32,7 @@ Each tree is defined in the HTML file with an element like this:
 
 The two "featured" trees at the start also have class `featured` on their card element.
 
-## Over to you:
+## Exercise
 
 General non-grid-related CSS that you can just paste in:
 

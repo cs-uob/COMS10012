@@ -1,19 +1,17 @@
 # CSS grids
 
-To create a CSS grid, you place a container element (usually a `<div>`) and style it `display: grid`. All its direct children will now be laid out in a grid, and you can configure the general layout on the parent element:
+## Videos
 
-  - `grid-template-columns` defines the number and widths of the columns.
-  - `gap` (which should have been called `grid-gap`, but is not) defines the gap between different grid cells. 
-  - For a gap around the outside of the grid, give the container a margin (or padding).
+| Video | Length | Slides |
+|-------|-------:|--------|
+| [Design](https://web.microsoftstream.com/video/e63033d4-c62b-4a96-a4c5-3f3aea6451dc?channelId=793a8a65-ed73-4803-820f-dd7f2c675f460) | 26 minutes | [slides](https://uob.sharepoint.com/:b:/r/teams/UnitTeams-COMS10012-2021-22-TB-2-A/Shared%20Documents/Documents/Design.pdf) |
+| [CSS grids](https://web.microsoftstream.com/video/a8663532-67a3-470b-9243-701fd51d8855?channelId=793a8a65-ed73-4803-820f-dd7f2c675f46) | 15 minutes | [slides](https://uob.sharepoint.com/:b:/r/teams/UnitTeams-COMS10012-2021-22-TB-2-A/Shared%20Documents/Documents/CSS%20grids.pdf) |
+| [Responsive Layout](https://web.microsoftstream.com/video/5cf692e4-6f63-4745-9ded-32a59b7673bd?channelId=793a8a65-ed73-4803-820f-dd7f2c675f46) | 7 minutes | [slides](https://uob.sharepoint.com/:b:/r/teams/UnitTeams-COMS10012-2021-22-TB-2-A/Shared%20Documents/Documents/Responsive%20CSS.pdf) |
 
-On the child elements, you can set the placement rules for each one and the browser will build the grid accordingly:
+## MDN
 
-  - By default, each child takes up the next free 1x1 space.
-  - `grid-row` and `grid-column` modify this:
-    - `span N` makes a child element N cells wide/tall.
-    - `M / N` positions the child absolutely from dividing line M to dividing line N (you can overlap or stack elements on top of each other this way if you want to).
+Please read the following pages, and play with the interactive examples if you want:
 
-There are many more things that you can do with grids, and your best resources if you need to look this up are:
-
-  - [Grids on MDN](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Grids)
-  - [CSS-tricks complete guide to grids](https://css-tricks.com/snippets/css/complete-guide-grid/)
+  - [Normal flow](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Normal_Flow)
+  - [CSS grids](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Grids)
+  - [Media queries](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Media_queries)
