@@ -11,6 +11,7 @@
   - [A server in Java](./http/server.md)
 - [HTML5](./html5/index.md)
   - [Basic HTML5](./html5/basic.md)
+  - [Templates](./html5/templates.md)
 - [CSS](./css/index.md)
 - [CSS grids](./cssgrid/index.md)
   - [Curriculum exercise](./cssgrid/curriculum.md)

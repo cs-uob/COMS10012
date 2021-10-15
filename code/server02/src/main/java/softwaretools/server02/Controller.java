@@ -12,6 +12,7 @@ import org.thymeleaf.context.Context;
 import softwaretools.server02.model.Database;
 import softwaretools.server02.model.Unit;
 import softwaretools.server02.model.internal.DatabaseImpl;
+import java.util.List;
 
 @RestController
 public class Controller {
@@ -34,8 +35,9 @@ public class Controller {
     @GetMapping("/units")
     public String unitsPage() {
         Database d = new DatabaseImpl();
+        List<Unit> units = d.getUnits();
         Context cx = new Context();
-        cx.setVariable("units", d.getUnits());
+        cx.setVariable("units", units);
         return templates.render("units.html", cx);
     }
     
