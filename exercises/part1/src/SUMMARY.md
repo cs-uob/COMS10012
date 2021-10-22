@@ -28,6 +28,7 @@
 # Build Tools
 
 - [Build Tools 1](./build1/index.md)
+  - [Exercise](./build1/exercise.md)
 - [Build Tools 2](./build2/index.md)
   - [C](./build2/c.md)
   - [Python](./build2/python.md)
