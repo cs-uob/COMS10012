@@ -19,3 +19,5 @@
   - [Introduction](./cssgrid/intro.md)
   - [Curriculum exercise](./cssgrid/curriculum.md)
   - [Trees exercise (responsive layout)](./cssgrid/trees.md)
+- [The Cloud, Part 1](./cloud/cloud1.md)
+- [The Cloud, Part 2](./cloud/cloud2.md)
