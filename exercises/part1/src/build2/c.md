@@ -6,7 +6,7 @@ Download the source file [https://sqlite.org/2021/sqlite-autoconf-3340100.tar.gz
 
 You can see a file called `INSTALL` which you can open in a text editor to find the standard instructions:
 
-> Briefly, the shell commands `./configure; make; make install' should configure, build, and install this package.
+> Briefly, the shell commands `./configure; make; make install` should configure, build, and install this package.
 
 ## Configure
 
