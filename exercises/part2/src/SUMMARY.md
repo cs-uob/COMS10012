@@ -19,5 +19,8 @@
   - [Introduction](./cssgrid/intro.md)
   - [Curriculum exercise](./cssgrid/curriculum.md)
   - [Trees exercise (responsive layout)](./cssgrid/trees.md)
+- [React](./react/index.md)
+  - [Installing React](./react/installing.md)
+  - [Hello World in React](./react/hello.md)
 - [The Cloud, Part 1](./cloud/cloud1.md)
 - [The Cloud, Part 2](./cloud/cloud2.md)
