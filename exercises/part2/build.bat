@@ -1,2 +1,2 @@
 mdbook build
-xcopy /S /Y book ..\..\docs\exercises\part2
+xcopy /S /Y book ..\..\docs\exercises\part2\
