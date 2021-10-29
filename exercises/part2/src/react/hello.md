@@ -216,6 +216,10 @@ Make sure you understand what happens when you type in the input box. You can ob
   5. In response to this, React calls `render()` on the `App`.
   6. This triggers further `render()` calls in both `NameGreeter` and `NameEditor`.
 
+## Build the app
+
+When you have finished developing an app, run `npm run build`. This will create your app in `build/`, compiling the JSX to JavaScript and HTML files. You can open `build/index.html` in a web browser without a server running.
+
 ## Read all about it
 
 We have essentially, with a different example, done step 10 of the [official React tutorial](https://reactjs.org/docs/lifting-state-up.html). After the workshop, you may want to read this page again.
