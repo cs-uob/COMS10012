@@ -23,6 +23,7 @@
 - [React](./react/index.md)
   - [Installing React](./react/installing.md)
   - [Hello World in React](./react/hello.md)
+  - [Exercise](./react/character.md)
 - [A complete application, part 1](./app1/index.md)
 - [A complete application, part 2](./app2/index.md)
 - [The Cloud, Part 1](./cloud/cloud1.md)
