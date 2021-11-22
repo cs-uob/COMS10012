@@ -21,7 +21,7 @@ Next, you are going to configure a virtual machine using [alpine linux](https://
 
 ```ruby
 Vagrant.configure("2") do |config|
-  config.vm.box = "generic/alpine310"
+  config.vm.box = "generic/alpine314"
   config.vm.synced_folder ".", "/vagrant"
 
   config.vm.provision "shell", inline: <<-SHELL
