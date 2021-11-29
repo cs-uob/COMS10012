@@ -14,7 +14,7 @@ import uk.ac.bristol.cs.application.repository.WardRepository;
 public class WardController {
 
     private final WardRepository repository;
-
+    
     WardController(WardRepository repository) {
         this.repository = repository;
     }
@@ -22,6 +22,11 @@ public class WardController {
     @GetMapping("/api/wards")
     List<Ward> getAllWards() {
         return repository.findAll();
+    }
+    
+    @GetMapping("/api/wards/full")
+    List<Ward> getAllWardsFull() {
+        return repository.fetchAllFull();
     }
 
     @GetMapping("/api/ward/{id}")

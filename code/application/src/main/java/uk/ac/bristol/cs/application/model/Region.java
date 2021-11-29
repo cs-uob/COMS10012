@@ -9,25 +9,25 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class County implements Serializable {
+public class Region implements Serializable {
     private @Id String code;
     private String name;
     @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name="parent")
-    private Region parent;
+    private Country parent;
     
     public String getName() { return name; }
     public String getCode() { return code; }
-    public Region getParent() { return parent; }
+    public Country getParent() { return parent; }
 
     public void setName(String name) { this.name = name; }
     public void setCode(String code) { this.code = code; }
-    public void setParent(Region parent) { this.parent = parent; }
+    public void setParent(Country parent) { this.parent = parent; }
     
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 61 * hash + Objects.hashCode(this.code);
-        hash = 61 * hash + Objects.hashCode(this.name);
+        int hash = 7;
+        hash = 53 * hash + Objects.hashCode(this.code);
+        hash = 53 * hash + Objects.hashCode(this.name);
         return hash;
     }
 
@@ -42,7 +42,7 @@ public class County implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final County other = (County) obj;
-        return Objects.equals(this.name, other.name);
-    }
+        final Region other = (Region) obj;
+        return Objects.equals(this.code, other.code);
+    }   
 }

@@ -3,31 +3,24 @@ package uk.ac.bristol.cs.application.model;
 import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 
 @Entity
-public class County implements Serializable {
+public class Country implements Serializable {
     private @Id String code;
     private String name;
-    @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name="parent")
-    private Region parent;
     
     public String getName() { return name; }
     public String getCode() { return code; }
-    public Region getParent() { return parent; }
 
     public void setName(String name) { this.name = name; }
     public void setCode(String code) { this.code = code; }
-    public void setParent(Region parent) { this.parent = parent; }
-    
+
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 61 * hash + Objects.hashCode(this.code);
-        hash = 61 * hash + Objects.hashCode(this.name);
+        hash = 83 * hash + Objects.hashCode(this.code);
+        hash = 83 * hash + Objects.hashCode(this.name);
         return hash;
     }
 
@@ -42,7 +35,7 @@ public class County implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final County other = (County) obj;
+        final Country other = (Country) obj;
         return Objects.equals(this.name, other.name);
     }
 }
