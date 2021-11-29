@@ -7,6 +7,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.FetchType;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 @Entity
 public class Ward implements Serializable {
@@ -23,4 +24,27 @@ public class Ward implements Serializable {
     public void setName(String name) { this.name = name; }
     public void setCode(String code) { this.code = code; }
     public void setParent(County parent) { this.parent = parent; }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 37 * hash + Objects.hashCode(this.code);
+        hash = 37 * hash + Objects.hashCode(this.name);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Ward other = (Ward) obj;
+        return Objects.equals(this.code, other.code);
+    }
 }
