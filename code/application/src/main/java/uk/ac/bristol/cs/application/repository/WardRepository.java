@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import uk.ac.bristol.cs.application.model.Ward;
 
-public interface WardRepository extends JpaRepository<Ward, Long> {
+public interface WardRepository extends JpaRepository<Ward, String> {
 
 }
