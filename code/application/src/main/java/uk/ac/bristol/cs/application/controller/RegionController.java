@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import uk.ac.bristol.cs.application.NoSuchElementException;
+import uk.ac.bristol.cs.application.model.ModelClass;
 
 import uk.ac.bristol.cs.application.model.Region;
 import uk.ac.bristol.cs.application.repository.RegionRepository;
@@ -24,12 +24,9 @@ public class RegionController {
         return repository.findAll();
     }
     
-    @GetMapping("/api/region/{id}")
-    Region getRegionById(@PathVariable String id) {
+    @GetMapping(path="/api/region/{id}", produces="application/json")
+    String getRegionById(@PathVariable String id) {
         Region r = repository.findByIdFull(id);
-        if (r == null) {
-            throw new NoSuchElementException(Region.class, id);
-        }
-        return r;
+        return ModelClass.renderJSON(r, Region.class, id);
     }
 }

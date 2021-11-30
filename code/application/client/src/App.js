@@ -5,6 +5,7 @@ import React from 'react';
 import Card from 'react-bootstrap/Card';
 import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
+import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
@@ -15,9 +16,40 @@ class App extends React.Component {
       overview: "country",
       overviewName: "Country",
       overviewCode: "E92000001",
+      overviewChildren: "regions",
       detail: "",
       detailName: "",
       detailCode: ""
+    }
+    this.navigate = this.navigate.bind(this);
+  }
+
+  navigate(code, isParent) {
+    // Called when we want to change the main view.
+    switch (this.state.overview) {
+      case "country":
+        // no parent option here
+        this.setState({
+          overview: "region",
+          overviewName: "Region",
+          overviewChildren: "counties",
+          overviewCode: code
+        })
+        break;
+      case "region":
+        if (isParent) {
+          this.setState({
+            overview: "country",
+            overviewName: "Country",
+            overviewChildren: "regions",
+            overviewCode: code
+          })
+        } else {
+
+        }
+        break;
+      default:
+          console.log("App.navigate")
     }
   }
 
@@ -34,7 +66,9 @@ class App extends React.Component {
             <Col>
               <OverView displayName = {this.state.overviewName}
                         type = {this.state.overview}
-                        code = {this.state.overviewCode}></OverView>
+                        code = {this.state.overviewCode}
+                        children = {this.state.overviewChildren}
+                        callback={this.navigate}></OverView>
             </Col>
             <Col>
               {
@@ -58,6 +92,11 @@ class OverView extends React.Component {
       loaded: "no", // options: no, yes, error
       item: null
     }
+    this.navigate = this.navigate.bind(this);
+  }
+
+  navigate(code, isParent) {
+    this.props.callback(code, isParent);
   }
 
   componentDidMount() {
@@ -71,6 +110,12 @@ class OverView extends React.Component {
           this.setState({loaded: "error"})
         }
       )
+  }
+
+  componentDidUpdate(oldProps, oldState, snapshot) {
+    if (this.props.code !== oldProps.code) {
+      this.componentDidMount()
+    }
   }
 
   render() {
@@ -99,9 +144,26 @@ class OverView extends React.Component {
         return (
           <Card>
             <Card.Body>
+              <Card.Title>{this.state.item.name}</Card.Title>
+              <Card.Subtitle className="mb-2 text-muted">{this.props.displayName}</Card.Subtitle>
               <Card.Text>
-                Success.
-              </Card.Text>
+                <b>ID: </b>{this.state.item.code} <br />
+                <b>Contains:</b> </Card.Text>
+              <ul>
+              {
+                this.state.item[this.props.children] === undefined ?
+                "" :
+                this.state.item[this.props.children].map(i => 
+                <li key={i.code}><Button className="pt-0 pb-0" variant="link" 
+                  onClick={() => this.navigate(i.code, false)}>{i.name}</Button></li>
+              )}
+              </ul>
+              {
+                this.state.item.parentCode === undefined ? "" :
+                <Button variant="link" className="p-0"
+                  onClick={() => this.navigate(this.state.item.parentCode, true)}>
+                  Back to parent</Button>  
+              }
             </Card.Body>
           </Card>
         )

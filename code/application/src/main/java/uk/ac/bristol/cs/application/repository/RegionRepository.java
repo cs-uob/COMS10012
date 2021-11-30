@@ -8,7 +8,7 @@ import uk.ac.bristol.cs.application.model.Region;
 
 public interface RegionRepository extends JpaRepository<Region, String> {
 
-    @Query("SELECT r FROM Region r JOIN FETCH r.parent WHERE r.id = ?1")
+    @Query("SELECT r FROM Region r JOIN FETCH r.parent LEFT JOIN FETCH r.counties WHERE r.id = ?1")
     Region findByIdFull(String id);
     
     @Query("FROM Region r JOIN FETCH r.parent")

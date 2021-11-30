@@ -10,7 +10,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-public class Ward implements Serializable {
+public class Ward extends ModelClass implements Serializable {
     @Id private String code;
     private String name;
     

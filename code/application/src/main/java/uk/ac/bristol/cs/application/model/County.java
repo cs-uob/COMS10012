@@ -1,5 +1,6 @@
 package uk.ac.bristol.cs.application.model;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.Entity;
@@ -9,10 +10,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class County implements Serializable {
+public class County extends ModelClass implements Serializable {
     private @Id String code;
     private String name;
     @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name="parent")
+    @JsonView(County.class)
     private Region parent;
     
     public String getName() { return name; }
