@@ -8,15 +8,17 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.hibernate5.Hibernate5Module;
 
 import java.util.List;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 
-/**
- * The purpose of this class is to make Jackson (that converts entities
- * to JSON) aware of Hibernate eager/lazy loading so you get neither a
- * N+1 problem nor a lazy loading exception.
- */
 @Configuration
 public class ApplicationWebConfig implements WebMvcConfigurer {
 
+    /**
+    * The purpose of this method is to make Jackson (that converts entities
+    * to JSON) aware of Hibernate eager/lazy loading so you get neither a
+    * N+1 problem nor a lazy loading exception.
+    */
+    @Override
     public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
         for (HttpMessageConverter converter : converters) {
             if (converter instanceof MappingJackson2HttpMessageConverter) {
@@ -24,5 +26,10 @@ public class ApplicationWebConfig implements WebMvcConfigurer {
                 mapper.registerModule(new Hibernate5Module());
             }
         }
+    }
+    
+    @Override
+    public void addCorsMappings(CorsRegistry reg) {
+        reg.addMapping("/api/**");
     }
 }
