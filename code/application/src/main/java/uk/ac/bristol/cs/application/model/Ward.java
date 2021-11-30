@@ -20,7 +20,14 @@ public class Ward implements Serializable {
     public String getName() { return name; }
     public String getCode() { return code; }
     public County getParent() { return parent; }
-
+    public String getParentCode() { 
+        if (parent == null) {
+            return null;
+        } else {
+            return parent.getCode(); 
+        }
+    }
+    
     public void setName(String name) { this.name = name; }
     public void setCode(String code) { this.code = code; }
     public void setParent(County parent) { this.parent = parent; }

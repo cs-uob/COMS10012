@@ -18,7 +18,8 @@ public class Region implements Serializable {
     public String getName() { return name; }
     public String getCode() { return code; }
     public Country getParent() { return parent; }
-
+    public String getParentCode() { return parent.getCode(); }
+    
     public void setName(String name) { this.name = name; }
     public void setCode(String code) { this.code = code; }
     public void setParent(Country parent) { this.parent = parent; }
