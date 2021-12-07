@@ -267,7 +267,30 @@ class UnitView extends React.Component {
   }
 
   componentDidMount() {
-    
+    fetch("http://localhost:8000/api/details/" + this.props.type + "/" + this.props.code)
+      .then(r => {
+        if (!r.ok) {
+          const e = "Attempting to load " + r.url + " got status " + r.status + ".";
+          this.setState({loaded: "error", errmsg: e})
+        }
+        return r.json()
+      })
+      .then (
+        (result) => {
+          if (this.state.loaded !== "error") {
+            this.setState({loaded: "yes", item: result})
+          }
+        },
+        (error) => {
+          this.setState({loaded: "error", errmsg: "Network error"})
+        }
+      )
+  }
+
+  componentDidUpdate(oldProps, oldState, snapshot) {
+    if (this.props.code !== oldProps.code) {
+      this.componentDidMount()
+    }
   }
 
   render() {
@@ -297,9 +320,12 @@ class UnitView extends React.Component {
     return (
       <Card style={{width: '20rem'}}>
         <Card.Body>
-          <Card.Title>{this.state.item.name}</Card.Title>
+          <Card.Title>Statistics</Card.Title>
+          <Card.Subtitle>for {this.props.displayName} {this.props.code}</Card.Subtitle>
           <Card.Text>
-            {this.props.displayName} {this.props.code}
+            <table>
+              
+            </table>
           </Card.Text>
         </Card.Body>
       </Card>

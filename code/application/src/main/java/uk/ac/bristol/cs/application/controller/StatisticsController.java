@@ -1,0 +1,46 @@
+package uk.ac.bristol.cs.application.controller;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import javax.sql.DataSource;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
+import uk.ac.bristol.cs.application.model.Statistic;
+
+@RestController
+public class StatisticsController {
+    @Autowired
+    private DataSource dataSource;
+    
+    @GetMapping(path = "/api/details/ward/{code}")
+    List<Statistic> getWardStatistics(@PathVariable String code) throws SQLException {
+        Connection c = dataSource.getConnection();
+        PreparedStatement p = c.prepareStatement(
+            "SELECT occId, Occupation.name AS occName, " +
+            "SUM(gender * data) AS women, SUM((1 - gender) * data) AS men " +
+            "FROM Statistic " +
+            "INNER JOIN Occupation on Occupation.id = occId " +
+            "WHERE wardId = ? GROUP BY occId ORDER BY occId"
+        );
+        p.setString(1, code);
+        ResultSet r = p.executeQuery();
+        List<Statistic> stats = new ArrayList<>();
+        while (r.next()) {
+            Statistic s = new Statistic();
+            s.setCode(code);
+            s.setWomen(r.getInt("women"));
+            s.setMen(r.getInt("men"));
+            s.setOccId(r.getInt("occId"));
+            s.setOccName(r.getString("occName"));
+            stats.add(s);
+        }
+        return stats;
+    }
+    
+}
