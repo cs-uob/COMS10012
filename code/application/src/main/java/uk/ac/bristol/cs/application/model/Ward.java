@@ -1,5 +1,6 @@
 package uk.ac.bristol.cs.application.model;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -15,6 +16,7 @@ public class Ward extends ModelClass implements Serializable {
     private String name;
     
     @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name="parent")
+    @JsonView(Ward.class)
     private County parent;
 
     public String getName() { return name; }

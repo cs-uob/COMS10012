@@ -22,6 +22,16 @@ class App extends React.Component {
       detailCode: ""
     }
     this.navigate = this.navigate.bind(this);
+    this.details = this.details.bind(this);
+  }
+
+  details() {
+    console.log("details for " + this.state.overview + " " + this.state.overviewCode);
+    this.setState({
+      detail: this.state.overview,
+      detailName: this.state.overviewName,
+      detailCode: this.state.overviewCode
+    })
   }
 
   navigate(code, isParent) {
@@ -33,7 +43,8 @@ class App extends React.Component {
           overview: "region",
           overviewName: "Region",
           overviewChildren: "counties",
-          overviewCode: code
+          overviewCode: code,
+          detailCode: ""
         })
         break;
       case "region":
@@ -42,11 +53,47 @@ class App extends React.Component {
             overview: "country",
             overviewName: "Country",
             overviewChildren: "regions",
-            overviewCode: code
+            overviewCode: code,
+            detailCode: ""
           })
         } else {
-
+          this.setState({
+            overview: "county",
+            overviewName: "County",
+            overviewChildren: "wards",
+            overviewCode: code,
+            detailCode: ""
+          })
         }
+        break;
+      case "county":
+        if (isParent) {
+          this.setState({
+            overview: "region",
+            overviewName: "Region",
+            overviewChildren: "counties",
+            overviewCode: code,
+            detailCode: ""
+          })
+        } else {
+          this.setState({
+            overview: "ward",
+            overviewName: "Ward",
+            overviewChildren: undefined,
+            overviewCode: code,
+            detailCode: ""
+          })
+        }
+        break;
+      case "ward":
+        // wards have no children
+        this.setState({
+          overview: "county",
+          overviewName: "County",
+          overviewChildren: "wards",
+          overviewCode: code,
+          detailCode: ""
+        })
         break;
       default:
           console.log("App.navigate")
@@ -68,11 +115,12 @@ class App extends React.Component {
                         type = {this.state.overview}
                         code = {this.state.overviewCode}
                         children = {this.state.overviewChildren}
-                        callback={this.navigate}></OverView>
+                        callback={this.navigate}
+                        details={this.details}></OverView>
             </Col>
             <Col>
               {
-                this.state.detail === "" ? "" :
+                this.state.detailCode === "" ? "" :
                 <UnitView displayName={this.state.detailName} 
                           type={this.state.detail} 
                           code={this.state.detailCode}></UnitView>
@@ -93,6 +141,11 @@ class OverView extends React.Component {
       item: null
     }
     this.navigate = this.navigate.bind(this);
+    this.details = this.details.bind(this);
+  }
+
+  details() {
+    this.props.details();
   }
 
   navigate(code, isParent) {
@@ -101,13 +154,21 @@ class OverView extends React.Component {
 
   componentDidMount() {
     fetch("http://localhost:8000/api/" + this.props.type + "/" + this.props.code)
-      .then(r => r.json())
+      .then(r => {
+        if (!r.ok) {
+          const e = "Attempting to load " + r.url + " got status " + r.status + ".";
+          this.setState({loaded: "error", errmsg: e})
+        }
+        return r.json()
+      })
       .then (
         (result) => {
-          this.setState({loaded: "yes", item: result})
+          if (this.state.loaded !== "error") {
+            this.setState({loaded: "yes", item: result})
+          }
         },
         (error) => {
-          this.setState({loaded: "error"})
+          this.setState({loaded: "error", errmsg: "Network error"})
         }
       )
   }
@@ -116,6 +177,35 @@ class OverView extends React.Component {
     if (this.props.code !== oldProps.code) {
       this.componentDidMount()
     }
+  }
+
+  hasChildren() {
+    return this.state.item[this.props.children] !== undefined;
+  }
+
+  children() {
+    const ch = this.state.item[this.props.children]
+    if (ch === undefined) {
+      return ""
+    } else {
+      return ch.map(i =>
+        <li key={i.code}><Button className="pt-0 pb-0" variant="link" 
+            onClick={() => this.navigate(i.code, false)}>{i.name}</Button></li>
+        )
+    }
+  }
+
+  parent() {
+   const code = this.state.item.parentCode;
+   if (code === undefined) {
+     return ""
+   } else {
+     return (
+      <Button variant="link" className="p-0"
+              onClick={() => this.navigate(code, true)}>
+              Back to parent</Button>
+     )
+   }
   }
 
   render() {
@@ -137,6 +227,9 @@ class OverView extends React.Component {
               <Card.Text>
                 An error occurred.
               </Card.Text>
+              <Card.Text>
+                {this.state.errmsg}
+              </Card.Text>
             </Card.Body>
           </Card>
         )
@@ -148,22 +241,13 @@ class OverView extends React.Component {
               <Card.Subtitle className="mb-2 text-muted">{this.props.displayName}</Card.Subtitle>
               <Card.Text>
                 <b>ID: </b>{this.state.item.code} <br />
-                <b>Contains:</b> </Card.Text>
+                {this.hasChildren() ? <b>Contains:</b> : ""} </Card.Text>
               <ul>
-              {
-                this.state.item[this.props.children] === undefined ?
-                "" :
-                this.state.item[this.props.children].map(i => 
-                <li key={i.code}><Button className="pt-0 pb-0" variant="link" 
-                  onClick={() => this.navigate(i.code, false)}>{i.name}</Button></li>
-              )}
+              { this.children() }
               </ul>
-              {
-                this.state.item.parentCode === undefined ? "" :
-                <Button variant="link" className="p-0"
-                  onClick={() => this.navigate(this.state.item.parentCode, true)}>
-                  Back to parent</Button>  
-              }
+              { this.parent() }
+              <Button variant="link" onClick={this.details}>
+              Details</Button>
             </Card.Body>
           </Card>
         )
@@ -183,16 +267,7 @@ class UnitView extends React.Component {
   }
 
   componentDidMount() {
-    fetch("http://localhost:8000/api/" + this.props.type + "/" + this.props.code)
-      .then(result => result.json())
-      .then(
-        (result) => {
-          this.setState({isLoaded: true, item: result})
-        },
-        (error) => {
-          this.setState({isLoaded: true, isError: true})
-        }
-      )
+    
   }
 
   render() {
