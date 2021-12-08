@@ -335,7 +335,9 @@ class UnitView extends React.Component {
             {
               this.state.item.map(i =>
                 <tr>
-                  <td>{i.occName}</td>
+                  {
+                    i.occId === 0 ? <th>{i.occName}</th> : <td>{i.occName}</td>
+                  }
                   <td style={{textAlign: "right"}}>{i.women}</td>
                   <td style={{textAlign: "right"}}>{i.men}</td>
                   <td style={{textAlign: "right"}}>{i.total}</td>
