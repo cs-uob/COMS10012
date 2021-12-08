@@ -72,4 +72,33 @@ public class StatisticsController {
             code
         );
     }
+    
+    @GetMapping(path = "/api/details/region/{code}")
+    List<Statistic> getRegionStatistics(@PathVariable String code) throws SQLException {
+        return stats(
+            "SELECT occId, Occupation.name AS occName, " +
+            "SUM(gender * data) AS women, SUM((1 - gender) * data) AS men " +
+            "FROM Statistic " +
+            "INNER JOIN Occupation ON Occupation.id = occId " +
+            "INNER JOIN Ward ON Ward.code = Statistic.wardId " +
+            "INNER JOIN County ON County.code = Ward.parent " +                    
+            "WHERE County.parent = ? GROUP BY occId ORDER BY occId",
+            code
+        );
+    }
+    
+    @GetMapping(path = "/api/details/country/{code}")
+    List<Statistic> getCountryStatistics(@PathVariable String code) throws SQLException {
+        return stats(
+            "SELECT occId, Occupation.name AS occName, " +
+            "SUM(gender * data) AS women, SUM((1 - gender) * data) AS men " +
+            "FROM Statistic " +
+            "INNER JOIN Occupation ON Occupation.id = occId " +
+            "INNER JOIN Ward ON Ward.code = Statistic.wardId " +
+            "INNER JOIN County ON County.code = Ward.parent " +
+            "INNER JOIN Region ON Region.code = County.parent " +
+            "WHERE Region.parent = ? GROUP BY occId ORDER BY occId",
+            code
+        );
+    }
 }
