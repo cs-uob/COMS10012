@@ -271,18 +271,18 @@ class UnitView extends React.Component {
       .then(r => {
         if (!r.ok) {
           const e = "Attempting to load " + r.url + " got status " + r.status + ".";
-          this.setState({loaded: "error", errmsg: e})
+          this.setState({isLoaded: true, isError: true, errmsg: e})
         }
         return r.json()
       })
       .then (
         (result) => {
-          if (this.state.loaded !== "error") {
-            this.setState({loaded: "yes", item: result})
+          if (!this.state.isError) {
+            this.setState({isLoaded: true, item: result})
           }
         },
         (error) => {
-          this.setState({loaded: "error", errmsg: "Network error"})
+          this.setState({isLoaded: true, isError: true, errmsg: "Network error"})
         }
       )
   }
@@ -296,7 +296,7 @@ class UnitView extends React.Component {
   render() {
     if (this.state.isLoaded === false) {
       return (
-        <Card style={{width: '20rem'}}>
+        <Card>
           <Card.Body>
             <Card.Text>
               Loading ...
@@ -307,7 +307,7 @@ class UnitView extends React.Component {
     }
     if (this.state.isError) {
       return (
-        <Card style={{width: '20rem'}}>
+        <Card>
           <Card.Body>
             <Card.Title>Error</Card.Title>
             <Card.Text>
@@ -318,15 +318,32 @@ class UnitView extends React.Component {
       )
     }
     return (
-      <Card style={{width: '20rem'}}>
+      <Card>
         <Card.Body>
           <Card.Title>Statistics</Card.Title>
-          <Card.Subtitle>for {this.props.displayName} {this.props.code}</Card.Subtitle>
-          <Card.Text>
-            <table>
-              
-            </table>
-          </Card.Text>
+          <Card.Subtitle className="mb-2 text-muted">for {this.props.displayName} {this.props.code}</Card.Subtitle>
+          <table className="table table-sm">
+            <thead>
+              <tr>
+                <th>Occupation class</th>
+                <th style={{textAlign: "right"}}>Women</th>
+                <th style={{textAlign: "right"}}>Men</th>
+                <th style={{textAlign: "right"}}>Total</th>
+              </tr>
+            </thead>
+            <tbody>
+            {
+              this.state.item.map(i =>
+                <tr>
+                  <td>{i.occName}</td>
+                  <td style={{textAlign: "right"}}>{i.women}</td>
+                  <td style={{textAlign: "right"}}>{i.men}</td>
+                  <td style={{textAlign: "right"}}>{i.total}</td>
+                </tr>
+              )
+            }
+            </tbody>
+          </table>
         </Card.Body>
       </Card>
     )
