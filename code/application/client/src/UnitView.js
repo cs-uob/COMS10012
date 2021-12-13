@@ -13,30 +13,37 @@ class UnitView extends React.Component {
       }
     }
   
+    _fetchData() {
+      const url = "http://localhost:8000/api/details/" + this.props.type + "/" + this.props.code;
+      console.log("UnitView fetch " + url);
+      fetch(url)
+      .then(r => {
+        if (!r.ok) {
+          const e = "Attempting to load " + r.url + " got status " + r.status + ".";
+          this.setState({isLoaded: true, isError: true, errmsg: e})
+        }
+        return r.json()
+      })
+      .then (
+        (result) => {
+          if (!this.state.isError) {
+            this.setState({isLoaded: true, item: result})
+          }
+        },
+        (error) => {
+          this.setState({isLoaded: true, isError: true, errmsg: "Network error"})
+        }
+      )
+    }
+
     componentDidMount() {
-      fetch("http://localhost:8000/api/details/" + this.props.type + "/" + this.props.code)
-        .then(r => {
-          if (!r.ok) {
-            const e = "Attempting to load " + r.url + " got status " + r.status + ".";
-            this.setState({isLoaded: true, isError: true, errmsg: e})
-          }
-          return r.json()
-        })
-        .then (
-          (result) => {
-            if (!this.state.isError) {
-              this.setState({isLoaded: true, item: result})
-            }
-          },
-          (error) => {
-            this.setState({isLoaded: true, isError: true, errmsg: "Network error"})
-          }
-        )
+      this._fetchData();
     }
   
-    componentDidUpdate(oldProps, oldState, snapshot) {
+    componentDidUpdate(oldProps) {
       if (this.props.code !== oldProps.code) {
-        this.componentDidMount()
+        this.setState({isLoaded: false});
+        this._fetchData();
       }
     }
   
@@ -81,7 +88,7 @@ class UnitView extends React.Component {
               <tbody>
               {
                 this.state.item.map(i =>
-                  <tr>
+                  <tr key={i.occId}>
                     {
                       i.occId === 0 ? <th>{i.occName}</th> : <td>{i.occName}</td>
                     }

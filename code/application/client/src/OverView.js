@@ -22,8 +22,10 @@ class OverView extends React.Component {
     this.props.callback(code, isParent);
   }
 
-  componentDidMount() {
-    fetch("http://localhost:8000/api/" + this.props.type + "/" + this.props.code)
+  _fetchData() {
+    const url = "http://localhost:8000/api/" + this.props.type + "/" + this.props.code;
+    console.log("OverView fetch " + url);
+    fetch(url)
       .then(r => {
         if (!r.ok) {
           const e = "Attempting to load " + r.url + " got status " + r.status + ".";
@@ -43,9 +45,14 @@ class OverView extends React.Component {
       )
   }
 
-  componentDidUpdate(oldProps, oldState, snapshot) {
+  componentDidMount() {
+    this._fetchData()
+  }
+
+  componentDidUpdate(oldProps) {
     if (this.props.code !== oldProps.code) {
-      this.componentDidMount()
+      this.setState({loaded: "no"});
+      this._fetchData()
     }
   }
 
@@ -54,7 +61,7 @@ class OverView extends React.Component {
   }
 
   children() {
-    const ch = this.state.item[this.props.children]
+    const ch = this.state.item[this.props.children];
     if (ch === undefined) {
       return ""
     } else {
