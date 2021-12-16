@@ -21,7 +21,7 @@ You should look at the mentioned code snippets as you follow along and make sure
 
 Click on one of the region entries. The following happens:
 
-  1. The link (actually a button styled as a link, for accessibility reasons) has a click handler `onClick={() => this.navigate(i.code, false)}>` (created in `OverView.children()`, where `i` is the item to navigate to, e.g. the region).
+  1. The link (actually a button styled as a link, for accessibility reasons) has a click handler `onClick={() => this.navigate(i.code, false)}` (created in `OverView.children()`, where `i` is the item to navigate to, e.g. the region).
   2. `OverView.navigate` calls `App.navigate` through `this.props` (the `App` passes a  reference to its own `navigate` method when it creates the `OverView`).
   3. `App.navigate` contains a state machine that decides, based on the current state (are we viewing a country, region, county or ward) and the `isParent` flag (are we navigating to a child or returning to the parent) what type of object we are navigating to. The only option when we are coming from the country view is a region, so this is set up correctly with `setState` and the code of the new item is set in the app state.
   4. This state change causes `App.render` to run, which changes the props on the overview component.

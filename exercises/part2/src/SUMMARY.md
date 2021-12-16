@@ -27,6 +27,8 @@
 - [A complete application, part 1](./app1/index.md)
   - [Setting Things Up](./app1/setup.md)
   - [Walkthrough](./app1/walkthrough.md)
+  - [React Lifecycles](./app1/lifecycle.md)
+  - [The Extent Problem](./app1/extent.md)
 - [A complete application, part 2](./app2/index.md)
 - [The Cloud, Part 1](./cloud/cloud1.md)
 - [The Cloud, Part 2](./cloud/cloud2.md)

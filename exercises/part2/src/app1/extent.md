@@ -126,6 +126,8 @@ Jackson will only export an attribute if the view class is equal to, or a subcla
   - When we are viewing a region, the view class is `Region` so the region's parent and children (counties) will be included in the JSON.
   - When we are viewing a country, the view class is `Country` so the parents and children of the country's regions will not be included in the JSON.
 
+## The mystery of `getParentCode()`
+
 There is one more trick in the region class:
 
 ```java
@@ -165,4 +167,71 @@ public String getParentCode() { return parent.getCode(); }
 
 The answer is no, for two reasons. First, the reason that these regions were fetched here at all is that they were children of the current country. Hibernate knows that the `country.regions` and `region.parent` match up (we told it with JPA annotations, after all) so it could figure out the parent in this case anyway.
 
+For the second reason, try and manually visit the page [localhost:8000/api/regions](localhost:8000/api/regions) which is not used by the react client. This is handled by `RegionController.getAllRegions`:
 
+```java
+@GetMapping("/api/regions")
+List<Region> getAllRegions() {
+    return repository.findAll();
+}
+```
+
+This in turn calls the `RegionRepository.findAll` method which is implemented inside JPA/Hibernate itself (you won't see it in the `RegionRepository` class itself, it's declared on the parent class `JpaRepository`). You can see the SQL query it ends up producing in the log output:
+
+```SQL
+select region0_.code as code1_2_, 
+       region0_.name as name2_2_, 
+       region0_.parent as parent3_2_
+from Region region0_
+```
+
+There is no JOIN with the parent (country) class going on here. In the JSON output,
+which does not use the `ModelClass` method of selecting an extent explicitly,
+it just returns a `List<Region>` which spring takes as a cue to pass through
+jackson to create JSON (shown here pretty-printed and abbreviated):
+
+```JSON
+[ { "code":"E12000001",
+    "name":"North East",
+    "parent":null,
+    "counties":null,
+    "parentCode":"E92000001"
+  },
+  { "code":"E12000002",
+    "name":"North West",
+    "parent":null,
+    "counties":null,
+    "parentCode":"E92000001"
+  },
+  /* and the others ... */
+]
+```
+
+The parent and counties attributes are `null` because we haven't explicitly excluded them, yet jackson also can't fetch them because they were not JOINed in the original query and we have turned off "open session in view" which would allow them to be fetched when jackson asks for them. Jackson and hibernate work well enough together not to cause a crash here: jackson notices that the objects are hibernate proxies and first asks behind the scene "are these attributes available?" before trying to call e.g. `parent.getName()`.
+
+So why does the following succeed? Think about it for a few moments.
+
+```java
+// Region.java
+
+public String getParentCode() { return parent.getCode(); }
+```
+
+The answer is that the parent's code, but not the other attributes, is stored as a foreign key in the Region table, so the SQL query above actually does fetch the parent code.
+When hibernate creates a Region object and the parent / counties are not included in a JOIN, it will replace the parent and counties with hibernate proxy classes that roughly do the following:
+
+  - If "open session in view" (configuration line `spring.jpa.open-in-view` in `application.properties`) is turned on (this is the default) then the proxies run another SQL query to get the required data whenever someone asks for it, e.g. calls `getName()` on the parent proxy.
+  - If "open session in view" is turned off, and someone asks for data that is not loaded yet, throw an exception.
+  - Alternatively, libraries like jackson who notice the proxy objects can also ask "is this data available?" which is why the JSON returns "null" for the parent / counties in this case.
+
+But since the parent code, unlike the rest of the parent data, was loaded in the original query, hibernate actually creates a proxy object here that stores this code and returns it if someone calls `getCode()` on the parent proxy. Only on the other methods like `getName()` where the data is not loaded yet, do you get an exception.
+
+## Conclusion
+
+The learning point here is that when you have a one-to-many relationship and you're working with an object on the side with the foreign key, then it's no extra effort to keep the foreign key around. There are two reasons you might want to do this.
+
+The first is to avoid infinite recursion (or finite but unnecessary bloat) when transferring a collection of objects via JSON or some other mechanism that does not have a concept of "pointers". For example, when sending a country and its regions via JSON, we can't have the regions contain a copy of the country in their parent field (as that would cause infinite recursion), and JSON itself does not support a "pointer" data type, but we can emulate this by having the regions contain the country's code.
+
+If the data is being put back into proper objects on the client side (e.g. we had JavaScript classes for countries and regions) then the foreign keys could be used to set up "pointers" (technically: object references) correctly again.
+
+Secondly, foreign keys can be used for navigation. A common pattern is to include the foreign key in a link (in our case "back to parent") as an option for the user. In other words, to provide a "navigate to parent" feature, you do not have to fetch/join the parent object and then read its primary key: you can just use the foreign key that you already have, saving a JOIN. Clicking a navigation link that was created using a foreign key ends up fetching the object (in this case a country) with the matching primary key.
