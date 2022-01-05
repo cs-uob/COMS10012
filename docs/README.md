@@ -1,5 +1,18 @@
 # COMS10012 Software Tools
 
-Welcome to the website for COMS10012 Software Tools.
+Welcome to the website for COMS10012 Software Tools, Spring 2022.
 
-This unit will run in Teaching Block 2 starting January 2022. The website will appear before then.
+This is the website for the undergraduate unit. If you are on the conversion MSc, you should not use this page, but go to the page for COMSM0085 which is a simplified version of this unit.
+
+Please see the following pages for more details:
+
+  - [Unit organisation](organisation.md)
+  - [Contents and learning outcomes](contents.md)
+  - [About this repository](repository.md)
+  - [Attendance hurdle](hurdle.md)
+
+The workshop materials are here:
+
+  - [Part 1, weeks 13-17](exercises/part1/)
+
+At the time of writing this (5 January), it is not clear yet if in-person teaching will be possible in TB2. I will update this page as soon as I have more information but the unit is designed to work in both in-person and fully online modes.
