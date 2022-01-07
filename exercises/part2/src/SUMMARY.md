@@ -29,6 +29,7 @@
   - [Walkthrough](./app1/walkthrough.md)
   - [React Lifecycles](./app1/lifecycle.md)
   - [The Extent Problem](./app1/extent.md)
+  - [Exercise](./app1/ex.md)
 - [A complete application, part 2](./app2/index.md)
 - [The Cloud, Part 1](./cloud/cloud1.md)
 - [The Cloud, Part 2](./cloud/cloud2.md)
