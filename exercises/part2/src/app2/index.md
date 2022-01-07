@@ -1,6 +1,8 @@
 # A complete application, part 2
 
-There are no new videos or readings for this workshop - you should instead review anything you need to prepare for the following exercise:
+There are no new videos or readings for this workshop - you should instead review anything you need to prepare for the following exercise.
+
+You will be able to continue working on the exercise in the following week, as while there are new lectures, there are no new lab exercises.
 
 ## Exercise
 

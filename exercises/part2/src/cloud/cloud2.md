@@ -11,4 +11,6 @@ Please watch the following videos. They are hosted on the university's blackboar
   - [Graph Databases](https://mediasite.bris.ac.uk/Mediasite/Play/cf8bf402b10546e9af85ea1b502929811d) (13 minutes)
   - [Choosing a Database](https://mediasite.bris.ac.uk/Mediasite/Play/2f523af23cdf470c8a612ca8277985011d) (9 minutes) 
 
-There are no cloud exercises. The workshops this week are drop-ins for you to ask questions about anything previously on the unit. However, the cloud material is examinable.
+There are no cloud exercises. The workshops this week are for you to continue to work on your Java/react "elections" application and for you to ask questions about anything previously on the unit.
+
+However, the cloud material is examinable.

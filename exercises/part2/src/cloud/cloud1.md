@@ -12,4 +12,6 @@ Please watch the following videos. They are hosted on the university's blackboar
   - [Google App Engine / PaaS](https://mediasite.bris.ac.uk/Mediasite/Play/7874354926e846ec8cbfb206d6c6047f1d) (8 minutes)
   - [Other providers](https://mediasite.bris.ac.uk/Mediasite/Play/c4eb1e2b73c544d7bed5a6df828de4281d) (6 minutes)
 
-There are no cloud exercises. The workshops this week are drop-ins for you to ask questions about anything previously on the unit. However, the cloud material is examinable.
+There are no cloud exercises. The workshops this week are for you to continue to work on your Java/react "elections" application and for you to ask questions about anything previously on the unit.
+
+However, the cloud material is examinable.
