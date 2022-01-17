@@ -806,16 +806,13 @@ int main(int argc, char **argv) {
 <p>and save the sudoers file.</p>
 <p>If you read the comment at the top of the file, it suggests using <code>visudo</code> to edit the file. Since we don't want to use vi, we can instead check the syntax with <code>visudo -c</code> and check that we get &quot;parsed OK&quot;; if not then we edit the file again to fix it (this is why we opened a root shell: if there's a syntax error in the file, sudo would refuse to run at all).</p>
 <p>You can now switch back to <code>fred</code> (check the prompt to make sure you are Fred) and do <code>sudo reboot</code>. After asking for Fred's password, the virtual machine will now reboot, which you notice because you get kicked out of your ssh connection. Another <code>vagrant ssh</code> after a few seconds will get you back in again.</p>
-<h2><a class="header" href="#mounting" id="mounting">Mounting</a></h2>
-<p>However, your <code>/vagrant</code> folder will now not work properly, because when vagrant starts the VM it will run some commands as root automatically, but when you manually reboot then they don't get run again. Specifically, in the Vagrantfile:</p>
-<pre><code>config.vm.provision :shell, run: 'always', inline: &lt;&lt;-SHELL
-    umount /vagrant
-    /sbin/mount.vboxsf -o uid=1000 -o gid=1000 vagrant /vagrant
-    chmod go+rx /vagrant
-SHELL
-</code></pre>
-<p>This is a workaround for a bug in the interface between virtualbox (that vagrant uses to run the VM) and alpine linux: although the shared folder is mounted automatically, it gets the wrong permissions and only root can use it.</p>
-<p>To fix this, you can either run the three commands as root (with sudo) or you can leave the VM and do <code>vagrant halt</code> followed by <code>vagrant up</code>, which will have vagrant reboot the machine again and re-run the commands indicated as <code>run: 'always'</code> in the Vagrantfile. (Commands without this flag only run when a VM is set up for the first time.)</p>
+<div class="advanced container">
+<header><span class="advanced-title"></span></header>
+<div class="container-content">
+<p>After rebooting, your <code>/vagrant</code> shared folder might not work. In this case, log out and do <code>vagrant halt</code> then <code>vagrant up</code> and <code>vagrant ssh</code> again on the host machine.</p>
+<p>When vagrant boots your VM, it automatically sets up the shared folder, but this doesn't always work if you reboot the VM yourself.</p>
+</div>
+</div>
 <h1><a class="header" href="#git-part-2" id="git-part-2">Git, part 2</a></h1>
 <p>In this exercise we will set up and use a git account on a remote provider. The &quot;big 3&quot; for hosting git repositories are:</p>
 <ul>
