@@ -160,16 +160,8 @@ If you read the comment at the top of the file, it suggests using `visudo` to ed
 
 You can now switch back to `fred` (check the prompt to make sure you are Fred) and do `sudo reboot`. After asking for Fred's password, the virtual machine will now reboot, which you notice because you get kicked out of your ssh connection. Another `vagrant ssh` after a few seconds will get you back in again.
 
-## Mounting
+|||advanced
+After rebooting, your `/vagrant` shared folder might not work. In this case, log out and do `vagrant halt` then `vagrant up` and `vagrant ssh` again on the host machine.
 
-However, your `/vagrant` folder will now not work properly, because when vagrant starts the VM it will run some commands as root automatically, but when you manually reboot then they don't get run again. Specifically, in the Vagrantfile:
-
-    config.vm.provision :shell, run: 'always', inline: <<-SHELL
-        umount /vagrant
-        /sbin/mount.vboxsf -o uid=1000 -o gid=1000 vagrant /vagrant
-        chmod go+rx /vagrant
-    SHELL
-
-This is a workaround for a bug in the interface between virtualbox (that vagrant uses to run the VM) and alpine linux: although the shared folder is mounted automatically, it gets the wrong permissions and only root can use it.
-
-To fix this, you can either run the three commands as root (with sudo) or you can leave the VM and do `vagrant halt` followed by `vagrant up`, which will have vagrant reboot the machine again and re-run the commands indicated as `run: 'always'` in the Vagrantfile. (Commands without this flag only run when a VM is set up for the first time.)
+When vagrant boots your VM, it automatically sets up the shared folder, but this doesn't always work if you reboot the VM yourself.
+|||
