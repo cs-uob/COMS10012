@@ -65,12 +65,12 @@ Vagrant is already installed on the lab machines in MVB 2.11, so you can remotel
 
 First, we connect to a lab machine: open a terminal and run the command `ssh lab` that you configured in the previous section on SSH.
 
-On the lab machine, we need to create a folder and load a Vagrantfile as above, but let's download the Vagrantfile from the unit webpage instead of typing it out. Run the following shell commands:
+On the lab machine, we need to create a folder and load a Vagrantfile as above, but let's download the Vagrantfile from the unit webpage instead of typing it out. Run the following shell commands (the third one starting `wget` must be all on one line, even if your web browser has added a line break):
 
 ```sh
 mkdir softwaretools
 cd softwaretools
-wget https://raw.githubusercontent.com/cs-uob/COMS10012/master/resources/week1/Vagrantfile
+wget https://raw.githubusercontent.com/cs-uob/COMS10012/master/exercises/part1/src/resources/Vagrantfile
 ```
 
 You can call the top folder (softwaretools) anything you like and put it anywhere you want. You can now run `vagrant up` followed by `vagrant ssh` from inside that folder.
