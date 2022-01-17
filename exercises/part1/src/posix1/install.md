@@ -25,12 +25,7 @@ Vagrant.configure("2") do |config|
   config.vm.synced_folder ".", "/vagrant"
 
   config.vm.provision "shell", inline: <<-SHELL
-    apk add libc6-compat util-linux
-  SHELL
-  config.vm.provision :shell, run: 'always', inline: <<-SHELL
-	umount /vagrant
-	/sbin/mount.vboxsf -o uid=1000 -o gid=1000 vagrant /vagrant
-	chmod go+rx /vagrant
+    apk add libc6-compat
   SHELL
 end
 ```
@@ -39,12 +34,11 @@ This configuration file is actually a script in the ruby programming language, b
 
   * `config.vm.box` selects the virtual machine image, or box in vagrant-speak, to use. You can see a list of available ones at https://app.vagrantup.com/boxes/search.
   * `config.vm.synced_folder` sets up a shared folder between the guest (virtual machine) and host (your machine).
-  * The first `config.vm.provision` runs a provisioning command when the box is first downloaded and installed. These commands run as root on the virtual machine, and in this case we are using the `apk` package manager (we will talk about this later on) to install two packages `libc6-compat` and `util-linux`.
-  * The second `config.vm.provision` is tagged with `run: 'always'` so it runs every time the virtual machine starts. It turns out there is a bug in how shared folders work that means alpine linux and virtualbox don't get along; the three lines of commands after that get the shared folder working correctly again. We will learn what they do later on.
+  * The `config.vm.provision` runs a provisioning command when the box is first downloaded and installed. These commands run as root on the virtual machine, and in this case we are using the `apk` package manager (we will talk about this later on) to install the packages `libc6-compat`.
   * The `<<-SHELL` construction is called a "here document", and is a way in some programming languages of writing multi-line strings. It tells ruby to treat everything until the closing keyword SHELL (which is arbitrary) as a string, which can contain several lines.
 
 |||advanced
-Alpine linux uses the musl libc distribution, which is smaller than and has a few distinct differences from the normal GNU libc. To avoid these incompatibilities causing you hard-to-find problems when you are compiling C programs, we are installing `libc6-compat` that makes alpine compatible with the standard libc. `util-linux` contains a few standard linux command line tools that are not installed by default on alpine - it really is that minimal.
+Alpine linux uses the musl libc distribution, which is smaller than and has a few distinct differences from the normal GNU libc. To avoid these incompatibilities causing you hard-to-find problems when you are compiling C programs, we are installing `libc6-compat` that makes alpine compatible with the standard libc.
 |||
 
 ## Running vagrant

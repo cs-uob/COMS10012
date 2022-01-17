@@ -180,12 +180,7 @@
   config.vm.synced_folder &quot;.&quot;, &quot;/vagrant&quot;
 
   config.vm.provision &quot;shell&quot;, inline: &lt;&lt;-SHELL
-    apk add libc6-compat util-linux
-  SHELL
-  config.vm.provision :shell, run: 'always', inline: &lt;&lt;-SHELL
-	umount /vagrant
-	/sbin/mount.vboxsf -o uid=1000 -o gid=1000 vagrant /vagrant
-	chmod go+rx /vagrant
+    apk add libc6-compat
   SHELL
 end
 </code></pre>
@@ -193,14 +188,13 @@ end
 <ul>
 <li><code>config.vm.box</code> selects the virtual machine image, or box in vagrant-speak, to use. You can see a list of available ones at https://app.vagrantup.com/boxes/search.</li>
 <li><code>config.vm.synced_folder</code> sets up a shared folder between the guest (virtual machine) and host (your machine).</li>
-<li>The first <code>config.vm.provision</code> runs a provisioning command when the box is first downloaded and installed. These commands run as root on the virtual machine, and in this case we are using the <code>apk</code> package manager (we will talk about this later on) to install two packages <code>libc6-compat</code> and <code>util-linux</code>.</li>
-<li>The second <code>config.vm.provision</code> is tagged with <code>run: 'always'</code> so it runs every time the virtual machine starts. It turns out there is a bug in how shared folders work that means alpine linux and virtualbox don't get along; the three lines of commands after that get the shared folder working correctly again. We will learn what they do later on.</li>
+<li>The <code>config.vm.provision</code> runs a provisioning command when the box is first downloaded and installed. These commands run as root on the virtual machine, and in this case we are using the <code>apk</code> package manager (we will talk about this later on) to install the packages <code>libc6-compat</code>.</li>
 <li>The <code>&lt;&lt;-SHELL</code> construction is called a &quot;here document&quot;, and is a way in some programming languages of writing multi-line strings. It tells ruby to treat everything until the closing keyword SHELL (which is arbitrary) as a string, which can contain several lines.</li>
 </ul>
 <div class="advanced container">
 <header><span class="advanced-title"></span></header>
 <div class="container-content">
-<p>Alpine linux uses the musl libc distribution, which is smaller than and has a few distinct differences from the normal GNU libc. To avoid these incompatibilities causing you hard-to-find problems when you are compiling C programs, we are installing <code>libc6-compat</code> that makes alpine compatible with the standard libc. <code>util-linux</code> contains a few standard linux command line tools that are not installed by default on alpine - it really is that minimal.</p>
+<p>Alpine linux uses the musl libc distribution, which is smaller than and has a few distinct differences from the normal GNU libc. To avoid these incompatibilities causing you hard-to-find problems when you are compiling C programs, we are installing <code>libc6-compat</code> that makes alpine compatible with the standard libc.</p>
 </div>
 </div>
 <h2><a class="header" href="#running-vagrant" id="running-vagrant">Running vagrant</a></h2>

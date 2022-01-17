@@ -104,7 +104,7 @@ Two commands a system adminstrator should run regularly for security reasons:
 
 If you are running a virtual machine on the lab machines, then your virtual machine might not be around after the lab machine reboots or you log out and in again and end up on a different machine - as the notice when you log in tells you, the virtual machines are stored under `/tmp`.
 
-It would be annoying to have to reinstall your favourite packages every time you log in to a different machine, so you should put them in your Vagrantfile and then `vagrant up` will do this for you automatically. The Vagrantfile already contains a line `apk add libc6-compat util-linux` which installs two packages by default - you can put as many as you like on this line separated by spaces. There is no `sudo` here because when vagrant is installing the system, it is running as root automatically.
+It would be annoying to have to reinstall your favourite packages every time you log in to a different machine, so you should put them in your Vagrantfile and then `vagrant up` will do this for you automatically. The Vagrantfile already contains a line `apk add libc6-compat` which installs a package by default - you can put as many as you like on this line separated by spaces. There is no `sudo` here because when vagrant is installing the system, it is running as root automatically.
 
   * Add `nano` and `git` to this line so next time you rebuild the vagrant machine, they are added automatically.
   * Log out of your vagrant machine and do a `vagrant destroy` which removes the virtual machine. Then reload with `vagrant up` which will download and provision the box again.
