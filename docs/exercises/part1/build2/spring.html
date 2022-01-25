@@ -4,45 +4,27 @@
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
         <title>Spring - Exercises</title>
-        
-        
-
-
         <!-- Custom HTML head -->
-        
-
-
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
-        
         <link rel="icon" href="../favicon.svg">
-        
-        
         <link rel="shortcut icon" href="../favicon.png">
-        
         <link rel="stylesheet" href="../css/variables.css">
         <link rel="stylesheet" href="../css/general.css">
         <link rel="stylesheet" href="../css/chrome.css">
         <link rel="stylesheet" href="../css/print.css" media="print">
-
         <!-- Fonts -->
         <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
-        
         <link rel="stylesheet" href="../fonts/fonts.css">
-        
-
         <!-- Highlight.js Stylesheets -->
         <link rel="stylesheet" href="../highlight.css">
         <link rel="stylesheet" href="../tomorrow-night.css">
         <link rel="stylesheet" href="../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
-        
-
-        
     </head>
     <body>
         <!-- Provide site root to javascript -->
@@ -101,7 +83,6 @@
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
-                
                 <div id="menu-bar-hover-placeholder"></div>
                 <div id="menu-bar" class="menu-bar sticky bordered">
                     <div class="left-buttons">
@@ -118,11 +99,9 @@
                             <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
                         </ul>
-                        
                         <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
                             <i class="fa fa-search"></i>
                         </button>
-                        
                     </div>
 
                     <h1 class="menu-title">Exercises</h1>
@@ -131,14 +110,12 @@
                         <a href="../print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
-                        
                     </div>
                 </div>
 
-                
                 <div id="search-wrapper" class="hidden">
                     <form id="searchbar-outer" class="searchbar-outer">
-                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
                     </form>
                     <div id="searchresults-outer" class="searchresults-outer hidden">
                         <div id="searchresults-header" class="searchresults-header"></div>
@@ -146,8 +123,6 @@
                         </ul>
                     </div>
                 </div>
-                
-
                 <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
                 <script type="text/javascript">
                     document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
@@ -159,16 +134,16 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#spring" id="spring">Spring</a></h1>
+                        <h1 id="spring"><a class="header" href="#spring">Spring</a></h1>
 <p>The <a href="https://spring.io/">Spring framework</a> helps you develop modern web / cloud / microservice / serverless / <em>(insert buzzword here)</em> applications in Java. Netflix, for example, uses it. You will probably use it too in your Software Project next year.</p>
-<h2><a class="header" href="#vagrant-preparation" id="vagrant-preparation">Vagrant preparation</a></h2>
+<h2 id="vagrant-preparation"><a class="header" href="#vagrant-preparation">Vagrant preparation</a></h2>
 <p>Web applications listen to a port (normally TCP port 80 for HTTP, 443 for HTTPS in production; 8000 or 8080 while in development). If you are following these exercises on your host OS, you can skip this preparation. If you are in Alpine on vagrant, then although you can quickly get an application to work on port 8080 inside the VM, you need one extra step to make it accessible from your browser outside the VM.</p>
 <p>Add the line</p>
 <pre><code>config.vm.network &quot;forwarded_port&quot;, guest: 8080, host: 8080
 </code></pre>
 <p>to your Vagrantfile just below the <code>config.vm.box</code> line, then restart the VM by logging out and doing <code>vagrant halt</code> then <code>vagrant up</code>. Your firewall may pop up a warning and ask you to approve this.</p>
 <p>Now, while the VM is running, any connection to port 8080 on your host OS will be sent to the VM (this also means that if you're doing web development on the host, you can't use port 8080 for anything else while the VM is up - if you need port 8080, just pick another port number for the <code>guest</code> part).</p>
-<h2><a class="header" href="#spring-set-up" id="spring-set-up">Spring set-up</a></h2>
+<h2 id="spring-set-up"><a class="header" href="#spring-set-up">Spring set-up</a></h2>
 <p>Spring wants to make setting up a project as easy as possible, so go to <a href="https://start.spring.io/">start.spring.io</a> and you get a graphical interface to create a spring/maven project.</p>
 <ul>
 <li>Pick &quot;Maven Project&quot; and &quot;Java language&quot;.</li>
@@ -182,7 +157,7 @@
 <pre><code>mvn spring-boot:run
 </code></pre>
 <p>which will recompile if necessary, and then run the application. Once it's running, you can go to <a href="http://localhost:8080">localhost:8080</a> in a browser on your host OS (whether the Spring application is running on the host, or inside the VM as long as you've set up the port forwarding as described above). You will see an error message as there's no pages yet, but the application is running. Stop it with Control+C.</p>
-<h2><a class="header" href="#development" id="development">Development</a></h2>
+<h2 id="development"><a class="header" href="#development">Development</a></h2>
 <p>Open the source file under <code>src/main/java/...</code>. I called mine &quot;project&quot; so the class is <code>ProjectApplication</code>, but the name doesn't matter.</p>
 <ul>
 <li>Add the <code>@RestController</code> annotation to the application class.</li>
@@ -206,67 +181,38 @@ The obvious next step would be to use thymeleaf to render HTML templates to make
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                        
                             <a rel="prev" href="../build2/java.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
-                        
-
-                        
                             <a rel="next" href="../db1/sql-introduction.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
-                        
-
                         <div style="clear: both"></div>
                     </nav>
                 </div>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                
                     <a rel="prev" href="../build2/java.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
-                
-
-                
                     <a rel="next" href="../db1/sql-introduction.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
-                
             </nav>
 
         </div>
 
-        
-
-        
-
-        
-
-        
         <script type="text/javascript">
             window.playground_copyable = true;
         </script>
-        
-
-        
-
-        
         <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
-        
-
         <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
         <script src="../book.js" type="text/javascript" charset="utf-8"></script>
 
         <!-- Custom JS scripts -->
-        
-
-        
-
     </body>
 </html>

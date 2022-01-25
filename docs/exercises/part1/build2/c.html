@@ -4,45 +4,27 @@
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
         <title>C - Exercises</title>
-        
-        
-
-
         <!-- Custom HTML head -->
-        
-
-
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
-        
         <link rel="icon" href="../favicon.svg">
-        
-        
         <link rel="shortcut icon" href="../favicon.png">
-        
         <link rel="stylesheet" href="../css/variables.css">
         <link rel="stylesheet" href="../css/general.css">
         <link rel="stylesheet" href="../css/chrome.css">
         <link rel="stylesheet" href="../css/print.css" media="print">
-
         <!-- Fonts -->
         <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
-        
         <link rel="stylesheet" href="../fonts/fonts.css">
-        
-
         <!-- Highlight.js Stylesheets -->
         <link rel="stylesheet" href="../highlight.css">
         <link rel="stylesheet" href="../tomorrow-night.css">
         <link rel="stylesheet" href="../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
-        
-
-        
     </head>
     <body>
         <!-- Provide site root to javascript -->
@@ -101,7 +83,6 @@
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
-                
                 <div id="menu-bar-hover-placeholder"></div>
                 <div id="menu-bar" class="menu-bar sticky bordered">
                     <div class="left-buttons">
@@ -118,11 +99,9 @@
                             <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
                         </ul>
-                        
                         <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
                             <i class="fa fa-search"></i>
                         </button>
-                        
                     </div>
 
                     <h1 class="menu-title">Exercises</h1>
@@ -131,14 +110,12 @@
                         <a href="../print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
-                        
                     </div>
                 </div>
 
-                
                 <div id="search-wrapper" class="hidden">
                     <form id="searchbar-outer" class="searchbar-outer">
-                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
                     </form>
                     <div id="searchresults-outer" class="searchresults-outer hidden">
                         <div id="searchresults-header" class="searchresults-header"></div>
@@ -146,8 +123,6 @@
                         </ul>
                     </div>
                 </div>
-                
-
                 <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
                 <script type="text/javascript">
                     document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
@@ -159,14 +134,14 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#build-tools-c" id="build-tools-c">Build tools: C</a></h1>
+                        <h1 id="build-tools-c"><a class="header" href="#build-tools-c">Build tools: C</a></h1>
 <p>In this exercise you will practice the traditional way of building C projects from source. We are going to use the sqlite database as an example project to build.</p>
 <p>Download the source file <a href="https://sqlite.org/2021/sqlite-autoconf-3340100.tar.gz">https://sqlite.org/2021/sqlite-autoconf-3340100.tar.gz</a> into your Alpine VM with <code>wget</code> or similar and extract it with <code>tar zxvf FILENAME</code>. This creates a subfolder, do a <code>cd</code> into it.</p>
 <p>You can see a file called <code>INSTALL</code> which you can open in a text editor to find the standard instructions:</p>
 <blockquote>
 <p>Briefly, the shell commands <code>./configure; make; make install</code> should configure, build, and install this package.</p>
 </blockquote>
-<h2><a class="header" href="#configure" id="configure">Configure</a></h2>
+<h2 id="configure"><a class="header" href="#configure">Configure</a></h2>
 <p>If you look at the first line of the configure script, it starts <code>#! /bin/sh</code> as that path should be valid on just about any vaguely posix-compatible system. The whole thing is just over 16000 lines, so you don't want to read all of it.</p>
 <p>Run the script with <code>./configure</code>. You can see that it does a lot of checking, including things like:</p>
 <ul>
@@ -183,7 +158,7 @@
 <p><code># It thinks the first close brace ends the variable substitution.</code></p>
 <p><code>test -z &quot;$INSTALL_PROGRAM&quot; &amp;&amp; INSTALL_PROGRAM='${INSTALL}'</code></p>
 </blockquote>
-<h2><a class="header" href="#make" id="make">Make</a></h2>
+<h2 id="make"><a class="header" href="#make">Make</a></h2>
 <p>Type <code>make</code> to build sqlite. If it's not installed, <code>sudo apk add make</code> will fix that.</p>
 <p>Some of the compiler commands might take a while to run. While they're running, note the number of configuration variables (everything passed with a <code>-D</code>) involved; some of them turn on/off features (for example readline support is off if it can't find the header files for it on your system) and some of them set options specific to the operating system and compiler, for example <code>-DHAVE_STRING_H</code> defines whether <code>string.h</code> exists on your system.</p>
 <p>These translate to <code>#ifdef</code> commands in the source files, for example in <code>shell.c</code> starting at line 121 we include readline, if the header files exist:</p>
@@ -202,67 +177,38 @@
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                        
                             <a rel="prev" href="../build2/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
-                        
-
-                        
                             <a rel="next" href="../build2/python.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
-                        
-
                         <div style="clear: both"></div>
                     </nav>
                 </div>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                
                     <a rel="prev" href="../build2/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
-                
-
-                
                     <a rel="next" href="../build2/python.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
-                
             </nav>
 
         </div>
 
-        
-
-        
-
-        
-
-        
         <script type="text/javascript">
             window.playground_copyable = true;
         </script>
-        
-
-        
-
-        
         <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
-        
-
         <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
         <script src="../book.js" type="text/javascript" charset="utf-8"></script>
 
         <!-- Custom JS scripts -->
-        
-
-        
-
     </body>
 </html>
