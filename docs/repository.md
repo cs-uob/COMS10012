@@ -13,9 +13,25 @@ The workshops themselves are created with a different content management system 
   - The sources are in `exercises/part1` (resp. `part2`) in the repository. Since this is not under `docs/`, github pages doesn't touch it.
   - Running `mdbook build` in that folder (assuming the tool is installed) compiles the files to a subfolder `book/`. You won't see this in the repository because it's excluded with the `.gitignore` file.
   - `book.toml` is the `mdbook` configuration file which among other things runs `preprocessor.py` (assuming python 3 is installed). The point of this is that I can make custom blocks e.g. `|||advanced ... |||` which becomes a `<div class="advanced container">` to which I can apply custom styling (at the end of `theme/css/general.css`).
-  - The `build.bat` in that folder then copies the compiled files to `docs/exercises/part1` which is under `docs/`, but that folder contains HTML/CSS files not markdown ones so github pages just serves them as is. That is how the URL [https://cs-uob.github.io/COMS10012/exercises/part1/](https://cs-uob.github.io/COMS10012/exercises/part1/) works.
 
-This workflow means that whenever I make a change to the exercises, I have to remember to rebuild the "book" and commit the resulting files in `docs/` to github so that you can see the update; it's not perfect but it's good enough for what I need and it means that I can add custom bits to the markdown sources, for example if I want to add `quiz` or `security` or other special blocks in future years.
+To build the books whenever we make a change to the source files, we use a github workflow - a script that runs on a virtual machine on github's servers whenever a commit gets pushed. This is configured in `.github/workflows/mdbook.yaml` and describes the steps to take: check out the repository, install mdbook, build the books, commit the built files back to the repository where they end up in `docs/exercises/`. This folder is under `docs/`, but it contains HTML/CSS files not markdown ones so github pages just serves them as is. That is how the URL [https://cs-uob.github.io/COMS10012/exercises/part1/](https://cs-uob.github.io/COMS10012/exercises/part1/) works.
+
+The heart of the build script is the following shell script - you will learn about scripting in this unit:
+
+```sh
+for f in exercises/*; do
+    cd $f
+    mdbook build
+    mkdir -p ../../docs/$f
+    cp -r book/* ../../docs/$f
+    cd ../..
+done
+```
+
+In this script, `$f` is the variable for the shell for loop, which iterates over the names of the files/folders in `exercises/` namely `part1` and `part2`.
+A special thing about variables in the shell is that you use a dollar sign to read the value of a variable, but not to declare a variable: the loop itself can just say `for f` but to use the variable later, you need `$f`.
+
+For all the folders under `exercises/`, it switches to the folder, builds the book and copies the created files (in `book/`) into the folder `docs/exercises/`. To be on the safe side, the script makes sure the folder exists by creating it first if it does not exist yet (`mkdir -p`). Afterwards it goes back to the top folder so that the next `cd` command will land in the right place.
 
 If you want to use a copy of the unit exercises pages on your own computer, for example when you don't have an internet connection, you can just open the copy in `docs/exercises/part1` starting with the file `index.html`. You just need a browser to view it, no extra markdown tools.
 
