@@ -1,6 +1,6 @@
 # Git, part 2
 
-In this exercise we will set up and use a git account on a remote provider. The "big 3" for hosting git repositories are:
+In this exercise we will set up and use a git account on a remote provider. The "big 3" for hosting git repositories are the following:
 
   * [github.com](https://github.com)
   * [gitlab.com](https://gitlab.com)
