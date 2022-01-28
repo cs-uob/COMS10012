@@ -2,11 +2,19 @@
 
 Log in to your vagrant VM for the following exercises.
 
-## Show the current user
+## Show the current user in the prompt
 
 First, use the command `whoami` to see the current user name: it should be `vagrant`.
 
-For this exercise it will be useful to display the user in the prompt, so do `sudo nano /etc/profile`. This file is a configuration file that is read by the shell when it starts up. Notice the lines:
+For this exercise it will be useful to display the user in the prompt. We want this setting to apply to all users, so we need to set it in a system-wide configuration file namely `/etc/profile` which is read by the shell when it starts up.
+
+Try `echo $PS1` on the terminal to show the current value of this variable, it should be something like `\h:\w\$ `. The `PS1` (prompt level 1) controls your shell prompt. Here `\h` means the hostname, `\w` the working directory and `\$` is the appropriate prompt symbol (`$` for normal users, `#` for root). This gets you a default prompt that looks like `alpine310:~$ ` (note the space after the dollar sign, which is also in the PS1).
+
+The general syntax for setting a variable is `export NAME=VALUE`, where the `export` tells the shell to keep this value around when the script setting it has finished. Without exporting, you would be creating a local variable instead.
+
+Open the configuration file with `sudo nano /etc/profile`. You need sudo as only root can edit this system-wide configuration file.
+
+In older versions of alpine, variables were simply set the usual way:
 
     export CHARSET=UTF-8
     export LANG=C.UTF-8
@@ -15,13 +23,26 @@ For this exercise it will be useful to display the user in the prompt, so do `su
     export PS1='\h:\w\$ '
     umask 022
 
-The `export` ones set environment variables, for example the default `PATH` where the shell looks for programs. The `PAGER` is what programs such as the manual page viewer (`man`) use to display information one page at a time.
+However in the latest version, there is more scripting going on. For example the `append_path` function adds a folder to the path only if it is not on the path already.
 
-The `PS1` (prompt level 1) controls your shell prompt. Here `\h` means the hostname, `\w` the working directory and `\$` is the appropriate prompt symbol (`$` for normal users, `#` for root). This gets you a default prompt that looks like `alpine310:~$ ` (note the space after the dollar sign, which is also in the PS1). Let's add the username: change the line to `export PS1='\u@\h:\w\$ '`. When you log out and in again, your prompt will now be `vagrant@alpine310:~$ `.
+Go to the end of the file, and add the following lines. Note that there are single quotes around the value of the PS1, and there is a space before the closing single quote.
 
-While you're here, you can `export EDITOR=nano` so that every user gets nano instead of vi as their default editor. Then save the file (Control+X in nano).
+    export PS1='\u@\h:\w\$ '
+    export EDITOR=nano
+    
+The `\u` in the PS1 is the current user. Save the file (Control+X), log out and in again and your prompt should now be `vagrant@alpine314:~$ `. The `EDITOR` one will come in useful later as it means that if you try a `git commit` without a message, you end up in nano instead of vi (another editor that is less beginner-friendly).
 
-  * Research online what `umask 022` does, note that the number is in base 8.
+|||advanced
+The current version of alpine sets the prompt in lines 25-38 of `/etc/profile` (turn on line numbers with Alt+N in nano if you want). It first sets up a fallback in case you are using the plain bourne shell (`/bin/sh`) which does not support the `$/#` distinction for the root prompt, so this is coded in the script instead (lines 28-29). Then if you are using bash or busybox (which we are), it switches the PS1 to the string that you see if you `echo $PS1`.
+
+If you are running a vagrant VM on a lab machine, then next time you log in to a lab machine your changes to `/etc/profile` will be gone. One way to fix this would be to add the following to your Vagrantfile inside the `config.vm.provision` block:
+
+    echo "export PS1='\u@\h:\w\$ '" >> /etc/profile
+
+This runs as root (so no sudo needed) and it runs when the machine is created, before you log in with `vagrant ssh` so the shell will pick it up correctly.
+
+If you want to do more elaborate setup, such as copying config files every time you recreate the machine, note that the folder containing the Vagrantfile is available as `/vagrant` inside the VM, files in here persist across sessions on different lab machines (since they're stored on the network file system) and you can copy files from `/vagrant` to the places you want them in a provisioning block.
+|||
 
 ## Create a user and a group
 
