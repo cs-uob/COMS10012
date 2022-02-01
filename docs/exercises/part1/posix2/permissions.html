@@ -161,9 +161,9 @@ export EDITOR=nano
 <div class="container-content">
 <p>The current version of alpine sets the prompt in lines 25-38 of <code>/etc/profile</code> (turn on line numbers with Alt+N in nano if you want). It first sets up a fallback in case you are using the plain bourne shell (<code>/bin/sh</code>) which does not support the <code>$/#</code> distinction for the root prompt, so this is coded in the script instead (lines 28-29). Then if you are using bash or busybox (which we are), it switches the PS1 to the string that you see if you <code>echo $PS1</code>.</p>
 <p>If you are running a vagrant VM on a lab machine, then next time you log in to a lab machine your changes to <code>/etc/profile</code> will be gone. One way to fix this would be to add the following to your Vagrantfile inside the <code>config.vm.provision</code> block:</p>
-<pre><code>echo &quot;export PS1='\u@\h:\w\$ '&quot; &gt;&gt; /etc/profile
+<pre><code>echo &quot;export PS1='\\u@\\h:\\w\\$ '&quot; &gt;&gt; /etc/profile
 </code></pre>
-<p>This runs as root (so no sudo needed) and it runs when the machine is created, before you log in with <code>vagrant ssh</code> so the shell will pick it up correctly.</p>
+<p>This runs as root (so no sudo needed) and it runs when the machine is created, before you log in with <code>vagrant ssh</code> so the shell will pick it up correctly. Note that you need to <em>double</em> the backslashes here, because the Vagrantfile is read by the Ruby language interpreter and that has its own conventions for backslashes. By doubling them, we tell Ruby that these characters are not meant for it, and Ruby will pass a single backslash on to the shell that runs the code.</p>
 <p>If you want to do more elaborate setup, such as copying config files every time you recreate the machine, note that the folder containing the Vagrantfile is available as <code>/vagrant</code> inside the VM, files in here persist across sessions on different lab machines (since they're stored on the network file system) and you can copy files from <code>/vagrant</code> to the places you want them in a provisioning block.</p>
 </div>
 </div>
