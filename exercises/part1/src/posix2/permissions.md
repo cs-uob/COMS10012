@@ -37,9 +37,9 @@ The current version of alpine sets the prompt in lines 25-38 of `/etc/profile` (
 
 If you are running a vagrant VM on a lab machine, then next time you log in to a lab machine your changes to `/etc/profile` will be gone. One way to fix this would be to add the following to your Vagrantfile inside the `config.vm.provision` block:
 
-    echo "export PS1='\u@\h:\w\$ '" >> /etc/profile
+    echo "export PS1='\\u@\\h:\\w\\$ '" >> /etc/profile
 
-This runs as root (so no sudo needed) and it runs when the machine is created, before you log in with `vagrant ssh` so the shell will pick it up correctly.
+This runs as root (so no sudo needed) and it runs when the machine is created, before you log in with `vagrant ssh` so the shell will pick it up correctly. Note that you need to _double_ the backslashes here, because the Vagrantfile is read by the Ruby language interpreter and that has its own conventions for backslashes. By doubling them, we tell Ruby that these characters are not meant for it, and Ruby will pass a single backslash on to the shell that runs the code.
 
 If you want to do more elaborate setup, such as copying config files every time you recreate the machine, note that the folder containing the Vagrantfile is available as `/vagrant` inside the VM, files in here persist across sessions on different lab machines (since they're stored on the network file system) and you can copy files from `/vagrant` to the places you want them in a provisioning block.
 |||
