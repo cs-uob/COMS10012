@@ -26,8 +26,14 @@ The unit materials for [part 1](exercises/part1) are stable in the sense that th
 | 13   | Posix 1 | Posix 2  |
 | 14   | Posix 3 | Posix 4  |
 | 15   | Build Tools 1 | Build Tools 2 |
-| 16   | Databases 1 | Databases 2 |
-| 17   | Databases 3 | Databases 4 |
+| 16   | ~~Databases 1~~ | ~~Databases 2~~ |
+| 17   | ~~Databases 3~~ | ~~Databases 4~~ |
+
+<div class="solidarity" style="color: DarkRed">
+
+Due to strikes, the workshops on Week 16 (both) and Week 17 (Tuesday) are cancelled. The current plan is to cancel and not assess the databases section of the unit. Week 17 Thursday becomes an optional drop-in with no new material; all students get attendance for all four affected sessions for free for the purposes of the [attendance hurdle](hurdle.md) on the unit.
+
+</div>
 
 These correspond to activities 1-10 on the [part 1 exercises](exercises/part1) page.
 
