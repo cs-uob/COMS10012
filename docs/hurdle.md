@@ -35,4 +35,6 @@ Currently, the plan is to cancel and not assess the databases section of the uni
 
 There are also strikes on Monday-Wednesday Week 18, but that is reading week so no workshops were planned that week anyway.
 
+More information on the strikes is in [this video](https://web.microsoftstream.com/video/a9f756a9-596d-461d-82e4-85b7b56da4a6?channelId=793a8a65-ed73-4803-820f-dd7f2c675f46).
+
 </section>
