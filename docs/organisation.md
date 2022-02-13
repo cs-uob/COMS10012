@@ -29,13 +29,11 @@ The unit materials for [part 1](exercises/part1) are stable in the sense that th
 | 16   | ~~Databases 1~~ | ~~Databases 2~~ |
 | 17   | ~~Databases 3~~ | ~~Databases 4~~ |
 
-<div class="solidarity" style="color: DarkRed">
-
-Due to strikes, the workshops on Week 16 (both) and Week 17 (Tuesday) are cancelled. The current plan is to cancel and not assess the databases section of the unit. Week 17 Thursday becomes an optional drop-in with no new material; all students get attendance for all four affected sessions for free for the purposes of the [attendance hurdle](hurdle.md) on the unit.
-
-</div>
-
 These correspond to activities 1-10 on the [part 1 exercises](exercises/part1) page.
+
+<p class="solidarity" style="color: DarkRed">
+Due to strikes, the workshops on Week 16 (both) and Week 17 (Tuesday) are cancelled. The current plan is to cancel and not assess the databases section of the unit. Week 17 Thursday becomes an optional drop-in with no new material; all students get attendance for all four affected sessions for free for the purposes of the <a href="hurdle.html">attendance hurdle</a> on the unit.
+</p>
 
 The first page for each activity contains links to the videos, slides, or readings for the activity that you are expected to watch or read before coming to the workshop. Some workshop exercises involve group work where there is a good reason for it, for example to practice working as a team with a git repository.
 
