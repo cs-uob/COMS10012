@@ -15,4 +15,4 @@ The workshop materials are here:
 
   - [Part 1, weeks 13-17](exercises/part1/)
 
-At the time of writing this (5 January), it is not clear yet if in-person teaching will be possible in TB2. I will update this page as soon as I have more information but the unit is designed to work in both in-person and fully online modes.
+At the time of writing this (9 February), in-person teaching is going ahead but individual staff members and TAs may be absent for health-related reasons on individual days.
