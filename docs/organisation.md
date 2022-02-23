@@ -19,7 +19,7 @@ The unit will have an online drop-in session from 3-4pm on Fridays on Teams. Thi
 
 ## Materials
 
-The unit materials for [part 1](exercises/part1) are stable in the sense that there should be at most minor bug fixes. The schedule of workshops is therefore:
+The unit materials for [part 1](exercises/part1) and [part 2](exercises/part2) are stable in the sense that there should be at most minor bug fixes. The schedule of workshops is therefore:
 
 | Week | Tuesday | Thursday |
 |------|---------|----------|
@@ -28,18 +28,26 @@ The unit materials for [part 1](exercises/part1) are stable in the sense that th
 | 15   | Build Tools 1 | Build Tools 2 |
 | 16   | ~~Databases 1~~ | ~~Databases 2~~ |
 | 17   | ~~Databases 3~~ | ~~Databases 4~~ |
+| 18   | _Reading Week_ | _No Workshops_ |
+| 19   | HTTP    | HTML5    |
+| 20   | CSS     | CSS grid |
+| 21   | JS      | React    |
+| 22   | Application 1 | Application 2 |
+| 23   | Cloud 1 | Cloud 2  |
+| 24   | _Revision Week_ | _no new material_ |
 
-These correspond to activities 1-10 on the [part 1 exercises](exercises/part1) page.
+
+These correspond to activities 1-10 on the [part 1 exercises](exercises/part1) page for weeks 13-17 and activities 1-10 on the [part 2 exercises](exercises/part2) page for weeks 19-23.
 
 <p class="solidarity" style="color: DarkRed">
 Due to strikes, the workshops on Week 16 (both) and Week 17 (Tuesday) are cancelled. The current plan is to cancel and not assess the databases section of the unit. Week 17 Thursday becomes an optional drop-in with no new material; all students get attendance for all four affected sessions for free for the purposes of the <a href="hurdle.html">attendance hurdle</a> on the unit.
 </p>
 
+
+
 The first page for each activity contains links to the videos, slides, or readings for the activity that you are expected to watch or read before coming to the workshop. Some workshop exercises involve group work where there is a good reason for it, for example to practice working as a team with a git repository.
 
 One of the most common pieces of student feedback since the start of the pandemic was that students would like videos or other materials out one week before they need to be used in a lab. We will try and implement this as far as possible for this unit: the materials for part 1 are all available from the start of term, and each video comes with its length listed in a table so you can better plan when you are going to watch them. This preparation also means the unit should be able to continue to run even if staff and most TAs are unwell one week - in this case you might miss out on some support but you will still be able to continue working independently.
-
-The materials for part 2 are still in a draft stage and not all complete yet. You can have a peek by changing "part1" to "part2" in the link above, but assume that they may change before they get released.
 
 ## Covid
 

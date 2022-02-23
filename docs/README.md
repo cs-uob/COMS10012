@@ -14,5 +14,6 @@ Please see the following pages for more details:
 The workshop materials are here:
 
   - [Part 1, weeks 13-17](exercises/part1/)
+  - [Part 2, weeks 19-23](exercises/part2/)
 
 At the time of writing this (9 February), in-person teaching is going ahead but individual staff members and TAs may be absent for health-related reasons on individual days.
