@@ -55,7 +55,7 @@ Most distributions come with a `mysql_secure_installation` script that prompts y
 The setup file is located at the address given below. You can download it for example with `wget ADDRESS` in Alpine linux; `wget` is a download program. Place it in the same folder as your Vagrantfile (in `/vagrant`, if you're doing the download from within Alpine).
 
 ```
-https://cs-uob.github.io/COMS10012/code/databases/secure-setup.sql
+https://raw.githubusercontent.com/cs-uob/COMS10012/master/code/databases/secure-setup.sql
 ```
 
   * Run `mysql -u root`. This should log you in as root without any authentication, which explains why I am making such a fuss about security! Quit again by typing Control+D.
@@ -92,8 +92,8 @@ I have prepared some sample data that we will be using in this and the following
 First, download the following two files and place them in the same folder as your Vagrantfile. You can do this the same way as you did before with the secure setup file.
 
 ```
-https://cs-uob.github.io/COMS10012/code/databases/sample-data.sql
-https://cs-uob.github.io/COMS10012/code/databases/sampledata.tar
+https://raw.githubusercontent.com/cs-uob/COMS10012/master/code/databases/sample-data.sql
+https://raw.githubusercontent.com/cs-uob/COMS10012/master/code/databases/sampledata.tar
 ```
 
 If you are using a local copy of this repository, you can also find the files under `/code/databases`.
