@@ -23,10 +23,9 @@ identical behaviour on all sorts of machines. (This is not entirely true
 however, because different JavaScript engines may fail to support various
 language features.)
 
-A basic version of the app can be found as
-[`code/javascript/bristol-app.zip`](https://github.com/cs-uob/COMS10012/blob/master/code/javascript/bristol-app.zip)
-in the repository. Download this file, and extract its contents in some location
-on your machine. This should create a folder with exactly three files:
+A basic version of the app can be found at
+[`code/javascript/bristol-app`](https://github.com/cs-uob/COMSM0085/blob/master/code/javascript/bristol-app)
+in the repository. It comprises three files:
 
 ```
 app.html
