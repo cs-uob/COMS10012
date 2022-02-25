@@ -10,6 +10,6 @@ Each week contains two activities, and each activity has videos to watch (on the
 
 <div style="color:DarkRed" class="solidarity">
 
-The databases section in 2021-22 is cancelled due to strike action.
+The databases section in 2021-22 is cancelled due to strike action. However, we have added a replacement [database activity](../../databases.html) to be completed alongside the Week 19 material.
 
 </div>

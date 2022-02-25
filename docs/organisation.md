@@ -19,7 +19,7 @@ The unit will have an online drop-in session from 3-4pm on Fridays on Teams. Thi
 
 ## Materials
 
-The unit materials for [part 1](exercises/part1) and [part 2](exercises/part2) are stable in the sense that there should be at most minor bug fixes. The schedule of workshops is therefore:
+The unit materials for [part 1](exercises/part1) and [part 2](exercises/part2) are stable in the sense that there should be at most minor bug fixes. The schedule of workshops is as follows, with some changes due to strike action:
 
 | Week | Tuesday | Thursday |
 |------|---------|----------|
@@ -29,21 +29,18 @@ The unit materials for [part 1](exercises/part1) and [part 2](exercises/part2) a
 | 16   | ~~Databases 1~~ | ~~Databases 2~~ |
 | 17   | ~~Databases 3~~ | ~~Databases 4~~ |
 | 18   | _Reading Week_ | _No Workshops_ |
-| 19   | HTTP    | HTML5    |
+| 19   | Databases + HTTP    | Databases + HTML5    |
 | 20   | CSS     | CSS grid |
 | 21   | JS      | React    |
 | 22   | Application 1 | Application 2 |
 | 23   | Cloud 1 | Cloud 2  |
 | 24   | _Revision Week_ | _no new material_ |
 
+Weeks 13-17 were meant to correspond to 1-10 on the [part 1 exercises](exercises/part1) page, but weeks 16-17 were affected by strike action.
 
-These correspond to activities 1-10 on the [part 1 exercises](exercises/part1) page for weeks 13-17 and activities 1-10 on the [part 2 exercises](exercises/part2) page for weeks 19-23.
+After consulting with the School and with student representatives, we have decided to insert a small amount of "introduction to databases" material into Week 19, which will appear on [its own page](databases.md). The intention is that you work on this alongside the other material in Week 19, and the staff and TAs in the workshops will be able to help you with both topics. _The subset of databases material that is covered this way may be assessed in the final exam._
 
-<p class="solidarity" style="color: DarkRed">
-Due to strikes, the workshops on Week 16 (both) and Week 17 (Tuesday) are cancelled. The current plan is to cancel and not assess the databases section of the unit. Week 17 Thursday becomes an optional drop-in with no new material; all students get attendance for all four affected sessions for free for the purposes of the <a href="hurdle.html">attendance hurdle</a> on the unit.
-</p>
-
-
+The rest of the material in weeks 19-23 follows the 10 activities of the [part 2 exercises](exercises/part2) page.
 
 The first page for each activity contains links to the videos, slides, or readings for the activity that you are expected to watch or read before coming to the workshop. Some workshop exercises involve group work where there is a good reason for it, for example to practice working as a team with a git repository.
 
@@ -51,20 +48,6 @@ One of the most common pieces of student feedback since the start of the pandemi
 
 ## Covid
 
-At the time of writing (5 January) it is not clear yet what amount of in-person teaching will be possible this spring. Of course, even allowed teaching may be a problem if lecturers are unwell.
+At the time of writing (25 February) the government is reducing or abolishing Covid restrictions in England. We expect that in-person workshops will go ahead twice a week for the rest of term.
 
-Currently the plans for this unit are:
-
-  - **Plan A**: lectures online (videos) but two in-person workshops a week, which we can use for Q&A, showing relevant material live, and working on the exercises. If you are unable to be in Bristol or to attend in person, you can join a parallel online workshop on Teams but you will not get the same experience. Due to the nature of the workshops and to encourage students to ask questions without fear, _the workshops will not be recorded_.
-  
-    We will start the term with Plan A unless we are told otherwise, or unable to for some reason (e.g. illness).
-
-  - **Plan B**: staff and TAs are online only so the workshops move online, but students can still use the lab during the booked hours if they want to. This includes students joining the online workshop from the lab (as the room is booked for us, no-one else can ask you to keep quiet on the lab so you can bring a microphone along and talk).
-
-    We will implement Plan B if we are required to by university or government policy, if too many staff/TAs are unwell or self-isolating, or if there are other concerns for example non-compliance with mask rules.
-
-  - **Plan C**: everything online, computer lab not available.
-
-    We will only implement this if the university or government require it, for example a local lockdown in response to a covid outbreak at the university.
-
-Currently, we hope that as long as the lab remains open, every student will be able to come in for both workshops each week. However we may need to introduce a rota where students can only come to some workshops in person if we are required to (for example new social distancing or room capacity rules) or if there are concerns about safety (for example non-compliance with mask wearing).
+Face masks are currently still mandatory in the lab - this is a university rule, not a government one.

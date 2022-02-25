@@ -33,8 +33,6 @@ In Week 16 (14-18 February) all week, and Monday-Tuesday Week 17, lecturers in t
 
 This means that you do not need to turn up in Weeks 16/17 and will still get attendance for these sessions. No attendance will be taken in these weeks. This is more generous to students than simply cancelling the sessions and changing the hurdle to 12 out of 16 remaining workshops; if you attend (or are self-certified sick for) 11 of the remaining workshops then with the +4 you will still pass the hurdle.
 
-Currently, the plan is to cancel and not assess the databases section of the unit that was scheduled for Weeks 16-17; this may change if the university asks us to teach it later on but to cancel something else instead.
-
 There are also strikes on Monday-Wednesday Week 18, but that is reading week so no workshops were planned that week anyway.
 
 More information on the strikes is in <a href="https://web.microsoftstream.com/video/a9f756a9-596d-461d-82e4-85b7b56da4a6?channelId=793a8a65-ed73-4803-820f-dd7f2c675f46">this video</a>.
