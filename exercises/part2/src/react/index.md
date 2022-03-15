@@ -1,6 +1,6 @@
 # React
 
-[React](reactjs.org) is a JavaScript web development framework built by facebook.
+[React](https://reactjs.org) is a JavaScript web development framework built by facebook.
 
 
 ## Videos
