@@ -4,7 +4,7 @@ Now that you know some CSS, you could write your own framework - one or more sty
 
 ## Milligram
 
-[Milligram](milligram.io) is, in its own words, a "minimalist CSS framework".
+[Milligram](https://milligram.io) is, in its own words, a "minimalist CSS framework".
 
 Download the [page1.html](../resources/page1.html) file and open it in the browser: it contains some text and a sign-up form for a CSS conference.
 
