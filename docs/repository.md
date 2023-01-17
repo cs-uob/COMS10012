@@ -1,4 +1,4 @@
-# About this repository
+# About this repository -- by David Bernhard
 
 Some behind-the-scenes information on how this unit page is set up, in case you ever need something similar for a project of your own.
 

@@ -1,8 +1,8 @@
-# Exercises for Part 2 (web)
+# Exercises 
 
 [Overview](./overview.md)
 
-# The web
+# The Web
 
 - [HTTP](./http/index.md)
   - [Setup](./http/setup.md)
@@ -25,10 +25,18 @@
   - [Dynamic structure, part 1](./js/dynamic1.md)
   - [Dynamic structure, part 2](./js/dynamic2.md)
   - [Further exercises](./js/exercises.md)
+- Webscraping
+  - Crawling
+  - BeautifulSoup 
 - [React](./react/index.md)
   - [Installing React](./react/installing.md)
   - [Hello World in React](./react/hello.md)
   - [Exercise](./react/character.md)
+- [The Cloud](./cloud/cloud1.md)
+  - AWS
+
+# A Complete Application
+    
 - [A complete application, part 1](./app1/index.md)
   - [Setting Things Up](./app1/setup.md)
   - [Walkthrough](./app1/walkthrough.md)
@@ -36,5 +44,3 @@
   - [The Extent Problem](./app1/extent.md)
   - [Exercise](./app1/ex.md)
 - [A complete application, part 2](./app2/index.md)
-- [The Cloud, Part 1](./cloud/cloud1.md)
-- [The Cloud, Part 2](./cloud/cloud2.md)

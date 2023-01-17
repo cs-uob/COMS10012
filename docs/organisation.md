@@ -9,7 +9,7 @@ support them, a mandatory [attendance hurdle](hurdle.md) and a final exam.
 We have the computer lab MVB 2.11 booked for the workshops:
 
   - Tuesdays, 9am-11am
-  - Thursdays, 11am-1pm
+  - Fridays, 11am-1pm
 
 This applies all weeks except Week 18 (reading week). In Week 24, we still have
 the lab booked but there is no new material (revision week), we'll just hold a
@@ -37,7 +37,7 @@ The unit materials for [part 1](exercises/part1) and [part 2](exercises/part2)
 are stable in the sense that there should be at most minor bug fixes.  The
 schedule of workshops is as follows:
 
-| Week | Tuesday | Thursday |
+| Week | Tuesday | Friday |
 |------|---------|----------|
 | 13   | Posix 1 | Git  |
 | 14   | Posix 2 | Posix 3  |
