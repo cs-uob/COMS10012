@@ -2,52 +2,87 @@
 
 ## Timetable
 
-This unit runs in TB2 2021-22 (Spring 2022) along the same principles as Mathematics A and B: there are two workshops a week and online materials to support them, a mandatory [attendance hurdle](hurdle.md) and a final exam.
+This unit runs in TB2 2021-22 (Spring 2022) along the same principles as
+Mathematics A and B: there are two workshops a week and online materials to
+support them, a mandatory [attendance hurdle](hurdle.md) and a final exam.
 
 We have the computer lab MVB 2.11 booked for the workshops:
 
   - Tuesdays, 9am-11am
-  - Thursdays, 3pm-5pm
+  - Thursdays, 11am-1pm
 
-This applies all weeks except Week 18 (reading week). In Week 24, we still have the lab booked but there is no new material (revision week), we'll just hold a drop-in. 
+This applies all weeks except Week 18 (reading week). In Week 24, we still have
+the lab booked but there is no new material (revision week), we'll just hold a
+drop-in.  
 
-During these booked hours, you can ask anyone not taking this unit to leave the room if you need a seat/computer.
+During these booked hours, you can ask anyone not taking this unit to leave the
+room if you need a seat/computer.
 
-The unit will have a Teams page, where we hold parallel online sessions for the workshops for anyone not in Bristol, self-isolating, or who does not want to come to the in-person ones. Teams will also be your place to ask questions about the unit - please do not e-mail me, if you ask on Teams then I can reply once and everyone can see the answer.
+The unit has a Teams page, to which you should already have access. Teams will
+be the best place to ask questions about the unit and its content -- please
+prefer this to emailing lecturers directly. If you ask on Teams then lecturers
+can reply once and everyone can see the answer.
 
-The unit will have an online drop-in session from 3-4pm on Fridays on Teams. This is not mandatory and does not count for attendance, but it is a place for you to turn up and ask questions, or to listen to other students' questions and answers to help you understand the material.
+The unit has an in-person drop-in session scheduled 4-5pm on Fridays in MVB
+1.11. This is not mandatory in the sense that it does not count for attendance,
+and there is no set content. This session is a place for you to turn up and ask
+questions, or to listen to other students' questions and answers to help you
+understand the material. We may demonstrate or elaborate upon content from the
+workshops, but there will be no assessed material presented only in these
+sessions.
 
 ## Materials
 
-The unit materials for [part 1](exercises/part1) and [part 2](exercises/part2) are stable in the sense that there should be at most minor bug fixes. The schedule of workshops is as follows, with some changes due to strike action:
+The unit materials for [part 1](exercises/part1) and [part 2](exercises/part2)
+are stable in the sense that there should be at most minor bug fixes.  The
+schedule of workshops is as follows:
 
 | Week | Tuesday | Thursday |
 |------|---------|----------|
-| 13   | Posix 1 | Posix 2  |
-| 14   | Posix 3 | Posix 4  |
+| 13   | Posix 1 | Git  |
+| 14   | Posix 2 | Posix 3  |
 | 15   | Build Tools 1 | Build Tools 2 |
-| 16   | ~~Databases 1~~ | ~~Databases 2~~ |
-| 17   | ~~Databases 3~~ | ~~Databases 4~~ |
-| 18   | _Reading Week_ | _No Workshops_ |
-| 19   | Databases + HTTP    | Databases + HTML5    |
+| 16   | Databases 1 | Databases 2 |
+| 17   | Databases 3 | Databases 4 |
+| _18_   | _Reading Week_ | _No Workshops_ |
+| 19   | HTTP    | HTML5    |
 | 20   | CSS     | CSS grid |
-| 21   | JS      | React    |
-| 22   | Application 1 | Application 2 |
-| 23   | Cloud 1 | Cloud 2  |
+| 21   | JS      | Webscraping    |
+| 22   | React | Cloud |
+| 23   | Application 1 | Application 2  |
 | 24   | _Revision Week_ | _no new material_ |
 
-Weeks 13-17 were meant to correspond to 1-10 on the [part 1 exercises](exercises/part1) page, but weeks 16-17 were affected by strike action.
+The unit is divided into two conceptual parts, separated from each other by the
+reading week. Weeks 13-17 correspond to the [part 1 exercises](exercises/part1) which
+primarily relate to the POSIX environment, software development tools, and databases. Weeks
+19-23 cover the [part 2 exercises](exercises/part2), which introduce you to a
+range of web technologies, before you are guided towards combining all you have
+learned into a complete application.
 
-After consulting with the School and with student representatives, we have decided to insert a small amount of "introduction to databases" material into Week 19, which will appear on [its own page](databases.md). The intention is that you work on this alongside the other material in Week 19, and the staff and TAs in the workshops will be able to help you with both topics. _The subset of databases material that is covered this way may be assessed in the final exam._
+The first page for each activity contains links to the videos, slides, or
+readings for the activity that you are expected to watch or read before coming
+to the workshop. In the workshop itself, you should focus on tackling the
+exercises, though asking questions about the material is also fine. Some
+workshop exercises involve group work where there is a good reason for it -- for
+example, to practice working as a team with a git repository.
 
-The rest of the material in weeks 19-23 follows the 10 activities of the [part 2 exercises](exercises/part2) page.
+This unit is not driven by lectures that you are expected to memorise details
+from, but by exercises which you carry out in the workshop sessions with our
+support -- the videos are just one part of that support, to introduce the
+concepts you'll be working with in the exercises.  If you want to do well on the
+exam, we recommend you focus on engaging with the exercises and trying to get a
+hands-on understanding of the many different tools and technologies this course
+will survey.
 
-The first page for each activity contains links to the videos, slides, or readings for the activity that you are expected to watch or read before coming to the workshop. Some workshop exercises involve group work where there is a good reason for it, for example to practice working as a team with a git repository.
+One of the most common pieces of student feedback about recorded content is that
+students would like videos or other materials out one week before they need to
+be used in a lab. We will try and implement this as far as possible for this
+unit: the materials for the first four labs are all available from the start of
+term, we aim to keep all the content available in a similar timeframe, and each
+video comes with its length listed in a table so you can plan when you are going
+to watch them. 
 
-One of the most common pieces of student feedback since the start of the pandemic was that students would like videos or other materials out one week before they need to be used in a lab. We will try and implement this as far as possible for this unit: the materials for part 1 are all available from the start of term, and each video comes with its length listed in a table so you can better plan when you are going to watch them. This preparation also means the unit should be able to continue to run even if staff and most TAs are unwell one week - in this case you might miss out on some support but you will still be able to continue working independently.
-
-## Covid
-
-At the time of writing (25 February) the government is reducing or abolishing Covid restrictions in England. We expect that in-person workshops will go ahead twice a week for the rest of term.
-
-Face masks are currently still mandatory in the lab - this is a university rule, not a government one.
+This preparation also means the unit should be able to continue to run even if
+national strike action or other disruptions affect teaching -- in this case you
+might miss out on some support but you will still be able to continue working
+independently.
