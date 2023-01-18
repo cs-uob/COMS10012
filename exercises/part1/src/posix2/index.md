@@ -4,11 +4,9 @@
 
 | Video | Length | Slides |
 |-------|-------:|--------|
-| [Permissions 1]() | 27 minutes | [slides]() |
-| [Permissions 2]() | 22 minutes | [slides]() |
-| [Pipes 1]() | 18 minutes |  [slides]() |
+| [Permissions]() | 27 minutes | [slides]() |
+| [Pipes 1]() | 18 minutes |  [slides](https://uob-my.sharepoint.com/:b:/g/personal/me17847_bristol_ac_uk/EdOsJY_EYlRIveTotkGszNoBWeGx5efiVPJPhhbiQfydTQ?e=RHGVol) |
 | [Pipes 2]() | 18 minutes |  [slides]() |
-| [inodes]() | 28 minutes |  [slides]() |
 | [shell scripting 1]() | 17 minutes |  [slides]() |
 | [shell scripting 2]() | 21 minutes |  [slides]() |
 
@@ -17,5 +15,4 @@
 
   - [File permissions](./permissions.md)
   - [Pipes](./pipes.md)
-  - [inodes and system calls](./stat.md)
   - [shell scripting](./script.md)
