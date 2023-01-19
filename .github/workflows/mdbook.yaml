@@ -26,7 +26,7 @@ jobs:
             cd ../..
           done
       - name: Commit
-        uses: actions-x/commit@main
+        uses: actions-x/commit@v4
         with:
           message: "Build mdbooks"
           files: "docs/exercises/*"
