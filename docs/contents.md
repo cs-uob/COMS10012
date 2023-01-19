@@ -6,7 +6,7 @@ The aim of this unit is that by the end of it, you will be ready to write your f
 
 The topics we will cover in this unit are:
 
-  - Basic system administration: posix, linux, and the command line. Using Alpine linux, a minimalist system, you will learn everything from effective use of the command line (including scripting) to installing packages and setting up and securely connecting to virtual machines.
+  - Basic system administration: POSIX, Linux, and the command line. Using Alpine Linux, a minimalist system, you will learn everything from effective use of the command line (including scripting) to installing packages and setting up and securely connecting to virtual machines.
   - Version control with git. This tool is standard enough in industry nowadays that you can be expected to know about it in a technical interview, but using it well will also save you time and effort at the very latest in your second year. 
   - The developer's toolkit: debugging, testing, and automating the build process of your software.
   - Databases. You will learn the SQL programming language and how to interact with a database both from the command line and from another application. You will also learn about how to intelligently organise your database into tables.
@@ -20,4 +20,4 @@ In 2000, Joel Spolsky wrote an article called [The Joel Test: 12 Steps to Better
 
 MIT has a page called [the missing semester of your CS education](https://missing.csail.mit.edu/). This is a course containing all those things that you're expected to know by the end of your CS degree, but are often not taught explicitly - you're expected to pick them up by your own on the side (hence the "missing" semester). Software Tools covers very similar content: the unit was born out of the idea "we expect our students to know this, some of them don't, what if we actually teach it?".
 
-[Rachel by the bay](http://rachelbythebay.com/w/) is one of my favourite Silicon Valley tech bloggers, lots of posts about development and bugs and security and corporate culture and posix and stuff.
+[Rachel by the bay](http://rachelbythebay.com/w/) is a great Silicon Valley tech blogger, lots of posts about development and bugs and security and corporate culture and POSIX and stuff.

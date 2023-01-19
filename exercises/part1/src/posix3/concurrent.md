@@ -6,7 +6,7 @@ In your second year, you will study concurrent programming using the go programm
   - If one process writes to a pipe, then this blocks the process until another process reads from it.
   - If one process reads from a pipe and another process writes to it (it does not matter who goes first) then the data is transferred from the reader to the writer, and both processes continue.
 
-For example, when you to a command like `cat logfile | grep Error | wc -l` to count the number of lines containing the word "Error", then there are three processes (not counting the terminal) and two pipes involved:
+For example, when you use a command like `cat logfile | grep Error | wc -l` to count the number of lines containing the word "Error", then there are three processes (not counting the terminal) and two pipes involved:
 
 ![pipe diagram](../resources/pipe1.png)
 

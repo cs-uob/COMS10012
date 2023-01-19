@@ -2,7 +2,7 @@
 
 Welcome to the website for COMS10012 Software Tools, Spring 2022.
 
-This is the website for the undergraduate unit. If you are on the conversion MSc, you should not use this page, but go to the page for COMSM0085 which is a simplified version of this unit.
+This is the website for the undergraduate unit. If you are on the conversion MSc, you should not use this page, but go to the page for COMSM0085, which is a different version of this unit.
 
 Please see the following pages for more details:
 

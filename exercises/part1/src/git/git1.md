@@ -63,7 +63,7 @@ Commit the file with `git commit -m "first file"` or something like that - you n
 |||advanced
 Every git commit must have a commit message. You can either add one with the `-m` flag, or leave that off and git will drop you into the system default editor to write one. That is normally vi, which has a unique set of keyboard commands (the command to quit is `:q` followed by ENTER). You can run the shell command `export EDITOR=nano` to change your default editor, then a raw `git commit` will launch nano. If you want to keep this setting when you relaunch your shell next time you log in, then the export line has to go in a file called `.profile` in your home directory, which is a file that the bash shell processes when it starts up.
 
-To keep a profile file around when vagrant rebuilds your VM if you're on a lab machine, I would put the file in `/vagrant/.profile` as that is backed up (it ends up in the folder on the host machine with the Vagrantfile) and then put the following command in your non-privileged provisioning block from the last advanced note: `ln -s /vagrant/.profile /home/vagrant/.profile`. This creates a soft link like you have already seen in `/bin` earlier.
+To keep a profile file around when vagrant rebuilds your VM if you're on a lab machine, you should put the file in `/vagrant/.profile` as that is backed up (it ends up in the folder on the host machine with the Vagrantfile) and then put the following command in your non-privileged provisioning block from the last advanced note: `ln -s /vagrant/.profile /home/vagrant/.profile`. This creates a soft link like you have already seen in `/bin` earlier.
 |||
 
 ## Ignoring files
