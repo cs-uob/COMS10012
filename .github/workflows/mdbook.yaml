@@ -17,6 +17,7 @@ jobs:
           mdbook-version: 'latest'
       - name: Build the books and deploy
         run: |
+          git config --global --add safe.directory /github/workspace
           for f in exercises/*; do
             cd $f
             mdbook build
@@ -25,7 +26,7 @@ jobs:
             cd ../..
           done
       - name: Commit
-        uses: actions-x/commit@v4
+        uses: actions-x/commit@main
         with:
-          message: "Build mbbooks"
+          message: "Build mdbooks"
           files: "docs/exercises/*"
