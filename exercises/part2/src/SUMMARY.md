@@ -7,7 +7,7 @@
 - [HTTP](./http/index.md)
   - [Setup](./http/setup.md)
   - [Exploring HTTP](./http/explore.md)
-  - [Research online exercise](./http/research.md)
+  - [Online research](./http/research.md)
   - [A server in Java](./http/server.md)
 - [HTML5](./html5/index.md)
   - [Basic HTML5](./html5/basic.md)

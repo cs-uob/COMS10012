@@ -2,7 +2,7 @@
 
 ## Timetable
 
-This unit runs in TB2 2021-22 (Spring 2022) along the same principles as
+This unit runs in TB2 2022-23 (Spring 2023) along the same principles as
 Mathematics A and B: there are two workshops a week and online materials to
 support them, a mandatory [attendance hurdle](hurdle.md) and a final exam.
 
