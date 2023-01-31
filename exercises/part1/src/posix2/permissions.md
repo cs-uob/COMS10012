@@ -52,7 +52,7 @@ Check the user and group files with `tail /etc/passwd` and `tail /etc/group` to 
 
 Time to change user: `su fred` and enter the password. Notice that the prompt has changed to `fred@alpine310:/home/vagrant$` (at least if you started off in that folder). So the user has changed, and because `/home/vagrant` is no longer the current user's home directory, it gets written out in full. Run `cd` to go home followed by `pwd` and check that you are now in `/home/fred` or whatever you called your new user.
 
-Next, create a user `george` (or some other name) add both your two new users, but not `vagrant`, to the group `users` (which already exists) using the command `sudo addgroup GROUPNAME USERNAME`, where group and username are changed accordingly. Note: `fred` cannot use sudo, so you have to exit his terminal to get back to one running as vagrant for this.
+Next, create a user `george` (or some other name) add both your two new users, but not `vagrant`, to the group `users` (which already exists) using the command `sudo addgroup USERNAME GROUPNAME`, where group and username are changed accordingly. Note: `fred` cannot use sudo, so you have to exit his terminal to get back to one running as vagrant for this.
 
 ## Explore file permissions
 
