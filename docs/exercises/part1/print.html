@@ -1033,7 +1033,7 @@ export EDITOR=nano
 <p>As user <code>fred</code> (or whatever you called your first new user), set up your home directory using what you learnt in the videos so that</p>
 <ul>
 <li>You can do everything (rwx).</li>
-<li>Members of the <code>users</code> group can list files and change to your home directory, but not add/remove files. You will need to change the group of your home directory to <code>users</code> for this, as described in the videos.</li>
+<li>Members of the <code>users</code> group can list files and change to your home directory, but not add/remove files. You will need to change the group of your home directory to <code>users</code> for this, using the command <code>chgrp -R GROUPNAME DIRECTORY</code>.</li>
 <li>Everyone else cannot do anything with your home directory.</li>
 </ul>
 <p>Create a file in your home directory, e.g. <code>nano readme.txt</code> then add some content.</p>
