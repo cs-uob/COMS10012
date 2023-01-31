@@ -59,7 +59,7 @@ Next, create a user `george` (or some other name) add both your two new users, b
 As user `fred` (or whatever you called your first new user), set up your home directory using what you learnt in the videos so that
 
   * You can do everything (rwx).
-  * Members of the `users` group can list files and change to your home directory, but not add/remove files. You will need to change the group of your home directory to `users` for this, as described in the videos.
+  * Members of the `users` group can list files and change to your home directory, but not add/remove files. You will need to change the group of your home directory to `users` for this, using the command `chgrp -R GROUPNAME DIRECTORY`.
   * Everyone else cannot do anything with your home directory.
 
 Create a file in your home directory, e.g. `nano readme.txt` then add some content.
