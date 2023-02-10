@@ -12,7 +12,7 @@ The videos for this activity are:
 
 | Video | Length | Slides |
 |-------|-------:|--------|
-| [Into to SQL](https://web.microsoftstream.com/video/8f2881d9-82f7-4364-a227-e555b776cda0) | 29 minutes (repeat) | [PDF](https://web.microsoftstream.com/video/8f2881d9-82f7-4364-a227-e555b776cda0) |
+| [Into to SQL](https://web.microsoftstream.com/video/8f2881d9-82f7-4364-a227-e555b776cda0) | 29 minutes (repeat) | [PDF](https://uob-my.sharepoint.com/:b:/r/personal/me17847_bristol_ac_uk/Documents/software_tools/slides/sql-1.pdf?csf=1&web=1&e=6PnTKD) t a|
 | [Normal Forms](https://web.microsoftstream.com/video/6a9b6876-9e38-4e92-afed-7aaa872714cf?list=studio)   | 14 minutes | [PDF](https://uob-my.sharepoint.com/:b:/r/personal/me17847_bristol_ac_uk/Documents/software_tools/slides/normal-forms.pdf?csf=1&web=1&e=brRNfX) |
 
 ## Exercises
