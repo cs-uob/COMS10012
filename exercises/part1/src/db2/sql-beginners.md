@@ -4,7 +4,7 @@ This is the second activity of four to teach you about relational databases and 
 
 We introduced a whole new programming language in the first half of
 this week's content... rewatch the intro to SQL if it's still confusing
-(or look in a book).
+(or read a book).
 
 ## Videos
 
@@ -18,6 +18,6 @@ The videos for this activity are:
 ## Exercises
 
   - [Explore the database](./explore-database.md)
-  - [Bristol elections](.//elections.md)
+  - [Bristol elections](./elections.md)
   - [The UK census](./census.md)
   - [Normal forms](./normalforms.md)
