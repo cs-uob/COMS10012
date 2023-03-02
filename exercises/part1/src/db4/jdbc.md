@@ -103,7 +103,7 @@ We didn't notice this with the console client `mysql` because that by default tr
 
 ## POM file
 
-Under `/code/jdbc` in the unit repository you can find a minimal JDBC application that uses the `elections` database. It contains a file `pom.xml` and a file `src/main/java/org/example/Example.java`.
+Under `code/jdbc` in the unit repository you can find a minimal JDBC application that uses the `elections` database. It contains a file `pom.xml` and a file `src/main/java/org/example/Example.java`.
 
 In the POM file, we note the following dependencies:
 

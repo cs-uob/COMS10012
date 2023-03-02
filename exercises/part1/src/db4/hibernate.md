@@ -8,7 +8,7 @@ In a real application, you will be using an ORM most of the time, but you can fa
 
 ## Example application - set-up
 
-There is an example application in `/code/orm` in the unit repository.
+There is an example application in `code/orm` in the unit repository.
 
 The POM file simply has an extra dependency on Hibernate:
 
