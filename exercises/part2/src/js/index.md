@@ -7,8 +7,8 @@
 
 | Video | Length |
 |-------|-------:|
-| [JavaScript]() | 6 minutes |
-| [JavaScript: Basics]() | 30 minutes |
+| 
+| [JavaScript: Basics](https://web.microsoftstream.com/video/330cf916-2534-4254-ad76-9ec3632b86de) | 25 minutes |
 | [JS Objects (incl. JSON)]() | 12 minutes |
 | [Counting words in a novel]() | 11 minutes |
 | [JavaScript in the browser]() | 22 minutes |
