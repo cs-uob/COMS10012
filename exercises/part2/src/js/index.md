@@ -14,7 +14,7 @@
 | 
 | [Asynchronous JavaScript](https://web.microsoftstream.com/video/049c0b63-181f-4c08-bf3e-59ac55b46589) | 12 minutes |
 
-All the example code for these lectures can be found in the
+Some example code can be found in the
 [`code/javascript`](https://github.com/cs-uob/COMS10012/tree/master/code/javascript)
 folder of the repository.
 
