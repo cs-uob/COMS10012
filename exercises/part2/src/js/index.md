@@ -7,12 +7,12 @@
 
 | Video | Length |
 |-------|-------:|
-| [JavaScript]() | 6 minutes |
-| [JavaScript: Basics]() | 30 minutes |
-| [JS Objects (incl. JSON)]() | 12 minutes |
-| [Counting words in a novel]() | 11 minutes |
-| [JavaScript in the browser]() | 22 minutes |
-| [Asynchronous JavaScript]() | 28 minutes |
+| 
+| [JavaScript: Basics]() | 25 minutes |
+| [JS Objects (incl. JSON)]([)](https://web.microsoftstream.com/video/ed83519e-a60c-4b81-aba5-6c940daaca94) | 6 minutes |
+| [Object Oriented Programming](https://web.microsoftstream.com/video/176400ab-6bd8-40cb-999a-8e7bfdc7ee3e) | 11 minutes |
+| 
+| [Asynchronous JavaScript](https://web.microsoftstream.com/video/049c0b63-181f-4c08-bf3e-59ac55b46589) | 12 minutes |
 
 All the example code for these lectures can be found in the
 [`code/javascript`](https://github.com/cs-uob/COMS10012/tree/master/code/javascript)
