@@ -8,8 +8,8 @@
 | Video | Length |
 |-------|-------:|
 | 
-| [JavaScript: Basics]() | 25 minutes |
-| [JS Objects (incl. JSON)]([)](https://web.microsoftstream.com/video/ed83519e-a60c-4b81-aba5-6c940daaca94) | 6 minutes |
+| [JavaScript: Basics](https://web.microsoftstream.com/video/049c0b63-181f-4c08-bf3e-59ac55b46589) | 25 minutes |
+| [JS Objects (incl. JSON)](https://web.microsoftstream.com/video/ed83519e-a60c-4b81-aba5-6c940daaca94) | 6 minutes |
 | [Object Oriented Programming](https://web.microsoftstream.com/video/176400ab-6bd8-40cb-999a-8e7bfdc7ee3e) | 11 minutes |
 | 
 | [Asynchronous JavaScript](https://web.microsoftstream.com/video/049c0b63-181f-4c08-bf3e-59ac55b46589) | 12 minutes |
