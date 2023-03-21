@@ -7,8 +7,8 @@
 
 | Video | Length | Slides |
 |-------|-------:|--------|
-| [React]() | 15 minutes | [slides]() |
-| [Code examples]() | 19 minutes | [slides]() |
+| [React](https://web.microsoftstream.com/video/7eb8b3a3-f9c6-496d-9cca-537574f24288) | 13 minutes | [slides](https://uob-my.sharepoint.com/:b:/g/personal/me17847_bristol_ac_uk/EVqs65v78RdOuGe-i3WW_NEB2hZdIaq-cTY0KKyYANUo7g?e=KUJiZw) |
+| [REACT II(https://web.microsoftstream.com/video/39851ae8-a30e-42ac-8194-7a18499fe826) | 9 minutes | [slides](https://uob-my.sharepoint.com/:b:/g/personal/me17847_bristol_ac_uk/EUjed5sNPf9AjK26Bxp1wV8BvV67Sdyb6ZYFPQgrgzaiuQ?e=sljLPb) |
 
 ## Readings
 
