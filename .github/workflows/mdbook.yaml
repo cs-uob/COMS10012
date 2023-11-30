@@ -27,4 +27,4 @@ jobs:
       - name: Commit
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          commit_message: Buld and deploy mdbook
+          commit_message: Build and deploy mdbook
