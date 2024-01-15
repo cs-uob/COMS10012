@@ -1,17 +1,17 @@
 <!DOCTYPE HTML>
-<html lang="en" class="sidebar-visible no-js light">
+<html lang="en" class="light" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
         <title>Exercises</title>
-        <meta name="robots" content="noindex" />
+        <meta name="robots" content="noindex">
 
 
         <!-- Custom HTML head -->
         
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="theme-color" content="#ffffff" />
+        <meta name="theme-color" content="#ffffff">
 
         <link rel="icon" href="favicon.svg">
         <link rel="shortcut icon" href="favicon.png">
@@ -32,7 +32,7 @@
         <!-- Custom theme stylesheets -->
 
     </head>
-    <body>
+    <body class="sidebar-visible no-js">
     <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
@@ -62,42 +62,71 @@
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
             var html = document.querySelector('html');
-            html.classList.remove('no-js')
             html.classList.remove('light')
             html.classList.add(theme);
-            html.classList.add('js');
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
         </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var html = document.querySelector('html');
+            var body = document.querySelector('body');
             var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
             } else {
                 sidebar = 'hidden';
             }
-            html.classList.remove('sidebar-visible');
-            html.classList.add("sidebar-" + sidebar);
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="overview.html">Overview</a></li><li class="chapter-item expanded affix "><li class="part-title">POSIX</li><li class="chapter-item expanded "><a href="posix1/index.html"><strong aria-hidden="true">1.</strong> Posix Activity 1</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="posix1/ssh.html"><strong aria-hidden="true">1.1.</strong> Secure shell</a></li><li class="chapter-item expanded "><a href="posix1/install.html"><strong aria-hidden="true">1.2.</strong> Installing vagrant and alpine linux</a></li><li class="chapter-item expanded "><a href="posix1/admin.html"><strong aria-hidden="true">1.3.</strong> Alpine linux system administration</a></li><li class="chapter-item expanded "><a href="posix1/shell.html"><strong aria-hidden="true">1.4.</strong> Shell expansion</a></li></ol></li><li class="chapter-item expanded "><a href="git/index.html"><strong aria-hidden="true">2.</strong> Git</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="git/git1.html"><strong aria-hidden="true">2.1.</strong> Git, part 1</a></li><li class="chapter-item expanded "><a href="git/git2.html"><strong aria-hidden="true">2.2.</strong> Git, part 2</a></li><li class="chapter-item expanded "><a href="git/git3.html"><strong aria-hidden="true">2.3.</strong> Git, part 3</a></li></ol></li><li class="chapter-item expanded "><a href="posix2/index.html"><strong aria-hidden="true">3.</strong> Posix Activity 2</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="posix2/permissions.html"><strong aria-hidden="true">3.1.</strong> File permissions</a></li><li class="chapter-item expanded "><a href="posix2/pipes.html"><strong aria-hidden="true">3.2.</strong> Pipes</a></li><li class="chapter-item expanded "><a href="posix2/script.html"><strong aria-hidden="true">3.3.</strong> shell scripting</a></li></ol></li><li class="chapter-item expanded "><a href="posix3/index.html"><strong aria-hidden="true">4.</strong> Posix Activity 3</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="posix3/stat.html"><strong aria-hidden="true">4.1.</strong> inodes and system calls</a></li><li class="chapter-item expanded "><a href="posix3/concurrent.html"><strong aria-hidden="true">4.2.</strong> Concurrent programming in POSIX</a></li><li class="chapter-item expanded "><a href="posix3/cpipe.html"><strong aria-hidden="true">4.3.</strong> Pipes in C</a></li><li class="chapter-item expanded "><a href="posix3/c_io.html"><strong aria-hidden="true">4.4.</strong> Input/Output in C</a></li><li class="chapter-item expanded "><a href="posix3/posix_io.html"><strong aria-hidden="true">4.5.</strong> Input/Output in POSIX</a></li><li class="chapter-item expanded "><a href="posix3/final.html"><strong aria-hidden="true">4.6.</strong> The final challenge</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Build Tools</li><li class="chapter-item expanded "><a href="build1/index.html"><strong aria-hidden="true">5.</strong> Build Tools 1</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="build1/exercise.html"><strong aria-hidden="true">5.1.</strong> Exercise</a></li></ol></li><li class="chapter-item expanded "><a href="build2/index.html"><strong aria-hidden="true">6.</strong> Build Tools 2</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="build2/c.html"><strong aria-hidden="true">6.1.</strong> C</a></li><li class="chapter-item expanded "><a href="build2/python.html"><strong aria-hidden="true">6.2.</strong> Python</a></li><li class="chapter-item expanded "><a href="build2/java.html"><strong aria-hidden="true">6.3.</strong> Java</a></li><li class="chapter-item expanded "><a href="build2/spring.html"><strong aria-hidden="true">6.4.</strong> Spring</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Databases</li><li class="chapter-item expanded "><a href="db1/sql-introduction.html"><strong aria-hidden="true">7.</strong> SQL introduction</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="db1/setup.html"><strong aria-hidden="true">7.1.</strong> Set up the database</a></li><li class="chapter-item expanded "><a href="db1/er-diagram.html"><strong aria-hidden="true">7.2.</strong> ER diagram</a></li><li class="chapter-item expanded "><a href="db1/er2.html"><strong aria-hidden="true">7.3.</strong> More modelling</a></li></ol></li><li class="chapter-item expanded "><a href="db2/sql-beginners.html"><strong aria-hidden="true">8.</strong> SQL for beginners</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="db2/explore-database.html"><strong aria-hidden="true">8.1.</strong> Explore the database</a></li><li class="chapter-item expanded "><a href="db2/elections.html"><strong aria-hidden="true">8.2.</strong> Bristol elections</a></li><li class="chapter-item expanded "><a href="db2/census.html"><strong aria-hidden="true">8.3.</strong> The UK census</a></li><li class="chapter-item expanded "><a href="db2/normalforms.html"><strong aria-hidden="true">8.4.</strong> Normal forms</a></li></ol></li><li class="chapter-item expanded "><a href="db3/sql-intermediate.html"><strong aria-hidden="true">9.</strong> Intermediate SQL</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="db3/exercises.html"><strong aria-hidden="true">9.1.</strong> Exercises</a></li></ol></li><li class="chapter-item expanded "><a href="db4/sql-java.html"><strong aria-hidden="true">10.</strong> SQL and Java</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="db4/jdbc.html"><strong aria-hidden="true">10.1.</strong> JDBC</a></li><li class="chapter-item expanded "><a href="db4/hibernate.html"><strong aria-hidden="true">10.2.</strong> Hibernate</a></li><li class="chapter-item expanded "><a href="db4/sqlite.html"><strong aria-hidden="true">10.3.</strong> SQLite</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="overview.html">Overview</a></li><li class="chapter-item expanded affix "><li class="part-title">Week 1: POSIX Systems</li><li class="chapter-item expanded "><a href="posix1/index.html"><strong aria-hidden="true">1.</strong> System Administration</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="posix1/ssh.html"><strong aria-hidden="true">1.1.</strong> Secure shell</a></li><li class="chapter-item expanded "><a href="posix1/install.html"><strong aria-hidden="true">1.2.</strong> Installing vagrant and alpine linux</a></li><li class="chapter-item expanded "><a href="posix1/admin.html"><strong aria-hidden="true">1.3.</strong> Alpine linux system administration</a></li></ol></li><li class="chapter-item expanded "><a href="posix2/index.html"><strong aria-hidden="true">2.</strong> The POSIX Shell</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="posix2/shell.html"><strong aria-hidden="true">2.1.</strong> Shell expansion</a></li><li class="chapter-item expanded "><a href="posix2/pipes.html"><strong aria-hidden="true">2.2.</strong> Pipes</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Week 2: Version control</li><li class="chapter-item expanded "><a href="git/index.html"><strong aria-hidden="true">3.</strong> Git</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="git/git1.html"><strong aria-hidden="true">3.1.</strong> Git, part 1</a></li><li class="chapter-item expanded "><a href="git/git2.html"><strong aria-hidden="true">3.2.</strong> Git, part 2</a></li><li class="chapter-item expanded "><a href="git/git3.html"><strong aria-hidden="true">3.3.</strong> Git, part 3</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Week 3: Shell scripting & build tools</li><li class="chapter-item expanded "><a href="posix3/index.html"><strong aria-hidden="true">4.</strong> Shell Scripting</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="posix3/permissions.html"><strong aria-hidden="true">4.1.</strong> File permissions</a></li><li class="chapter-item expanded "><a href="posix3/script.html"><strong aria-hidden="true">4.2.</strong> shell scripting</a></li></ol></li><li class="chapter-item expanded "><a href="build2/index.html"><strong aria-hidden="true">5.</strong> Build Tools</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="build2/c.html"><strong aria-hidden="true">5.1.</strong> C</a></li><li class="chapter-item expanded "><a href="build2/python.html"><strong aria-hidden="true">5.2.</strong> Python</a></li><li class="chapter-item expanded "><a href="build2/java.html"><strong aria-hidden="true">5.3.</strong> Java</a></li><li class="chapter-item expanded "><a href="build2/spring.html"><strong aria-hidden="true">5.4.</strong> Spring</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Week 4: Debugging</li><li class="chapter-item expanded "><a href="build1/index.html"><strong aria-hidden="true">6.</strong> Debugging</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="build1/exercise.html"><strong aria-hidden="true">6.1.</strong> Exercise</a></li></ol></li><li class="chapter-item expanded "><a href="posix3/index.html"><strong aria-hidden="true">7.</strong> Bonus POSIX (unassessed)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="posix3/stat.html"><strong aria-hidden="true">7.1.</strong> inodes and system calls</a></li><li class="chapter-item expanded "><a href="posix3/concurrent.html"><strong aria-hidden="true">7.2.</strong> Concurrent programming in POSIX</a></li><li class="chapter-item expanded "><a href="posix3/cpipe.html"><strong aria-hidden="true">7.3.</strong> Pipes in C</a></li><li class="chapter-item expanded "><a href="posix3/c_io.html"><strong aria-hidden="true">7.4.</strong> Input/Output in C</a></li><li class="chapter-item expanded "><a href="posix3/posix_io.html"><strong aria-hidden="true">7.5.</strong> Input/Output in POSIX</a></li><li class="chapter-item expanded "><a href="posix3/final.html"><strong aria-hidden="true">7.6.</strong> The final challenge</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Week 5: Databases</li><li class="chapter-item expanded "><a href="db1/sql-introduction.html"><strong aria-hidden="true">8.</strong> SQL introduction</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="db1/setup.html"><strong aria-hidden="true">8.1.</strong> Set up the database</a></li><li class="chapter-item expanded "><a href="db1/er-diagram.html"><strong aria-hidden="true">8.2.</strong> ER diagram</a></li><li class="chapter-item expanded "><a href="db1/er2.html"><strong aria-hidden="true">8.3.</strong> More modelling</a></li><li class="chapter-item expanded "><a href="db2/explore-database.html"><strong aria-hidden="true">8.4.</strong> Explore the database</a></li><li class="chapter-item expanded "><a href="db2/elections.html"><strong aria-hidden="true">8.5.</strong> Bristol elections</a></li><li class="chapter-item expanded "><a href="db2/census.html"><strong aria-hidden="true">8.6.</strong> The UK census</a></li><li class="chapter-item expanded "><a href="db2/normalforms.html"><strong aria-hidden="true">8.7.</strong> Normal forms</a></li></ol></li><li class="chapter-item expanded "><a href="db3/sql-intermediate.html"><strong aria-hidden="true">9.</strong> Intermediate SQL</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="db3/exercises.html"><strong aria-hidden="true">9.1.</strong> Exercises</a></li></ol></li><li class="chapter-item expanded "><a href="db4/sql-java.html"><strong aria-hidden="true">10.</strong> SQL and Java</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="db4/jdbc.html"><strong aria-hidden="true">10.1.</strong> JDBC</a></li><li class="chapter-item expanded "><a href="db4/hibernate.html"><strong aria-hidden="true">10.2.</strong> Hibernate</a></li><li class="chapter-item expanded "><a href="db4/sqlite.html"><strong aria-hidden="true">10.3.</strong> SQLite</a></li></ol></li></ol>
             </div>
-            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
         </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
 
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
                                 <div id="menu-bar-hover-placeholder"></div>
-                <div id="menu-bar" class="menu-bar sticky bordered">
+                <div id="menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
-                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
                             <i class="fa fa-bars"></i>
-                        </button>
+                        </label>
                         <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
                             <i class="fa fa-paint-brush"></i>
                         </button>
@@ -155,11 +184,10 @@
 <p>Each week contains two lab sessions, and each session has associated videos to
 watch before the session (on the main page for each session) and a set of
 practical exercises which you'll tackle in the session (and should preview).</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="posix-activity-1"><a class="header" href="#posix-activity-1">POSIX Activity 1</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="system-administration"><a class="header" href="#system-administration">System Administration</a></h1>
 <h2 id="videos"><a class="header" href="#videos">Videos</a></h2>
 <p>Before this activity, you should watch the following videos - most of them are quite short. The videos are hosted on Microsoft Stream, and you will need to authenticate via university log-in to watch them.</p>
 <div class="table-wrapper"><table><thead><tr><th>Video</th><th style="text-align: right">Length</th><th>Slides</th></tr></thead><tbody>
-<tr><td><a href="https://web.microsoftstream.com/video/a55ff501-9e8d-4bb3-a00e-b680596b2de3">The shell</a></td><td style="text-align: right">30 minutes</td><td><a href="https://uob-my.sharepoint.com/:b:/g/personal/me17847_bristol_ac_uk/EbOfjsNY9SJAkEXbMb9WorcBAQMW0QuKthcQHRBDvru8eg?e=HWh7D1">slides</a></td></tr>
 <tr><td><a href="https://web.microsoftstream.com/video/d2736b4b-80de-4740-9084-2ab458a9dbab">SSH</a></td><td style="text-align: right">10 minutes</td><td><a href="https://uob-my.sharepoint.com/:b:/g/personal/me17847_bristol_ac_uk/ERXOIS-oCUxMmOguGB0ctO8BSWKpCskLDBmWM3c6wrk90A?e=IobhBb">slides</a></td></tr>
 <tr><td><a href="https://web.microsoftstream.com/video/373abf95-52ce-45d2-82d0-28250d300184">Vagrant</a></td><td style="text-align: right">12 minutes</td><td><a href="https://uob-my.sharepoint.com/:b:/g/personal/me17847_bristol_ac_uk/EW4-UCx2St1Gl8AGPwTuq4EBhNt7-KfnKhbewow6w3WuJQ?e=bJeh4g">slides</a></td></tr>
 <tr><td><a href="https://web.microsoftstream.com/video/9091bdf6-2242-4b43-b09e-9641f9401135">Package managers</a></td><td style="text-align: right">6 minutes</td><td><a href="https://uob-my.sharepoint.com/:b:/g/personal/me17847_bristol_ac_uk/EUPLvl82HzRGi-nyhSdiBicBb7EBnouRVnT6RAKKyzhqKQ?e=Ow5cmt">slides</a></td></tr>
@@ -170,7 +198,6 @@ practical exercises which you'll tackle in the session (and should preview).</p>
 <li><a href="posix1/./ssh.html">Secure shell</a></li>
 <li><a href="posix1/./install.html">Installing vagrant and alpine linux</a></li>
 <li><a href="posix1/./admin.html">Alpine linux system administration</a></li>
-<li><a href="posix1/./shell.html">Shell expansion</a></li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="secure-shell"><a class="header" href="#secure-shell">Secure shell</a></h1>
 <p>Secure shell (SSH) is a protocol to allow you to remotely log in to another computer, such as a lab machine. Almost everyone who uses SSH uses the free OpenSSH implementation, which is standard on pretty much every Linux distribution and is also available for Windows and Mac - and even for the mobile operating systems iOS and Android.</p>
@@ -511,6 +538,19 @@ will act like whatever it was invoked as.
 <li>Log in with <code>vagrant ssh</code> and check that git and nano are installed.</li>
 </ul>
 <p>For the next exercise, please also install the <code>gcc</code> package that gets you a C compiler, as well as <code>musl-dev</code> which contains header files like <code>stdio.h</code>. These, in case you wondered, live in <code>/usr/include</code>.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="the-posix-shell"><a class="header" href="#the-posix-shell">The POSIX Shell</a></h1>
+<h2 id="videos-1"><a class="header" href="#videos-1">Videos</a></h2>
+<div class="table-wrapper"><table><thead><tr><th>Video</th><th style="text-align: right">Length</th><th>Slides</th></tr></thead><tbody>
+<tr><td><a href="https://web.microsoftstream.com/video/a55ff501-9e8d-4bb3-a00e-b680596b2de3">The shell</a></td><td style="text-align: right">30 minutes</td><td><a href="https://uob-my.sharepoint.com/:b:/g/personal/me17847_bristol_ac_uk/EbOfjsNY9SJAkEXbMb9WorcBAQMW0QuKthcQHRBDvru8eg?e=HWh7D1">slides</a></td></tr>
+<tr><td><a href="https://web.microsoftstream.com/video/7b2657a6-a2d4-4c34-a642-da993d468851">Pipes 1</a></td><td style="text-align: right">20 minutes</td><td><a href="https://uob-my.sharepoint.com/:b:/g/personal/me17847_bristol_ac_uk/EdOsJY_EYlRIveTotkGszNoBWeGx5efiVPJPhhbiQfydTQ?e=RHGVol">slides</a></td></tr>
+<tr><td><a href="https://web.microsoftstream.com/video/d04fb18c-533b-4ffe-b8a1-f4d46e9b73d1">Pipes 2</a></td><td style="text-align: right">30 minutes</td><td><a href="https://uob-my.sharepoint.com/:b:/g/personal/me17847_bristol_ac_uk/EfGZcNx_ttNCsx8vpo2uZqIBERTzvUzap84BdzMfxLRuQw?e=Ty9yjZ">slides</a></td></tr>
+</tbody></table>
+</div>
+<h2 id="exercises-1"><a class="header" href="#exercises-1">Exercises</a></h2>
+<ul>
+<li><a href="posix2/./shell.html">Shell expansion</a></li>
+<li><a href="posix2/./pipes.html">Pipes</a></li>
+</ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="shell-expansion"><a class="header" href="#shell-expansion">Shell expansion</a></h1>
 <p>This exercise is about studying shell expansion. You should run it on your alpine linux VM in vagrant, and you should have installed the <code>gcc</code> compiler.</p>
 <p>Create a C program <code>arguments.c</code> with the following contents. You can use <code>nano arguments.c</code> for this, for example.</p>
@@ -584,15 +624,57 @@ gcc -Wall &quot;$program.c&quot; -o &quot;$program&quot;
 <pre><code>file=arguments gcc -Wall &quot;$file.c&quot; -o &quot;$file&quot;
 </code></pre>
 <p>The problem here is that the shell first reads the line and substitutes in the value of <code>$file</code> (unset variables expand to the empty string by default) before starting to execute the command, so you are reading the variable's value before writing it. Leaving off the quotes doesn't help: you need to set the variable on a separate line.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="pipes"><a class="header" href="#pipes">Pipes</a></h1>
+<p>The command <code>ls | head</code> runs ls and head and pipes the standard output of ls into the standard input of head.</p>
+<p>The following shell commands are particularly useful in pipes:</p>
+<ul>
+<li><code>cat [FILENAME [FILENAME...]]</code> writes the contents of one or more files to standard output. This is a good way of starting a pipe. If you leave off all the filenames, cat just reads its standard input and writes it to standard output.</li>
+<li><code>head [-n N]</code> reads its standard input and writes only the first N lines (default is 10 if you leave the option off) to standard output. You can also put a minus before the argument e.g. <code>head -n -2</code> to <em>skip the last 2 lines</em> and write all the rest.</li>
+<li><code>tail [-n N]</code> is like head except that it writes the last N lines (with a minus, it skips the first N ones).</li>
+<li><code>sort</code> reads all its standard input into a memory buffer, then sorts the lines and writes them all to standard output.</li>
+<li><code>uniq</code> reads standard input and writes to standard output, but skips repeated lines that immediately follow each other, for example if there are three lines A, A, B then it would only write A, B but if it gets A, B, A it would write all three. A common way to remove duplicate lines is <code>... | sort | uniq | ...</code>.</li>
+<li><code>grep [-iv] EXPRESSION</code> reads standard input and prints only lines that match the regular expression to standard output. With <code>-i</code> it is case-insensitive, and with <code>-v</code> it only prints lines that do <em>not</em> match the expression.</li>
+<li><code>sed -e COMMAND</code> reads lines from standard input, transforms them according to the command and writes the results to standard output. <code>sed</code> has its own command language but the most common one is <code>s/SOURCE/DEST/</code> which changes substrings matching the source regular expression into the destination one.</li>
+<li><code>wc [-l]</code> stands for word count, but with <code>-l</code> it counts lines instead. Putting a <code>wc -l</code> on the very end of a pipe is useful if you just want to know how many results a particular command or pipe produces, assuming the results come one per line.</li>
+</ul>
+<p>All these commands actually take an optional extra filename as argument, in which case they read from this file as input. For example, to display the first 10 lines of a file called <code>Readme.txt</code>, you could do either <code>cat Readme.txt | head</code> or <code>head Readme.txt</code>.</p>
+<h2 id="word-list-exercises---pipes-and-regular-expressions"><a class="header" href="#word-list-exercises---pipes-and-regular-expressions">Word list exercises - pipes and regular expressions</a></h2>
+<p>Most linux distributions come with a dictionary file <code>/usr/dict/words</code> that contains a list of English words in alphabetical order, for use in spell-checking programs. The list includes a selection of proper nouns, for example countries and cities. Alpine linux, true to its principles of being minimal, omits this file - but you can download one yourself with</p>
+<pre><code>wget https://users.cs.duke.edu/~ola/ap/linuxwords -O words
+</code></pre>
+<p><code>wget</code> is one of two utilities for downloading files, the other being <code>curl</code>. Note that the option for output file name is a capital O, not a lowercase o or a zero.</p>
+<p>Find one-line commands, possibly with pipes, to print the following to your terminal. You can either start each command with <code>cat words | ...</code> or do it without cat by providing the words file as an argument to the first command in your pipeline.</p>
+<p><em>If English is not your native language, ignore the guessing part - it is not assessed.</em></p>
+<ul>
+<li>The first word in the file. <em>Can you guess what it will be, it is a city in Europe?</em></li>
+<li>The last word in the file. <em>Can you guess this one, another city in Europe?</em></li>
+<li>The number of words in the words file - there is one word per line.</li>
+<li>The 6171st word in the file. <em>Can you read my mind and guess this word directly?</em></li>
+<li>All words containing the letter Q, capitalised. (A regular expression containing a string of one or more letters matches all strings that contain the expression as a substring.)</li>
+<li>All words starting with the letter X. The regular expression <code>X</code> would match an X anywhere in the word, but <code>^X</code> matches an X only at the start of the string.</li>
+<li>All words ending in j. (The expression <code>'j$'</code> matches a j only at the end of the string, but you have to single-quote it to stop the shell from interpreting the dollar sign). <em>Can you guess the word - it is a city in eastern Europe?</em></li>
+<li>The number of words containing the letter Q, ignoring case (e.g. capitalised or not).</li>
+<li>The first five words containing the letter sequence <code>cl</code>.</li>
+<li>All words containing the sequence &quot;kp&quot;, but not &quot;ckp&quot;. <em>Can you guess any of these?</em></li>
+<li>The last 15 words of exactly two letters. The expression <code>.</code> (period) matches a single character, and <code>'^...$'</code> for example would match all strings of the format <em>exactly three characters between start and end of string</em>. You need to quote it because of the dollar sign.</li>
+<li>All words from the first 100 words on the list, which contain the letter y.</li>
+<li>The first five words that are among the last 100 words on the list, and contain the letter y (whether capitalised or not).</li>
+<li>All three-letter words with no vowels (aeiou).The regular expression <code>'[aeiou]'</code> matches any string that contains one of the bracketed characters; you need quotes to stop the shell from interpreting the brackets. Remember to exclude words with capitalised vowels as well. <em>There are 12 of these, can you guess them all before looking?</em></li>
+<li>All words of exactly 7 letters, where the third one is an e and the word ends &quot;-ded&quot;. <em>This kind of search is really useful for crosswords. There are 9 words of this form, can you guess them?</em></li>
+</ul>
+<p>Bonus regular expression question:</p>
+<ul>
+<li>Find all words that start with a P (whether capitalised or not), and contain at least four instances of the letter a. Putting a <code>*</code> after something in a regular expression searches for <em>any number of repetitions of this, including 0</em> so for example <code>'a*'</code> would find words with any number of the letter a, including 0 (which is not what you want here). You need single quotes to stop the shell from expanding the <code>*</code>. <em>Can you guess the words? There are essentially four of them, two demonyms (for some reason one of them has a plural in the list, the other doesn't), and two nouns which are not proper nouns.</em></li>
+</ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="activity-git"><a class="header" href="#activity-git">Activity: Git</a></h1>
-<h2 id="videos-1"><a class="header" href="#videos-1">Videos</a></h2>
+<h2 id="videos-2"><a class="header" href="#videos-2">Videos</a></h2>
 <div class="table-wrapper"><table><thead><tr><th>Video</th><th style="text-align: right">Length</th><th>Slides</th></tr></thead><tbody>
 <tr><td><a href="https://web.microsoftstream.com/video/1fb28095-555d-40e5-8b3b-5fb18b178892">Git, part 1</a></td><td style="text-align: right">34 minutes</td><td><a href="https://uob-my.sharepoint.com/:b:/g/personal/me17847_bristol_ac_uk/ETueHYft1rVKjld7jesRNBwBL-iNbDoDElJRwZ1BymcXnQ?e=obfTVF">slides</a></td></tr>
 <tr><td><a href="https://web.microsoftstream.com/video/ea90c1c9-89cd-4cbf-9af1-14675bebdaea">Git, part 2</a></td><td style="text-align: right">27 minutes</td><td><a href="https://uob-my.sharepoint.com/:b:/g/personal/me17847_bristol_ac_uk/EZjMmRvbrndMkCf0wNwv93MBLorPR9KHzlMZ0iEJa1vBJg?e=08BmRQ">slides</a></td></tr>
 <tr><td><a href="https://web.microsoftstream.com/video/ecb70e8b-a390-44fa-8bc1-5af08d79a065">Git, part 3</a></td><td style="text-align: right">19 minutes</td><td><a href="https://uob-my.sharepoint.com/:b:/g/personal/me17847_bristol_ac_uk/Ed3pRweWtgBPlylvSqRa9eMBzieIVzJ_SYjJY-Hw10V_3Q?e=WGEyNg">slides</a></td></tr>
 </tbody></table>
 </div>
-<h2 id="exercises-1"><a class="header" href="#exercises-1">Exercises</a></h2>
+<h2 id="exercises-2"><a class="header" href="#exercises-2">Exercises</a></h2>
 <ul>
 <li><a href="git/./git1.html">Git, part 1</a></li>
 <li><a href="git/./git2.html">Git, part 2</a></li>
@@ -978,21 +1060,18 @@ Switched to a new branch 'develop'
 <li>If necessary, participate in a discussion or review and make extra commits to address points that other developers have raised.</li>
 <li>Someone - usually not the developer who created the pull request - approves it, creating a merge commit in develop (or master).</li>
 </ol>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="posix-activity-2"><a class="header" href="#posix-activity-2">POSIX Activity 2</a></h1>
-<h2 id="videos-2"><a class="header" href="#videos-2">Videos</a></h2>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="shell-scripting"><a class="header" href="#shell-scripting">Shell Scripting</a></h1>
+<h2 id="videos-3"><a class="header" href="#videos-3">Videos</a></h2>
 <div class="table-wrapper"><table><thead><tr><th>Video</th><th style="text-align: right">Length</th><th>Slides</th></tr></thead><tbody>
 <tr><td><a href="https://web.microsoftstream.com/video/71b186df-c373-4b98-ba34-035679cb1ec6">Permissions</a></td><td style="text-align: right">20 minutes</td><td><a href="https://uob-my.sharepoint.com/:b:/g/personal/me17847_bristol_ac_uk/EUQ3xxCL4xlHtQ1M6uaLdW4Bc2sxbrCrLNQcinAUgCjmOg?e=ciQDX2">slides</a></td></tr>
-<tr><td><a href="https://web.microsoftstream.com/video/7b2657a6-a2d4-4c34-a642-da993d468851">Pipes 1</a></td><td style="text-align: right">20 minutes</td><td><a href="https://uob-my.sharepoint.com/:b:/g/personal/me17847_bristol_ac_uk/EdOsJY_EYlRIveTotkGszNoBWeGx5efiVPJPhhbiQfydTQ?e=RHGVol">slides</a></td></tr>
-<tr><td><a href="https://web.microsoftstream.com/video/d04fb18c-533b-4ffe-b8a1-f4d46e9b73d1">Pipes 2</a></td><td style="text-align: right">30 minutes</td><td><a href="https://uob-my.sharepoint.com/:b:/g/personal/me17847_bristol_ac_uk/EfGZcNx_ttNCsx8vpo2uZqIBERTzvUzap84BdzMfxLRuQw?e=Ty9yjZ">slides</a></td></tr>
 <tr><td><a href="https://web.microsoftstream.com/video/bbe017bf-c1b6-44a0-96cf-ef79a9b17f0e">shell scripting 1</a></td><td style="text-align: right">17 minutes</td><td><a href="https://uob-my.sharepoint.com/:b:/g/personal/me17847_bristol_ac_uk/Ebuz7SukPjRLhMYQd3NJRkkBhgkFxVutnYmcv622ePSxkg?e=8hhLWP">slides</a></td></tr>
 <tr><td><a href="https://web.microsoftstream.com/video/0a2a65bc-1655-4089-984f-53c9400dc2d3">shell scripting 2</a></td><td style="text-align: right">21 minutes</td><td><a href="https://uob-my.sharepoint.com/:b:/g/personal/me17847_bristol_ac_uk/EVMTcoOLqmVNiflYUpHfRhMB1XzttL_7gHYOux1qznX4ZA?e=mXRBtE">slides</a></td></tr>
 </tbody></table>
 </div>
-<h2 id="exercises-2"><a class="header" href="#exercises-2">Exercises</a></h2>
+<h2 id="exercises-3"><a class="header" href="#exercises-3">Exercises</a></h2>
 <ul>
-<li><a href="posix2/./permissions.html">File permissions</a></li>
-<li><a href="posix2/./pipes.html">Pipes</a></li>
-<li><a href="posix2/./script.html">shell scripting</a></li>
+<li><a href="posix3/./permissions.html">File permissions</a></li>
+<li><a href="posix3/./script.html">Shell scripting</a></li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="file-permissions"><a class="header" href="#file-permissions">File permissions</a></h1>
 <p>Log in to your vagrant VM for the following exercises.</p>
@@ -1129,49 +1208,7 @@ int main(int argc, char **argv) {
 <p>When vagrant boots your VM, it automatically sets up the shared folder, but this doesn't always work if you reboot the VM yourself.</p>
 </div>
 </div>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="pipes"><a class="header" href="#pipes">Pipes</a></h1>
-<p>The command <code>ls | head</code> runs ls and head and pipes the standard output of ls into the standard input of head.</p>
-<p>The following shell commands are particularly useful in pipes:</p>
-<ul>
-<li><code>cat [FILENAME [FILENAME...]]</code> writes the contents of one or more files to standard output. This is a good way of starting a pipe. If you leave off all the filenames, cat just reads its standard input and writes it to standard output.</li>
-<li><code>head [-n N]</code> reads its standard input and writes only the first N lines (default is 10 if you leave the option off) to standard output. You can also put a minus before the argument e.g. <code>head -n -2</code> to <em>skip the last 2 lines</em> and write all the rest.</li>
-<li><code>tail [-n N]</code> is like head except that it writes the last N lines (with a minus, it skips the first N ones).</li>
-<li><code>sort</code> reads all its standard input into a memory buffer, then sorts the lines and writes them all to standard output.</li>
-<li><code>uniq</code> reads standard input and writes to standard output, but skips repeated lines that immediately follow each other, for example if there are three lines A, A, B then it would only write A, B but if it gets A, B, A it would write all three. A common way to remove duplicate lines is <code>... | sort | uniq | ...</code>.</li>
-<li><code>grep [-iv] EXPRESSION</code> reads standard input and prints only lines that match the regular expression to standard output. With <code>-i</code> it is case-insensitive, and with <code>-v</code> it only prints lines that do <em>not</em> match the expression.</li>
-<li><code>sed -e COMMAND</code> reads lines from standard input, transforms them according to the command and writes the results to standard output. <code>sed</code> has its own command language but the most common one is <code>s/SOURCE/DEST/</code> which changes substrings matching the source regular expression into the destination one.</li>
-<li><code>wc [-l]</code> stands for word count, but with <code>-l</code> it counts lines instead. Putting a <code>wc -l</code> on the very end of a pipe is useful if you just want to know how many results a particular command or pipe produces, assuming the results come one per line.</li>
-</ul>
-<p>All these commands actually take an optional extra filename as argument, in which case they read from this file as input. For example, to display the first 10 lines of a file called <code>Readme.txt</code>, you could do either <code>cat Readme.txt | head</code> or <code>head Readme.txt</code>.</p>
-<h2 id="word-list-exercises---pipes-and-regular-expressions"><a class="header" href="#word-list-exercises---pipes-and-regular-expressions">Word list exercises - pipes and regular expressions</a></h2>
-<p>Most linux distributions come with a dictionary file <code>/usr/dict/words</code> that contains a list of English words in alphabetical order, for use in spell-checking programs. The list includes a selection of proper nouns, for example countries and cities. Alpine linux, true to its principles of being minimal, omits this file - but you can download one yourself with</p>
-<pre><code>wget https://users.cs.duke.edu/~ola/ap/linuxwords -O words
-</code></pre>
-<p><code>wget</code> is one of two utilities for downloading files, the other being <code>curl</code>. Note that the option for output file name is a capital O, not a lowercase o or a zero.</p>
-<p>Find one-line commands, possibly with pipes, to print the following to your terminal. You can either start each command with <code>cat words | ...</code> or do it without cat by providing the words file as an argument to the first command in your pipeline.</p>
-<p><em>If English is not your native language, ignore the guessing part - it is not assessed.</em></p>
-<ul>
-<li>The first word in the file. <em>Can you guess what it will be, it is a city in Europe?</em></li>
-<li>The last word in the file. <em>Can you guess this one, another city in Europe?</em></li>
-<li>The number of words in the words file - there is one word per line.</li>
-<li>The 6171st word in the file. <em>Can you read my mind and guess this word directly?</em></li>
-<li>All words containing the letter Q, capitalised. (A regular expression containing a string of one or more letters matches all strings that contain the expression as a substring.)</li>
-<li>All words starting with the letter X. The regular expression <code>X</code> would match an X anywhere in the word, but <code>^X</code> matches an X only at the start of the string.</li>
-<li>All words ending in j. (The expression <code>'j$'</code> matches a j only at the end of the string, but you have to single-quote it to stop the shell from interpreting the dollar sign). <em>Can you guess the word - it is a city in eastern Europe?</em></li>
-<li>The number of words containing the letter Q, ignoring case (e.g. capitalised or not).</li>
-<li>The first five words containing the letter sequence <code>cl</code>.</li>
-<li>All words containing the sequence &quot;kp&quot;, but not &quot;ckp&quot;. <em>Can you guess any of these?</em></li>
-<li>The last 15 words of exactly two letters. The expression <code>.</code> (period) matches a single character, and <code>'^...$'</code> for example would match all strings of the format <em>exactly three characters between start and end of string</em>. You need to quote it because of the dollar sign.</li>
-<li>All words from the first 100 words on the list, which contain the letter y.</li>
-<li>The first five words that are among the last 100 words on the list, and contain the letter y (whether capitalised or not).</li>
-<li>All three-letter words with no vowels (aeiou).The regular expression <code>'[aeiou]'</code> matches any string that contains one of the bracketed characters; you need quotes to stop the shell from interpreting the brackets. Remember to exclude words with capitalised vowels as well. <em>There are 12 of these, can you guess them all before looking?</em></li>
-<li>All words of exactly 7 letters, where the third one is an e and the word ends &quot;-ded&quot;. <em>This kind of search is really useful for crosswords. There are 9 words of this form, can you guess them?</em></li>
-</ul>
-<p>Bonus regular expression question:</p>
-<ul>
-<li>Find all words that start with a P (whether capitalised or not), and contain at least four instances of the letter a. Putting a <code>*</code> after something in a regular expression searches for <em>any number of repetitions of this, including 0</em> so for example <code>'a*'</code> would find words with any number of the letter a, including 0 (which is not what you want here). You need single quotes to stop the shell from expanding the <code>*</code>. <em>Can you guess the words? There are essentially four of them, two demonyms (for some reason one of them has a plural in the list, the other doesn't), and two nouns which are not proper nouns.</em></li>
-</ul>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="shell-scripting"><a class="header" href="#shell-scripting">Shell Scripting</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="shell-scripting-1"><a class="header" href="#shell-scripting-1">Shell Scripting</a></h1>
 <p>Shell scripting is a huge topic - the shell is a full programming language after all.
 In the video for this activity you have only seen a very brief introduction.</p>
 <h2 id="compile-helper-exercise"><a class="header" href="#compile-helper-exercise">Compile helper exercise</a></h2>
@@ -1197,661 +1234,14 @@ In the video for this activity you have only seen a very brief introduction.</p>
 </ul>
 <p>A couple of notes on <code>set -u</code>: if you write something like <code>rm -rf $FOLDER/</code> and <code>$FOLDER</code> isn't set, then you don't accidentally end up deleting the whole system! Of course, most <code>rm</code> implementations will refuse to delete <code>/</code> without the <code>--no-preserve-root</code> option, and you should not have that trailing slash in the first place. There was a <a href="https://drj11.wordpress.com/2015/01/20/steaming/">bug in a beta version of Steam for linux</a> where it tried to do <code>rm -rf &quot;$STEAMROOT/&quot;*</code> to delete all files in a folder (which explains the slash), but the variable in some cases got set to the <em>empty string</em>, which <code>-u</code> would not protect against. This was an installer script, so it ran as root which made things even worse.</p>
 <p><strong>Exercise</strong>: think of an example in a shell script where <code>pipefail</code> makes a difference, that is where the last command in a pipe could succeed even if a previous one fails. As a counter-example, <code>cat FILE | grep STRING</code> would fail even without <code>pipefail</code> if the file does not exist, because grep would immediately get end-of-file on standard input.</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="posix-activity-3"><a class="header" href="#posix-activity-3">POSIX Activity 3</a></h1>
-<h2 id="videos-3"><a class="header" href="#videos-3">Videos</a></h2>
-<div class="table-wrapper"><table><thead><tr><th>Video</th><th style="text-align: right">Length</th><th>Slides</th></tr></thead><tbody>
-<tr><td><a href="https://web.microsoftstream.com/video/8f01c778-9ead-4e15-b5ad-21305dc96eba">inodes</a></td><td style="text-align: right">18 minutes</td><td><a href="https://uob-my.sharepoint.com/:b:/g/personal/me17847_bristol_ac_uk/EUke3KQirYBEtq809FUGEjMBKbE9VWpbn2q7t9T6KrnGAA?e=kX4ZY6">slides</a></td></tr>
-<tr><td><a href="https://web.microsoftstream.com/video/bc1a7bdd-1f40-47e6-b86b-ec9eef84fe39">The TTY</a></td><td style="text-align: right">22 minutes</td><td><a href="https://uob-my.sharepoint.com/:b:/g/personal/me17847_bristol_ac_uk/EaUyN9P0dr5NoHkdvYGPRzkB2mR3hYuHqoJ4W1OqT1830w?e=YdPV0f">slides</a></td></tr>
-</tbody></table>
-</div>
-<h2 id="exercises-3"><a class="header" href="#exercises-3">Exercises</a></h2>
-<ul>
-<li><a href="posix3/./stat.html">inodes and system calls</a></li>
-<li><a href="posix3/./concurrent.html">Concurrent programming in POSIX</a></li>
-<li><a href="posix3/./cpipe.html">Pipes in C</a></li>
-<li><a href="posix3/./c_io.html">Input/Output in C</a></li>
-<li><a href="posix3/./posix_io.html">Input/Output in POSIX</a></li>
-<li><a href="posix3/./final.html">The final challenge</a></li>
-</ul>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="inodes-and-system-calls"><a class="header" href="#inodes-and-system-calls">Inodes and System Calls</a></h1>
-<p>In this exercise we will look under the hood of the <code>stat</code> system call, which returns information about an inode.</p>
-<p><em>Note: for this exercise it's even more important than usual that you are using Alpine linux in the emulator, as you will get different results if you try it on Windows Subsystem for Linux or on a Mac for example.</em></p>
-<p>A system call is a way for a linux user or program to interact with the kernel, and there are usually at least three ways of calling each one:</p>
-<ol>
-<li>Execute the system call directly in assembly.</li>
-<li>Use the wrapper function provided by your C library.</li>
-<li>Use a command-line program provided by your distribution.</li>
-</ol>
-<h2 id="preparation"><a class="header" href="#preparation">Preparation</a></h2>
-<p>Install the <code>musl-dev</code> package, which provides the header files for the C library, as well as <code>gcc</code> if you have not installed that yet.</p>
-<p>Have a look at the manual page <code>man stat</code> for the <code>stat</code> system call. The abbreviated headers are:</p>
-<pre><code class="language-C">#include &lt;sys/stat.h&gt;
-
-int stat(const char *pathname, struct stat *statbuf);
-int fstat(int fd, struct stat *statbuf);
-int lstat(const char *pathname, struct stat *statbuf);
-</code></pre>
-<p><code>stat</code> is the main system call: you give it a pathname and it fills a <code>struct stat</code> for you with information about the inode associated with this pathname, however if the pathname is a symbolic link then it follows the link and returns information about the target inode. If you do not want this behaviour, you can use <code>lstat</code> instead.</p>
-<p><code>fstat</code> takes an open file descriptor instead of a file name: this is fine for getting the inode information (in the kernel, a file descriptor contains an inode number) but you will not be able to get a file name back from this - remember, <em>files don't have names; names have files</em>.</p>
-<p>Later in the manual page, it explains the <code>struct stat</code> contents. Let's have a look at the sources directly though:</p>
-<ul>
-<li><code>nano /usr/include/sys/stat.h</code> shows you the header file and the function definitions, including the bitmasks for the mode bits e.g. <code>#define S_IRUSR 0400</code> is the &quot;user can read&quot; bit and the file type bits e.g. <code>#define S_IFDIR 0040000</code>. Note, in C, numbers with a leading 0 are octal!</li>
-<li>The definition of the <code>struct stat</code> is in another file included from <code>sys/stat.h</code>, namely <code>bits/stat.h</code>; open that in your editor too and have a look at it.</li>
-<li>The types of the fields in the structure (<code>dev_t</code>) etc. are yet in another file - <code>bits/alltypes.h</code> if you're curious - but eventually they get defined as <code>long</code>, through intermediate definitions of <code>_Int64</code> etc. Basically, on a 64-bit machine, most of these fields are 64 bits.</li>
-</ul>
-<p>Run the following short C program to check the size of your <code>struct stat</code>; I get 144 bytes but note down if you get something different:</p>
-<pre><code class="language-C">#include &lt;sys/stat.h&gt;
-#include &lt;stdio.h&gt;
-int main() {
-    printf(&quot;Size: %lu bytes\n&quot;, sizeof(struct stat));
-    return 0;
-}
-</code></pre>
-<h2 id="the-assembly-level"><a class="header" href="#the-assembly-level">The assembly level</a></h2>
-<p>Create a file with the following content - the convention for assembly files is usually to end in <code>.s</code>, so I've called mine <code>dostat.s</code>:</p>
-<pre><code class="language-asm">.section .text
-.global  _start
-
-_start:
-    mov $6,  %rax
-    lea str, %rdi
-    lea buf, %rsi
-    syscall
-
-    mov $60, %rax
-    mov $0,  %rdi
-    syscall
-
-str: .asciz &quot;/dev/stdin&quot;
-
-.section .data
-buf: .skip 144
-</code></pre>
-<p>Change the 144 in the last line if you got a different size for your structure.</p>
-<p>Let's see what's going on here:</p>
-<ol>
-<li><code>.section .text</code> is an assembly directive to say <em>the following is code</em>, more precisely <em>it goes in the code section (which we named 'text' for obscure historical reasons)</em>.</li>
-<li><code>.global _start</code> says to export the label <code>_start</code> to the linker, which is the assembly version of <code>main</code>: in fact, C programs really start at <code>_start</code> too as you can check by setting a breakpoint on this label in a debugger, this function is part of the C library and it sets a few things up and then calls <code>main</code>. When you return from <code>main</code>, then <code>_start</code> does some cleanup and exits the program cleanly with the correct return value.</li>
-<li>The way you invoke a system call is you put the system call number in the <code>rax</code> register, and parameters according to the platform convention - on Intel/AMD 64 bit, the first parameter goes in the <code>rdi</code> register, the second one in the <code>rsi</code> register. System calls and their parameters are documented <a href="https://blog.rchapman.org/posts/Linux_System_Call_Table_for_x86_64/">in this table</a> for example. Return values from system calls end up in the <code>rax</code> register again. Looking ahead a bit in our assembly code, system call 60 is <code>sys_exit</code> and takes an exit code in <code>rdi</code>, so the lines <code>mov $60, %rax; mov $0,  %rdi; syscall</code> are the equivalent of <code>return 0;</code> in a main function of a C program or <code>exit(0);</code> anywhere else (indeed, that is the last thing the C library <code>_start</code> will do when <code>main</code> returns to it).</li>
-<li>System call 6 is <code>sys_lstat</code>, so the lines <code>mov $6,  %rax; lea str, %rdi; lea buf, %rsi; syscall</code> call <code>sys_lstat(str, buf)</code> where both <code>str</code> and <code>buf</code> are pointers. (<code>lea</code> stands for <em>load effective address</em> and is similar to the <code>&amp;var</code> address-of operator in C).</li>
-<li><code>syscall</code> is an assembly instruction that hands control over to the operating system. It is comparable to a software interrupt as you might have learnt in Computer Architecture, but it is an optimised version (since many programs do a lot of system calls) that doesn't have the full overhead of the older interrupt mechanism on x86.</li>
-<li><code>.asciz</code> is a zero-terminated string in C style (which is what the kernel expects). <code>.section .data</code> says <em>the following goes in the data section</em>, which we need because the buffer variable needs to be written to and the code section is read-only when a program is running. <code>.skip</code> reserves a block of the given size in bytes, similar to <code>byte buf[144];</code> in C (you can read <code>char</code> for <code>byte</code> if you want).</li>
-</ol>
-<p>Assemble the program with</p>
-<ul>
-<li><code>as dostat.s -g -o dostat.o</code></li>
-<li><code>ld dostat.o -o dostat</code></li>
-</ul>
-<p>The first command is the assembler itself, which produces and object file (C compilers usually do this too, but you don't see it unless you ask for it). <code>-g</code> is the same as for gcc, it includes debug information. <code>ld</code> is the linker which produces an executable.</p>
-<p>You can run the program with <code>./dostat</code>, but it will simply exit with status 0. What we want to do is debug it with <code>gdb dostat</code> (install <code>gdb</code> with <code>apk</code> if you don't have it installed already), then do the following:</p>
-<ul>
-<li><code>break _start</code> to set a breakpoint.</li>
-<li><code>run</code> to start running (and hit the breakpoint).</li>
-<li><code>si</code> steps a single assembly instruction. Do this until you have passed the first <code>syscall</code> and land on the line <code>mov $60, %rax</code>.</li>
-<li>The memory at <code>buf</code> now contains filled-in <code>struct stat</code> for <code>/dev/stdin</code>, the standard input file. Look at this with <code>x/40xb &amp;buf</code> (memory dump, show 40 hex bytes starting at the buffer).</li>
-</ul>
-<p>Based on what you know about the <code>struct stat</code> memory layout, what is the inode number and mode of <code>/dev/stdin</code>? Note down the inode number in decimal, and the low 16 bits of the mode word in binary. Note that the memory layout is most likely little-endian, and you are working with 64-bit long integers.</p>
-<p>From this information, and the bit patterns in <code>/usr/include/sys/stat.h</code>, decode the file type and permissions of <code>/dev/stdin</code>.</p>
-<p>You can then quit gdb with <code>q</code>, and answer yes when it askes whether you want to terminate the program.</p>
-<h2 id="the-c-level"><a class="header" href="#the-c-level">The C level</a></h2>
-<p>We will now do the same in C. Create this program, I've called it <code>exstat.c</code>, then compile and run it:</p>
-<pre><code class="language-C">#include &lt;sys/stat.h&gt;
-#include &lt;stdio.h&gt;
-
-int main() {
-    struct stat buf;
-    char *str = &quot;/dev/stdin&quot;;
-    int r = lstat(str, &amp;buf);
-    if (r != 0) {
-        puts(&quot;An error occurred.&quot;);
-        return 1;
-    }
-    printf(&quot;The inode number is %lu.\n&quot;, buf.st_ino);
-    if (S_ISDIR(buf.st_mode)) { puts(&quot;It's a directory.&quot;);}
-    if (S_ISCHR(buf.st_mode)) { puts(&quot;It's a character device.&quot;);}
-    if (S_ISBLK(buf.st_mode)) { puts(&quot;It's a block device.&quot;);}
-    if (S_ISREG(buf.st_mode)) { puts(&quot;It's a regular file.&quot;);}
-    if (S_ISFIFO(buf.st_mode)) { puts(&quot;It's a FIFO.&quot;);}
-    if (S_ISLNK(buf.st_mode)) { puts(&quot;It's a soft link.&quot;);}
-    if (S_ISSOCK(buf.st_mode)) { puts(&quot;It's a socket.&quot;);}
-
-    return 0;
-}
-</code></pre>
-<p>Here we can see that we:</p>
-<ol>
-<li>Set up the buffer structure and execute the system call.</li>
-<li>Check the return value! If it's not 0, then an error occurred - the file <code>/usr/include/bits/errno.h</code> contains a table of error codes, although the system call will return the negative error code in register <code>rax</code>. The <code>man stat</code> manual page explains the meaning of each error code for this particular system call.</li>
-<li>Print the inode number (in decimal) and the file type.</li>
-</ol>
-<p>Check that you get the same inode number and file type as you did with the assembly version.</p>
-<h2 id="symbolic-links"><a class="header" href="#symbolic-links">Symbolic links</a></h2>
-<p>The point of checking the file type is that <code>/dev/stdin</code> is a symbolic link. To find out where it points, you can use this function:</p>
-<pre><code class="language-C">#include &lt;unistd.h&gt;
-ssize_t readlink(const char *pathname, char *buf, size_t bufsiz)
-</code></pre>
-<p>This is another system call wrapper (readlink is system call 89) which takes the pathname of a symbolic link and writes its contents (e.g. the file it points at) in a buffer. However, be aware of the following:</p>
-<ul>
-<li><code>readlink</code> does not zero-terminate its buffer! That is your responsibility as caller.</li>
-<li>The returned value (yet another unsigned long) indicates what happened:
-<ul>
-<li>A positive value indicates the number of bytes written, so you know where to put the zero byte at the end.</li>
-<li>If the return value is equal to the buffer size, then your buffer was too short, and the buffer may contain a truncated string.</li>
-<li>If the return value was negative, then an error occurred.</li>
-</ul>
-</li>
-</ul>
-<p>In the assembly version, the negative error code would land directly in <code>rax</code>. This is why system calls return negative error codes, to distinguish them from successful return values as a successful call will never write a negative number of bytes.</p>
-<p>However, the C wrapper is different as you can read in <code>man readlink</code>: it always returns -1 on error, but puts the error code (this time positive again) in a global variable called <code>errno</code>. You can match this against the codes in <code>errno.h</code> as before, and then check the manual page for an explanation of each one for this particular system call.</p>
-<p><strong>Exercise</strong>: write a C program that, starting with a filename you pass in <code>argv[1]</code>:</p>
-<ol>
-<li><code>lstat</code>s the file and prints the inode number and file type of the file.</li>
-<li>If the file is a symbolic link, calls <code>readlink</code> to get the link target and repeats from 1. for the target file.</li>
-</ol>
-<p>Since this is systems programming, make sure you check the return value of system calls, and correctly zero-terminate strings. If a system call fails, your program should print an error message and exit, and <em>never</em> look at the buffer or string the system call wrote to, as it might not contain valid data.</p>
-<p>Call your program for <code>/dev/stdin</code> and <code>/dev/stdout</code> to follow the chain of soft links for these files. Also try it on a few standard files and directories (including soft links).</p>
-<h2 id="on-the-command-line"><a class="header" href="#on-the-command-line">On the command line</a></h2>
-<p>To check the results of your program, the <code>stat</code> command line program (<code>/bin/stat</code>, in fact yet another soft link to busybox) calls stat and prints the output to the terminal. You can see with <code>stat --help</code> that it offers lots of custom formats.</p>
-<p>Note that the <code>stat</code> command line tool calls the <code>lstat</code> system call by default, e.g. it does not follow soft links. <code>stat -L</code> gets you the link-following version.</p>
-<p>To see how the command line version works, we are going to have a look at its sources.</p>
-<p>Clone the busybox repository with <code>git clone git://busybox.net/busybox.git</code> (if that doesn't work for some reason, try the https version). Inside the cloned folder, the source file is <code>coreutils/stat.c</code> - open that and have a look:</p>
-<ul>
-<li>The comments at the start are read by a custom build tool. The <code>//applet</code> line (currently line 38) says to build a command called <code>stat</code>.</li>
-<li><code>file_type</code> (line 123 at the time of writing) is the code for turning mode bits into strings, note there are lots of <code>#ifdef</code>s depending on what options you compile busybox with. Also, if you <code>stat</code> a file that does not match any known type, you get the string &quot;weird file&quot;.</li>
-<li>Most of the source file is the kind of &quot;plumbing&quot; that you need in any real C program. The interesting part is <code>do_stat</code> (line 588 at the time of writing):</li>
-</ul>
-<p>First, it allocates a <code>struct stat</code> buffer like we did before. </p>
-<p>The key line is currently line 605 and following:</p>
-<pre><code class="language-C">if ((option_mask32 &amp; OPT_DEREFERENCE ? stat : lstat) (filename, &amp;statbuf) != 0) {
-    bb_perror_msg(&quot;can't stat '%s'&quot;, filename);
-    return 0;
-}
-</code></pre>
-<p>Based on the value of <code>OPT_DEREFERENCE</code> (the <code>-L</code> command line flag), we call either the <code>stat</code> or <code>lstat</code> system call wrapper in the C library, and complain and exit if we don't get a success return value - remember, in case of errors, <code>struct stat statbuf</code> could be corrupted so we shouldn't look at it.</p>
-<p>The rest of the function is basically setting up one giant <code>printf</code> statement to output the results in the correct format. Note here that the <code>struct stat</code> still doesn't know anything about the file's name, as that's not in the inode, but the command-line program does because you gave the name as an argument. </p>
-<p>If the file is a soft link, then we call a version of readlink - currently <code>xmalloc_readlink_or_warn</code> in line 713 - to display the link target. This function is implemented in <code>libbb/xreadlink.c</code> where it currently delegates to <code>xmalloc_readlink</code> on line 20, which calls <code>readlink</code> in a loop with increasing buffer sizes until it finds one that is big enough for the target - have a look at how this is implemented.</p>
-<p>The main function for this utility is <code>stat_main</code>, currently on line 757. All this does is parse the command line arguments with <code>getopt32</code>, call the <code>do_stat</code> function in a loop for each command line argument (lines 787 and following in the current version) and then return success if all files were successfully processed, otherwise failure.</p>
-<p>If nothing else, the learning point of this activity is that system programming in C and calling syscalls directly is a lot more involved than you may think! Please don't be that kind of programmer who <a href="https://rachelbythebay.com/w/2014/08/19/fork/">ignores system call error values, and makes terrible things happen</a>.</p>
-<p>If you want to explore this code further, you can build your own busybox - install <code>ncurses</code> and <code>linux-headers</code>, then run <code>make menuconfig</code> to bring up a configuration menu (this is the part that uses ncurses, which is the menu system) and just select exit (with TAB then ENTER). Then you can <code>make</code> the whole thing.</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="concurrent-programming-in-posix"><a class="header" href="#concurrent-programming-in-posix">Concurrent programming in POSIX</a></h1>
-<p>In your second year, you will study concurrent programming using the go programming language, which provides an abstraction called <em>channels</em> that different <em>actors</em> can use to talk to each other. In the case of go, the actors are threads, but the same principle applies to a concurrent system with different processes, in which case channels are a kind of <em>inter-process communication (IPC)</em>. In POSIX, pipes are a kind of channel.</p>
-<ul>
-<li>If one process reads from a pipe, then this blocks the process until another process writes to it.</li>
-<li>If one process writes to a pipe, then this blocks the process until another process reads from it.</li>
-<li>If one process reads from a pipe and another process writes to it (it does not matter who goes first) then the data is transferred from the reader to the writer, and both processes continue.</li>
-</ul>
-<p>For example, when you use a command like <code>cat logfile | grep Error | wc -l</code> to count the number of lines containing the word &quot;Error&quot;, then there are three processes (not counting the terminal) and two pipes involved:</p>
-<p><img src="posix3/../resources/pipe1.png" alt="pipe diagram" /></p>
-<p><em>In this diagram, green boxes are processes with standard input on the left and standard output (top) and standard error (bottom) on the right. The little squares all represent file descriptors; a pipe has two of them, one each for reading and writing.</em></p>
-<p>This is not yet a fully concurrent system though, as data is only flowing in one direction: there are no loops.</p>
-<p>As a little example of something that does have a loop, we are going to use the <code>bc</code> calculator program, which reads a line from standard input, evaluates it as a formula, and writes the result to standard output:</p>
-<pre><code>alpine$ bc
-(you type ) 2+3
-(bc prints) 5
-(you type ) 1+1
-(bc prints) 2
-</code></pre>
-<p><code>bc</code> reads in a loop, so type <code>^D</code> to close its standard input, then you get back to the terminal.</p>
-<p>As a diagram, the interaction with bc looks like this:</p>
-<p><img src="posix3/../resources/pipe2.png" alt="pipe diagram of terminal interaction" /></p>
-<p><em>Here the terminal's right file descriptor is the one that the terminal reads, and the left one is where the terminal writes your keyboard input. But there's still a human in the loop here.</em></p>
-<p>We are going to write a program that can talk to <code>bc</code>. This means we have two processes, our program and <code>bc</code>, and they need to communicate with each other. We will use pipes for this, giving the following diagram where we call the pipes <em>up</em> and <em>down</em>:</p>
-<p><img src="posix3/../resources/pipe3.png" alt="pipe digram for a program controlling bc" /></p>
-<p><em>In this diagram, data flows through pipes from left to right, but logically the &quot;down&quot; pipe is for data flowing from our program downwards to bc, and the &quot;up&quot; pipe is for data flowing back up again. Standard error is not shown (it still goes to the terminal).</em></p>
-<p>The <code>bc</code> program does not need to know about any of this: it still reads expressions from its standard input, evaluates them, and writes them to standard output.</p>
-<p>Notice that when we used a pipe character <code>|</code> in the shell, it automatically set up the pipes for us so each pipe had one reader and one writer. When we set the pipes up ourselves, we will have to take care of this ourselves too.</p>
-<h2 id="the-first-program"><a class="header" href="#the-first-program">The first program</a></h2>
-<p>Study the following program. It tries to add the numbers from 1 to 10 by writing the sums (1+2 etc.) to standard output, and reading the result back from standard input. You can compile it with <code>gcc -std=c99 -Wall ipc1.c -o ipc1</code> and then run it yourself: it prints <code>1+2</code> and if you reply <code>3</code>, it follows up with <code>3+3</code> and so on. After ten steps, it prints the result and exits.</p>
-<pre><code class="language-c">/* ipc1.c */
-#include &lt;stdio.h&gt;
-#include &lt;string.h&gt;
-#include &lt;errno.h&gt;
-#include &lt;stdlib.h&gt;
-
-void check(int ok, char *where) {
-  if (ok &lt; 0) {
-    fprintf(stderr, &quot;Error in %s: %s\n&quot;, where, strerror(errno));
-    exit(1);
-  }
-}
-
-int evaluate(char *buffer, int len) {
-  fprintf(stderr, &quot;&gt; %s&quot;, buffer);
-
-  int ok = printf(&quot;%s&quot;, buffer);
-  if (ok &lt; 0) {
-    return -1;
-  }
-  char* p = fgets(buffer, len, stdin);
-  if (p == NULL) {
-    return -1;
-  }
-  fprintf(stderr, &quot;&lt; %s&quot;, buffer);
-  return 0;
-}
-
-int main() {
-  char buffer[100];
-  int ok;
-
-  setbuf(stdout, NULL);
-  setbuf(stdin, NULL);
-
-  strcpy(buffer, &quot;1+2\n&quot;);
-
-  ok = evaluate(buffer, sizeof(buffer));
-  check(ok, &quot;I/O&quot;);
-  
-  for (int i = 3; i &lt;= 10; i++) {
-    sprintf(buffer + strlen(buffer) - 1, &quot;+%u\n&quot;, i);
-    ok = evaluate(buffer, sizeof(buffer));
-    check(ok, &quot;I/O&quot;);
-  }
-  fprintf(stderr, &quot;The result is %s&quot;, buffer);
-  return 0;
-}
-</code></pre>
-<p>The program also prints a copy of all its input and output to standard error so you can see what data is being transferred. The transfer happens in <code>evaluate</code>:</p>
-<ol>
-<li>First, it prints the buffer to standard error.</li>
-<li>Then, it prints the buffer to standard output with printf. Checking the return value of printf is extremely paranoid, but we're about to use the program in a situation where standard output is not the terminal, so it could potentially fail.</li>
-<li>Next, it reads a line from standard input with fgets. Checking the return value here is good practice even if you're not paranoid.</li>
-<li>Finally, it prints the received value to standard error - note that if <code>fgets</code> had returned NULL, then it would not be safe to access the buffer.</li>
-</ol>
-<p>Once you are familiar with how the program works, you can comment out the lines that print to standard error if you like and run it again to see exactly what happens on standard input/output and nothing else. Then, uncomment the lines again.</p>
-<div class="advanced container">
-<header><span class="advanced-title"></span></header>
-<div class="container-content">
-<p>You could also use another trick to disambiguate standard output/error (for programs that don't, like this one, indicate which is which: the lines starting <code>&gt;</code> or <code>&lt;</code> are standard error).</p>
-<pre><code class="language-sh">escape=$(printf '\033')
-./ipc 2&gt; &gt;(sed -e &quot;s/\(.*\)/${escape}[32m\1${escape}[0m/&quot;)
-</code></pre>
-<p>This might mess up the last line on your terminal a bit, but you can reset it with Control+L.
-The first command sets a shell variable to the ANSI escape character. The second line redirects standard error (<code>2&gt;</code>) to a subprocess (<code>&gt;(...)</code>) which calls the stream editor <code>sed</code> to replace each line with the line surrounded by <code>\e[32m</code> (set colour to green) and <code>\e[0m</code> (reset colour). This will make the standard error lines appear in green. </p>
-<p>Incidentally, some versions of sed support the <code>\e</code> escape sequence directly, or at least the version <code>\x1b</code> that creates a character from its ASCII code in hexadecimal, but alpine's sed does not so you need the shell variable trick with a fall back to octal (033) notation!</p>
-</div>
-</div>
-<p>And now for the interesting part:</p>
-<ul>
-<li>Make two named pipes (FIFOs) with <code>mkfifo up</code> and <code>mkfifo down</code>.</li>
-<li>You will need two terminals open for the following. Either ssh into your alpine machine a second time or, better still, use tmux (<code>Control+B, %</code> opens a second terminal beside the first one; you can use <code>Control+B, Left</code> and <code>Control+B, Right</code> to switch between them).</li>
-<li>Run the program with <code>./ipc1 &gt; down &lt; up</code> to redirect standard input and output to the pipes. This blocks (exercise: which statement is it currently blocking on?).</li>
-<li>In the second terminal, run <code>bc &lt; down &gt; up</code>.</li>
-</ul>
-<p>Both processes should now terminate, and although you won't see the pipes directly, standard error of your program is printing a copy to the terminal, where <code>&gt;</code> is data sent to down pipe and <code>&lt;</code> is data received on the up pipe:</p>
-<pre><code>&gt; 1+2
-&lt; 3
-&gt; 3+3
-&lt; 6
-&gt; 6+4
-&lt; 10
-...
-&gt; 45+10
-&lt; 55
-The result is 55
-</code></pre>
-<p>Note that the program printed the &quot;The result is ...&quot; line to standard error too, otherwise you would not see it here.</p>
-<div style="break-before: page; page-break-before: always;"></div><h2 id="pipes-in-c"><a class="header" href="#pipes-in-c">Pipes in C</a></h2>
-<h2 id="types-of-inter-process-communication"><a class="header" href="#types-of-inter-process-communication">Types of inter-process communication</a></h2>
-<p>You can use any of the following for one process to talk to another:</p>
-<ul>
-<li>Pipes in the shell, e.g. <code>cat FILE | grep STRING</code>. We are going to learn how to manage these pipes ourselves from a C program.</li>
-<li>Named pipes (FIFOs), which are pipes that have filenames.</li>
-<li><code>popen</code>, a C function that launches a new process with a pipe either for reading or writing, but not both.</li>
-<li>TTYs, as explained in the lectures. The C interface for using TTYs starts with <code>posix_openpt()</code> and is fairly complicated.</li>
-<li>Sockets. This includes both network sockets (TCP) and also UNIX sockets, which are another type of special file. Unlike pipes, sockets provide bidirectional communication.</li>
-</ul>
-<p>We are going to be using pairs of pipes, since a single pipe only works in one direction.</p>
-<h2 id="c-functions"><a class="header" href="#c-functions">C functions</a></h2>
-<p>We will need the following functions for our task, all from <code>unistd.h</code>:</p>
-<ul>
-<li><code>int pipe(int fd[2])</code> creates a pipe. It takes an array of two integers and creates two file descriptors in them, one for the reading and one for the writing end of the pipe. Details in <code>man 2 pipe</code>, and like all system calls, you need to check the return value and look at <code>errno</code> if it is negative.</li>
-<li><code>int dup2(int oldfd, int newfd)</code> changes <code>newfd</code> to point to the same file descriptor as <code>oldfd</code>. This is the system call version of the shell redirect.</li>
-<li><code>pid_t fork()</code> creates a copy of the current process, and is the starting point for launching another process. Once you are sure that it has not returned an error, then the child process will see return value 0 and the parent process will see a return value &gt;0, which is the process id of the child process.</li>
-<li><code>int execve(const char *path, char *const argv[], char *const envp[])</code> replaces the current process by the indicated process, this is the C version of typing a shell command except that (1) the shell does fork-then-exec and (2) there is no shell involved, so you cannot use shell features like <code>*</code> expansion or builtin commands like cd here.</li>
-</ul>
-<p>Here is the basic way to launch a program from another, keeping the original program running:</p>
-<pre><code class="language-C">/* launch.c */
-#include &lt;unistd.h&gt;
-#include &lt;stdio.h&gt;
-#include &lt;errno.h&gt;
-#include &lt;string.h&gt;
-
-char* command = &quot;/bin/echo&quot;;
-char* argv[] = {&quot;echo&quot;, &quot;Hello&quot;, NULL};
-char* envp[] = {NULL};
-/* both argv and envp must be NULL-terminated arrays,
-   also argv[0] has to be the program name (busybox cares about this)
- */
-
-int main() {
-    int ok = fork();
-    if (ok &lt; 0) {
-        printf(&quot;fork() failed: %s\n&quot;, strerror(errno));
-        return 1;
-    }
-    /* ok, fork succeeded and the following code will now be running TWICE */
-    if (ok == 0) {
-        /* This is the child process */
-        ok = execve(command, argv, envp);
-        if (ok &lt; 0) {
-            printf(&quot;execve() failed: %s\n&quot;, strerror(errno));
-            return 1;
-        }
-        /* we will never get here as if execve succeeded, we're gone */
-    }
-    
-    /* if we got here, then we're the parent process */
-    printf(&quot;Launched a child process, it has pid %u.\n&quot;, ok);
-    
-    return 0;
-}
-</code></pre>
-<p>If you run this several times in a row, you might see the PID of the child increasing by 2 each time, why is this?</p>
-<p>And here is the basic way to work with pipes:</p>
-<pre><code class="language-C">#include &lt;stdio.h&gt;
-#include &lt;errno.h&gt;
-#include &lt;string.h&gt;
-#include &lt;stdlib.h&gt;
-#include &lt;unistd.h&gt;
-
-typedef int fd;
-typedef fd Pipe[2];
-fd Reader(Pipe p) { return p[0]; }
-fd Writer(Pipe p) { return p[1]; }
-
-void check(int ok, char *where) {
-  if (ok &lt; 0) {
-    fprintf(stderr, &quot;Error in %s: %s\n&quot;, where, strerror(errno));
-    exit(1);
-  }
-}
-
-int main() {
-  int ok;
-  Pipe p;
-  ok = pipe(p);           check(ok, &quot;opening pipe&quot;);
-  ok = close(Reader(p));  check(ok, &quot;closing reader&quot;);
-  /* here we can write to p */
-  ok = close(Writer(p));  check(ok, &quot;closing writer&quot;);
-  return 0;
-}
-</code></pre>
-<p>Let's go through this step by step.</p>
-<ul>
-<li>A file descriptor is simply an integer. so we make a typedef for this.</li>
-<li>A pipe is a pair of file descriptors for reading and writing, implemented as an array of length 2. The second typedef is C syntax for defining <code>Pipe</code> with a capital P to be <code>fd[2]</code> We use a capital P because lowercase <code>pipe</code> is already in use for the function that sets up a pipe.</li>
-<li>The functions <code>Reader</code> and <code>Writer</code> are just for convenience.</li>
-<li>In main, we declare a variable of type <code>Pipe</code> and open it with <code>pipe()</code>. Like all POSIX functions this returns a negative number in case of errors, and we have to check for this: it's not safe to use the pipe if it was not opened correctly. The pipe does not need a name as it's local to our program, but you can print the value of the integers if you like, it should be something like (3, 4) as 0-2 are already in use for standard input, output and error.</li>
-<li>In this example we want to use a pipe for writing to, so we close the reading end first. This is important when sharing a pipe between two processes: only one process should have each end open. (There are scenarios where you might want both ends of a pipe open in the same process, but they are more advanced than what we are doing here.)</li>
-<li>In the line where the comment is, we can write to the pipe - you will see how soon.</li>
-<li>Finally, before returning, we close the writing end of the pipe to ensure the process on the other end knows we're done: if we don't do this, they could get a &quot;broken pipe&quot; (EPIPE) error.</li>
-</ul>
-<p>We still need to learn how to write to a file descriptor, though. And this pipe won't do anything useful until we can connect something to the other end.</p>
-<div class="advanced container">
-<header><span class="advanced-title"></span></header>
-<div class="container-content">
-<p>If you look at the pattern for checking return values</p>
-<pre><code>ok = pipe(p); check(ok, &quot;create pipe&quot;);
-</code></pre>
-<p>you might be wondering why we don't just combine it into one:</p>
-<pre><code>check(pipe(p), &quot;create pipe&quot;);
-</code></pre>
-<p>This is absolutely fine except if we want to debug the function being called, as it makes using the debugger's step features more complicated (more on this in future weeks of this unit). It's just a personal preference of mine not to combine the two.</p>
-<p>Of course, if you want to use line-based features of debuggers like breakpoints a lot, you might even want to put the check on a separate line.</p>
-<p>You might have wondered if the problem with the all-in-one pattern is that it &quot;swallows&quot; the return value. That is not a problem: we could adapt <code>check</code> to return its first parameter as the return value if it's not an error, then where you do need the value you can do things like</p>
-<pre><code class="language-C">int pid = check(fork(), &quot;trying to fork&quot;);
-if (pid &gt; 0 ) { /* parent */ }
-else { /* child */ }
-</code></pre>
-<p>This is one of several patterns for error handling you will see in C, although this particular one is commonly implemented as a macro so it can also print the file and line where the error occurred:</p>
-<pre><code class="language-C">#define check(ok, where) _check(ok, where, __FILE__, __LINE__)
-int _check(int ok, char *where, char *file, int line) {
-  if (ok &lt; 0) {
-    fprintf(stderr, &quot;Error at %s on line %i while %s: %s\n&quot;, 
-            file, line, where, strerror(errno));
-    exit(1);
-  }
-  return ok;
-}
-</code></pre>
-<p>Since C99 you can also use <code>__func__</code> to get the name of the current function.</p>
-<p>You will find various patterns like this a lot if you start looking into real C code bases. Of course, most real programs will try to handle an error where possible rather than just exit the whole program.</p>
-</div>
-</div>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="inputoutput-in-c"><a class="header" href="#inputoutput-in-c">Input/Output in C</a></h1>
-<h2 id="reminder-c-file-handling"><a class="header" href="#reminder-c-file-handling">Reminder: C file handling</a></h2>
-<p>You should already be familiar with the following C functions from <code>&lt;stdio.h&gt;</code>, though you can look up details with <code>man 3 FUNCNAME</code> on a lab machine:</p>
-<ul>
-<li><code>FILE *fopen(const char *path, const char *mode)</code> opens a file, returning a file handle if successful and NULL otherwise. On some systems, it makes a difference whether you read a file in text mode (<code>r</code>) or binary mode (<code>rb</code>), the difference being that the former activates an extra &quot;line discipline&quot; in the C library. For example on Windows, text mode translates a lone <code>\n</code> character to <code>\r\n</code>. <em>On POSIX systems, there is no difference between text and binary mode.</em> </li>
-<li><code>int fclose(FILE *file)</code> closes a file, and flushes any pending writes. It returns 0 on success and nonzero in case of errors.</li>
-<li><code>int fflush(FILE *file)</code> flushes a file: for output, it makes sure any buffered characters are written out. For input, it throws away any unread input in the c library input buffer. It returns 0 on success and nonzero in case of errors. <code>fflush(NULL)</code> flushes all open files.</li>
-<li><code>int feof(FILE *file)</code> returns nonzero if the file in question has reached end-of-file, and zero otherwise. This is the only correct way to test for an end-of file condition.</li>
-<li><code>int ferror(FILE *file)</code> returns nonzero if the file in question is in an error state. For example after a <code>fread</code> that did not return the expected number of blocks, exactly one of <code>feof</code> and <code>ferror</code> will return nonzero, indicating what happened. In case of an error, the global variable <code>errno</code> will contain the error code.</li>
-<li><code>size_t fread(void *dest, size_t size, size_t num, FILE *file)</code> reads up to <code>num</code> blocks of <code>size</code> bytes into the buffer at <code>dest</code> and returns the number of blocks read (for a block size of 1, this is the number of bytes). If the return value is less than <code>num</code> then either an error occurred or the end of the file was reached.</li>
-<li><code>size_t fwrite(const void *buffer, size_t size, size_t num, FILE *file)</code> writes up to <code>num</code> blocks of <code>size</code> bytes from the <code>buffer</code> to the <code>file</code> and returns the number of blocks written. If this is less than <code>num</code>, then an error occurred during the writing.</li>
-</ul>
-<p>A number of utility functions build upon these:</p>
-<ul>
-<li><code>int fprintf(FILE *stream, const char *format, ...)</code> writes formatted output to a file, usually by calling <code>fwrite</code> behind the scenes. <code>printf</code> is a shortcut for <code>fprintf(stdout, ...)</code>. These functions to not print a newline unless you ask for one. It returns the number of characters written, or a negative number if an error occurred.</li>
-<li><code>int fputs(const char *string, FILE *file)</code> writes a zero-terminated string to the file, not including the zero terminator. <code>puts</code> is a shortcut that writes to <code>stdout</code> <em>and</em> adds a newline at the end. </li>
-<li><code>int fputc(int c, FILE *file)</code> writes a single character (<code>c</code> is cast to an <code>unsigned char</code> first) and <code>putchar</code> is a shortcut for writing to <code>stdout</code> (but does not add a newline, unlike <code>puts</code>).</li>
-<li><code>int fgetc(FILE *file)</code> reads a single character from a file (but returns it as an int, however it's safe to cast to char). <code>getchar</code> is a shortcut that reads from standard input.</li>
-<li><code>char *fgets(char *buffer, int size, FILE *file)</code> reads up to <code>size-1</code> bytes into the buffer, stopping early if it finds a null byte, newline or end-of-file character. It then adds a zero-terminator to the string. If it stopped early because of a newline, the newline is included in the buffer; if it stopped due to an end-of-file then this is not included. Older versions of C included a <code>gets</code> version that reads from standard input and does not take a size argument; this is insecure as it can produce a buffer overflow and it should never be used. <code>fgets</code> is safe if the length of the buffer is at least <code>size</code> bytes. It returns a pointer to buffer on success and NULL if an error occurred. End-of-file counts as an error for this purpose if no characters could be read at all.</li>
-</ul>
-<p>Fread (and fwrite) can return in one of three different states:</p>
-<ol>
-<li>The return value is equal to the number of items you asked to read/write (third argument). This means that the read/write was successful.</li>
-<li>The return value is not equal to the number of items, <code>ferror</code> returns nonzero on the file: an error occurred. The return value indicates how many items were successfully read or written before the error occurred. <code>errno</code> contains more information about what happened.</li>
-<li>The return value is not equal to the number of items, <code>ferror</code> returns zero on the file: end of file. Calling <code>feof</code> on the file will return nonzero. End of file when reading means exactly what it says; end of file when writing to something with a program on the other side (pipe, socket, pty) means the other side has closed the connection.</li>
-</ol>
-<h2 id="exercises-4"><a class="header" href="#exercises-4">Exercises</a></h2>
-<p>For our next exercise, we investigate how the C library file functions interact with the terminal. Compile this program:</p>
-<pre><code class="language-C">// program: input1.c //
-#include &lt;stdio.h&gt;
-#include &lt;string.h&gt;
-#include &lt;errno.h&gt;
-
-// Utility function to print an error message and return from main,
-// use: return error(code, text); // in main
-// prints text and the current errno value, then returns code.
-int error(int ret, char* text) {
-  int e = errno;
-  printf(&quot;Error %s: %s (code %i).\n&quot;, text, strerror(e), e);
-  return ret;
-}
-
-int main(int argc, char **argv) {
-    if (argc &lt; 2) { printf(&quot;Use: %s FILENAME\n&quot;, argv[0]); return 1; }
-    printf(&quot;Opening [%s]\n&quot;, argv[1]);
-    FILE *file = fopen(argv[1], &quot;r&quot;);
-    if (file == NULL) { return error(2, &quot;opening file&quot;); }
-    
-    char c, d;
-    size_t result = fread(&amp;c, 1, 1, file);
-    if (result &lt; 1) { 
-      if (ferror(file)) {
-        return error(2, &quot;reading first character&quot;);
-      } else {
-        puts(&quot;No first character - end of file?&quot;);
-        return 2;
-      }
-    }
-    printf(&quot;Read character: [%c].\n&quot;, c);
-    result = fread(&amp;d, 1, 1, file);
-    if (result &lt; 1) { 
-      if (ferror(file)) {
-        return error(2, &quot;reading second character&quot;); 
-      } else {
-        puts(&quot;No second character - end of file?&quot;);
-        return 2;
-      }
-    }
-    printf(&quot;Read another character: [%c].\n&quot;, d);
-    
-    int e = fclose(file);
-    if (e) { return error(2, &quot;closing file.&quot;); }
-    return 0;
-}
-</code></pre>
-<p>The essence of the program are the four lines</p>
-<pre><code>fread(&amp;c, 1, 1, file);
-printf(..., c);
-fread(&amp;d, 1, 1, file);
-printf(..., d);
-</code></pre>
-<p>which read two characters from the file indicated in its first argument, then print them out.
-Note that we print the first character before reading the second, as this will become relevant.</p>
-<p>The rest of the program is error handilng, and although some tutorials leave this off to make the code look easier, this sets you up for terrible habits - in the real world, errors happen and you need to handle them properly. So this program also shows the absolute minimum of error handling when you work with a file.</p>
-<ul>
-<li>Make a file <code>file</code> containing some characters such as <code>abc</code> and run <code>./input1 file</code>. Convince yourself that the program prints the first two characters (first two bytes, to be precise).</li>
-<li>Next, run <code>./input1 /dev/stdin</code>, to make it read from standard input. Notice that it blocks.
-Type a few characters such as <code>abc</code> and notice that the program prints nothing, until you press ENTER at which point both the &quot;Read character&quot; and &quot;Read another character&quot; output appears at once. <strong>What is the reason for this?</strong></li>
-<li>Restart the program, and when it is waiting for input, type <code>ab[BACKSPACE]c[ENTER]</code>. <strong>Explain what you see.</strong> </li>
-<li>What happens if you enter only one character and then press ENTER? What if you press ENTER and haven't typed anything at all?</li>
-<li>If you want, verify that using fgetc / getchar produces the same behaviour on standard input: the program does not proceed past the first read command until you press ENTER. You can even try debugging with gdb to make sure.</li>
-<li>Insert the line <code>setbuf(file, NULL);</code> just after the <code>fopen</code> line to make sure it's not the C library buffering.</li>
-</ul>
-<p>Have you answered the questions in bold above before reading on?</p>
-<ul>
-<li>Next, on your terminal, execute <code>stty -icanon</code>, which turns off the &quot;icanon&quot; setting. (The convention for <code>stty</code> is that an option name in an argument turns it on, except if prefixed with a minus which turns it off.)</li>
-<li>Rerun the program (<code>./input1 /dev/stdin</code>) and see what happens now.</li>
-<li>Turn &quot;icanon&quot; back on with <code>stty icanon</code>. </li>
-<li>Research what <code>icanon</code> does, for example in <code>man stty</code> on a lab machine (the alpine version of the manual is less helpful) or online.</li>
-<li><strong>Why does BACKSPACE and <code>^U</code> work in your bash shell, even with icanon turned off?</strong></li>
-</ul>
-<p>Next, we are going to experiment with the terminal in fully raw mode:</p>
-<ul>
-<li><code>stty -g</code> prints the current terminal setting in a format that you can save and load again. Take a look, then store them with the shell command <code>state=$(stty -g)</code>.</li>
-<li>Execute <code>stty raw</code>, then run your program again. <strong>The terminal looks a bit &quot;messed up&quot; - can you tell what is happening?</strong> Try another command like <code>ls</code> in raw mode too if that helps.</li>
-<li>Restore your terminal settings with <code>stty $state</code>, reading them back from the variable where you stored them. You can then reset the window with <code>^L</code>.</li>
-</ul>
-<p>There is an important warning here if you are ever benchmarking a program that produces (standard) output - the total running time will be the sum of the program's running time and the connected terminal's running time to process the output. For example, printing a sequence of newline characters is typically slower than printing a sequence of 'a's, even if both programs are doing <code>putc</code> in a loop, because the terminal has extra work to do on each newline.</p>
-<p>Here is another C program to experiment with:</p>
-<pre><code class="language-C">// input2.c //
-// Reads characters in a loop and prints their hex codes. 
-// Quit with 'Q'.
-
-#include &lt;stdio.h&gt;
-
-int main() {
-  unsigned char c;
-  int r;
-  setbuf(stdout, NULL);
-  while(1) {
-    r = fread(&amp;c, 1, 1, stdin);
-    if (r &lt; 1) break; // bail out on error or eof
-    if (c == 'Q') break;
-    printf(&quot;(%02X) &quot;, c);
-  }
-  return 0;
-}
-</code></pre>
-<ul>
-<li>What do you expect to happen if you run this in a &quot;normal&quot; terminal and type a few characters?</li>
-<li>Run it in a terminal with icanon turned off and type a few characters. Notice that you can still cancel it with <code>^C</code>.</li>
-<li>Run it in a terminal in raw mode and type a few characters. What happens now when you press <code>^C</code>?</li>
-</ul>
-<p>Luckily, we built in another way to quit the program with Q!</p>
-<ul>
-<li>In raw mode, try a few &quot;special&quot; keys such as ENTER, ESC, the arrow keys, function keys (F1, F2) etc.</li>
-<li>We turned off buffering for standard <em>output</em>. Why is this important - what happens otherwise and who is doing the buffering?</li>
-</ul>
-<p>What actually happens when you press Control-C in a terminal in &quot;cooked&quot; mode is it sends the signal <code>SIGINT</code> (interrupt) to the connected program - the default behaviour for this signal is to terminate the program. Putting the terminal in raw mode just passes the control code for Control-C on to the program, though it would still quit if you sent it a SIGINT another way (e.g. with the <code>kill</code> command from another terminal). However, you could also write a signal handler in your own program that reacts to SIGINT and does something else, for example just ignores the signal.</p>
-<p>When you type say an <code>a</code>, even in raw mode, the character appears on your screen even though there's no print command for it. This is the terminal echo; you can turn even this off with <code>stty -echo</code> but you are now typing blind! You can still start your program with <code>./input2</code> followed by ENTER, and it will still print the hex codes of everything you type from then on until you press Q but it will no longer show you the characters themselves. If you saved the terminal state before, then typing <code>stty $state</code> and ENTER will get you your echo back.</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="inputoutput-in-posix"><a class="header" href="#inputoutput-in-posix">Input/output in POSIX</a></h1>
-<p>Both the C library and the POSIX standard library contain file I/O functions. Usually, the C library ones build on the POSIX ones if you are on a POSIX system.</p>
-<p>The POSIX I/O functions are declared in <code>fcntl.h</code> and <code>unistd.h</code>. The main ones are:</p>
-<h2 id="open-and-close"><a class="header" href="#open-and-close">Open and Close</a></h2>
-<ul>
-<li><code>int open(const char *pathname, int flags, [mode_t mode])</code> opens a file and returns a file descriptor. The flags are the boolean OR (<code>|</code>) of one or more of the following:
-<ul>
-<li><code>O_CREAT</code>: if the file does not exist, create it. In this case the <em>optional</em> mode parameter can be used to specify the permissions for the newly created file. If the <code>O_CREAT</code> flag is omitted and the file does not exist, <code>open</code> returns an error.</li>
-<li><code>O_EXCL</code>: return an error if the file already exists (only really useful together with <code>O_CREAT</code>).</li>
-<li><code>O_PATH</code>: don't really open the file, just make a file descriptor (that you can use to e.g. <code>stat</code> the file). In this case you do not need one of the three flags mentioned in the next point.</li>
-<li><code>O_RDONLY</code>, <code>O_WRONLY</code>, <code>O_RDWR</code>: exactly one of these mutually exclusive flags must be set to indicate whether you want read, write or both access modes on the file.</li>
-<li><code>O_TRUNC</code>: if the file already exists, then its previous contents are overwritten if you open it to write.</li>
-<li><code>O_NONBLOCK</code>: this is the most interesting option and the main reason why you might want to use <code>open</code> over <code>fopen</code>. More details on this in the next activity.</li>
-<li>There are a lot more flags that you can see with <code>man 2 open</code>.</li>
-</ul>
-</li>
-<li>
-<ul>
-<li><code>int close(int fd)</code>: close a file descriptor. Returns 0 on success and -1 (setting errno) on error.</li>
-</ul>
-</li>
-</ul>
-<p>You might wonder how a C function call can have an <em>optional</em> parameter. The function is actually declared in <code>fcntl.h</code> as <code>int open(const char*, ...)</code> where the ellipsis means <em>any number of parameters of any type</em> just like <code>printf</code> uses.</p>
-<p>If <code>open()</code> fails, it returns a negative number that indicates the error code: see <code>errno.h</code> for the names of the codes and the manual page (<code>man 2 open</code>) for what each one means for this function.</p>
-<h2 id="nonblocking-io"><a class="header" href="#nonblocking-io">(Non)blocking IO</a></h2>
-<p>When you read from a regular file, there is a short delay while the kernel does the actual reading for you - possibly it has to fetch the data from disk. This is not what is meant by blocking. However, when you read from a pipe (e.g. you call <code>a | b</code> in the shell and <code>b</code> reads from standard input) or from a named pipe (FIFO), then if no process is connected to the writing end, your system call blocks until someone writes to the pipe.</p>
-<p>The Posix functions offer an option <code>O_NONBLOCK</code> that makes a call fail instead of block. This is one of the reasons that you might use <code>read</code> directly rather than <code>fread</code>. While this is an important topic for concurrent programming (and especially network programming), that can wait until second year.</p>
-<h2 id="read-and-write"><a class="header" href="#read-and-write">Read and Write</a></h2>
-<ul>
-<li><code>ssize_t read(int fd, void *buf, size_t count)</code>: read up to <code>count</code> bytes from the file descriptor <code>fd</code> into the buffer. In case of an error, this returns -1 and puts the error code in <code>errno</code>. If the end of file is reached, then the return value might be less than count (possibly zero) but this does not count as an error.</li>
-<li><code>ssize_t write(int fd, const void *buf, size_t count)</code>: the same but for writing to a file (descriptor).</li>
-</ul>
-<p>Before you use any of these functions, there are two warnings. The small one is that unlike the C library which provides <em>buffered</em> input/output, the POSIX functions do not - so while it's ok to read a large file one character at a time with <code>fread</code> due to buffering, this becomes really inefficient if you use the basic <code>read</code>.</p>
-<p>The big warning is that checking return values is even more important than usual because these functions can return two kinds of errors: fatal ones (e.g. file not found) and temporary ones, which basically means <em>try again</em>, so in some cases the correct pattern to use these functions is to call them in a loop that repeats until the function either succeeds or returns a fatal error. Specifically, <code>read()</code> can return any of the following:</p>
-<ul>
-<li>-1, <code>errno = EINTR</code>: the call was interrupted, try again.</li>
-<li>-1, <code>errno = EAGAIN</code> or <code>errno = EWOULDBLOCK</code>: you have requested non-blocking IO, and the call would block.</li>
-<li>-1, any other errno: a fatal error occurred and <code>errno</code> gives more information. You must not retry the call.</li>
-</ul>
-<h2 id="exercise"><a class="header" href="#exercise">Exercise</a></h2>
-<p>In the sources for busybox (<code>git clone git://busybox.net/busybox.git</code>), use your shell skills to find the source file and line where the function <code>safe_read</code> is defined, and study the pattern used there to operate <code>read</code> in a loop.</p>
-<div style="break-before: page; page-break-before: always;"></div><h2 id="the-final-challenge"><a class="header" href="#the-final-challenge">The final challenge</a></h2>
-<p>The final challenge for this part of the unit is to write a C program that uses pipes to interact with bc to add the numbers from 1 to 10, as an example of concurrency and inter-process communication in action. For this, you will need to put together items from the previous pages for this activity.</p>
-<p>The general ideas are:</p>
-<ol>
-<li>Create two pipe variables called <code>up</code> and <code>down</code>.</li>
-<li>Fork the process. This shares the pipes between both copies of the process.</li>
-<li>The parent process will write to the down pipe and read from the up pipe, so it should close the down reader and the up writer.</li>
-<li>The child process closes the down writer and the up reader, redirects its standard input to the down reader and its standard output to the up writer, and then execs <code>bc</code>. This keeps the redirected standard input and output.</li>
-<li>The parent process now writes its sums starting with <code>1+2</code> to the down writer with <code>write</code> and then uses <code>read</code> on the up reader to get the result. You can use a function <code>evaluate()</code> like in the previous example that handles the reading/writing and prints debug information to standard output (we don't need standard error as the pipe is a separate file descriptor).</li>
-<li>The parent cleanly closes the pipes when it is done, and writes the result to standard output.</li>
-</ol>
-<p>Two constraints here:</p>
-<ul>
-<li>All calls to Posix or file I/O functions <em>must</em> be checked for error return values. It is ok to terminate the program in case of fatal errors rather than try and fix the cause, but not to just carry on ignoring the return value. You can reuse the <code>check()</code> function for this.</li>
-<li>Calls to <code>read</code> and <code>write</code> must be assumed to be able to fail with <code>EINTR</code>, in which case they need to be retried, so these functions must be called from within loops as you saw in the busybox sources.</li>
-</ul>
-<p>The one new function you need to know is <code>int dup2(int src, int dest)</code> which redirects the destination to be a duplicate of the source. For example if <code>dr</code> is a file decriptor for the down reader, then <code>ok = dup2(dr, 0)</code> redirects standard input (file descriptor 0) to read from the down reader. Of course, you have to check the return value <code>ok</code>!</p>
-<div class="advanced container">
-<header><span class="advanced-title"></span></header>
-<div class="container-content">
-<p>One way of using <code>dup2</code> is to redirect your own standard output to a file, then any calls to <code>printf</code> or other functions from then on should end up in the file. If you later on want to restore the original standard output, you can first call <code>int dup(int fd)</code> which makes a copy of the file descriptor - for example, if a file is open on file descriptor 3, then</p>
-<pre><code class="language-C">saved = dup(1);      check(saved, &quot;duplicating standard output&quot;);
-ok = dup2(3, 1);     check(ok, &quot;redirecting standard output&quot;);
-/* any printf etc here will go to the file on fd 3 */
-ok = dup2(saved, 1); check(ok, &quot;restoring standard output&quot;);
-ok = close(saved);   check(ok, &quot;closing duplicate&quot;);
-</code></pre>
-<p>shows how you can restore the original standard output by making a copy. If no other file descriptors are open, then <code>saved</code> will likely have a value of 4, as file descriptors are just numbers to communicate with the kernel and the kernel usually gives you the next consecutive unused one when you open or duplicate a file descriptor.</p>
-</div>
-</div>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="build-tools-1"><a class="header" href="#build-tools-1">Build Tools 1</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="build-tools"><a class="header" href="#build-tools">Build Tools</a></h1>
 <h2 id="videos-4"><a class="header" href="#videos-4">Videos</a></h2>
-<div class="table-wrapper"><table><thead><tr><th>Video</th><th style="text-align: right">Length</th><th>Slides</th></tr></thead><tbody>
-<tr><td><a href="https://web.microsoftstream.com/video/10926ab8-e10e-43b4-b486-495ce9f775c2">Debugging</a></td><td style="text-align: right">34 minutes</td><td><a href="https://uob-my.sharepoint.com/:b:/g/personal/me17847_bristol_ac_uk/EX0-s0boltxDq0oNPgudC40BsWc1PnK6pEWXJuRabPQnHA?e=ccd8Gh">slides</a></td></tr>
-</tbody></table>
-</div>
-<h2 id="exercise-1"><a class="header" href="#exercise-1">Exercise</a></h2>
-<ul>
-<li><a href="build1/./exercise.html">Debugging exercise</a></li>
-</ul>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="debugging-exercise"><a class="header" href="#debugging-exercise">Debugging exercise</a></h1>
-<p>Clone the repository <code>git@github.com:cs-uob/COMS10012</code> if you have not done so already and open the folder <code>code/debugging</code>.</p>
-<p>There is a program <code>stackcalc.c</code> that attempts to implement the specification in <code>stackcalc.txt</code> for a RPN calculator, but it does not work correctly. For example, <code>1 2 +</code> should produce <code>3.0000</code> but produces <code>Error, operator on empty stack</code>. (Read the notes in the text file about how to compile the program with the required library.)</p>
-<p>Your exercise is to debug and fix the program, making as few changes to the general structure as possible (so don't just rewrite the whole thing from scratch).</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="build-tools-2"><a class="header" href="#build-tools-2">Build Tools 2</a></h1>
-<h2 id="videos-5"><a class="header" href="#videos-5">Videos</a></h2>
 <div class="table-wrapper"><table><thead><tr><th>Video</th><th style="text-align: right">Length</th><th>Slides</th></tr></thead><tbody>
 <tr><td><a href="https://web.microsoftstream.com/video/48cac422-9b33-4630-8c85-517f1f7cd619">Build Tools 1</a></td><td style="text-align: right">17 minutes</td><td><a href="https://uob-my.sharepoint.com/:b:/g/personal/me17847_bristol_ac_uk/EfuDdA92T65GqK6H_89K9IYBaFKiwvRwj7F-unUeP2iB1Q?e=TlIwVN">slides</a></td></tr>
 <tr><td><a href="https://web.microsoftstream.com/video/0edff26c-c5ee-4ac6-9ea8-42238d98a4f1">Build Tools 2</a></td><td style="text-align: right">12 minutes</td><td><a href="https://uob-my.sharepoint.com/:b:/g/personal/me17847_bristol_ac_uk/EYzpCf0Y0pBNvGLdeJ3bHHcBZBE7HULs1h8lCNA_NIw1XQ?e=lK2prk">slides</a></td></tr>
 </tbody></table>
 </div>
-<h2 id="exercises-5"><a class="header" href="#exercises-5">Exercises</a></h2>
+<h2 id="exercises-4"><a class="header" href="#exercises-4">Exercises</a></h2>
 <ul>
 <li><a href="build2/c.html">C</a></li>
 <li><a href="build2/python.html">Python</a></li>
@@ -2154,9 +1544,42 @@ public String mainPage() {
 <p>The <code>@GetMapping</code> means, when a HTTP GET request comes in for a URL with the path in the annotation (such as a browser would send), then run this function. For example, accessing <code>localhost:8080/pages/index.html</code> would look for a mapping <code>/pages/index.html</code> where as the <code>/</code> mapping covers when you type no path at all. You can start to see that URL paths on the web are modelled on POSIX paths as you learnt in this unit, with forward slashes and a concept of a &quot;root folder&quot; <code>/</code> which is what gets returned when you type a website's name in your browser without a path on the end.</p>
 <p>You've seen that build tools like maven automate the process of downloading the libraries your project needs and compiling your project. The Spring Framework automates (as far as possible) the process of running these libraries when your application starts, and getting them all to work nicely together (there is a <em>lot</em> going on in the background from a web request arriving to your function being called to get the page contents).
 The obvious next step would be to use thymeleaf to render HTML templates to make proper pages. This is indeed something you'll learn about later in this unit and in your second-year software project next year, but there are a few more steps you'll need to know to do this, and I don't want to go into that today - that's quite enough material for one workshop.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="build-tools-1"><a class="header" href="#build-tools-1">Build Tools 1</a></h1>
+<h2 id="videos-5"><a class="header" href="#videos-5">Videos</a></h2>
+<div class="table-wrapper"><table><thead><tr><th>Video</th><th style="text-align: right">Length</th><th>Slides</th></tr></thead><tbody>
+<tr><td><a href="https://web.microsoftstream.com/video/10926ab8-e10e-43b4-b486-495ce9f775c2">Debugging</a></td><td style="text-align: right">34 minutes</td><td><a href="https://uob-my.sharepoint.com/:b:/g/personal/me17847_bristol_ac_uk/EX0-s0boltxDq0oNPgudC40BsWc1PnK6pEWXJuRabPQnHA?e=ccd8Gh">slides</a></td></tr>
+</tbody></table>
+</div>
+<h2 id="exercise"><a class="header" href="#exercise">Exercise</a></h2>
+<ul>
+<li><a href="build1/./exercise.html">Debugging exercise</a></li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="debugging-exercise"><a class="header" href="#debugging-exercise">Debugging exercise</a></h1>
+<p>Clone the repository <code>git@github.com:cs-uob/COMS10012</code> if you have not done so already and open the folder <code>code/debugging</code>.</p>
+<p>There is a program <code>stackcalc.c</code> that attempts to implement the specification in <code>stackcalc.txt</code> for a RPN calculator, but it does not work correctly. For example, <code>1 2 +</code> should produce <code>3.0000</code> but produces <code>Error, operator on empty stack</code>. (Read the notes in the text file about how to compile the program with the required library.)</p>
+<p>Your exercise is to debug and fix the program, making as few changes to the general structure as possible (so don't just rewrite the whole thing from scratch).</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="shell-scripting-2"><a class="header" href="#shell-scripting-2">Shell Scripting</a></h1>
+<h2 id="videos-6"><a class="header" href="#videos-6">Videos</a></h2>
+<div class="table-wrapper"><table><thead><tr><th>Video</th><th style="text-align: right">Length</th><th>Slides</th></tr></thead><tbody>
+<tr><td><a href="https://web.microsoftstream.com/video/71b186df-c373-4b98-ba34-035679cb1ec6">Permissions</a></td><td style="text-align: right">20 minutes</td><td><a href="https://uob-my.sharepoint.com/:b:/g/personal/me17847_bristol_ac_uk/EUQ3xxCL4xlHtQ1M6uaLdW4Bc2sxbrCrLNQcinAUgCjmOg?e=ciQDX2">slides</a></td></tr>
+<tr><td><a href="https://web.microsoftstream.com/video/bbe017bf-c1b6-44a0-96cf-ef79a9b17f0e">shell scripting 1</a></td><td style="text-align: right">17 minutes</td><td><a href="https://uob-my.sharepoint.com/:b:/g/personal/me17847_bristol_ac_uk/Ebuz7SukPjRLhMYQd3NJRkkBhgkFxVutnYmcv622ePSxkg?e=8hhLWP">slides</a></td></tr>
+<tr><td><a href="https://web.microsoftstream.com/video/0a2a65bc-1655-4089-984f-53c9400dc2d3">shell scripting 2</a></td><td style="text-align: right">21 minutes</td><td><a href="https://uob-my.sharepoint.com/:b:/g/personal/me17847_bristol_ac_uk/EVMTcoOLqmVNiflYUpHfRhMB1XzttL_7gHYOux1qznX4ZA?e=mXRBtE">slides</a></td></tr>
+</tbody></table>
+</div>
+<h2 id="exercises-5"><a class="header" href="#exercises-5">Exercises</a></h2>
+<ul>
+<li><a href="posix3/./permissions.html">File permissions</a></li>
+<li><a href="posix3/./script.html">Shell scripting</a></li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="inodes-and-system-calls"><a class="header" href="#inodes-and-system-calls">inodes and system calls</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="concurrent-programming-in-posix"><a class="header" href="#concurrent-programming-in-posix">Concurrent programming in POSIX</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="pipes-in-c"><a class="header" href="#pipes-in-c">Pipes in C</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="inputoutput-in-c"><a class="header" href="#inputoutput-in-c">Input/Output in C</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="inputoutput-in-posix"><a class="header" href="#inputoutput-in-posix">Input/Output in POSIX</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="the-final-challenge"><a class="header" href="#the-final-challenge">The final challenge</a></h1>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="introduction-to-sql"><a class="header" href="#introduction-to-sql">Introduction to SQL</a></h1>
 <p>This is the first of four activities to teach you about relational databases and the SQL programming language.</p>
-<h2 id="videos-6"><a class="header" href="#videos-6">Videos</a></h2>
+<h2 id="videos-7"><a class="header" href="#videos-7">Videos</a></h2>
 <p>The videos for this activity are:</p>
 <div class="table-wrapper"><table><thead><tr><th>Video</th><th style="text-align: right">Length</th><th>Slides</th></tr></thead><tbody>
 <tr><td><a href="https://web.microsoftstream.com/video/b3d41a41-17ec-4194-bec1-9666cc234e40">Introduction to databases</a></td><td style="text-align: right">16 minutes</td><td><a href="https://uob-my.sharepoint.com/:b:/g/personal/me17847_bristol_ac_uk/EX_d8Ny3NAtPuVuybL02Mf8BmK-iwH_AAZKU8aa03RWNow?e=qvMIo6">PDF</a></td></tr>
@@ -2314,25 +1737,6 @@ mysql -e 'source /vagrant/sample-data.sql'
 <p>This is also a good point to mention another fact of how marks and credit points work: exam boards. At the end of each academic year around May, your unit directors all report their marks for each student to an exam board, which sits and decides on final marks and awarding credit. For example, an exam board can moderate the marks for a unit. This is why you do not get your exam marks until a long time after the exam has happened, even if it's a multiple choice exam that can be marked automatically: the marks still have to go through an exam board. (There is another, smaller exam board around the start of Teaching Block 2 so you don't have to wait until summer for your January exam marks to be released.)
 If you want to model this in your schema, the idea here is that a student has two marks associated with each unit: the &quot;actual mark&quot; (the input to the exam board) and the &quot;agreed mark&quot; (the one that comes out of the board and goes on your transcript). Of course, for most students most of the time, the two are the same. Your schema will need to store &quot;agreed marks&quot; explicitly, but there are ways of doing the model that does not store the &quot;actual mark&quot; directly. Think about how you could recompute it from other information in the database - we will of course learn how to do this in SQL in a later activity.</p>
 <p>The key idea in relational modelling is not to store information more than once if you can avoid it. If you have stored in several places that Fred is taking Introduction to Programming, and then Fred switches his units, you don't want to end up with a situation where this change is only reflected in some parts of the database.</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="sql-for-beginners"><a class="header" href="#sql-for-beginners">SQL for beginners</a></h1>
-<p>This is the second activity of four to teach you about relational databases and the SQL programming language.</p>
-<p>We introduced a whole new programming language in the first half of
-this week's content... rewatch the intro to SQL if it's still confusing
-(or read a book).</p>
-<h2 id="videos-7"><a class="header" href="#videos-7">Videos</a></h2>
-<p>The videos for this activity are:</p>
-<div class="table-wrapper"><table><thead><tr><th>Video</th><th style="text-align: right">Length</th><th>Slides</th></tr></thead><tbody>
-<tr><td><a href="https://web.microsoftstream.com/video/8f2881d9-82f7-4364-a227-e555b776cda0">Intro to SQL</a></td><td style="text-align: right">29 minutes (repeat)</td><td><a href="https://uob-my.sharepoint.com/:b:/g/personal/me17847_bristol_ac_uk/EaUps_sEdCNAneB4qz3VcS0Bw-yqRF7knK6ODUGu00GtNA">PDF</a></td></tr>
-<tr><td><a href="https://web.microsoftstream.com/video/6a9b6876-9e38-4e92-afed-7aaa872714cf?list=studio">Normal Forms</a></td><td style="text-align: right">14 minutes</td><td><a href="https://uob-my.sharepoint.com/:b:/g/personal/me17847_bristol_ac_uk/EQzXXyCAs-NCicgguerjs2AB6uzpeLsteXg2I07g0MjLZg?e=SzrlgF">PDF</a></td></tr>
-</tbody></table>
-</div>
-<h2 id="exercises-7"><a class="header" href="#exercises-7">Exercises</a></h2>
-<ul>
-<li><a href="db2/./explore-database.html">Explore the database</a></li>
-<li><a href="db2/./elections.html">Bristol elections</a></li>
-<li><a href="db2/./census.html">The UK census</a></li>
-<li><a href="db2/./normalforms.html">Normal forms</a></li>
-</ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="explore-the-database"><a class="header" href="#explore-the-database">Explore the database</a></h1>
 <p>Open the virtual machine and type <code>mysql</code>. Assuming you have installed the database correctly as in the previous activity, you should see the prompt <code>MariaDB [(none)]&gt;</code> which shows that you are connected to a database server but you have not selected a database yet.</p>
 <p>Have a look at the databases that exist with the command</p>
@@ -2419,7 +1823,7 @@ FROM Candidate
 INNER JOIN Party ON Candidate.party = Party.id
 INNER JOIN Ward ON Candidate.ward = Ward.id
 </code></pre>
-<h2 id="exercises-8"><a class="header" href="#exercises-8">Exercises</a></h2>
+<h2 id="exercises-7"><a class="header" href="#exercises-7">Exercises</a></h2>
 <p>Find SQL statements to answer the following questions. Your answer to each question should be a single query, and you should not hard-code any ids. For example, if a question is about the Labour party, you should use the string <code>'Labour'</code> in your query somewhere, not look up the party id and hard-code that in your query.</p>
 <p>Although you can answer all the exercises in this section by taking the join strategy and adding clauses where necessary, there is sometimes a quicker way. But if you don't know where to start, consider how you would extract the result you want from the joined table. The WHERE clause determines which rows appear in the result and the SELECT clause picks the columns that appear in the result.</p>
 <ol>
@@ -2467,7 +1871,7 @@ INNER JOIN Ward ON Candidate.ward = Ward.id
 </code></pre>
 <p>This row records that in ward <code>E05000001</code> (Aldersgate), 54 women (gender=1) said that they worked as &quot;Managers, directors and senior officials&quot; (occId=1).</p>
 <p>Note how (in the ER diagram) the primary key of the Statistic table is a composite of three columns (wardId, occId, gender). This is exactly what you would expect in a table that has one data value per ward, occupation class and gender.</p>
-<h2 id="exercises-9"><a class="header" href="#exercises-9">Exercises</a></h2>
+<h2 id="exercises-8"><a class="header" href="#exercises-8">Exercises</a></h2>
 <ol>
 <li>The university of Bristol is situated in the <code>Cabot</code> ward (ward names are not always distinct, but this one is). Find the names and codes of the CLU, region and country containing the Cabot ward (CLU = county level unit = &quot;row in County table&quot;).</li>
 <li>If you used multiple SQL queries for the last question, do it in one single query now. (In other words, find a join strategy for the tables you need.)</li>
@@ -2523,7 +1927,7 @@ INNER JOIN Ward ON Candidate.ward = Ward.id
 <tr><td><a href="https://web.microsoftstream.com/video/455af5a1-bcca-4378-a0e1-6b52891b20a4">Intermediate SQL</a></td><td style="text-align: right">22 minutes</td><td><a href="https://git.sr.ht/~sherbert/talks/blob/main/COMS10012-Software-Tools/SQL-2/slides.pdf">Slides</a></td></tr>
 </tbody></table>
 </div>
-<h2 id="exercises-10"><a class="header" href="#exercises-10">Exercises</a></h2>
+<h2 id="exercises-9"><a class="header" href="#exercises-9">Exercises</a></h2>
 <p>The exercises for this activity are all on one page:</p>
 <ul>
 <li><a href="db3/./exercises.html">Intermediate SQL</a></li>
@@ -2575,7 +1979,7 @@ Where an identifier is given in the question you may use it, e.g. when I say &qu
 <tr><td><a href="https://web.microsoftstream.com/video/9c046863-65f4-44a2-91bb-0bf1023c78b4">JDBC</a></td><td style="text-align: right">25 minutes</td><td><a href="https://git.sr.ht/~sherbert/talks/blob/main/COMS10012-Software-Tools/JDBC/slides.pdf">Slides</a></td></tr>
 </tbody></table>
 </div>
-<h2 id="exercises-11"><a class="header" href="#exercises-11">Exercises</a></h2>
+<h2 id="exercises-10"><a class="header" href="#exercises-10">Exercises</a></h2>
 <p>The exercises for this activity are:</p>
 <ul>
 <li><a href="db4/./jdbc.html">JDBC</a></li>
