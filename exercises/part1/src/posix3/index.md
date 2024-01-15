@@ -1,17 +1,13 @@
-# POSIX Activity 3
+# Shell Scripting 
 
 ## Videos
 
 | Video | Length | Slides |
 |-------|-------:|--------|
-| [inodes](https://web.microsoftstream.com/video/8f01c778-9ead-4e15-b5ad-21305dc96eba) | 18 minutes |  [slides](https://uob-my.sharepoint.com/:b:/g/personal/me17847_bristol_ac_uk/EUke3KQirYBEtq809FUGEjMBKbE9VWpbn2q7t9T6KrnGAA?e=kX4ZY6) |
-| [The TTY](https://web.microsoftstream.com/video/bc1a7bdd-1f40-47e6-b86b-ec9eef84fe39) | 22 minutes | [slides](https://uob-my.sharepoint.com/:b:/g/personal/me17847_bristol_ac_uk/EaUyN9P0dr5NoHkdvYGPRzkB2mR3hYuHqoJ4W1OqT1830w?e=YdPV0f) |
+| [Permissions](https://web.microsoftstream.com/video/71b186df-c373-4b98-ba34-035679cb1ec6) | 20 minutes | [slides](https://uob-my.sharepoint.com/:b:/g/personal/me17847_bristol_ac_uk/EUQ3xxCL4xlHtQ1M6uaLdW4Bc2sxbrCrLNQcinAUgCjmOg?e=ciQDX2) |
+| [shell scripting 1](https://web.microsoftstream.com/video/bbe017bf-c1b6-44a0-96cf-ef79a9b17f0e) | 17 minutes |  [slides](https://uob-my.sharepoint.com/:b:/g/personal/me17847_bristol_ac_uk/Ebuz7SukPjRLhMYQd3NJRkkBhgkFxVutnYmcv622ePSxkg?e=8hhLWP) |
+| [shell scripting 2](https://web.microsoftstream.com/video/0a2a65bc-1655-4089-984f-53c9400dc2d3) | 21 minutes |  [slides](https://uob-my.sharepoint.com/:b:/g/personal/me17847_bristol_ac_uk/EVMTcoOLqmVNiflYUpHfRhMB1XzttL_7gHYOux1qznX4ZA?e=mXRBtE) |
 
 ## Exercises
-
-  - [inodes and system calls](./stat.md)
-  - [Concurrent programming in POSIX](./concurrent.md)
-  - [Pipes in C](./cpipe.md)
-  - [Input/Output in C](./c_io.md)
-  - [Input/Output in POSIX](./posix_io.md)
-  - [The final challenge](./final.md)
+ - [File permissions](./permissions.md)
+ - [Shell scripting](./script.md)
