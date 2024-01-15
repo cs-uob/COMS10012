@@ -167,7 +167,7 @@ From now on, from you own machine, you should be able to get directly into a lab
 ssh -A -J USERNAME@seis.bris.ac.uk USERNAME@rd-mvb-linuxlab.bristol.ac.uk
 ```
 
-_Unfortunately, `-J` will not work on a windows CMD terminal, although it should work on Windows Subsystem for Linux. Once we have set up a configuration file, there will be a way to work around this problem. Mac and Linux users should be fine though, as should anyone running these commands from an Alpine VM on their own machine, whatever their host OS._
+_Unfortunately, `-J` will not work on a windows CMD terminal, although it should work on Windows Subsystem for Linux. Once we have set up a configuration file, there will be a way to work around this problem. Mac and Linux users should be fine though, as should anyone running these commands from a Linux VM on their own machine, whatever their host OS._
 
 ## Setting up a configuration file
 

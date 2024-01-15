@@ -6,8 +6,8 @@
 
 - [System Administration](./posix1/index.md)
   - [Secure shell](./posix1/ssh.md)
-  - [Installing vagrant and alpine linux](./posix1/install.md)
-  - [Alpine linux system administration](./posix1/admin.md)
+  - [Installing Vagrant and Debian](./posix1/install.md)
+  - [Debian system administration](./posix1/admin.md)
 - [The POSIX Shell](./posix2/index.md)
   - [Shell expansion](./posix2/shell.md)
   - [Pipes](./posix2/pipes.md)
