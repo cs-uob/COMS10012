@@ -1,42 +1,12 @@
-# Alpine linux system administration
+# Debian system administration
 
-Start your alpine box if necessary by going to the folder with the `Vagrantfile` in your terminal, and typing `vagrant up`. Log in to your alpine linux box with `vagrant ssh`. We are going to get to know linux in general and alpine in particular a bit.
+Start your Debian box if necessary by going to the folder with the `Vagrantfile` in your terminal, and typing `vagrant up`. Log in to your Debian box with `vagrant ssh`. We are going to get to know Linux in general and Debian in particular a bit.
 
 ## The file system
 
 Linux (and other POSIX-like operating systems) work with a single file hierarchy with a root folder `/`, although there may be different file systems mounted at different places under that. How files are organised in here are documented in the [Filesystem Hierarchy Standard (FHS)](https://refspecs.linuxfoundation.org/FHS_3.0/fhs-3.0.html). Have a look with the command `ls /`:
 
-`/bin` stands for binaries, that is programs that you can run. Have a look with `ls /bin`: there will be a lot of commands in here, including ls itself. Indeed you can find out where a program is with `which`, so `which ls` will show you `/bin/ls` for example.
-
-If you have colours turned on (which is the default) you will see that a couple of files like `bash` are green, but the rest are blue - this indicates the file type, green is an executable program, blue is a link to another file. Have a look with `ls -l /bin`: the very first character of each line indicates the file type, the main ones being `-` for normal file, `d` for directory and `l` for a so-called _soft link_.
-
-Note that, as you can see on the last entry of each line, most files here are links to `/bin/busybox`! Busybox is, in its own words:
-
-> BusyBox is a multi-call binary that combines many common Unix
-  utilities into a single executable.  Most people will create a
-  link to busybox for each function they wish to use and BusyBox
-  will act like whatever it was invoked as.
-  (from `busybox --help`)
-
-Busybox is a distribution of the many common POSIX commands (you can see which ones with `busybox --help`) packed into a single program. This means that you can run for example `busybox ls` to run the ls command. However, when you call `ls` directly, your shell runs the `/bin/ls` command, which is just a link to busybox. 
-
-|||advanced
-How does busybox know which command you want?
-
-Remember that in C, each program's main function can take an argument vector `char **argv` and that `argv[0]` is the name of the file that was used to call the program - this is what busybox looks at when you call `ls` or any of the other linked programs in `/bin`.
-|||
-
-Busybox is used in alpine linux because alpine is a minimal linux distribution and busybox is a minimal implementation of lots of common commands. As a result, the alpine/busybox version of say ls might not have as many options as the ls on the lab machines.
-
-Back to `ls /` and the folders in the root folder. `/etc` stores system-wide configuration files and typically only root (the administrator account) can change things in here. For example, system-wide ssh configuration lives in `/etc/ssh`.
-
-`/lib` contains dynamic libraries - windows calls these `.dll` files, POSIX uses `.so`. For example, `/lib/libc.so.6` is the C library, which allows C programs to use functions like `printf`. You can see with `ls -l /lib` that the C library is actually a link to `/lib/libc.musl-x86_64.so.1`: [musl](https://musl.libc.org/) is a minimal implementation of the C library, which is the version that alpine linux chose to use by default. From their website:
-
-> musl is an implementation of the C standard library built on top of the Linux system call API, including interfaces defined in the base language standard, POSIX, and widely agreed-upon extensions. musl is lightweight, fast, simple, free, and strives to be correct in the sense of standards-conformance and safety.
-
-`/home` is the folder containing users' home directories, for example the default user vagrant gets `/home/vagrant`. The exception is root, the administrator account, who gets `/root`.
-
-`/sbin` (system binaries) is another collection of programs, typically ones that only system administrators will use. For example, `fdisk` creates or deletes partitions on a disk and lots of programs with `fs` in their name deal with managing file systems. `/sbin/halt`, run as root (or another user that you have allowed to do this), shuts down the system; there is also `/sbin/reboot`.
+`/bin` stands for binaries, that is programs that you can run. Have a look with `ls /bin`: there will be a lot of commands in here, including ls itself. Indeed you can find out where a program is with `which`, so `which ls` will show you `/usr/bin/ls` for example.
 
 `/usr` is a historical accident and a bit of a mess. A short history is on [this stackexchange question](https://askubuntu.com/questions/130186/what-is-the-rationale-for-the-usr-directory) but essentially, in the earliest days,
 
@@ -44,9 +14,17 @@ Back to `ls /` and the folders in the root folder. `/etc` stores system-wide con
   * `/usr/bin` was where most binaries lived which were available globally, for example across all machines in an organisation.
   * `/usr/local/bin` was for binaries installed by a local administrator, for example for a department within an organisation.
 
-In any case, `/usr` and its subfolders are for normally read-only data, such as programs and configuration files but not temporary data or log files. It contains subfolders like `/usr/bin` or `/usr/lib` that duplicate folders in the root directory.
+In any case, `/usr` and its subfolders are for normally read-only data, such as programs and configuration files but not temporary data or log files. It contains subfolders like `/usr/bin` or `/usr/lib` that duplicate folders in the root directory. Debian's way of cleaning this mess up is to make its `/bin` just a link to `/usr/bin` and putting everything in there, but in some distributions there are real differences between the folders.
 
-Ubuntu's way of cleaning this mess up is to make its `/bin` just a link to `/usr/bin` and putting everything in there. On alpine linux, there is still a distinction between the two, but most binaries in both folders are links to `/bin/busybox` anyway. For example, if you do `which ls` you find `/bin/ls`, but `which which` shows `/usr/bin/which`, but both of these are in fact just links to `/bin/busybox`.
+If you have colours turned on (which is the default) you will see some files are green, but others are blue - this indicates the file type, green is an executable program, blue is a link to another file. Have a look with `ls -l /bin`: the very first character of each line indicates the file type, the main ones being `-` for normal file, `d` for directory and `l` for a so-called _soft link_. You can see where each link links to at the end of this listing. For example, `slogin` links to `ssh`. Other links point at files stored elsewhere in the filesystem -- you'll see a lot of references to `/etc/alternatives/`. 
+
+`/etc` stores system-wide configuration files and typically only root (the administrator account) can change things in here. For example, system-wide SSH configuration lives in `/etc/ssh`.
+
+`/lib` contains dynamic libraries - windows calls these `.dll` files, POSIX uses `.so`. For example, `/lib/x86_64-linux-gnu/libc.so.6` is the C library, which allows C programs to use functions like `printf`. 
+
+`/home` is the folder containing users' home directories, for example the default user vagrant gets `/home/vagrant`. The exception is root, the administrator account, who gets `/root`.
+
+`/sbin` (system binaries) is another collection of programs, typically ones that only system administrators will use. For example, `fdisk` creates or deletes partitions on a disk and lots of programs with `fs` in their name deal with managing file systems. `/sbin/halt`, run as root (or another user that you have allowed to do this), shuts down the system; there is also `/sbin/reboot`.
 
 `/tmp` is a temporary filesystem that may be stored in RAM instead of on disk (but swapped out if necessary), and that does not have to survive rebooting the machine.
 
@@ -54,7 +32,7 @@ Ubuntu's way of cleaning this mess up is to make its `/bin` just a link to `/usr
 
 `/dev`, `/sys` and `/proc` are virtual file systems. One of the UNIX design principles is that almost every interaction with the operating system should look to a program like reading and writing a file, or in short _everything is a file_. For example, `/dev` offers an interface to devices such as hard disks (`/dev/sda` is the first SCSI disk in the system, and `/dev/sda1` the first partition on that), memory (`/dev/mem`), and a number of pseudoterminals or ttys that we will talk about later. `/proc` provides access to running processes; `/sys` provides access to system functions. For example, on some laptop systems, writing to `/sys/class/backlight/acpi_video0/brightness` changes the screen brightness.
 
-The `/vagrant` folder is not part of the FHS, but is a convention for a shared folder with the host on vagrant virtual machines.
+The `/vagrant` folder is not part of the FHS, but is our convention for a shared folder with the host on Vagrant virtual machines.
 
 ## Package managers
 
