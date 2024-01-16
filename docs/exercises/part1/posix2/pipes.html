@@ -188,15 +188,15 @@
 </ul>
 <p>All these commands actually take an optional extra filename as argument, in which case they read from this file as input. For example, to display the first 10 lines of a file called <code>Readme.txt</code>, you could do either <code>cat Readme.txt | head</code> or <code>head Readme.txt</code>.</p>
 <h2 id="word-list-exercises---pipes-and-regular-expressions"><a class="header" href="#word-list-exercises---pipes-and-regular-expressions">Word list exercises - pipes and regular expressions</a></h2>
-<p>Most linux distributions come with a dictionary file <code>/usr/dict/words</code> that contains a list of English words in alphabetical order, for use in spell-checking programs. The list includes a selection of proper nouns, for example countries and cities. Alpine linux, true to its principles of being minimal, omits this file - but you can download one yourself with</p>
+<p>Most Linux distributions (including Debian) come with a dictionary file <code>/usr/share/dict/words</code> that contains a list of English words in alphabetical order, for use in spell-checking programs. The list includes a selection of proper nouns, for example countries and cities. If you want to look at it on a system that doesn't have it, you can download it with:</p>
 <pre><code>wget https://users.cs.duke.edu/~ola/ap/linuxwords -O words
 </code></pre>
 <p><code>wget</code> is one of two utilities for downloading files, the other being <code>curl</code>. Note that the option for output file name is a capital O, not a lowercase o or a zero.</p>
-<p>Find one-line commands, possibly with pipes, to print the following to your terminal. You can either start each command with <code>cat words | ...</code> or do it without cat by providing the words file as an argument to the first command in your pipeline.</p>
+<p>Find one-line commands, possibly with pipes, to print the following to your terminal. You can either start each command with <code>cat /usr/share/dict/words | ...</code> or do it without cat by providing the words file as an argument to the first command in your pipeline.</p>
 <p><em>If English is not your native language, ignore the guessing part - it is not assessed.</em></p>
 <ul>
-<li>The first word in the file. <em>Can you guess what it will be, it is a city in Europe?</em></li>
-<li>The last word in the file. <em>Can you guess this one, another city in Europe?</em></li>
+<li>The first word in the file. <em>Can you guess what it will be?</em></li>
+<li>The last word in the file. <em>Can you guess this one?</em></li>
 <li>The number of words in the words file - there is one word per line.</li>
 <li>The 6171st word in the file. <em>Can you read my mind and guess this word directly?</em></li>
 <li>All words containing the letter Q, capitalised. (A regular expression containing a string of one or more letters matches all strings that contain the expression as a substring.)</li>

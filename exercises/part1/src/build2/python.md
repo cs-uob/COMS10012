@@ -1,11 +1,11 @@
 # Build tools: Python
 
-Install Python and pip on Alpine with `sudo apk add python3 py3-pip`. You can now run it with `python3` and Control+D quits again.
+The Python programming language comes with a package manager called `pip`.  Find the package that provides it and install it (**hint**: how did we find a missing library in the C build tools?).
 
 We are going to practice installing the [mistletoe](https://github.com/miyuchina/mistletoe) module, which renders markdown into HTML.
 
   - In python, try the line `import mistletoe` and notice that you get `ModuleNotFoundError: No module named 'mistletoe'`. 
-  - Quit python again and try `sudo pip3 install mistletoe`. You should get a success message (and possibly a warning, explained below).
+  - Quit python again (Control-d) and try `sudo pip3 install mistletoe`. You should get a success message (and possibly a warning, explained below).
   - Open python again and repeat `import mistletoe`. This produces no output, so the module was loaded.
 
 Create a small sample markdown file as follows, called `hello.md` for example:
@@ -47,7 +47,7 @@ You can in fact use pip without sudo, by passing the <code>--user</code> option 
 
 ## Scipy
 
-In Maths B, we will be using `scipy` for statistics, so you may as well install that too. Unfortunately, `pip` will not help you here because scipy depends on a C library for fast linear algebra, and this doesn't exist for Alpine linux in the `pip` repositories. It does exist in the Alpine repos though, so `sudo apk add py3-scipy` will install it.
+In Maths B, we will be using `scipy` for statistics, so you may as well install that too. Unfortunately, `pip` will complain because scipy depends on a C library for fast linear algebra.  You could go and install all the dependencies (and you might have to do this if you need a specific version of it), but it turns out Debian has it all packaged up as a system package too: if it is at the version you need you could install that instead.  Try searching for it with `apt search scipy`.
 
 The following commands show if it is correctly installed, by sampling 5 times from a Normal distribution with mean 200 and standard deviation 10:
 
@@ -56,5 +56,16 @@ The following commands show if it is correctly installed, by sampling 5 times fr
 
 This should print an array of five values that are not too far off 200 (to be precise, with about 95% confidence they will be between 180 and 220 - more on this in Maths B later on).
 
-You might want to install python and scipy on your host OS as well, as it's a really easy language to code in and you can use your favourite editor and even make graphical plots - you will probably learn about this in second year, and maybe again in third year if you take Machine Learning. In this case, if your host OS is Windows or Mac, I recommend that you install the [miniconda](https://docs.conda.io/en/latest/miniconda.html) distribution (obviously the Python 3 version, not the Python 2 one) so that you can easily install scipy. This gets you two package managers: `conda install scipy` uses the conda one (which can handle the required C library) and `pip` for everything else. For Linux, you can install conda too, or just use the scipy packaged with your distribution.
+## Avoiding sudo
 
+If you need to install libraries you might be tempted to install them for all users by using `sudo pip` but this can lead to pain!  If you alter the system libraries and something in the system depends on a specific version of a library then it can lead to horrible breakage and things not working (in particular on OSs like Mac OS which tend to update libraries less often).
+
+Python comes with a mechanism called [venv](https://docs.python.org/3/library/venv.html) which lets you create a virtual python install that is owned by a user: you can alter the libraries in that without `sudo` and without fear of mucking up your host system.  Read the docs and get used to using it---it'll save you a world of pain later!
+
+|||advanced
+`pip freeze | tee requirements.txt` will list all the packages your using and what version they are and save them in a file called `requirements.txt`.
+
+`pip install -r requirements.txt` will install them again!
+
+This makes it *super easy* to ensure that someone looking at your code has all the right dependencies without having to reel off a list of _go install these libraries_ (and will make anyone whoever has to mark your code happy and more inclined to give you marks).
+|||

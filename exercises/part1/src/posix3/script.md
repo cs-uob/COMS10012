@@ -1,7 +1,9 @@
 # Shell Scripting
 
-Shell scripting is a huge topic - the shell is a full programming language after all.
-In the video for this activity you have only seen a very brief introduction.
+Shell scripting is a huge topic---the shell is a full programming language after all.
+We're not covering it fully, but as you gain experience you'll find it easier and easier.
+
+A good rule of thumb is if you end up doing a task more than three-times: write a shell script.
 
 ## Compile helper exercise
 
@@ -32,3 +34,5 @@ You might want to use these yourself if you get into shell scripting. `set` is a
 A couple of notes on `set -u`: if you write something like `rm -rf $FOLDER/` and `$FOLDER` isn't set, then you don't accidentally end up deleting the whole system! Of course, most `rm` implementations will refuse to delete `/` without the `--no-preserve-root` option, and you should not have that trailing slash in the first place. There was a [bug in a beta version of Steam for linux](https://drj11.wordpress.com/2015/01/20/steaming/) where it tried to do `rm -rf "$STEAMROOT/"*` to delete all files in a folder (which explains the slash), but the variable in some cases got set to the _empty string_, which `-u` would not protect against. This was an installer script, so it ran as root which made things even worse.
 
 **Exercise**: think of an example in a shell script where `pipefail` makes a difference, that is where the last command in a pipe could succeed even if a previous one fails. As a counter-example, `cat FILE | grep STRING` would fail even without `pipefail` if the file does not exist, because grep would immediately get end-of-file on standard input.
+
+**Exercise**: Install `shellcheck` and check your shell script with it.  Fix any issues.  If you don't have any issues make sure your script is POSIX compatible, and rerun.  If still no errors, pat yourself on the back.

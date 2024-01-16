@@ -174,7 +174,7 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="shell-expansion"><a class="header" href="#shell-expansion">Shell expansion</a></h1>
-<p>This exercise is about studying shell expansion. You should run it on your alpine linux VM in vagrant, and you should have installed the <code>gcc</code> compiler.</p>
+<p>This exercise is about studying shell expansion. You should run it on your Debian VM in Vagrant.</p>
 <p>Create a C program <code>arguments.c</code> with the following contents. You can use <code>nano arguments.c</code> for this, for example.</p>
 <pre><code class="language-C">#include &lt;stdio.h&gt;
 
@@ -210,7 +210,7 @@ Try running the program with the following commands:</p>
 Argument #1: [*] 
 </code></pre>
 <h2 id="files-with-spaces-in-their-names"><a class="header" href="#files-with-spaces-in-their-names">Files with spaces in their names</a></h2>
-<p>The command <code>touch FILENAME</code> creates a file. Create a file with a space in its name by typing <code>touch &quot;silly named file&quot;</code>. What would happen if you left the quuotes off (you can try it, then do <code>ls</code>)?</p>
+<p>The command <code>touch FILENAME</code> creates a file. Create a file with a space in its name by typing <code>touch &quot;silly named file&quot;</code>. What would happen if you left the quotes off (you can try it, then do <code>ls</code>)?</p>
 <p>Start typing <code>ls sill</code> and then press TAB to autocomplete. Assuming you have no other files whose name starts with <em>sill</em>, what happens? Use this method to get the arguments program to print the following:</p>
 <pre><code>Argument #0: [./arguments]
 Argument #1: [Hello world!] 

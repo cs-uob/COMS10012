@@ -528,7 +528,7 @@ wget https://raw.githubusercontent.com/cs-uob/COMS10012/master/exercises/part1/s
 <li><a href="posix2/./pipes.html">Pipes</a></li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="shell-expansion"><a class="header" href="#shell-expansion">Shell expansion</a></h1>
-<p>This exercise is about studying shell expansion. You should run it on your alpine linux VM in vagrant, and you should have installed the <code>gcc</code> compiler.</p>
+<p>This exercise is about studying shell expansion. You should run it on your Debian VM in Vagrant.</p>
 <p>Create a C program <code>arguments.c</code> with the following contents. You can use <code>nano arguments.c</code> for this, for example.</p>
 <pre><code class="language-C">#include &lt;stdio.h&gt;
 
@@ -564,7 +564,7 @@ Try running the program with the following commands:</p>
 Argument #1: [*] 
 </code></pre>
 <h2 id="files-with-spaces-in-their-names"><a class="header" href="#files-with-spaces-in-their-names">Files with spaces in their names</a></h2>
-<p>The command <code>touch FILENAME</code> creates a file. Create a file with a space in its name by typing <code>touch &quot;silly named file&quot;</code>. What would happen if you left the quuotes off (you can try it, then do <code>ls</code>)?</p>
+<p>The command <code>touch FILENAME</code> creates a file. Create a file with a space in its name by typing <code>touch &quot;silly named file&quot;</code>. What would happen if you left the quotes off (you can try it, then do <code>ls</code>)?</p>
 <p>Start typing <code>ls sill</code> and then press TAB to autocomplete. Assuming you have no other files whose name starts with <em>sill</em>, what happens? Use this method to get the arguments program to print the following:</p>
 <pre><code>Argument #0: [./arguments]
 Argument #1: [Hello world!] 
@@ -615,15 +615,15 @@ gcc -Wall &quot;$program.c&quot; -o &quot;$program&quot;
 </ul>
 <p>All these commands actually take an optional extra filename as argument, in which case they read from this file as input. For example, to display the first 10 lines of a file called <code>Readme.txt</code>, you could do either <code>cat Readme.txt | head</code> or <code>head Readme.txt</code>.</p>
 <h2 id="word-list-exercises---pipes-and-regular-expressions"><a class="header" href="#word-list-exercises---pipes-and-regular-expressions">Word list exercises - pipes and regular expressions</a></h2>
-<p>Most linux distributions come with a dictionary file <code>/usr/dict/words</code> that contains a list of English words in alphabetical order, for use in spell-checking programs. The list includes a selection of proper nouns, for example countries and cities. Alpine linux, true to its principles of being minimal, omits this file - but you can download one yourself with</p>
+<p>Most Linux distributions (including Debian) come with a dictionary file <code>/usr/share/dict/words</code> that contains a list of English words in alphabetical order, for use in spell-checking programs. The list includes a selection of proper nouns, for example countries and cities. If you want to look at it on a system that doesn't have it, you can download it with:</p>
 <pre><code>wget https://users.cs.duke.edu/~ola/ap/linuxwords -O words
 </code></pre>
 <p><code>wget</code> is one of two utilities for downloading files, the other being <code>curl</code>. Note that the option for output file name is a capital O, not a lowercase o or a zero.</p>
-<p>Find one-line commands, possibly with pipes, to print the following to your terminal. You can either start each command with <code>cat words | ...</code> or do it without cat by providing the words file as an argument to the first command in your pipeline.</p>
+<p>Find one-line commands, possibly with pipes, to print the following to your terminal. You can either start each command with <code>cat /usr/share/dict/words | ...</code> or do it without cat by providing the words file as an argument to the first command in your pipeline.</p>
 <p><em>If English is not your native language, ignore the guessing part - it is not assessed.</em></p>
 <ul>
-<li>The first word in the file. <em>Can you guess what it will be, it is a city in Europe?</em></li>
-<li>The last word in the file. <em>Can you guess this one, another city in Europe?</em></li>
+<li>The first word in the file. <em>Can you guess what it will be?</em></li>
+<li>The last word in the file. <em>Can you guess this one?</em></li>
 <li>The number of words in the words file - there is one word per line.</li>
 <li>The 6171st word in the file. <em>Can you read my mind and guess this word directly?</em></li>
 <li>All words containing the letter Q, capitalised. (A regular expression containing a string of one or more letters matches all strings that contain the expression as a substring.)</li>
@@ -664,11 +664,14 @@ Windows) but we'd still recommend completing it in a virtual machine
 <p>If you'd like a <code>Vagrantfile</code> to base your work on you can use the
 following:</p>
 <pre><code class="language-ruby">Vagrant.configure(&quot;2&quot;) do |config|
-    config.vm.box = &quot;debian/bookworm64&quot;
-    config.vm.provision :shell, inline: &lt;&lt;-SRC
-       apt-get install -y git git-man apt-file
-       apt-file update
-    SRC
+  config.vm.box = &quot;generic/debian12&quot;
+  config.vm.synced_folder &quot;.&quot;, &quot;/vagrant&quot;
+
+  config.vm.provision &quot;shell&quot;, inline: &lt;&lt;-SHELL
+    apt-get update -y
+    apt-get install -y git git-man apt-file
+    apt-file update
+  SHELL
 end
 </code></pre>
 <h2 id="git-documentation"><a class="header" href="#git-documentation">Git documentation</a></h2>
@@ -1131,14 +1134,24 @@ Switched to a new branch 'develop'
 <li><a href="posix3/./script.html">Shell scripting</a></li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="file-permissions"><a class="header" href="#file-permissions">File permissions</a></h1>
-<p>Log in to your vagrant VM for the following exercises.</p>
+<p>Log in to your VM for the following exercises.</p>
+<p>If you need a reminder your <code>Vagrantfile</code> should look something like:</p>
+<pre><code class="language-ruby">Vagrant.configure(&quot;2&quot;) do |config|
+    config.vm.box = &quot;generic/debian12&quot;
+    config.vm.provision :shell, inline: &lt;&lt;-SRC
+       apt-get update -y
+       apt-get install -y git git-man apt-file
+       apt-file update
+    SRC
+end
+</code></pre>
 <h2 id="show-the-current-user-in-the-prompt"><a class="header" href="#show-the-current-user-in-the-prompt">Show the current user in the prompt</a></h2>
 <p>First, use the command <code>whoami</code> to see the current user name: it should be <code>vagrant</code>.</p>
 <p>For this exercise it will be useful to display the user in the prompt. We want this setting to apply to all users, so we need to set it in a system-wide configuration file namely <code>/etc/profile</code> which is read by the shell when it starts up.</p>
-<p>Try <code>echo $PS1</code> on the terminal to show the current value of this variable, it should be something like <code>\h:\w\$ </code>. The <code>PS1</code> (prompt level 1) controls your shell prompt. Here <code>\h</code> means the hostname, <code>\w</code> the working directory and <code>\$</code> is the appropriate prompt symbol (<code>$</code> for normal users, <code>#</code> for root). This gets you a default prompt that looks like <code>alpine310:~$ </code> (note the space after the dollar sign, which is also in the PS1).</p>
+<p>Try <code>echo $PS1</code> on the terminal to show the current value of this variable, it should be something like <code>\h:\w\$ </code>. The <code>PS1</code> (prompt level 1) controls your shell prompt. Here <code>\h</code> means the hostname, <code>\w</code> the working directory and <code>\$</code> is the appropriate prompt symbol (<code>$</code> for normal users, <code>#</code> for root). This gets you a default prompt that looks like <code>debian12:~$ </code> (note the space after the dollar sign, which is also in the PS1).  You can find a complete list of <em>escape characters</em> (the letters starting with a backslash) in <code>man 1 bash</code> under <strong>PROMPTING</strong>.</p>
 <p>The general syntax for setting a variable is <code>export NAME=VALUE</code>, where the <code>export</code> tells the shell to keep this value around when the script setting it has finished. Without exporting, you would be creating a local variable instead.</p>
 <p>Open the configuration file with <code>sudo nano /etc/profile</code>. You need sudo as only root can edit this system-wide configuration file.</p>
-<p>In older versions of alpine, variables were simply set the usual way:</p>
+<p>The file is a just another shellscript and variables and commands can be added as the system administrator likes:</p>
 <pre><code>export CHARSET=UTF-8
 export LANG=C.UTF-8
 export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
@@ -1146,16 +1159,15 @@ export PAGER=less
 export PS1='\h:\w\$ '
 umask 022
 </code></pre>
-<p>However in the latest version, there is more scripting going on. For example the <code>append_path</code> function adds a folder to the path only if it is not on the path already.</p>
+<p>You may also see a section <code>source</code>-ing (with the <code>.</code> or <code>source</code> commands) everything in the <code>/etc/profile.d</code> folder that ends with a <code>.sh</code>.  This lets an administrator split the shell profile up into different files, and packages add to the the shell profile without modifying the top-level config file.</p>
 <p>Go to the end of the file, and add the following lines. Note that there are single quotes around the value of the PS1, and there is a space before the closing single quote.</p>
 <pre><code>export PS1='\u@\h:\w\$ '
 export EDITOR=nano
 </code></pre>
-<p>The <code>\u</code> in the PS1 is the current user. Save the file (Control+X), log out and in again and your prompt should now be <code>vagrant@alpine314:~$ </code>. The <code>EDITOR</code> one will come in useful later as it means that if you try a <code>git commit</code> without a message, you end up in nano instead of vi (another editor that is less beginner-friendly).</p>
+<p>The <code>\u</code> in the PS1 is the current user. Save the file (Control+X in nano), log out and in again and your prompt should now be <code>vagrant@alpine314:~$ </code>. The <code>EDITOR</code> one will come in useful later as it means that if you try a <code>git commit</code> without a message, you end up in nano instead of vi (another editor that is better but less beginner-friendly).</p>
 <div class="advanced container">
 <header><span class="advanced-title"></span></header>
 <div class="container-content">
-<p>The current version of alpine sets the prompt in lines 25-38 of <code>/etc/profile</code> (turn on line numbers with Alt+N in nano if you want). It first sets up a fallback in case you are using the plain bourne shell (<code>/bin/sh</code>) which does not support the <code>$/#</code> distinction for the root prompt, so this is coded in the script instead (lines 28-29). Then if you are using bash or busybox (which we are), it switches the PS1 to the string that you see if you <code>echo $PS1</code>.</p>
 <p>If you are running a vagrant VM on a lab machine, then next time you log in to a lab machine your changes to <code>/etc/profile</code> will be gone. One way to fix this would be to add the following to your Vagrantfile inside the <code>config.vm.provision</code> block:</p>
 <pre><code>echo &quot;export PS1='\\u@\\h:\\w\\$ '&quot; &gt;&gt; /etc/profile
 </code></pre>
@@ -1164,12 +1176,12 @@ export EDITOR=nano
 </div>
 </div>
 <h2 id="create-a-user-and-a-group"><a class="header" href="#create-a-user-and-a-group">Create a user and a group</a></h2>
-<p>Create a new user with <code>sudo adduser NAME</code> - I'm going to be using <code>fred</code> as an example name in these notes. When it asks for a password, you can just use <code>fred</code> or something; it will complain about the password being too short but it will create the user anyway.</p>
-<p>Check the user and group files with <code>tail /etc/passwd</code> and <code>tail /etc/group</code> to check that the new user has been created - <code>tail</code> displays the last 10 lines of a file by default; <code>tail -n N FILE</code> would display the last N lines. Your new user <code>fred</code> (or whatever you called them) should appear in both files. Also check with <code>ls -l /home</code> that the home directory for Fred exists and is set to the correct user and group.</p>
-<p>Time to change user: <code>su fred</code> and enter the password. Notice that the prompt has changed to <code>fred@alpine310:/home/vagrant$</code> (at least if you started off in that folder). So the user has changed, and because <code>/home/vagrant</code> is no longer the current user's home directory, it gets written out in full. Run <code>cd</code> to go home followed by <code>pwd</code> and check that you are now in <code>/home/fred</code> or whatever you called your new user.</p>
-<p>Next, create a user <code>george</code> (or some other name) add both your two new users, but not <code>vagrant</code>, to the group <code>users</code> (which already exists) using the command <code>sudo addgroup USERNAME GROUPNAME</code>, where group and username are changed accordingly. Note: <code>fred</code> cannot use sudo, so you have to exit his terminal to get back to one running as vagrant for this.</p>
+<p>Create a new user with <code>sudo adduser NAME</code> - I'm going to be using <code>brian</code> as an example name in these notes. When it asks for a password, you can just use <code>brian</code> or something; it will complain about the password being too short but it will create the user anyway.  You can skip the GECOS information asking for a full name and phone number---it's just to help an admin contact you if needed.</p>
+<p>Check the user and group files with <code>tail /etc/passwd</code> and <code>tail /etc/group</code> to check that the new user has been created - <code>tail</code> displays the last 10 lines of a file by default; <code>tail -n N FILE</code> would display the last N lines. Your new user <code>brian</code> (or whatever you called them) should appear in both files. Also check with <code>ls -l /home</code> that the home directory for Brian exists and is set to the correct user and group.</p>
+<p>Time to change user: <code>su brian</code> and enter the password. Notice that the prompt has changed to <code>brian@debian12:/home/vagrant$</code> (at least if you started off in that folder). So the user has changed, and because <code>/home/vagrant</code> is no longer the current user's home directory, it gets written out in full. Run <code>cd</code> to go home followed by <code>pwd</code> and check that you are now in <code>/home/brian</code> or whatever you called your new user.</p>
+<p>Next, create a user <code>nigel</code> (or some other name) add both your two new users, but not <code>vagrant</code>, to the group <code>users</code> (which already exists) using the command <code>sudo addgroup USERNAME GROUPNAME</code>, where group and username are changed accordingly. Note: <code>brian</code> cannot use sudo, so you have to exit his terminal to get back to one running as vagrant for this.</p>
 <h2 id="explore-file-permissions"><a class="header" href="#explore-file-permissions">Explore file permissions</a></h2>
-<p>As user <code>fred</code> (or whatever you called your first new user), set up your home directory using what you learnt in the videos so that</p>
+<p>As user <code>brian</code> (or whatever you called your first new user), set up your home directory using what you learnt in the videos so that</p>
 <ul>
 <li>You can do everything (rwx).</li>
 <li>Members of the <code>users</code> group can list files and change to your home directory, but not add/remove files. You will need to change the group of your home directory to <code>users</code> for this, using the command <code>chgrp -R GROUPNAME DIRECTORY</code>.</li>
@@ -1178,28 +1190,28 @@ export EDITOR=nano
 <p>Create a file in your home directory, e.g. <code>nano readme.txt</code> then add some content.</p>
 <p>Check, by using <code>su USERNAME</code> to log in as the different users, that:</p>
 <ul>
-<li><code>george</code> can view Fred's home directory but not create files there; </li>
-<li><code>george</code> can view but not edit Fred's readme file; </li>
-<li><code>vagrant</code> cannot list files in or enter Fred's home directory at all. What happens when you try?</li>
+<li><code>nigel</code> can view Brian's home directory but not create files there; </li>
+<li><code>nigel</code> can view but not edit Brian's readme file; </li>
+<li><code>vagrant</code> cannot list files in or enter Brian's home directory at all. What happens when you try?</li>
 </ul>
 <p><em>Of course, vagrant can use sudo to get around all these restrictions. Permissions do not protect you from anyone who can become root.</em></p>
-<p>Also as <code>fred</code>, make a <code>private</code> subdirectory in your home folder that no-one but you can access (read, write or execute). Create a file <code>secret.txt</code> in there with <code>nano private/secret.txt</code> as user <code>fred</code> from Fred's home directory, and put something in it. Do not change any permissions on <code>secret.txt</code> itself.</p>
-<p>Check as George that you can see the folder itself, but not cd into it nor list the file. Check that even knowing the file name (<code>cat /home/fred/private/secret.txt</code>) as George doesn't work.</p>
-<p>Using <code>ls -l</code> as Fred in both <code>~</code> and <code>~/private</code>, compare the entries for the files <code>~/readme.txt</code>, <code>~/private/secret.txt</code> and the folder <code>~/private</code>. Why do the groups of the two files differ?</p>
-<p>Note that, even though the secret file has read permissions for everyone by default, George cannot read it. The rule is that you need permissions on the whole path from <code>/</code> to a file to be able to access it.</p>
-<p><em>This is another reminder that if you want to store coursework on a lab machine, then put it in a folder that is only accessible to you. Other students can read your home directory by default, and they would be able to steal your work and submit it as their own otherwise: this has happened in the past.</em></p>
+<p>Also as <code>brian</code>, make a <code>private</code> subdirectory in your home folder that no-one but you can access (read, write or execute). Create a file <code>secret.txt</code> in there with <code>nano private/secret.txt</code> as user <code>brian</code> from Brian's home directory, and put something in it. Do not change any permissions on <code>secret.txt</code> itself.</p>
+<p>Check as Nigel that you can see the folder itself, but not cd into it nor list the file. Check that even knowing the file name (<code>cat /home/brian/private/secret.txt</code>) as Nigel doesn't work.</p>
+<p>Using <code>ls -l</code> as Brian in both <code>~</code> and <code>~/private</code>, compare the entries for the files <code>~/readme.txt</code>, <code>~/private/secret.txt</code> and the folder <code>~/private</code>. Why do the groups of the two files differ?</p>
+<p>Note that, even though the secret file has read permissions for everyone by default, Nigel cannot read it. The rule is that you need permissions on the whole path from <code>/</code> to a file to be able to access it.</p>
+<p><em>This is another reminder that if you want to store private files on a lab machine, then put it in a folder that is only accessible to you. Other students can read your home directory by default, and they would be able to look at your work. This has led to plagarism problems in the past, but good news: we keep logs and can usually figure out what happened! <code>:-)</code>.</em></p>
 <p><em>Altenatively you could remove permissions from everyone else on your home directory there, but this prevents you from being able to share files in specific folders that you do want to share with other students.</em></p>
 <h2 id="setuid"><a class="header" href="#setuid">Setuid</a></h2>
-<p>We are going to create a file to let George (and others in the users group) send Fred messages which go in a file in his home directory.</p>
-<p>As Fred, create a file <code>message-fred.c</code> in your home directory and add the following lines:</p>
+<p>We are going to create a file to let Nigel (and others in the users group) send Brian messages which go in a file in his home directory.</p>
+<p>As Brian, create a file <code>message-brian.c</code> in your home directory and add the following lines:</p>
 <pre><code class="language-C">#include &lt;stdio.h&gt;
 #include &lt;stdlib.h&gt;
 
-const char *filename =&quot;/home/fred/messages.txt&quot;;
+const char *filename =&quot;/home/brian/messages.txt&quot;;
 
 int main(int argc, char **argv) {
   if (argc != 2) {
-    puts(&quot;Usage: message-fred MESSAGE&quot;);
+    puts(&quot;Usage: message-brian MESSAGE&quot;);
     return 1;
   }
   FILE *file = fopen(filename, &quot;a&quot;);
@@ -1221,43 +1233,35 @@ int main(int argc, char **argv) {
   return 0;
 }
 </code></pre>
-<p>Compile it with <code>gcc -Wall message-fred.c -o message-fred</code> (you should not get any warnings) and check with <code>ls -l</code>, you will see a line like</p>
-<pre><code>-rwxr-xr-x    1 fred     fred         19984 Oct 28 13:26 message-fred
+<p>Compile it with <code>cc -Wall message-brian.c -o message-brian</code> (you should not get any warnings) and check with <code>ls -l</code>, you will see a line like</p>
+<pre><code>-rwxr-xr-x    1 brian     brian         19984 Oct 28 13:26 message-brian
 </code></pre>
-<p>These are the default permissions for a newly created executable file; note that gcc has set the three <code>+x</code> bits for you. Still as Fred, run <code>chmod u+s message-fred</code> and check the file again: you should now see <code>-rwsr-xr-x</code> for the file permissions. The <code>s</code> is the setuid bit.</p>
-<p>As George (<code>su george</code>), go into Fred's home directory and run <code>./message-fred &quot;Hi from George!&quot;</code>. The quotes are needed here because the program accepts only a single argument.</p>
-<p>Now run <code>ls -l</code> and notice that a <code>messages.txt</code> has appeared with owner and group <code>fred</code>. Check the contents with <code>cat messages.txt</code>. Although George cannot create and edit files in Fred's home directory himself (he can't edit <code>messages.txt</code> for example, although he can read it), the program <code>message-fred</code> ran as Fred, which let it create the file. George can send another message like this (<code>./message-fred &quot;Hi again!&quot;</code>), which gets appended to the file: try this out.</p>
+<p>These are the default permissions for a newly created executable file; note that gcc has set the three <code>+x</code> bits for you. Still as Brian, run <code>chmod u+s message-brian</code> and check the file again: you should now see <code>-rwsr-xr-x</code> for the file permissions. The <code>s</code> is the setuid bit.</p>
+<p>As Nigel (<code>su nigel</code>), go into Brian's home directory and run <code>./message-brian &quot;Hi from Nigel!&quot;</code>. The quotes are needed here because the program accepts only a single argument.</p>
+<p>Now run <code>ls -l</code> and notice that a <code>messages.txt</code> has appeared with owner and group <code>brian</code>. Check the contents with <code>cat messages.txt</code>. Although Nigel cannot create and edit files in Brian's home directory himself (he can't edit <code>messages.txt</code> for example, although he can read it), the program <code>message-brian</code> ran as Brian, which let it create the file. Nigel can send another message like this (<code>./message-brian &quot;Hi again!&quot;</code>), which gets appended to the file: try this out.</p>
 <p>This shows how setuid programs can be used to allow other users to selectively perform specific tasks under a different user account.</p>
 <p><strong>Warning</strong>: writing your own setuid programs is extremely dangerous if you don't know the basics of secure coding and hacking C programs, because a bug in such a program could let someone take over your user account. The absolute minimum you should know is the contents of our security units up to and including 4th year.</p>
 <p>A general task for a security analyst might be finding all files with the setuid bit set on a system. You can try this yourself, but return to a vagrant shell first so that you're allowed to use sudo:</p>
 <pre><code>sudo find / -perm /4000
 </code></pre>
 <p>You might get some errors relating to <code>/proc</code> files, which you can ignore: these are subprocesses that find uses to look at individual files.</p>
-<p>Apart from <code>message-fred</code>, on alpine there are four such files by default: <code>sudo</code>, <code>mount</code>, <code>umount</code> and <code>bbsuid</code>. The first one you already know; look up what the next two do and think about why they are setuid. Specifically, what kinds of (un)mounting are non-root users allowed to do according to the manual pages?</p>
-<p>The last one is busybox' general-purpose setuid helper. For example,</p>
-<pre><code>ls -l /bin | grep bbsuid
-</code></pre>
-<p>shows that <code>/bin/su</code> is in fact a link to bbsuid on this system (a symlink to a setuid program inherits the setuid property). <code>grep STRING</code> here filters its input and only returns lines containing the string (or regular expression).</p>
-<p>Have a look at the output of the following:</p>
-<pre><code>ls -l /usr/bin | grep bbsuid
-</code></pre>
-<p>Look up what these programs do and think about why they have to be setuid root.</p>
-<p>Also have a look at the <a href="https://github.com/alpinelinux/aports/blob/master/main/busybox/bbsuid.c">source code of bbsuid</a>: it's only around 100 lines of C and all it does is check that you're calling it from an approved filename, then launch busybox (still as root) to handle the command. The check is important because anyone can make a symlink to bbsuid and call it say <code>rm</code>, and if bbsuid didn't check for this then it would allow anyone to remove any file on the system as root.</p>
+<p>Apart from <code>message-brian</code>, you'll find a few files by default: <code>sudo</code>, <code>mount</code>, <code>umount</code> and <code>su</code>. The first one you already know; look up what the next two do and think about why they are setuid. Specifically, what kinds of (un)mounting are non-root users allowed to do according to the manual pages?</p>
+<p>Look up the <code>passwd</code> program in the manual pages.  Why might that program need to be setuid?</p>
 <h2 id="sudo"><a class="header" href="#sudo">Sudo</a></h2>
-<p>Make sure your terminal is running as <code>fred</code> and try a <code>sudo ls</code>. You will see a general message, you will be asked for your password, and then you will get the error <code>fred is not in the sudoers file.  This incident will be reported.</code> (This means that an entry has been logged in <code>/var/log/messages</code>.)</p>
-<p>So, <code>fred</code> can currently not use sudo. Switch back to <code>vagrant</code> and run the command <code>sudo cat /etc/sudoers</code>. Everything is commented out except <code>root ALL=(ALL) ALL</code> and the last line <code>#includedir /etc/sudoers.d</code> (this is not a comment!) which contains a single file <code>vagrant</code> with the line <code>vagrant ALL=(ALL) NOPASSWD: ALL</code> which is why vagrant can use sudo in the first place.</p>
+<p>Make sure your terminal is running as <code>brian</code> and try a <code>sudo ls</code>. You will see a general message, you will be asked for your password, and then you will get the error <code>brian is not in the sudoers file.  This incident will be reported.</code> (This means that an entry has been logged in <code>/var/log/messages</code>.)</p>
+<p>So, <code>brian</code> can currently not use sudo. Switch back to <code>vagrant</code> and run the command <code>sudo cat /etc/sudoers</code>. Everything is commented out except <code>root ALL=(ALL) ALL</code> and the last line <code>#includedir /etc/sudoers.d</code> (this is not a comment!) which contains a single file <code>vagrant</code> with the line <code>vagrant ALL=(ALL) NOPASSWD: ALL</code> which is why vagrant can use sudo in the first place.</p>
 <p>However, note the commented lines such as</p>
 <pre><code># %wheel ALL=(ALL) NOPASSWD: ALL
 # %sudo ALL=(ALL) ALL
 </code></pre>
 <p>If uncommented, the first one would let everyone in group wheel run commands using sudo (this is the default on some other linux distributions), whereas the second one would allow everyone in the group <code>sudo</code> to do this, but would prompt for their own password beforehand.</p>
 <p>Let's allow people in the users group to reboot the machine. Open a root shell with <code>sudo su</code> as vagrant; this is so we don't get locked out if we break sudo.</p>
-<p>Edit the sudoers file with <code>nano /etc/sudoers</code> as root, and add the following line:</p>
+<p>Edit the sudoers file with <code>visudo</code> as root, and add the following line:</p>
 <pre><code>%users ALL=(ALL) /sbin/reboot
 </code></pre>
 <p>and save the sudoers file.</p>
-<p>If you read the comment at the top of the file, it suggests using <code>visudo</code> to edit the file. Since we don't want to use vi, we can instead check the syntax with <code>visudo -c</code> and check that we get &quot;parsed OK&quot;; if not then we edit the file again to fix it (this is why we opened a root shell: if there's a syntax error in the file, sudo would refuse to run at all).</p>
-<p>You can now switch back to <code>fred</code> (check the prompt to make sure you are Fred) and do <code>sudo reboot</code>. After asking for Fred's password, the virtual machine will now reboot, which you notice because you get kicked out of your ssh connection. Another <code>vagrant ssh</code> after a few seconds will get you back in again.</p>
+<p><strong>Warning:</strong>: Never edit <code>/etc/sudoers</code> directly and <em>always</em> use <code>visudo</code> instead.  If you make a mistake and add a syntax error to the file then <code>sudo</code> will refuse to work.  If your root account doesn't have a password (some people don't like that as a security precaution) then you'll have to spend the next half-hour figuring out how to break into your own computer and wrestle back control.  There is almost always a command to check a config file before replacing the current one: the same advice also applies to the ssh config files.  If you break them you might have to travel to wherever the server is with a keyboard and a monitor.</p>
+<p>You can now switch back to <code>brian</code> (check the prompt to make sure you are Brian) and do <code>sudo reboot</code>. After asking for Brian's password, the virtual machine will now reboot, which you notice because you get kicked out of your ssh connection. Another <code>vagrant ssh</code> after a few seconds will get you back in again.</p>
 <div class="advanced container">
 <header><span class="advanced-title"></span></header>
 <div class="container-content">
@@ -1266,8 +1270,9 @@ int main(int argc, char **argv) {
 </div>
 </div>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="shell-scripting-1"><a class="header" href="#shell-scripting-1">Shell Scripting</a></h1>
-<p>Shell scripting is a huge topic - the shell is a full programming language after all.
-In the video for this activity you have only seen a very brief introduction.</p>
+<p>Shell scripting is a huge topic---the shell is a full programming language after all.
+We're not covering it fully, but as you gain experience you'll find it easier and easier.</p>
+<p>A good rule of thumb is if you end up doing a task more than three-times: write a shell script.</p>
 <h2 id="compile-helper-exercise"><a class="header" href="#compile-helper-exercise">Compile helper exercise</a></h2>
 <p>Write a shell script in a file called <code>b</code> (for build) that does the following:</p>
 <ul>
@@ -1291,6 +1296,7 @@ In the video for this activity you have only seen a very brief introduction.</p>
 </ul>
 <p>A couple of notes on <code>set -u</code>: if you write something like <code>rm -rf $FOLDER/</code> and <code>$FOLDER</code> isn't set, then you don't accidentally end up deleting the whole system! Of course, most <code>rm</code> implementations will refuse to delete <code>/</code> without the <code>--no-preserve-root</code> option, and you should not have that trailing slash in the first place. There was a <a href="https://drj11.wordpress.com/2015/01/20/steaming/">bug in a beta version of Steam for linux</a> where it tried to do <code>rm -rf &quot;$STEAMROOT/&quot;*</code> to delete all files in a folder (which explains the slash), but the variable in some cases got set to the <em>empty string</em>, which <code>-u</code> would not protect against. This was an installer script, so it ran as root which made things even worse.</p>
 <p><strong>Exercise</strong>: think of an example in a shell script where <code>pipefail</code> makes a difference, that is where the last command in a pipe could succeed even if a previous one fails. As a counter-example, <code>cat FILE | grep STRING</code> would fail even without <code>pipefail</code> if the file does not exist, because grep would immediately get end-of-file on standard input.</p>
+<p><strong>Exercise</strong>: Install <code>shellcheck</code> and check your shell script with it.  Fix any issues.  If you don't have any issues make sure your script is POSIX compatible, and rerun.  If still no errors, pat yourself on the back.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="build-tools"><a class="header" href="#build-tools">Build Tools</a></h1>
 <h2 id="videos-4"><a class="header" href="#videos-4">Videos</a></h2>
 <div class="table-wrapper"><table><thead><tr><th>Video</th><th style="text-align: right">Length</th><th>Slides</th></tr></thead><tbody>
@@ -1307,7 +1313,14 @@ In the video for this activity you have only seen a very brief introduction.</p>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="build-tools-c"><a class="header" href="#build-tools-c">Build tools: C</a></h1>
 <p>In this exercise you will practice the traditional way of building C projects from source. We are going to use the sqlite database as an example project to build.</p>
-<p>Download the source file <a href="https://sqlite.org/2021/sqlite-autoconf-3340100.tar.gz">https://sqlite.org/2021/sqlite-autoconf-3340100.tar.gz</a> into your Alpine VM with <code>wget</code> or similar and extract it with <code>tar zxvf FILENAME</code>. This creates a subfolder, do a <code>cd</code> into it.</p>
+<p>Download the source file <a href="https://sqlite.org/2021/sqlite-autoconf-3340100.tar.gz">https://sqlite.org/2021/sqlite-autoconf-3340100.tar.gz</a> into your VM with <code>wget</code> or similar and extract it with <code>tar zxvf FILENAME</code>. This creates a subfolder, do a <code>cd</code> into it.</p>
+<p><img src="https://imgs.xkcd.com/comics/tar.png" alt="XKCD comic pointing out that tar has a weird UI." /></p>
+<div class="advanced container">
+<header><span class="advanced-title"></span></header>
+<div class="container-content">
+<p>What's that weird <code>zxvf</code> bit in the <code>tar</code> command?  Read the man pages; but it is an older convention for passing command flags that lives on in a few commands.  The <code>z</code> means decompress it with <code>gunzip</code> first, <code>x</code> is for extract, <code>v</code> is for verbose (list the files it is expanding) and <code>f</code> is for read the archive from a file as opposed to standard input. </p>
+</div>
+</div>
 <p>You can see a file called <code>INSTALL</code> which you can open in a text editor to find the standard instructions:</p>
 <blockquote>
 <p>Briefly, the shell commands <code>./configure; make; make install</code> should configure, build, and install this package.</p>
@@ -1330,7 +1343,7 @@ In the video for this activity you have only seen a very brief introduction.</p>
 <p><code>test -z &quot;$INSTALL_PROGRAM&quot; &amp;&amp; INSTALL_PROGRAM='${INSTALL}'</code></p>
 </blockquote>
 <h2 id="make"><a class="header" href="#make">Make</a></h2>
-<p>Type <code>make</code> to build sqlite. If it's not installed, <code>sudo apk add make</code> will fix that.</p>
+<p>Type <code>make</code> to build sqlite. If it's not installed, <code>sudo apt install make</code> will fix that.</p>
 <p>Some of the compiler commands might take a while to run. While they're running, note the number of configuration variables (everything passed with a <code>-D</code>) involved; some of them turn on/off features (for example readline support is off if it can't find the header files for it on your system) and some of them set options specific to the operating system and compiler, for example <code>-DHAVE_STRING_H</code> defines whether <code>string.h</code> exists on your system.</p>
 <p>These translate to <code>#ifdef</code> commands in the source files, for example in <code>shell.c</code> starting at line 121 we include readline, if the header files exist:</p>
 <pre><code>#if HAVE_READLINE
@@ -1343,12 +1356,20 @@ In the video for this activity you have only seen a very brief introduction.</p>
 </code></pre>
 <p>This should build an executable <code>sqlite3</code> that you can run (use <code>.q</code> to quit again).</p>
 <p><em>If you want to, you can now type <code>sudo make install</code> to copy the executable to <code>/usr/local/bin</code>.</em></p>
+<div class="advanced container">
+<header><span class="advanced-title"></span></header>
+<div class="container-content">
+<p>What do you do if it says it can't find a <code>.h</code> file, or can't link it to a library file (a <code>.so</code>)? C predates modern languages with package managers, so it probably means you haven't installed a library the code depends on.  Luckily <code>apt-file</code> can be really helpful here:  run <code>apt-file search &lt;name of file&gt;</code> to find out which package provides the file you're missing and install it.</p>
+<p>I was trying to build a package that was complaining it couldn't find a library <code>libffi.so</code>: what package might have provided it?</p>
+<p>Try not to panic if the software you're building won't build cleanly!  Read the error message and fix the bug.  Normally installing a library, or altering a path in the source code is enough to fix it.  Being able to fix simple bugs yourself is what makes Linux (and other OSs) really powerful!</p>
+</div>
+</div>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="build-tools-python"><a class="header" href="#build-tools-python">Build tools: Python</a></h1>
-<p>Install Python and pip on Alpine with <code>sudo apk add python3 py3-pip</code>. You can now run it with <code>python3</code> and Control+D quits again.</p>
+<p>The Python programming language comes with a package manager called <code>pip</code>.  Find the package that provides it and install it (<strong>hint</strong>: how did we find a missing library in the C build tools?).</p>
 <p>We are going to practice installing the <a href="https://github.com/miyuchina/mistletoe">mistletoe</a> module, which renders markdown into HTML.</p>
 <ul>
 <li>In python, try the line <code>import mistletoe</code> and notice that you get <code>ModuleNotFoundError: No module named 'mistletoe'</code>. </li>
-<li>Quit python again and try <code>sudo pip3 install mistletoe</code>. You should get a success message (and possibly a warning, explained below).</li>
+<li>Quit python again (Control-d) and try <code>sudo pip3 install mistletoe</code>. You should get a success message (and possibly a warning, explained below).</li>
 <li>Open python again and repeat <code>import mistletoe</code>. This produces no output, so the module was loaded.</li>
 </ul>
 <p>Create a small sample markdown file as follows, called <code>hello.md</code> for example:</p>
@@ -1384,13 +1405,23 @@ You can in fact use pip without sudo, by passing the <code>--user</code> option 
 </div>
 </div>
 <h2 id="scipy"><a class="header" href="#scipy">Scipy</a></h2>
-<p>In Maths B, we will be using <code>scipy</code> for statistics, so you may as well install that too. Unfortunately, <code>pip</code> will not help you here because scipy depends on a C library for fast linear algebra, and this doesn't exist for Alpine linux in the <code>pip</code> repositories. It does exist in the Alpine repos though, so <code>sudo apk add py3-scipy</code> will install it.</p>
+<p>In Maths B, we will be using <code>scipy</code> for statistics, so you may as well install that too. Unfortunately, <code>pip</code> will complain because scipy depends on a C library for fast linear algebra.  You could go and install all the dependencies (and you might have to do this if you need a specific version of it), but it turns out Debian has it all packaged up as a system package too: if it is at the version you need you could install that instead.  Try searching for it with <code>apt search scipy</code>.</p>
 <p>The following commands show if it is correctly installed, by sampling 5 times from a Normal distribution with mean 200 and standard deviation 10:</p>
 <pre><code>from scipy.stats import norm
 norm(loc=200, scale=10).rvs(5)
 </code></pre>
 <p>This should print an array of five values that are not too far off 200 (to be precise, with about 95% confidence they will be between 180 and 220 - more on this in Maths B later on).</p>
-<p>You might want to install python and scipy on your host OS as well, as it's a really easy language to code in and you can use your favourite editor and even make graphical plots - you will probably learn about this in second year, and maybe again in third year if you take Machine Learning. In this case, if your host OS is Windows or Mac, I recommend that you install the <a href="https://docs.conda.io/en/latest/miniconda.html">miniconda</a> distribution (obviously the Python 3 version, not the Python 2 one) so that you can easily install scipy. This gets you two package managers: <code>conda install scipy</code> uses the conda one (which can handle the required C library) and <code>pip</code> for everything else. For Linux, you can install conda too, or just use the scipy packaged with your distribution.</p>
+<h2 id="avoiding-sudo"><a class="header" href="#avoiding-sudo">Avoiding sudo</a></h2>
+<p>If you need to install libraries you might be tempted to install them for all users by using <code>sudo pip</code> but this can lead to pain!  If you alter the system libraries and something in the system depends on a specific version of a library then it can lead to horrible breakage and things not working (in particular on OSs like Mac OS which tend to update libraries less often).</p>
+<p>Python comes with a mechanism called <a href="https://docs.python.org/3/library/venv.html">venv</a> which lets you create a virtual python install that is owned by a user: you can alter the libraries in that without <code>sudo</code> and without fear of mucking up your host system.  Read the docs and get used to using it---it'll save you a world of pain later!</p>
+<div class="advanced container">
+<header><span class="advanced-title"></span></header>
+<div class="container-content">
+<p><code>pip freeze | tee requirements.txt</code> will list all the packages your using and what version they are and save them in a file called <code>requirements.txt</code>.</p>
+<p><code>pip install -r requirements.txt</code> will install them again!</p>
+<p>This makes it <em>super easy</em> to ensure that someone looking at your code has all the right dependencies without having to reel off a list of <em>go install these libraries</em> (and will make anyone whoever has to mark your code happy and more inclined to give you marks).</p>
+</div>
+</div>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="build-tools-java"><a class="header" href="#build-tools-java">Build tools: Java</a></h1>
 <p>In the Java world,</p>
 <ul>
