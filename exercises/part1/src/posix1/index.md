@@ -14,5 +14,5 @@ Before this activity, you should watch the following videos - most of them are q
 ## Exercises
 
   - [Secure shell](./ssh.md)
-  - [Installing vagrant and alpine linux](./install.md)
-  - [Alpine linux system administration](./admin.md)
+  - [Installing Vagrant and Debian](./install.md)
+  - [Debian system administration](./admin.md)

@@ -6,8 +6,8 @@
 
 - [System Administration](./posix1/index.md)
   - [Secure shell](./posix1/ssh.md)
-  - [Installing vagrant and alpine linux](./posix1/install.md)
-  - [Alpine linux system administration](./posix1/admin.md)
+  - [Installing Vagrant and Debian](./posix1/install.md)
+  - [Debian system administration](./posix1/admin.md)
 - [The POSIX Shell](./posix2/index.md)
   - [Shell expansion](./posix2/shell.md)
   - [Pipes](./posix2/pipes.md)
@@ -30,13 +30,13 @@
 
 - [Debugging](./build1/index.md)
   - [Exercise](./build1/exercise.md)
-- [Bonus POSIX (unassessed)](./posix3/index.md)
-  - [inodes and system calls](./posix3/stat.md)
-  - [Concurrent programming in POSIX](./posix3/concurrent.md)
-  - [Pipes in C](./posix3/cpipe.md)
-  - [Input/Output in C](./posix3/c_io.md)
-  - [Input/Output in POSIX](./posix3/posix_io.md)
-  - [The final challenge](./posix3/final.md)
+- [Bonus POSIX (unassessed)](./posix4/index.md)
+  - [inodes and system calls](./posix4/stat.md)
+  - [Concurrent programming in POSIX](./posix4/concurrent.md)
+  - [Pipes in C](./posix4/cpipe.md)
+  - [Input/Output in C](./posix4/c_io.md)
+  - [Input/Output in POSIX](./posix4/posix_io.md)
+  - [The final challenge](./posix4/final.md)
 
 # Week 5: Databases
 
