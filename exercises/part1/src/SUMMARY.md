@@ -14,9 +14,7 @@
 
 # Week 2: Version control
 - [Git](./git/index.md)
-  - [Git, part 1](./git/git1.md)
-  - [Git, part 2](./git/git2.md)
-  - [Git, part 3](./git/git3.md)
+  - [Git](./git/git.md)
 
 # Week 3: Shell scripting & build tools
 - [Shell Scripting](./posix3/index.md)
