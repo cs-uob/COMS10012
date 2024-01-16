@@ -13,11 +13,14 @@ following:
 
 ```ruby
 Vagrant.configure("2") do |config|
-    config.vm.box = "debian/bookworm64"
-    config.vm.provision :shell, inline: <<-SRC
-       apt-get install -y git git-man apt-file
-       apt-file update
-    SRC
+  config.vm.box = "generic/debian12"
+  config.vm.synced_folder ".", "/vagrant"
+
+  config.vm.provision "shell", inline: <<-SHELL
+    apt-get update -y
+    apt-get install -y git git-man apt-file
+    apt-file update
+  SHELL
 end
 ```
 
