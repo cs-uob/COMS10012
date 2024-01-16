@@ -183,11 +183,14 @@ Windows) but we'd still recommend completing it in a virtual machine
 <p>If you'd like a <code>Vagrantfile</code> to base your work on you can use the
 following:</p>
 <pre><code class="language-ruby">Vagrant.configure(&quot;2&quot;) do |config|
-    config.vm.box = &quot;debian/bookworm64&quot;
-    config.vm.provision :shell, inline: &lt;&lt;-SRC
-       apt-get install -y git git-man apt-file
-       apt-file update
-    SRC
+  config.vm.box = &quot;generic/debian12&quot;
+  config.vm.synced_folder &quot;.&quot;, &quot;/vagrant&quot;
+
+  config.vm.provision &quot;shell&quot;, inline: &lt;&lt;-SHELL
+    apt-get update -y
+    apt-get install -y git git-man apt-file
+    apt-file update
+  SHELL
 end
 </code></pre>
 <h2 id="git-documentation"><a class="header" href="#git-documentation">Git documentation</a></h2>
