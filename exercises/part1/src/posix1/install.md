@@ -25,7 +25,7 @@ Vagrant.configure("2") do |config|
   config.vm.synced_folder ".", "/vagrant"
 
   config.vm.provision "shell", inline: <<-SHELL
-    apt install git 
+    echo "Post-provision installs go here"
   SHELL
 end
 ```

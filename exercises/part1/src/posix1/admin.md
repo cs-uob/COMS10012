@@ -38,54 +38,55 @@ The `/vagrant` folder is not part of the FHS, but is our convention for a shared
 
 Linux has had package managers and repositories since the days when it was distributed on floppy disks. A repository is a collection of software that you can install, and can be hosted anywhere - floppy disk, CD-ROM, DVD or nowadays on the internet. A package manager is software that installs packages from a repository - so far, this sounds just like an _app store_ but a package manager can do more. For one thing, you can ask to install different versions of a particular package if you need to. But the main point of a package manager is that packages can have dependencies on other packages, and when you install one then it installs the dependencies automatically.
 
-Nano is a basic text editor that works in the console, and is installed in most linux distributions including the ones on seis and the lab machines, so you can use it to edit files remotely. However, in alpine linux it is not installed by default: type `nano` and you get `nano: command not found`. You can install it with the command
+To illustrate this, we're going to go on a tour of one kind of software with which you'll want to get very familiar: text editors that work in the console. Text editing is fundamental to a lot of system administration tasks as well as programming, and people often find that a familiar editor becomes a favourite tool. 
+
+Two console-based text editors are already installed in Debian: `nano` and `vim`. 
+
+`nano` is a basic text editor that works in the console, and is installed in most Linux distributions including the ones on seis and the lab machines, so you can use it to edit files remotely.  You can type `nano FILENAME` to edit a file. The keyboard shortcuts are at the bottom of the screen, the main one you need is Control+X to exit (it will ask if you want to save, if you have unsaved changes). Nano is considered fairly friendly as console editors go.
+
+`vim` is the 1991 improved version of the even older (1976) `vi` editor (which is also installed). It is a modal editor with a steep learning curve, but its extremely powerful editing grammar and widespread availability mean it regularly appears towards the top of lists of favourite text editors. If you want to get started with vim, I suggest you start by typing `vimtutor` at the commandline -- this opens vim with a file that guides you through basic vim usage. 
+
+Another console-based editor dating from the mid-70s is `emacs`, `vi`'s traditional Lisp-based rival. However, emacs is not installed by default: type `emacs` at the console and you will get `emacs: command not found`. You can install it with the command
 
 ```
-sudo apk add nano
+sudo apt install emacs-nox
 ```
 
-  * `sudo` (superuser do) allows you to run a command as root, also known as the administrator or superuser. Depending on how your system is configured, this might be not allowed at all (you can't do it on the lab machines), or require a password, but on the alpine/vagrant distribution you are allowed to do this. It is good practice to use sudo for system adminstration instead of logging in as root directly, but if you ever really need a root shell then `sudo bash` gets you one - with `#` instead of `$` as prompt to warn you that you are working as root.
-  * `apk` is the alpine linux package manager.
-  * `add PACKAGE` adds a package, which means download and install it and all its dependencies (nano is so small that it has none).
+  * `sudo` (superuser do) allows you to run a command as root, also known as the administrator or superuser. Depending on how your system is configured, this might be not allowed at all (you can't do it on the lab machines), or require a password, but on the Vagrant box you're using you are allowed to do this. It is good practice to use sudo for system adminstration instead of logging in as root directly, but if you ever really need a root shell then `sudo bash` gets you one - with `#` instead of `$` as prompt to warn you that you are working as root.
+  * `apt` is the Debian package manager.
+  * `install PACKAGE` adds a package, which means download and install it and all its dependencies (you'll see a list of these to confirm you want to install them -- you do).
 
-You can now do `nano FILENAME` to edit a file. The keyboard shortcuts are at the bottom of the screen, the main one you need is Control+X to exit (it will ask if you want to save, if you have unsaved changes).
+We're installing `emacs-nox` because this is the version of emacs packaged for use from the console. If you tried to install just `emacs` then the package manager would identify that you need a graphical display manager to run emacs' GUI mode and install a lot more dependencies to enable that, which we don't need. 
 
-Next, install git with `sudo apk add git`. Git requires two dependencies (apart from the ones already installed on the base system), as you can see in the output:
+Now that emacs is installed, you can launch it with `emacs`, and from there you should see some introductory instructions, including how to access an emacs tutorial which will teach you how to use it. (If you want to exit emacs, Control-X followed by Control-C should do it).
 
-```
-(1/3) Installing expat (2.2.8-r0)
-(2/3) Installing pcre2 (10.33-r0)
-(3/3) Installing git (2.22.4-r0)
-```
 
-`expat` is an XML parser (for configuration files) and `pcre2` implements perl-compatible regular expressions for searching for text.
+Other popular editors include 
+ + `mcedit`, a file editor which comes as part of the 'midnight commander' package, which you can install with `sudo apt install mc`. Launch the editor with `mcedit filename` and test it out (Alt-0 to exit).  
+ + `tilde`, an editor with a GUI-esque menu system controlled through Alt-letter sequences. Install with `sudo apt install tilde`.
+ + `micro`, a simple editor somewhat like an advanced version of `nano`. Install with `sudo apt install micro`.
 
-We can use apk to explore this further, try the following:
+You can also find out information about packages with `apt info PACKAGE` -- try this for one of the above.
 
-  * `apk info git` shows information about the git package, including a short description and the website.
-  * `apk info -a git` shows more information, including the dependencies (section "depends on", there are 5 listed but two are already part of the base system, `libc.musl` is the C library and `libz` is a compression library similar to "zip") and a list of all files installed by the package.
+I suggest that you try out some of these editors, and figure out how you prefer to edit files. Some of these tools might require time investment to learn, but doing this early in your CS career could be a good decision.
 
-Note how git is built out of a number of subcommands in `/usr/libexec`. For example, when you do `git branch`, that ends up calling `/usr/libexec/git-core/git-branch`.
-
-The commands above did not require `sudo` as they do not change any files on the system.
+Whichever editor you end up deciding to use, you probably won't need to keep all the alternatives installed. You can leave `nano` and `vim` installed, but for the other editors you've tried out above and decided you don't like, you can (and should) remove them from the system with `sudo apt remove PACKAGE`.
 
 ## Update and upgrade
 
-The repositories that you are using are recorded in `/etc/apk/repositories`, have a look at this file with `cat` or `nano` to see where they are, then look up the sites in your browser. There are folders for different processor architectures (the one in use is stored in `/etc/apk/arch`) and these contain all the packages as well as a file `APKINDEX.tar.gz` that contains a list of all packages and versions.
+The repositories that you are using are recorded in `/etc/apt/sources.list`, have a look at this file with `cat` or `nano` to see where they are, then look up the sites in your browser. There are folders for different Debian versions and package index files for different architectures. 
 
 Two commands a system adminstrator should run regularly for security reasons:
 
-  * `sudo apk update` fetches the new package list from the repository. This way, apk can tell you if any packages have been updated to new versions since you last checked.
-  * `sudo apk upgrade` upgrades every package that you already have installed to the latest version in your local package list (downloaded when you do an `apk update`).
+  * `sudo apt update` fetches the new package list from the repository. This way, apt can tell you if any packages have been updated to new versions since you last checked.
+  * `sudo apt upgrade` upgrades every package that you already have installed to the latest version in your local package list (downloaded when you do an `apt update`).
 
 ## Lab machines
 
 If you are running a virtual machine on the lab machines, then your virtual machine might not be around after the lab machine reboots or you log out and in again and end up on a different machine - as the notice when you log in tells you, the virtual machines are stored under `/tmp`.
 
-It would be annoying to have to reinstall your favourite packages every time you log in to a different machine, so you should put them in your Vagrantfile and then `vagrant up` will do this for you automatically. The Vagrantfile already contains a line `apk add libc6-compat` which installs a package by default - you can put as many as you like on this line separated by spaces. There is no `sudo` here because when vagrant is installing the system, it is running as root automatically.
+It would be annoying to have to reinstall your favourite packages (like your chosen text editor) every time you log in to a different machine, so you should put them in your Vagrantfile and then `vagrant up` will do this for you automatically. The Vagrantfile already contains a line `echo`, you can put an `apt install PACKAGE` line below this, and can list as many packages as you like. There is no `sudo` here because when Vagrant is installing the system, it is running as root automatically.
 
-  * Add `nano` and `git` to this line so next time you rebuild the vagrant machine, they are added automatically.
+  * Unless it is `nano` or `vim`, add the package for your favourite text editor to this line so next time you rebuild the Vagrant machine, they are added automatically.
   * Log out of your vagrant machine and do a `vagrant destroy` which removes the virtual machine. Then reload with `vagrant up` which will download and provision the box again.
-  * Log in with `vagrant ssh` and check that git and nano are installed.
-
-For the next exercise, please also install the `gcc` package that gets you a C compiler, as well as `musl-dev` which contains header files like `stdio.h`. These, in case you wondered, live in `/usr/include`.
+  * Log in with `vagrant ssh` and check that the editor is installed.
