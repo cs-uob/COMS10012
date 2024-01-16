@@ -194,7 +194,7 @@
   config.vm.synced_folder &quot;.&quot;, &quot;/vagrant&quot;
 
   config.vm.provision &quot;shell&quot;, inline: &lt;&lt;-SHELL
-    apt install git 
+    echo &quot;Post-provision installs go here&quot;
   SHELL
 end
 </code></pre>
