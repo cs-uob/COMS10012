@@ -1630,9 +1630,24 @@ your pom.xml and replace it with a new:</p>
 </div>
 </div>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="spring"><a class="header" href="#spring">Spring</a></h1>
-<p>The <a href="https://spring.io/">Spring framework</a> helps you develop modern web / cloud / microservice / serverless / <em>(insert buzzword here)</em> applications in Java. Netflix, for example, uses it. You will probably use it too in your Software Project next year.</p>
+<p>The <a href="https://spring.io/">Spring framework</a> helps you develop modern
+web / cloud / microservice / serverless / <em>(insert buzzword here)</em>
+applications in Java. Netflix, for example, uses it.  You might use it
+too in your Software Project next year.</p>
+<div class="advanced container">
+<header><span class="advanced-title"></span></header>
+<div class="container-content">
+<p>Jo is cantankerous and old and so doesn't use it and prefers to
+either use CGI scripts, or a rather weird old thing called inetd.
+They're out of fashion nowadays, but worth reading up on---especially
+inetd which can save you a bunch of code for a simple webapp.</p>
+</div>
+</div>
 <h2 id="vagrant-preparation"><a class="header" href="#vagrant-preparation">Vagrant preparation</a></h2>
-<p>Web applications listen to a port (normally TCP port 80 for HTTP, 443 for HTTPS in production; 8000 or 8080 while in development). If you are following these exercises on your host OS, you can skip this preparation. If you are in Alpine on vagrant, then although you can quickly get an application to work on port 8080 inside the VM, you need one extra step to make it accessible from your browser outside the VM.</p>
+<p>Web applications listen to a port (normally TCP port 80 for HTTP, 443
+for HTTPS in production; 8000 or 8080 while in development). If you
+are following these exercises on your host OS, you can skip this
+preparation. If you are in a VM on vagrant, then although you can quickly get an application to work on port 8080 inside the VM, you need one extra step to make it accessible from your browser outside the VM.</p>
 <p>Add the line</p>
 <pre><code>config.vm.network &quot;forwarded_port&quot;, guest: 8080, host: 8080
 </code></pre>
@@ -1643,11 +1658,15 @@ your pom.xml and replace it with a new:</p>
 <ul>
 <li>Pick &quot;Maven Project&quot; and &quot;Java language&quot;.</li>
 <li>Enter a group id and artifact id (you can use <code>org.example</code> and <code>project</code>).</li>
-<li>Make sure &quot;packaging&quot; is on JAR and &quot;Java&quot; (version) is on 8, at least if you're on Alpine.</li>
+<li>Make sure &quot;packaging&quot; is on JAR and &quot;Java&quot; (version) is on 17 (or
+whatever you have installed).</li>
 <li>Under <em>Dependencies</em> on the right, click &quot;Add Dependencies&quot; and add &quot;Spring Web&quot;.</li>
 <li>Click &quot;Generate&quot; at the bottom, this downloads a ZIP of a project (complete with pom.xml file and folders) that you can unzip either on the host or in the VM.</li>
 </ul>
-<p>To unzip the file in the VM, place it in the same folder as your Vagrantfile on the host, then inside the VM it will appear in the <code>/vagrant</code> folder. The command <code>unzip ZIPFILE</code> does exactly what its name suggests.</p>
+<p>To unzip the file in the VM, place it in the same folder as your
+Vagrantfile on the host, then inside the VM it will appear in the
+<code>/vagrant</code> folder. The command <code>unzip</code> is your friend.  Install it if
+not already installed.</p>
 <p>This project uses Spring Boot, a library and plugin to help with building and running Spring applications, so the only maven command you need is</p>
 <pre><code>mvn spring-boot:run
 </code></pre>
@@ -1667,7 +1686,7 @@ public String mainPage() {
 <li>Add the imports for the two annotations you've just used; they're both in the package <code>org.springframework.web.bind.annotation</code>.</li>
 </ul>
 <p>Now you can re-run the project with maven, go to <code>localhost:8080</code> on your browser and you should see the message. Congratulations - you've built your first Java/Maven/Spring web application!</p>
-<p><em>You can also access the web page from the terminal with <code>wget localhost:8080 -q -O /dev/stdout</code> which should print &quot;Hello, Software Tools!&quot; on your terminal. If you just do <code>wget localhost:8080</code> it will save the output to a file with the default name <code>index.html</code>.</em></p>
+<p><em>You can also access the web page from the terminal on your host machine with <code>wget localhost:8080 -q -O /dev/stdout</code> which should print &quot;Hello, Software Tools!&quot; on your terminal. If you just do <code>wget localhost:8080</code> it will save the output to a file with the default name <code>index.html</code>.</em></p>
 <p>The <code>@GetMapping</code> means, when a HTTP GET request comes in for a URL with the path in the annotation (such as a browser would send), then run this function. For example, accessing <code>localhost:8080/pages/index.html</code> would look for a mapping <code>/pages/index.html</code> where as the <code>/</code> mapping covers when you type no path at all. You can start to see that URL paths on the web are modelled on POSIX paths as you learnt in this unit, with forward slashes and a concept of a &quot;root folder&quot; <code>/</code> which is what gets returned when you type a website's name in your browser without a path on the end.</p>
 <p>You've seen that build tools like maven automate the process of downloading the libraries your project needs and compiling your project. The Spring Framework automates (as far as possible) the process of running these libraries when your application starts, and getting them all to work nicely together (there is a <em>lot</em> going on in the background from a web request arriving to your function being called to get the page contents).
 The obvious next step would be to use thymeleaf to render HTML templates to make proper pages. This is indeed something you'll learn about later in this unit and in your second-year software project next year, but there are a few more steps you'll need to know to do this, and I don't want to go into that today - that's quite enough material for one workshop.</p>
