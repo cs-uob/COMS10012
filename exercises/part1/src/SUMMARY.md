@@ -3,7 +3,6 @@
 [Overview](./overview.md)
 
 # Week 1: POSIX Systems
-
 - [System Administration](./posix1/index.md)
   - [Secure shell](./posix1/ssh.md)
   - [Installing Vagrant and Debian](./posix1/install.md)
