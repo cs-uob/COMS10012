@@ -1,4 +1,6 @@
-# POSIX Activity 3
+# Bonus POSIX Activity
+
+*This activity is optional, and non-examinable. We recommend that you watch the videos anyway.*
 
 ## Videos
 
