@@ -1,4 +1,4 @@
-Stack Calculator Documentation
+# Stack Calculator Documentation
 
 This program implements a simple RPN/stack calculator. You can use the digits 0-9 and the
 four operators "+-*/". You can use spaces between numbers and operators, and you must use
@@ -17,7 +17,7 @@ on the stack.
 Terminate the program by closing standard input (e.g. Control+D on a fresh line on the
 terminal.)
 
-Compile with "-l readline". You might need to "sudo apk add readline-dev" first.
+Compile with "-l readline". You might need to install readline first.
 
 For example,
 
@@ -26,7 +26,7 @@ For example,
 "1" -> 1.0000 (a number on its own just evaluates to itself).
 "01" -> 1.0000 (leading zeroes are ignored).
 
-Errors
+## Errors
 
 If the stack limit of 10 is exceeded, you get "Error, stack full".
 
@@ -57,3 +57,4 @@ values on the stack at the end.
 
 Division by zero produces an inf or -inf double value, inf/inf or 0/0 produces NaN.
 These are not errors as far as the program is concerned.
+
