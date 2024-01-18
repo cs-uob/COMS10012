@@ -364,7 +364,7 @@ One person creates a private repository (tick the box to add a README file) and 
 
   * On Github, the way to add people to a repository is on the repository page: choose _Settings_ in the top menu, then _Manage access_. Here you can press _Invite a collaborator_ and enter their Github username. This causes Github to send them an e-mail with a link they need to click to accept the invitation and be added to the repository. _Note: you must be logged in to github when you click the link on the invitation e-mail, otherwise you will get an error message._
 
-Everyone `git clone`s the repository to their own alpine VM (or their own machine directly).
+Everyone `git clone`s the repository to their own Debian VM (or their own machine directly).
 
 Everyone does the following, one person at a time doing all steps (coordinate among each other):
 

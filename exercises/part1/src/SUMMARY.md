@@ -3,7 +3,6 @@
 [Overview](./overview.md)
 
 # Week 1: POSIX Systems
-
 - [System Administration](./posix1/index.md)
   - [Secure shell](./posix1/ssh.md)
   - [Installing Vagrant and Debian](./posix1/install.md)
@@ -11,15 +10,16 @@
 - [The POSIX Shell](./posix2/index.md)
   - [Shell expansion](./posix2/shell.md)
   - [Pipes](./posix2/pipes.md)
+  - [Regular expressions](./posix2/regex.md)
 
-# Week 2: Version control
+# Week 2: Version Control
 - [Git](./git/index.md)
   - [Git](./git/git.md)
 
-# Week 3: Shell scripting & build tools
+# Week 3: Shell Scripting & Build Tools
 - [Shell Scripting](./posix3/index.md)
   - [File permissions](./posix3/permissions.md)
-  - [shell scripting](./posix3/script.md)
+  - [Shell scripting](./posix3/script.md)
 - [Build Tools](./build2/index.md)
   - [C](./build2/c.md)
   - [Python](./build2/python.md)
@@ -27,7 +27,6 @@
   - [Spring](./build2/spring.md)
 
 # Week 4: Debugging
-
 - [Debugging](./build1/index.md)
   - [Exercise](./build1/exercise.md)
 - [Bonus POSIX (unassessed)](./posix4/index.md)
@@ -39,7 +38,6 @@
   - [The final challenge](./posix4/final.md)
 
 # Week 5: Databases
-
 - [SQL introduction](./db1/sql-introduction.md)
   - [Set up the database](./db1/setup.md)
   - [ER diagram](./db1/er-diagram.md)

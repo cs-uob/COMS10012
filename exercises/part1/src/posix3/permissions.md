@@ -1,63 +1,10 @@
 # File permissions
 
-Log in to your VM for the following exercises.
-
-If you need a reminder your `Vagrantfile` should look something like:
-
-```ruby
-Vagrant.configure("2") do |config|
-    config.vm.box = "generic/debian12"
-    config.vm.provision :shell, inline: <<-SRC
-       apt-get update -y
-       apt-get install -y git git-man apt-file
-       apt-file update
-    SRC
-end
-```
-
-## Show the current user in the prompt
-
-First, use the command `whoami` to see the current user name: it should be `vagrant`.
-
-For this exercise it will be useful to display the user in the prompt. We want this setting to apply to all users, so we need to set it in a system-wide configuration file namely `/etc/profile` which is read by the shell when it starts up.
-
-Try `echo $PS1` on the terminal to show the current value of this variable, it should be something like `\h:\w\$ `. The `PS1` (prompt level 1) controls your shell prompt. Here `\h` means the hostname, `\w` the working directory and `\$` is the appropriate prompt symbol (`$` for normal users, `#` for root). This gets you a default prompt that looks like `debian12:~$ ` (note the space after the dollar sign, which is also in the PS1).  You can find a complete list of _escape characters_ (the letters starting with a backslash) in `man 1 bash` under **PROMPTING**.
-
-The general syntax for setting a variable is `export NAME=VALUE`, where the `export` tells the shell to keep this value around when the script setting it has finished. Without exporting, you would be creating a local variable instead.
-
-Open the configuration file with `sudo nano /etc/profile`. You need sudo as only root can edit this system-wide configuration file.
-
-The file is a just another shellscript and variables and commands can be added as the system administrator likes:
-
-    export CHARSET=UTF-8
-    export LANG=C.UTF-8
-    export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-    export PAGER=less
-    export PS1='\h:\w\$ '
-    umask 022
-
-You may also see a section `source`-ing (with the `.` or `source` commands) everything in the `/etc/profile.d` folder that ends with a `.sh`.  This lets an administrator split the shell profile up into different files, and packages add to the the shell profile without modifying the top-level config file.
-
-Go to the end of the file, and add the following lines. Note that there are single quotes around the value of the PS1, and there is a space before the closing single quote.
-
-    export PS1='\u@\h:\w\$ '
-    export EDITOR=nano
-    
-The `\u` in the PS1 is the current user. Save the file (Control+X in nano), log out and in again and your prompt should now be `vagrant@alpine314:~$ `. The `EDITOR` one will come in useful later as it means that if you try a `git commit` without a message, you end up in nano instead of vi (another editor that is better but less beginner-friendly).
-
-|||advanced
-If you are running a vagrant VM on a lab machine, then next time you log in to a lab machine your changes to `/etc/profile` will be gone. One way to fix this would be to add the following to your Vagrantfile inside the `config.vm.provision` block:
-
-    echo "export PS1='\\u@\\h:\\w\\$ '" >> /etc/profile
-
-This runs as root (so no sudo needed) and it runs when the machine is created, before you log in with `vagrant ssh` so the shell will pick it up correctly. Note that you need to _double_ the backslashes here, because the Vagrantfile is read by the Ruby language interpreter and that has its own conventions for backslashes. By doubling them, we tell Ruby that these characters are not meant for it, and Ruby will pass a single backslash on to the shell that runs the code.
-
-If you want to do more elaborate setup, such as copying config files every time you recreate the machine, note that the folder containing the Vagrantfile is available as `/vagrant` inside the VM, files in here persist across sessions on different lab machines (since they're stored on the network file system) and you can copy files from `/vagrant` to the places you want them in a provisioning block.
-|||
+Log in to your Debian VM for the following exercises.
 
 ## Create a user and a group
 
-Create a new user with `sudo adduser NAME` - I'm going to be using `brian` as an example name in these notes. When it asks for a password, you can just use `brian` or something; it will complain about the password being too short but it will create the user anyway.  You can skip the GECOS information asking for a full name and phone number---it's just to help an admin contact you if needed.
+Create a new user with `sudo adduser NAME` - I'm going to be using `brian` as an example name in these notes. When it asks for a password, you can just use `brian` or something; it will complain about the password being too short but it will create the user anyway. You can skip the GECOS information asking for a full name and phone number---it's just to help an admin contact you if needed.
 
 Check the user and group files with `tail /etc/passwd` and `tail /etc/group` to check that the new user has been created - `tail` displays the last 10 lines of a file by default; `tail -n N FILE` would display the last N lines. Your new user `brian` (or whatever you called them) should appear in both files. Also check with `ls -l /home` that the home directory for Brian exists and is set to the correct user and group.
 
@@ -90,7 +37,7 @@ Using `ls -l` as Brian in both `~` and `~/private`, compare the entries for the 
 
 Note that, even though the secret file has read permissions for everyone by default, Nigel cannot read it. The rule is that you need permissions on the whole path from `/` to a file to be able to access it.
 
-_This is another reminder that if you want to store private files on a lab machine, then put it in a folder that is only accessible to you. Other students can read your home directory by default, and they would be able to look at your work. This has led to plagarism problems in the past, but good news: we keep logs and can usually figure out what happened! `:-)`._
+_This is another reminder that if you want to store private files on a lab machine, then put it in a folder that is only accessible to you. Other students can read your home directory by default, and they would be able to look at your work. This has led to plagiarism problems in the past, but good news: we keep logs and can usually figure out what happened! `:-)`._
 
 _Altenatively you could remove permissions from everyone else on your home directory there, but this prevents you from being able to share files in specific folders that you do want to share with other students._
 
