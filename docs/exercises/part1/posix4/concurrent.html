@@ -174,7 +174,7 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="concurrent-programming-in-posix"><a class="header" href="#concurrent-programming-in-posix">Concurrent programming in POSIX</a></h1>
-<p>In your second year, you will study concurrent programming using the go programming language, which provides an abstraction called <em>channels</em> that different <em>actors</em> can use to talk to each other. In the case of go, the actors are threads, but the same principle applies to a concurrent system with different processes, in which case channels are a kind of <em>inter-process communication (IPC)</em>. In POSIX, pipes are a kind of channel.</p>
+<p>In the undergraduate degree at Bristol, students study concurrent programming using the go programming language, which provides an abstraction called <em>channels</em> that different <em>actors</em> can use to talk to each other. In the case of go, the actors are threads, but the same principle applies to a concurrent system with different processes, in which case channels are a kind of <em>inter-process communication (IPC)</em>. In POSIX, pipes are a kind of channel.</p>
 <ul>
 <li>If one process reads from a pipe, then this blocks the process until another process writes to it.</li>
 <li>If one process writes to a pipe, then this blocks the process until another process reads from it.</li>
@@ -184,8 +184,8 @@
 <p><img src="../resources/pipe1.png" alt="pipe diagram" /></p>
 <p><em>In this diagram, green boxes are processes with standard input on the left and standard output (top) and standard error (bottom) on the right. The little squares all represent file descriptors; a pipe has two of them, one each for reading and writing.</em></p>
 <p>This is not yet a fully concurrent system though, as data is only flowing in one direction: there are no loops.</p>
-<p>As a little example of something that does have a loop, we are going to use the <code>bc</code> calculator program, which reads a line from standard input, evaluates it as a formula, and writes the result to standard output:</p>
-<pre><code>alpine$ bc
+<p>As a little example of something that does have a loop, we are going to use the <code>bc</code> calculator program, which (once installed) reads a line from standard input, evaluates it as a formula, and writes the result to standard output:</p>
+<pre><code>vagrant@debian12$ bc
 (you type ) 2+3
 (bc prints) 5
 (you type ) 1+1
@@ -268,13 +268,13 @@ int main() {
 </code></pre>
 <p>This might mess up the last line on your terminal a bit, but you can reset it with Control+L.
 The first command sets a shell variable to the ANSI escape character. The second line redirects standard error (<code>2&gt;</code>) to a subprocess (<code>&gt;(...)</code>) which calls the stream editor <code>sed</code> to replace each line with the line surrounded by <code>\e[32m</code> (set colour to green) and <code>\e[0m</code> (reset colour). This will make the standard error lines appear in green. </p>
-<p>Incidentally, some versions of sed support the <code>\e</code> escape sequence directly, or at least the version <code>\x1b</code> that creates a character from its ASCII code in hexadecimal, but alpine's sed does not so you need the shell variable trick with a fall back to octal (033) notation!</p>
+<p>Incidentally, some versions of sed support the <code>\e</code> escape sequence directly, or at least the version <code>\x1b</code> that creates a character from its ASCII code in hexadecimal, but some versions do not, so you need the shell variable trick with a fall back to octal (033) notation!</p>
 </div>
 </div>
 <p>And now for the interesting part:</p>
 <ul>
 <li>Make two named pipes (FIFOs) with <code>mkfifo up</code> and <code>mkfifo down</code>.</li>
-<li>You will need two terminals open for the following. Either ssh into your alpine machine a second time or, better still, use tmux (<code>Control+B, %</code> opens a second terminal beside the first one; you can use <code>Control+B, Left</code> and <code>Control+B, Right</code> to switch between them).</li>
+<li>You will need two terminals open for the following. Either ssh into your Debian box a second time or, better still, use tmux (<code>Control+B, %</code> opens a second terminal beside the first one; you can use <code>Control+B, Left</code> and <code>Control+B, Right</code> to switch between them).</li>
 <li>Run the program with <code>./ipc1 &gt; down &lt; up</code> to redirect standard input and output to the pipes. This blocks (exercise: which statement is it currently blocking on?).</li>
 <li>In the second terminal, run <code>bc &lt; down &gt; up</code>.</li>
 </ul>
