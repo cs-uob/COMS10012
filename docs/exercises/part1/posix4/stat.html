@@ -175,7 +175,8 @@
                     <main>
                         <h1 id="inodes-and-system-calls"><a class="header" href="#inodes-and-system-calls">Inodes and System Calls</a></h1>
 <p>In this exercise we will look under the hood of the <code>stat</code> system call, which returns information about an inode.</p>
-<p><em>Note: for this exercise it's even more important than usual that you are using Debian within Vagrant, as you will get different results if you try it on Windows Subsystem for Linux or on a Mac for example.</em></p>
+<p><em>Note: for this exercise use a VM.  Calling conventions and system programming
+varies enormously beween OSs</em></p>
 <p>A system call is a way for a linux user or program to interact with the kernel, and there are usually at least three ways of calling each one:</p>
 <ol>
 <li>Execute the system call directly in assembly.</li>
@@ -183,7 +184,6 @@
 <li>Use a command-line program provided by your distribution.</li>
 </ol>
 <h2 id="preparation"><a class="header" href="#preparation">Preparation</a></h2>
-<p>Install the <code>musl-dev</code> package, which provides the header files for the C library, as well as <code>gcc</code> if you have not installed that yet.</p>
 <p>Have a look at the manual page <code>man stat</code> for the <code>stat</code> system call. The abbreviated headers are:</p>
 <pre><code class="language-C">#include &lt;sys/stat.h&gt;
 

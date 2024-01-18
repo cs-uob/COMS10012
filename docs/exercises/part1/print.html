@@ -1690,9 +1690,17 @@ The obvious next step would be to use thymeleaf to render HTML templates to make
 <li><a href="build1/./exercise.html">Debugging exercise</a></li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="debugging-exercise"><a class="header" href="#debugging-exercise">Debugging exercise</a></h1>
-<p>Clone the repository <code>git@github.com:cs-uob/COMS10012</code> if you have not done so already and open the folder <code>code/debugging</code>.</p>
-<p>There is a program <code>stackcalc.c</code> that attempts to implement the specification in <code>stackcalc.txt</code> for a RPN calculator, but it does not work correctly. For example, <code>1 2 +</code> should produce <code>3.0000</code> but produces <code>Error, operator on empty stack</code>. (Read the notes in the text file about how to compile the program with the required library.)</p>
-<p>Your exercise is to debug and fix the program, making as few changes to the general structure as possible (so don't just rewrite the whole thing from scratch).</p>
+<p>Clone the repository <code>git@github.com:cs-uob/COMS10012</code> if you have not done so
+already and open the folder <code>code/debugging</code>.</p>
+<p>There is a program <code>stackcalc.c</code> that attempts to implement the specification
+in <code>stackcalc.txt</code> for a Reverse Polish Notation calculator, but it does not
+work correctly. For example, <code>1 2 +</code> should produce <code>3.0000</code> but produces
+<code>Error, operator on empty stack</code>. </p>
+<p>Your exercise is to debug and fix the program, making as few changes to the
+general structure as possible (so don't just rewrite the whole thing from
+scratch).</p>
+<p>If I were you I'd start by writing a Makefile, getting the code building, and
+fixing the compiler warnings…</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="bonus-posix-activity"><a class="header" href="#bonus-posix-activity">Bonus POSIX Activity</a></h1>
 <p><em>This activity is optional, and non-examinable. We recommend that you watch the videos anyway.</em></p>
 <h2 id="videos-6"><a class="header" href="#videos-6">Videos</a></h2>
@@ -1712,7 +1720,8 @@ The obvious next step would be to use thymeleaf to render HTML templates to make
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="inodes-and-system-calls"><a class="header" href="#inodes-and-system-calls">Inodes and System Calls</a></h1>
 <p>In this exercise we will look under the hood of the <code>stat</code> system call, which returns information about an inode.</p>
-<p><em>Note: for this exercise it's even more important than usual that you are using Debian within Vagrant, as you will get different results if you try it on Windows Subsystem for Linux or on a Mac for example.</em></p>
+<p><em>Note: for this exercise use a VM.  Calling conventions and system programming
+varies enormously beween OSs</em></p>
 <p>A system call is a way for a linux user or program to interact with the kernel, and there are usually at least three ways of calling each one:</p>
 <ol>
 <li>Execute the system call directly in assembly.</li>
@@ -1720,7 +1729,6 @@ The obvious next step would be to use thymeleaf to render HTML templates to make
 <li>Use a command-line program provided by your distribution.</li>
 </ol>
 <h2 id="preparation"><a class="header" href="#preparation">Preparation</a></h2>
-<p>Install the <code>musl-dev</code> package, which provides the header files for the C library, as well as <code>gcc</code> if you have not installed that yet.</p>
 <p>Have a look at the manual page <code>man stat</code> for the <code>stat</code> system call. The abbreviated headers are:</p>
 <pre><code class="language-C">#include &lt;sys/stat.h&gt;
 
