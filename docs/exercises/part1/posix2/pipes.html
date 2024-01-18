@@ -201,19 +201,19 @@
 <li>The 6171st word in the file. <em>Can you read my mind and guess this word directly?</em></li>
 <li>All words containing the letter Q, capitalised. (A regular expression containing a string of one or more letters matches all strings that contain the expression as a substring.)</li>
 <li>All words starting with the letter X. The regular expression <code>X</code> would match an X anywhere in the word, but <code>^X</code> matches an X only at the start of the string.</li>
-<li>All words ending in j. (The expression <code>'j$'</code> matches a j only at the end of the string, but you have to single-quote it to stop the shell from interpreting the dollar sign). <em>Can you guess the word - it is a city in eastern Europe?</em></li>
+<li>All words ending in j. (The expression <code>'j$'</code> matches a j only at the end of the string, but you have to single-quote it to stop the shell from interpreting the dollar sign). </li>
 <li>The number of words containing the letter Q, ignoring case (e.g. capitalised or not).</li>
 <li>The first five words containing the letter sequence <code>cl</code>.</li>
 <li>All words containing the sequence &quot;kp&quot;, but not &quot;ckp&quot;. <em>Can you guess any of these?</em></li>
 <li>The last 15 words of exactly two letters. The expression <code>.</code> (period) matches a single character, and <code>'^...$'</code> for example would match all strings of the format <em>exactly three characters between start and end of string</em>. You need to quote it because of the dollar sign.</li>
 <li>All words from the first 100 words on the list, which contain the letter y.</li>
 <li>The first five words that are among the last 100 words on the list, and contain the letter y (whether capitalised or not).</li>
-<li>All three-letter words with no vowels (aeiou).The regular expression <code>'[aeiou]'</code> matches any string that contains one of the bracketed characters; you need quotes to stop the shell from interpreting the brackets. Remember to exclude words with capitalised vowels as well. <em>There are 12 of these, can you guess them all before looking?</em></li>
-<li>All words of exactly 7 letters, where the third one is an e and the word ends &quot;-ded&quot;. <em>This kind of search is really useful for crosswords. There are 9 words of this form, can you guess them?</em></li>
+<li>All three-letter words with no vowels (aeiou).The regular expression <code>'[aeiou]'</code> matches any string that contains one of the bracketed characters; you need quotes to stop the shell from interpreting the brackets. Remember to exclude words with capitalised vowels as well. <em>There are 343 of these.</em></li>
+<li>All words of exactly 7 letters, where the third one is an e and the word ends &quot;-ded&quot;. <em>This kind of search is really useful for crosswords. There are 14 words of this form, can you guess them?</em></li>
 </ul>
 <p>Bonus regular expression question:</p>
 <ul>
-<li>Find all words that start with a P (whether capitalised or not), and contain at least four instances of the letter a. Putting a <code>*</code> after something in a regular expression searches for <em>any number of repetitions of this, including 0</em> so for example <code>'a*'</code> would find words with any number of the letter a, including 0 (which is not what you want here). You need single quotes to stop the shell from expanding the <code>*</code>. <em>Can you guess the words? There are essentially four of them, two demonyms (for some reason one of them has a plural in the list, the other doesn't), and two nouns which are not proper nouns.</em></li>
+<li>Find all words that start with a P (whether capitalised or not), and contain at least four instances of the letter a. Putting a <code>*</code> after something in a regular expression searches for <em>any number of repetitions of this, including 0</em> so for example <code>'a*'</code> would find words with any number of the letter a, including 0 (which is not what you want here). You need single quotes to stop the shell from expanding the <code>*</code>. <em>Can you guess the words? There are 14 hits in the solution but essentially five words: two demonyms and three nouns which are not proper nouns, all with possessive and plural forms (bar one which is its own plural).</em></li>
 </ul>
 
                     </main>
