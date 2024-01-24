@@ -217,15 +217,16 @@ libraries) we generally use a programming language's own package
 manager and ignore what the OS provides.  For Python that means <code>pip</code>
 (occasionally called <code>pip3</code> or <code>pip2</code>).</p>
 <p>Sometimes you'll see things telling you to install a package with
-<code>sudo pip install</code> but don't do that! It will break things horribly eventually.
-You can in fact use pip without sudo, by passing the
-<code>--user</code> option which installs packages into a folder in
-your home directory (<code>~/.local</code>) instead of in <code>/usr</code> which normally
-requires root permissions. </p>
+<code>sudo pip install</code> but don't do that! It will break things horribly
+eventually.  You can use pip without sudo, by passing the <code>--user</code>
+option which installs packages into a folder in your home directory
+(<code>~/.local</code>) instead of in <code>/usr</code> which normally requires root
+permissions.</p>
 <p>Sometimes you'll still need to install a package through the OSs
 package manager (<code>numpy</code> and <code>scipy</code> are common because they depend on
-an awful lot of C code and so are a pain to install with <code>pip</code> and
-have to fix the library paths, but in general try and avoid it.</p>
+an awful lot of C code and so are a pain to install with <code>pip</code> as you
+have to fix the library paths and dependencies manually) but in
+general try and avoid it.</p>
 <p>Python used to manage your OS should be run by the system designers;
 Python used for your dev work should be managed by you.  And never the
 twain shall meet.</p>
