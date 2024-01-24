@@ -1,6 +1,6 @@
 # Bonus POSIX Activity
 
-*This activity is optional, and non-examinable. We recommend that you watch the videos anyway.*
+*This activity is optional, and non-examinable.* If you fancy learning some gubbins of how terminals and filesystems work give the videos a watch, if you fancy doing some old fashioned systems programming give the exercises a go.  **You will not be examined on this**.
 
 ## Videos
 
