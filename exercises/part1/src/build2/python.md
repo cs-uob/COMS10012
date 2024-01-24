@@ -25,25 +25,47 @@ This should print the markdown rendered to HTML, e.g.
     <h1>Markdown Example</h1>\n<p>Markdown is a <em>markup</em> language.</p>
 
 
-<style>
-div.container { padding: 0; background-color: #efefef; }
-div.advanced header { background-color: lightskyblue;   padding-left: 0.5ex; }
-span.advanced-title::before { content: "Advanced note" }
-div.container-content { padding: 1ex; }
-div.container-content :first-child { margin-top: 0; }
-div.container-content :last-child { margin-bottom: 0; }
-</style>
-<div class="advanced container">
-<header><span class="advanced-title"></span></header>
-<div class="container-content">
-<p>Python version 3 came out in 2008 and has some syntax changes compared to Python 2; version 2 is now considered deprecated. On most systems, you simply use 'python' and 'pip' for the version 3 commands. Alpine is a bit of an exception here as it still calls the commands 'python3' and 'pip3', in case you are still using programs that require version 2.</p>
-<p>When a language comes with its own package manager, sometimes you have a choice between using the OS package manager (e.g. apk) and the language one (e.g. pip) to install modules. Generally speaking, the language one will contain the most up-to-date versions and you should use that unless you have a reason to do otherwise.</p>
-<p>At the time of writing for example, the Alpine repos contain pip version 19, but the python distribution itself contains version 21, so you get a warning when you are using the older one - complete with the command you should type to install the newer one, except that on Alpine you actually have to type <code class="language-plaintext">sudo pip3 install --upgrade pip</code>.</p>
-<p>
-You can in fact use pip without sudo, by passing the <code>--user</code> option which installs packages into a folder in your home directory (<code>~/.local</code>) instead of in /usr which requires root permissions. It is a matter of choice which one to use, except if you are on a machine without root rights (like a lab machine) where you have to use the user install option.
-</p>
-</div>
-</div>
+|||advanced
+Python version 3 came out in 2008 and has some syntax changes compared
+to Python 2 (`print "hello world"` became `print("hello
+world")`). Version 2 is now considered deprecated; but the transition
+was *long* and *extremely painful* because changing the syntax of a
+thing like the print statement leads to an awful lot of code breaking
+and an awful lot of people preferring not to fix their code and
+instead just keep an old version of Python installed.
+
+So whilst we were dealing with this it was typical for a system to
+have multiple versions of Python installed `python2` for the old one
+and `python3` for the newer on (and even then these were often
+symlinks to specific subversions like `python2.6`), and then `python`
+being a symlink for whatever your OS considered to be the "supported" version.
+
+Different OSs absolutely had different versions of Python (MacOS was
+particularly egregious for staying with Python 2 for far longer than
+necessary) and so a solution was needed, because this was just
+breaking things while OS designers bickered.
+
+The solution is that for *most* dependencies (except for compiled
+libraries) we generally use a programming language's own package
+manager and ignore what the OS provides.  For Python that means `pip`
+(occasionally called `pip3` or `pip2`).
+
+Sometimes you'll see things telling you to install a package with
+`sudo pip install` but don't do that! It will break things horribly eventually.
+You can in fact use pip without sudo, by passing the
+`--user` option which installs packages into a folder in
+your home directory (`~/.local`) instead of in `/usr` which normally
+requires root permissions. 
+
+Sometimes you'll still need to install a package through the OSs
+package manager (`numpy` and `scipy` are common because they depend on
+an awful lot of C code and so are a pain to install with `pip` and
+have to fix the library paths, but in general try and avoid it.
+
+Python used to manage your OS should be run by the system designers;
+Python used for your dev work should be managed by you.  And never the
+twain shall meet.
+|||
 
 ## Scipy
 
