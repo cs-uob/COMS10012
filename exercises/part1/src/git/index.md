@@ -1,6 +1,14 @@
 # Activity: Git
 
-## Videos
+## This year's slides
+
+- [Lecture 2: Git: Version Control: How do we track changes?](https://github.com/cs-uob/COMS10012/blob/master/slides/02-git.pdf)
+
+## Last year's videos
+
+I've cut things down a bit from last year (and added very little).  If you'd
+like a bit more historical context and a bit of a ramble through other version
+control systems there may be something there for you.
 
 | Video | Length | Slides |
 |-------|-------:|--------|
@@ -11,3 +19,9 @@
 ## Exercises
 
   - [Git](./git.md)
+
+## Reading
+
+Optional (but recommended).
+
+- [`man 7 giteveryday`](https://www.man7.org/linux/man-pages/man7/giteveryday.7.html)
