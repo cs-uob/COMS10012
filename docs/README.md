@@ -13,6 +13,7 @@ Please see the following pages for more details:
 
 The workshop materials are here:
 
+  - [Lecture slides](lectures.md)
   - [Part 1, weeks 13-17](exercises/part1/)
   - [Part 2, weeks 19-23](exercises/part2/)
 
