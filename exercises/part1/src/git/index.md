@@ -2,7 +2,7 @@
 
 ## This year's slides
 
-- [Lecture 2: Git: Version Control: How do we track changes?](https://github.com/cs-uob/COMS10012/blob/master/slides/02-git.pdf)
+- [Lecture 2: Git: Version Control: How do we track changes?](https://cs-uob.github.io/COMS10012/slides/02-git.pdf)
 
 ## Last year's videos
 

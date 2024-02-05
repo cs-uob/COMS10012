@@ -93,7 +93,7 @@ password or blank).
     
 ## Creating a database
 
-Right you have a mysql server running! Lets connect it to a database!
+Right, you have a mysql server running! Lets connect it to a database!
 To create the database:
 
 ```sh

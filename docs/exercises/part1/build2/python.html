@@ -233,7 +233,7 @@ twain shall meet.</p>
 </div>
 </div>
 <h2 id="scipy"><a class="header" href="#scipy">Scipy</a></h2>
-<p>In Maths B, we will be using <code>scipy</code> for statistics, so you may as well install that too. Unfortunately, <code>pip</code> will complain because scipy depends on a C library for fast linear algebra.  You could go and install all the dependencies (and you might have to do this if you need a specific version of it), but it turns out Debian has it all packaged up as a system package too: if it is at the version you need you could install that instead.  Try searching for it with <code>apt search scipy</code>.</p>
+<p>In Maths B, you will be using <code>scipy</code> for statistics, so you may as well install that too. Unfortunately, <code>pip</code> will complain because scipy depends on a C library for fast linear algebra. You could go and install all the dependencies (and you might have to do this if you need a specific version of it), but it turns out Debian has it all packaged up as a system package too: if it is at the version you need you could install that instead.  Try searching for it with <code>apt search scipy</code>.</p>
 <p>The following commands show if it is correctly installed, by sampling 5 times from a Normal distribution with mean 200 and standard deviation 10:</p>
 <pre><code>from scipy.stats import norm
 norm(loc=200, scale=10).rvs(5)

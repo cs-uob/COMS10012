@@ -70,7 +70,7 @@ twain shall meet.
 
 ## Scipy
 
-In Maths B, we will be using `scipy` for statistics, so you may as well install that too. Unfortunately, `pip` will complain because scipy depends on a C library for fast linear algebra.  You could go and install all the dependencies (and you might have to do this if you need a specific version of it), but it turns out Debian has it all packaged up as a system package too: if it is at the version you need you could install that instead.  Try searching for it with `apt search scipy`.
+In Maths B, you will be using `scipy` for statistics, so you may as well install that too. Unfortunately, `pip` will complain because scipy depends on a C library for fast linear algebra. You could go and install all the dependencies (and you might have to do this if you need a specific version of it), but it turns out Debian has it all packaged up as a system package too: if it is at the version you need you could install that instead.  Try searching for it with `apt search scipy`.
 
 The following commands show if it is correctly installed, by sampling 5 times from a Normal distribution with mean 200 and standard deviation 10:
 
