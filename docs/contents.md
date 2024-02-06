@@ -6,13 +6,12 @@ The aim of this unit is that by the end of it, you will be ready to write your f
 
 The topics we will cover in this unit are:
 
-  - Basic system administration: POSIX, Linux, and the command line. Using Alpine Linux, a minimalist system, you will learn everything from effective use of the command line (including scripting) to installing packages and setting up and securely connecting to virtual machines.
+  - Basic system administration: POSIX, Linux, and the command line. Using Debian Linux, you will learn everything from effective use of the command line (including scripting) to installing packages and setting up and securely connecting to virtual machines.
   - Version control with git. This tool is standard enough in industry nowadays that you can be expected to know about it in a technical interview, but using it well will also save you time and effort at the very latest in your second year. 
   - The developer's toolkit: debugging, testing, and automating the build process of your software.
   - Databases. You will learn the SQL programming language and how to interact with a database both from the command line and from another application. You will also learn about how to intelligently organise your database into tables.
   - Basics of the web: HTML and CSS, and a bit of JavaScript.
   - Server side: HTTP, servers, request lifecycles and related topics.
-  - The React web application/user interface library.
 
 ## Related Pages (Just for Fun)
 

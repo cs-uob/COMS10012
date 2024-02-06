@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en" class="sidebar-visible no-js light">
+<html lang="en" class="light" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
@@ -10,7 +10,7 @@
         
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="theme-color" content="#ffffff" />
+        <meta name="theme-color" content="#ffffff">
 
         <link rel="icon" href="../favicon.svg">
         <link rel="shortcut icon" href="../favicon.png">
@@ -31,7 +31,7 @@
         <!-- Custom theme stylesheets -->
 
     </head>
-    <body>
+    <body class="sidebar-visible no-js">
     <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
@@ -61,42 +61,71 @@
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
             var html = document.querySelector('html');
-            html.classList.remove('no-js')
             html.classList.remove('light')
             html.classList.add(theme);
-            html.classList.add('js');
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
         </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var html = document.querySelector('html');
+            var body = document.querySelector('body');
             var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
             } else {
                 sidebar = 'hidden';
             }
-            html.classList.remove('sidebar-visible');
-            html.classList.add("sidebar-" + sidebar);
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../overview.html">Overview</a></li><li class="chapter-item expanded affix "><li class="part-title">POSIX</li><li class="chapter-item expanded "><a href="../posix1/index.html"><strong aria-hidden="true">1.</strong> Posix Activity 1</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../posix1/ssh.html"><strong aria-hidden="true">1.1.</strong> Secure shell</a></li><li class="chapter-item expanded "><a href="../posix1/install.html"><strong aria-hidden="true">1.2.</strong> Installing vagrant and alpine linux</a></li><li class="chapter-item expanded "><a href="../posix1/admin.html"><strong aria-hidden="true">1.3.</strong> Alpine linux system administration</a></li><li class="chapter-item expanded "><a href="../posix1/shell.html"><strong aria-hidden="true">1.4.</strong> Shell expansion</a></li></ol></li><li class="chapter-item expanded "><a href="../git/index.html"><strong aria-hidden="true">2.</strong> Git</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../git/git1.html"><strong aria-hidden="true">2.1.</strong> Git, part 1</a></li><li class="chapter-item expanded "><a href="../git/git2.html"><strong aria-hidden="true">2.2.</strong> Git, part 2</a></li><li class="chapter-item expanded "><a href="../git/git3.html"><strong aria-hidden="true">2.3.</strong> Git, part 3</a></li></ol></li><li class="chapter-item expanded "><a href="../posix2/index.html"><strong aria-hidden="true">3.</strong> Posix Activity 2</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../posix2/permissions.html"><strong aria-hidden="true">3.1.</strong> File permissions</a></li><li class="chapter-item expanded "><a href="../posix2/pipes.html"><strong aria-hidden="true">3.2.</strong> Pipes</a></li><li class="chapter-item expanded "><a href="../posix2/script.html"><strong aria-hidden="true">3.3.</strong> shell scripting</a></li></ol></li><li class="chapter-item expanded "><a href="../posix3/index.html"><strong aria-hidden="true">4.</strong> Posix Activity 3</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../posix3/stat.html"><strong aria-hidden="true">4.1.</strong> inodes and system calls</a></li><li class="chapter-item expanded "><a href="../posix3/concurrent.html" class="active"><strong aria-hidden="true">4.2.</strong> Concurrent programming in POSIX</a></li><li class="chapter-item expanded "><a href="../posix3/cpipe.html"><strong aria-hidden="true">4.3.</strong> Pipes in C</a></li><li class="chapter-item expanded "><a href="../posix3/c_io.html"><strong aria-hidden="true">4.4.</strong> Input/Output in C</a></li><li class="chapter-item expanded "><a href="../posix3/posix_io.html"><strong aria-hidden="true">4.5.</strong> Input/Output in POSIX</a></li><li class="chapter-item expanded "><a href="../posix3/final.html"><strong aria-hidden="true">4.6.</strong> The final challenge</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Build Tools</li><li class="chapter-item expanded "><a href="../build1/index.html"><strong aria-hidden="true">5.</strong> Build Tools 1</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../build1/exercise.html"><strong aria-hidden="true">5.1.</strong> Exercise</a></li></ol></li><li class="chapter-item expanded "><a href="../build2/index.html"><strong aria-hidden="true">6.</strong> Build Tools 2</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../build2/c.html"><strong aria-hidden="true">6.1.</strong> C</a></li><li class="chapter-item expanded "><a href="../build2/python.html"><strong aria-hidden="true">6.2.</strong> Python</a></li><li class="chapter-item expanded "><a href="../build2/java.html"><strong aria-hidden="true">6.3.</strong> Java</a></li><li class="chapter-item expanded "><a href="../build2/spring.html"><strong aria-hidden="true">6.4.</strong> Spring</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Databases</li><li class="chapter-item expanded "><a href="../db1/sql-introduction.html"><strong aria-hidden="true">7.</strong> SQL introduction</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../db1/setup.html"><strong aria-hidden="true">7.1.</strong> Set up the database</a></li><li class="chapter-item expanded "><a href="../db1/er-diagram.html"><strong aria-hidden="true">7.2.</strong> ER diagram</a></li><li class="chapter-item expanded "><a href="../db1/er2.html"><strong aria-hidden="true">7.3.</strong> More modelling</a></li></ol></li><li class="chapter-item expanded "><a href="../db2/sql-beginners.html"><strong aria-hidden="true">8.</strong> SQL for beginners</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../db2/explore-database.html"><strong aria-hidden="true">8.1.</strong> Explore the database</a></li><li class="chapter-item expanded "><a href="../db2/elections.html"><strong aria-hidden="true">8.2.</strong> Bristol elections</a></li><li class="chapter-item expanded "><a href="../db2/census.html"><strong aria-hidden="true">8.3.</strong> The UK census</a></li><li class="chapter-item expanded "><a href="../db2/normalforms.html"><strong aria-hidden="true">8.4.</strong> Normal forms</a></li></ol></li><li class="chapter-item expanded "><a href="../db3/sql-intermediate.html"><strong aria-hidden="true">9.</strong> Intermediate SQL</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../db3/exercises.html"><strong aria-hidden="true">9.1.</strong> Exercises</a></li></ol></li><li class="chapter-item expanded "><a href="../db4/sql-java.html"><strong aria-hidden="true">10.</strong> SQL and Java</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../db4/jdbc.html"><strong aria-hidden="true">10.1.</strong> JDBC</a></li><li class="chapter-item expanded "><a href="../db4/hibernate.html"><strong aria-hidden="true">10.2.</strong> Hibernate</a></li><li class="chapter-item expanded "><a href="../db4/sqlite.html"><strong aria-hidden="true">10.3.</strong> SQLite</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../overview.html">Overview</a></li><li class="chapter-item expanded affix "><li class="part-title">Week 1: POSIX Systems</li><li class="chapter-item expanded "><a href="../posix1/index.html"><strong aria-hidden="true">1.</strong> System Administration</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../posix1/ssh.html"><strong aria-hidden="true">1.1.</strong> Secure shell</a></li><li class="chapter-item expanded "><a href="../posix1/install.html"><strong aria-hidden="true">1.2.</strong> Installing vagrant and alpine linux</a></li><li class="chapter-item expanded "><a href="../posix1/admin.html"><strong aria-hidden="true">1.3.</strong> Alpine linux system administration</a></li></ol></li><li class="chapter-item expanded "><a href="../posix2/index.html"><strong aria-hidden="true">2.</strong> The POSIX Shell</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../posix2/shell.html"><strong aria-hidden="true">2.1.</strong> Shell expansion</a></li><li class="chapter-item expanded "><a href="../posix2/pipes.html"><strong aria-hidden="true">2.2.</strong> Pipes</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Week 2: Version control</li><li class="chapter-item expanded "><a href="../git/index.html"><strong aria-hidden="true">3.</strong> Git</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../git/git.html"><strong aria-hidden="true">3.1.</strong> Git</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Week 3: Shell scripting & build tools</li><li class="chapter-item expanded "><a href="../posix3/index.html"><strong aria-hidden="true">4.</strong> Shell Scripting</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../posix3/permissions.html"><strong aria-hidden="true">4.1.</strong> File permissions</a></li><li class="chapter-item expanded "><a href="../posix3/script.html"><strong aria-hidden="true">4.2.</strong> shell scripting</a></li></ol></li><li class="chapter-item expanded "><a href="../build2/index.html"><strong aria-hidden="true">5.</strong> Build Tools</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../build2/c.html"><strong aria-hidden="true">5.1.</strong> C</a></li><li class="chapter-item expanded "><a href="../build2/python.html"><strong aria-hidden="true">5.2.</strong> Python</a></li><li class="chapter-item expanded "><a href="../build2/java.html"><strong aria-hidden="true">5.3.</strong> Java</a></li><li class="chapter-item expanded "><a href="../build2/spring.html"><strong aria-hidden="true">5.4.</strong> Spring</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Week 4: Debugging</li><li class="chapter-item expanded "><a href="../build1/index.html"><strong aria-hidden="true">6.</strong> Debugging</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../build1/exercise.html"><strong aria-hidden="true">6.1.</strong> Exercise</a></li></ol></li><li class="chapter-item expanded "><a href="../posix3/index.html"><strong aria-hidden="true">7.</strong> Bonus POSIX (unassessed)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../posix3/stat.html"><strong aria-hidden="true">7.1.</strong> inodes and system calls</a></li><li class="chapter-item expanded "><a href="../posix3/concurrent.html" class="active"><strong aria-hidden="true">7.2.</strong> Concurrent programming in POSIX</a></li><li class="chapter-item expanded "><a href="../posix3/cpipe.html"><strong aria-hidden="true">7.3.</strong> Pipes in C</a></li><li class="chapter-item expanded "><a href="../posix3/c_io.html"><strong aria-hidden="true">7.4.</strong> Input/Output in C</a></li><li class="chapter-item expanded "><a href="../posix3/posix_io.html"><strong aria-hidden="true">7.5.</strong> Input/Output in POSIX</a></li><li class="chapter-item expanded "><a href="../posix3/final.html"><strong aria-hidden="true">7.6.</strong> The final challenge</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Week 5: Databases</li><li class="chapter-item expanded "><a href="../db1/sql-introduction.html"><strong aria-hidden="true">8.</strong> SQL introduction</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../db1/setup.html"><strong aria-hidden="true">8.1.</strong> Set up the database</a></li><li class="chapter-item expanded "><a href="../db1/er-diagram.html"><strong aria-hidden="true">8.2.</strong> ER diagram</a></li><li class="chapter-item expanded "><a href="../db1/er2.html"><strong aria-hidden="true">8.3.</strong> More modelling</a></li><li class="chapter-item expanded "><a href="../db2/explore-database.html"><strong aria-hidden="true">8.4.</strong> Explore the database</a></li><li class="chapter-item expanded "><a href="../db2/elections.html"><strong aria-hidden="true">8.5.</strong> Bristol elections</a></li><li class="chapter-item expanded "><a href="../db2/census.html"><strong aria-hidden="true">8.6.</strong> The UK census</a></li><li class="chapter-item expanded "><a href="../db2/normalforms.html"><strong aria-hidden="true">8.7.</strong> Normal forms</a></li></ol></li><li class="chapter-item expanded "><a href="../db3/sql-intermediate.html"><strong aria-hidden="true">9.</strong> Intermediate SQL</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../db3/exercises.html"><strong aria-hidden="true">9.1.</strong> Exercises</a></li></ol></li><li class="chapter-item expanded "><a href="../db4/sql-java.html"><strong aria-hidden="true">10.</strong> SQL and Java</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../db4/jdbc.html"><strong aria-hidden="true">10.1.</strong> JDBC</a></li><li class="chapter-item expanded "><a href="../db4/hibernate.html"><strong aria-hidden="true">10.2.</strong> Hibernate</a></li><li class="chapter-item expanded "><a href="../db4/sqlite.html"><strong aria-hidden="true">10.3.</strong> SQLite</a></li></ol></li></ol>
             </div>
-            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
         </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
 
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
                                 <div id="menu-bar-hover-placeholder"></div>
-                <div id="menu-bar" class="menu-bar sticky bordered">
+                <div id="menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
-                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
                             <i class="fa fa-bars"></i>
-                        </button>
+                        </label>
                         <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
                             <i class="fa fa-paint-brush"></i>
                         </button>
@@ -145,123 +174,6 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="concurrent-programming-in-posix"><a class="header" href="#concurrent-programming-in-posix">Concurrent programming in POSIX</a></h1>
-<p>In your second year, you will study concurrent programming using the go programming language, which provides an abstraction called <em>channels</em> that different <em>actors</em> can use to talk to each other. In the case of go, the actors are threads, but the same principle applies to a concurrent system with different processes, in which case channels are a kind of <em>inter-process communication (IPC)</em>. In POSIX, pipes are a kind of channel.</p>
-<ul>
-<li>If one process reads from a pipe, then this blocks the process until another process writes to it.</li>
-<li>If one process writes to a pipe, then this blocks the process until another process reads from it.</li>
-<li>If one process reads from a pipe and another process writes to it (it does not matter who goes first) then the data is transferred from the reader to the writer, and both processes continue.</li>
-</ul>
-<p>For example, when you use a command like <code>cat logfile | grep Error | wc -l</code> to count the number of lines containing the word &quot;Error&quot;, then there are three processes (not counting the terminal) and two pipes involved:</p>
-<p><img src="../resources/pipe1.png" alt="pipe diagram" /></p>
-<p><em>In this diagram, green boxes are processes with standard input on the left and standard output (top) and standard error (bottom) on the right. The little squares all represent file descriptors; a pipe has two of them, one each for reading and writing.</em></p>
-<p>This is not yet a fully concurrent system though, as data is only flowing in one direction: there are no loops.</p>
-<p>As a little example of something that does have a loop, we are going to use the <code>bc</code> calculator program, which reads a line from standard input, evaluates it as a formula, and writes the result to standard output:</p>
-<pre><code>alpine$ bc
-(you type ) 2+3
-(bc prints) 5
-(you type ) 1+1
-(bc prints) 2
-</code></pre>
-<p><code>bc</code> reads in a loop, so type <code>^D</code> to close its standard input, then you get back to the terminal.</p>
-<p>As a diagram, the interaction with bc looks like this:</p>
-<p><img src="../resources/pipe2.png" alt="pipe diagram of terminal interaction" /></p>
-<p><em>Here the terminal's right file descriptor is the one that the terminal reads, and the left one is where the terminal writes your keyboard input. But there's still a human in the loop here.</em></p>
-<p>We are going to write a program that can talk to <code>bc</code>. This means we have two processes, our program and <code>bc</code>, and they need to communicate with each other. We will use pipes for this, giving the following diagram where we call the pipes <em>up</em> and <em>down</em>:</p>
-<p><img src="../resources/pipe3.png" alt="pipe digram for a program controlling bc" /></p>
-<p><em>In this diagram, data flows through pipes from left to right, but logically the &quot;down&quot; pipe is for data flowing from our program downwards to bc, and the &quot;up&quot; pipe is for data flowing back up again. Standard error is not shown (it still goes to the terminal).</em></p>
-<p>The <code>bc</code> program does not need to know about any of this: it still reads expressions from its standard input, evaluates them, and writes them to standard output.</p>
-<p>Notice that when we used a pipe character <code>|</code> in the shell, it automatically set up the pipes for us so each pipe had one reader and one writer. When we set the pipes up ourselves, we will have to take care of this ourselves too.</p>
-<h2 id="the-first-program"><a class="header" href="#the-first-program">The first program</a></h2>
-<p>Study the following program. It tries to add the numbers from 1 to 10 by writing the sums (1+2 etc.) to standard output, and reading the result back from standard input. You can compile it with <code>gcc -std=c99 -Wall ipc1.c -o ipc1</code> and then run it yourself: it prints <code>1+2</code> and if you reply <code>3</code>, it follows up with <code>3+3</code> and so on. After ten steps, it prints the result and exits.</p>
-<pre><code class="language-c">/* ipc1.c */
-#include &lt;stdio.h&gt;
-#include &lt;string.h&gt;
-#include &lt;errno.h&gt;
-#include &lt;stdlib.h&gt;
-
-void check(int ok, char *where) {
-  if (ok &lt; 0) {
-    fprintf(stderr, &quot;Error in %s: %s\n&quot;, where, strerror(errno));
-    exit(1);
-  }
-}
-
-int evaluate(char *buffer, int len) {
-  fprintf(stderr, &quot;&gt; %s&quot;, buffer);
-
-  int ok = printf(&quot;%s&quot;, buffer);
-  if (ok &lt; 0) {
-    return -1;
-  }
-  char* p = fgets(buffer, len, stdin);
-  if (p == NULL) {
-    return -1;
-  }
-  fprintf(stderr, &quot;&lt; %s&quot;, buffer);
-  return 0;
-}
-
-int main() {
-  char buffer[100];
-  int ok;
-
-  setbuf(stdout, NULL);
-  setbuf(stdin, NULL);
-
-  strcpy(buffer, &quot;1+2\n&quot;);
-
-  ok = evaluate(buffer, sizeof(buffer));
-  check(ok, &quot;I/O&quot;);
-  
-  for (int i = 3; i &lt;= 10; i++) {
-    sprintf(buffer + strlen(buffer) - 1, &quot;+%u\n&quot;, i);
-    ok = evaluate(buffer, sizeof(buffer));
-    check(ok, &quot;I/O&quot;);
-  }
-  fprintf(stderr, &quot;The result is %s&quot;, buffer);
-  return 0;
-}
-</code></pre>
-<p>The program also prints a copy of all its input and output to standard error so you can see what data is being transferred. The transfer happens in <code>evaluate</code>:</p>
-<ol>
-<li>First, it prints the buffer to standard error.</li>
-<li>Then, it prints the buffer to standard output with printf. Checking the return value of printf is extremely paranoid, but we're about to use the program in a situation where standard output is not the terminal, so it could potentially fail.</li>
-<li>Next, it reads a line from standard input with fgets. Checking the return value here is good practice even if you're not paranoid.</li>
-<li>Finally, it prints the received value to standard error - note that if <code>fgets</code> had returned NULL, then it would not be safe to access the buffer.</li>
-</ol>
-<p>Once you are familiar with how the program works, you can comment out the lines that print to standard error if you like and run it again to see exactly what happens on standard input/output and nothing else. Then, uncomment the lines again.</p>
-<div class="advanced container">
-<header><span class="advanced-title"></span></header>
-<div class="container-content">
-<p>You could also use another trick to disambiguate standard output/error (for programs that don't, like this one, indicate which is which: the lines starting <code>&gt;</code> or <code>&lt;</code> are standard error).</p>
-<pre><code class="language-sh">escape=$(printf '\033')
-./ipc 2&gt; &gt;(sed -e &quot;s/\(.*\)/${escape}[32m\1${escape}[0m/&quot;)
-</code></pre>
-<p>This might mess up the last line on your terminal a bit, but you can reset it with Control+L.
-The first command sets a shell variable to the ANSI escape character. The second line redirects standard error (<code>2&gt;</code>) to a subprocess (<code>&gt;(...)</code>) which calls the stream editor <code>sed</code> to replace each line with the line surrounded by <code>\e[32m</code> (set colour to green) and <code>\e[0m</code> (reset colour). This will make the standard error lines appear in green. </p>
-<p>Incidentally, some versions of sed support the <code>\e</code> escape sequence directly, or at least the version <code>\x1b</code> that creates a character from its ASCII code in hexadecimal, but alpine's sed does not so you need the shell variable trick with a fall back to octal (033) notation!</p>
-</div>
-</div>
-<p>And now for the interesting part:</p>
-<ul>
-<li>Make two named pipes (FIFOs) with <code>mkfifo up</code> and <code>mkfifo down</code>.</li>
-<li>You will need two terminals open for the following. Either ssh into your alpine machine a second time or, better still, use tmux (<code>Control+B, %</code> opens a second terminal beside the first one; you can use <code>Control+B, Left</code> and <code>Control+B, Right</code> to switch between them).</li>
-<li>Run the program with <code>./ipc1 &gt; down &lt; up</code> to redirect standard input and output to the pipes. This blocks (exercise: which statement is it currently blocking on?).</li>
-<li>In the second terminal, run <code>bc &lt; down &gt; up</code>.</li>
-</ul>
-<p>Both processes should now terminate, and although you won't see the pipes directly, standard error of your program is printing a copy to the terminal, where <code>&gt;</code> is data sent to down pipe and <code>&lt;</code> is data received on the up pipe:</p>
-<pre><code>&gt; 1+2
-&lt; 3
-&gt; 3+3
-&lt; 6
-&gt; 6+4
-&lt; 10
-...
-&gt; 45+10
-&lt; 55
-The result is 55
-</code></pre>
-<p>Note that the program printed the &quot;The result is ...&quot; line to standard error too, otherwise you would not see it here.</p>
 
                     </main>
 
@@ -271,7 +183,7 @@ The result is 55
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next" href="../posix3/cpipe.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../posix3/cpipe.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -285,7 +197,7 @@ The result is 55
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next" href="../posix3/cpipe.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../posix3/cpipe.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

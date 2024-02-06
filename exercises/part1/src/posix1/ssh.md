@@ -94,7 +94,7 @@ The public key permissions are `(-)(rw-)(r--)(r--)` which means that the owner c
 
 `known_hosts` is where SSH stores the public keys of computers you've already connected to: every time you answer yes to an "Are you sure you want to connect?" question when you connect to a new computer for the first time, it stores the result in this file and won't ask you again the next time. The file format is one key per line and you can edit the file yourself if you want to.
 
-## Set up key access on seis
+## Set up key access on SEIS
 
 First, we need to upload our public key to the `~/.ssh` directory on seis. Even before this, we need to make sure the directory exists though:
 
@@ -167,7 +167,7 @@ From now on, from you own machine, you should be able to get directly into a lab
 ssh -A -J USERNAME@seis.bris.ac.uk USERNAME@rd-mvb-linuxlab.bristol.ac.uk
 ```
 
-_Unfortunately, `-J` will not work on a windows CMD terminal, although it should work on Windows Subsystem for Linux. Once we have set up a configuration file, there will be a way to work around this problem. Mac and Linux users should be fine though, as should anyone running these commands from an Alpine VM on their own machine, whatever their host OS._
+_Unfortunately, `-J` will not work on a windows CMD terminal, although it should work on Windows Subsystem for Linux. Once we have set up a configuration file, there will be a way to work around this problem. Mac and Linux users should be fine though, as should anyone running these commands from a Linux VM on their own machine, whatever their host OS._
 
 ## Setting up a configuration file
 
@@ -195,9 +195,7 @@ This now lets you use simply `ssh lab` to log in to a lab machine via seis (agen
 |||advanced
 If you want to learn another useful skill as you go along, here is one way to edit files on the command line. Many linux distributions have an editor called `nano` built in which runs in the terminal, so `nano config` edits the file called config (creating it if it doesn't exist, when you save for the first time). It is fairly self-explanatory, the command Control+X quits as you can see on the command bar at the bottom of the screen in nano and if you quit with unsaved changes, it will ask you if you want to save.
 
-Nano is installed on seis and on the lab machines, so you can use it to edit a file remotely.
-
-However, nano is not installed by default on alpine linux which we will be using for a lot of this unit - you can install it yourself with `sudo apk add nano`. 
+Nano is installed on SEIS and on the lab machines, and within the Debian distro you will install in Vagrant, so you can use it to edit a file remotely.
 
 And something for Windows users:
 

@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en" class="sidebar-visible no-js light">
+<html lang="en" class="light" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
@@ -10,7 +10,7 @@
         
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="theme-color" content="#ffffff" />
+        <meta name="theme-color" content="#ffffff">
 
         <link rel="icon" href="../favicon.svg">
         <link rel="shortcut icon" href="../favicon.png">
@@ -31,7 +31,7 @@
         <!-- Custom theme stylesheets -->
 
     </head>
-    <body>
+    <body class="sidebar-visible no-js">
     <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
@@ -61,42 +61,71 @@
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
             var html = document.querySelector('html');
-            html.classList.remove('no-js')
             html.classList.remove('light')
             html.classList.add(theme);
-            html.classList.add('js');
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
         </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var html = document.querySelector('html');
+            var body = document.querySelector('body');
             var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
             } else {
                 sidebar = 'hidden';
             }
-            html.classList.remove('sidebar-visible');
-            html.classList.add("sidebar-" + sidebar);
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../overview.html">Overview</a></li><li class="chapter-item expanded affix "><li class="part-title">POSIX</li><li class="chapter-item expanded "><a href="../posix1/index.html"><strong aria-hidden="true">1.</strong> Posix Activity 1</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../posix1/ssh.html"><strong aria-hidden="true">1.1.</strong> Secure shell</a></li><li class="chapter-item expanded "><a href="../posix1/install.html"><strong aria-hidden="true">1.2.</strong> Installing vagrant and alpine linux</a></li><li class="chapter-item expanded "><a href="../posix1/admin.html"><strong aria-hidden="true">1.3.</strong> Alpine linux system administration</a></li><li class="chapter-item expanded "><a href="../posix1/shell.html"><strong aria-hidden="true">1.4.</strong> Shell expansion</a></li></ol></li><li class="chapter-item expanded "><a href="../git/index.html"><strong aria-hidden="true">2.</strong> Git</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../git/git1.html" class="active"><strong aria-hidden="true">2.1.</strong> Git, part 1</a></li><li class="chapter-item expanded "><a href="../git/git2.html"><strong aria-hidden="true">2.2.</strong> Git, part 2</a></li><li class="chapter-item expanded "><a href="../git/git3.html"><strong aria-hidden="true">2.3.</strong> Git, part 3</a></li></ol></li><li class="chapter-item expanded "><a href="../posix2/index.html"><strong aria-hidden="true">3.</strong> Posix Activity 2</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../posix2/permissions.html"><strong aria-hidden="true">3.1.</strong> File permissions</a></li><li class="chapter-item expanded "><a href="../posix2/pipes.html"><strong aria-hidden="true">3.2.</strong> Pipes</a></li><li class="chapter-item expanded "><a href="../posix2/script.html"><strong aria-hidden="true">3.3.</strong> shell scripting</a></li></ol></li><li class="chapter-item expanded "><a href="../posix3/index.html"><strong aria-hidden="true">4.</strong> Posix Activity 3</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../posix3/stat.html"><strong aria-hidden="true">4.1.</strong> inodes and system calls</a></li><li class="chapter-item expanded "><a href="../posix3/concurrent.html"><strong aria-hidden="true">4.2.</strong> Concurrent programming in POSIX</a></li><li class="chapter-item expanded "><a href="../posix3/cpipe.html"><strong aria-hidden="true">4.3.</strong> Pipes in C</a></li><li class="chapter-item expanded "><a href="../posix3/c_io.html"><strong aria-hidden="true">4.4.</strong> Input/Output in C</a></li><li class="chapter-item expanded "><a href="../posix3/posix_io.html"><strong aria-hidden="true">4.5.</strong> Input/Output in POSIX</a></li><li class="chapter-item expanded "><a href="../posix3/final.html"><strong aria-hidden="true">4.6.</strong> The final challenge</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Build Tools</li><li class="chapter-item expanded "><a href="../build1/index.html"><strong aria-hidden="true">5.</strong> Build Tools 1</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../build1/exercise.html"><strong aria-hidden="true">5.1.</strong> Exercise</a></li></ol></li><li class="chapter-item expanded "><a href="../build2/index.html"><strong aria-hidden="true">6.</strong> Build Tools 2</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../build2/c.html"><strong aria-hidden="true">6.1.</strong> C</a></li><li class="chapter-item expanded "><a href="../build2/python.html"><strong aria-hidden="true">6.2.</strong> Python</a></li><li class="chapter-item expanded "><a href="../build2/java.html"><strong aria-hidden="true">6.3.</strong> Java</a></li><li class="chapter-item expanded "><a href="../build2/spring.html"><strong aria-hidden="true">6.4.</strong> Spring</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Databases</li><li class="chapter-item expanded "><a href="../db1/sql-introduction.html"><strong aria-hidden="true">7.</strong> SQL introduction</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../db1/setup.html"><strong aria-hidden="true">7.1.</strong> Set up the database</a></li><li class="chapter-item expanded "><a href="../db1/er-diagram.html"><strong aria-hidden="true">7.2.</strong> ER diagram</a></li><li class="chapter-item expanded "><a href="../db1/er2.html"><strong aria-hidden="true">7.3.</strong> More modelling</a></li></ol></li><li class="chapter-item expanded "><a href="../db2/sql-beginners.html"><strong aria-hidden="true">8.</strong> SQL for beginners</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../db2/explore-database.html"><strong aria-hidden="true">8.1.</strong> Explore the database</a></li><li class="chapter-item expanded "><a href="../db2/elections.html"><strong aria-hidden="true">8.2.</strong> Bristol elections</a></li><li class="chapter-item expanded "><a href="../db2/census.html"><strong aria-hidden="true">8.3.</strong> The UK census</a></li><li class="chapter-item expanded "><a href="../db2/normalforms.html"><strong aria-hidden="true">8.4.</strong> Normal forms</a></li></ol></li><li class="chapter-item expanded "><a href="../db3/sql-intermediate.html"><strong aria-hidden="true">9.</strong> Intermediate SQL</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../db3/exercises.html"><strong aria-hidden="true">9.1.</strong> Exercises</a></li></ol></li><li class="chapter-item expanded "><a href="../db4/sql-java.html"><strong aria-hidden="true">10.</strong> SQL and Java</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../db4/jdbc.html"><strong aria-hidden="true">10.1.</strong> JDBC</a></li><li class="chapter-item expanded "><a href="../db4/hibernate.html"><strong aria-hidden="true">10.2.</strong> Hibernate</a></li><li class="chapter-item expanded "><a href="../db4/sqlite.html"><strong aria-hidden="true">10.3.</strong> SQLite</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../overview.html">Overview</a></li><li class="chapter-item expanded affix "><li class="part-title">Week 1: POSIX Systems</li><li class="chapter-item expanded "><a href="../posix1/index.html"><strong aria-hidden="true">1.</strong> System Administration</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../posix1/ssh.html"><strong aria-hidden="true">1.1.</strong> Secure shell</a></li><li class="chapter-item expanded "><a href="../posix1/install.html"><strong aria-hidden="true">1.2.</strong> Installing vagrant and alpine linux</a></li><li class="chapter-item expanded "><a href="../posix1/admin.html"><strong aria-hidden="true">1.3.</strong> Alpine linux system administration</a></li></ol></li><li class="chapter-item expanded "><a href="../posix2/index.html"><strong aria-hidden="true">2.</strong> The POSIX Shell</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../posix2/shell.html"><strong aria-hidden="true">2.1.</strong> Shell expansion</a></li><li class="chapter-item expanded "><a href="../posix2/pipes.html"><strong aria-hidden="true">2.2.</strong> Pipes</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Week 2: Version control</li><li class="chapter-item expanded "><a href="../git/index.html"><strong aria-hidden="true">3.</strong> Git</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../git/git1.html" class="active"><strong aria-hidden="true">3.1.</strong> Git, part 1</a></li><li class="chapter-item expanded "><a href="../git/git2.html"><strong aria-hidden="true">3.2.</strong> Git, part 2</a></li><li class="chapter-item expanded "><a href="../git/git3.html"><strong aria-hidden="true">3.3.</strong> Git, part 3</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Week 3: Shell scripting & build tools</li><li class="chapter-item expanded "><a href="../posix3/index.html"><strong aria-hidden="true">4.</strong> Shell Scripting</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../posix3/permissions.html"><strong aria-hidden="true">4.1.</strong> File permissions</a></li><li class="chapter-item expanded "><a href="../posix3/script.html"><strong aria-hidden="true">4.2.</strong> shell scripting</a></li></ol></li><li class="chapter-item expanded "><a href="../build2/index.html"><strong aria-hidden="true">5.</strong> Build Tools</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../build2/c.html"><strong aria-hidden="true">5.1.</strong> C</a></li><li class="chapter-item expanded "><a href="../build2/python.html"><strong aria-hidden="true">5.2.</strong> Python</a></li><li class="chapter-item expanded "><a href="../build2/java.html"><strong aria-hidden="true">5.3.</strong> Java</a></li><li class="chapter-item expanded "><a href="../build2/spring.html"><strong aria-hidden="true">5.4.</strong> Spring</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Week 4: Debugging</li><li class="chapter-item expanded "><a href="../build1/index.html"><strong aria-hidden="true">6.</strong> Debugging</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../build1/exercise.html"><strong aria-hidden="true">6.1.</strong> Exercise</a></li></ol></li><li class="chapter-item expanded "><a href="../posix3/index.html"><strong aria-hidden="true">7.</strong> Bonus POSIX (unassessed)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../posix3/stat.html"><strong aria-hidden="true">7.1.</strong> inodes and system calls</a></li><li class="chapter-item expanded "><a href="../posix3/concurrent.html"><strong aria-hidden="true">7.2.</strong> Concurrent programming in POSIX</a></li><li class="chapter-item expanded "><a href="../posix3/cpipe.html"><strong aria-hidden="true">7.3.</strong> Pipes in C</a></li><li class="chapter-item expanded "><a href="../posix3/c_io.html"><strong aria-hidden="true">7.4.</strong> Input/Output in C</a></li><li class="chapter-item expanded "><a href="../posix3/posix_io.html"><strong aria-hidden="true">7.5.</strong> Input/Output in POSIX</a></li><li class="chapter-item expanded "><a href="../posix3/final.html"><strong aria-hidden="true">7.6.</strong> The final challenge</a></li></ol></li><li class="chapter-item expanded "><li class="part-title">Week 5: Databases</li><li class="chapter-item expanded "><a href="../db1/sql-introduction.html"><strong aria-hidden="true">8.</strong> SQL introduction</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../db1/setup.html"><strong aria-hidden="true">8.1.</strong> Set up the database</a></li><li class="chapter-item expanded "><a href="../db1/er-diagram.html"><strong aria-hidden="true">8.2.</strong> ER diagram</a></li><li class="chapter-item expanded "><a href="../db1/er2.html"><strong aria-hidden="true">8.3.</strong> More modelling</a></li><li class="chapter-item expanded "><a href="../db2/explore-database.html"><strong aria-hidden="true">8.4.</strong> Explore the database</a></li><li class="chapter-item expanded "><a href="../db2/elections.html"><strong aria-hidden="true">8.5.</strong> Bristol elections</a></li><li class="chapter-item expanded "><a href="../db2/census.html"><strong aria-hidden="true">8.6.</strong> The UK census</a></li><li class="chapter-item expanded "><a href="../db2/normalforms.html"><strong aria-hidden="true">8.7.</strong> Normal forms</a></li></ol></li><li class="chapter-item expanded "><a href="../db3/sql-intermediate.html"><strong aria-hidden="true">9.</strong> Intermediate SQL</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../db3/exercises.html"><strong aria-hidden="true">9.1.</strong> Exercises</a></li></ol></li><li class="chapter-item expanded "><a href="../db4/sql-java.html"><strong aria-hidden="true">10.</strong> SQL and Java</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../db4/jdbc.html"><strong aria-hidden="true">10.1.</strong> JDBC</a></li><li class="chapter-item expanded "><a href="../db4/hibernate.html"><strong aria-hidden="true">10.2.</strong> Hibernate</a></li><li class="chapter-item expanded "><a href="../db4/sqlite.html"><strong aria-hidden="true">10.3.</strong> SQLite</a></li></ol></li></ol>
             </div>
-            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
         </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
 
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
                                 <div id="menu-bar-hover-placeholder"></div>
-                <div id="menu-bar" class="menu-bar sticky bordered">
+                <div id="menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
-                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
                             <i class="fa fa-bars"></i>
-                        </button>
+                        </label>
                         <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
                             <i class="fa fa-paint-brush"></i>
                         </button>
@@ -145,84 +174,6 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="git-part-1"><a class="header" href="#git-part-1">Git, part 1</a></h1>
-<p>For this exercise, we are assuming that you are working on alpine linux and have nano, git and gcc with musl-dev installed as in the last exercise.</p>
-<h2 id="configuring-your-identity"><a class="header" href="#configuring-your-identity">Configuring your identity</a></h2>
-<p>Run the following two lines to set up git correctly. You only need to do this once when you install git, but not every time you create a new repository.</p>
-<pre><code>git config --global user.name &quot;YOURNAME&quot;
-git config --global user.email &quot;YOUREMAIL&quot;
-</code></pre>
-<p>where you obviously replace your name and email with something of your choice; these are in double quotes because this lets you include a space between your first and last names and the @ character in your email address.</p>
-<p>This does not create a user account - git just uses your name and email to record the author in any commits you make, so you can put anything you like here (git will happily accept <code>-</code> as your email address, and it does not send you email). Of course, once you are working in a team with other students, you will probably want to use your real name so they know who has made which commits.</p>
-<p>If you are running a VM on a lab machine, then you would need to reconfigure git every time vagrant rebuilds the VM, for example when you log in to a different lab machine. You can put these commands in your Vagrantfile, like anything else that you want to run when vagrant (re)builds your box, but they need to be run as the vagrant user and not the root user. So add the following block to your vagrantfile just before the <code>end</code> line, editing your name and email address obviously; the key point being the <code>privileged: false</code> entry which runs the commands as the <code>vagrant</code> user:</p>
-<pre><code>config.vm.provision :shell, privileged: false, inline: &lt;&lt;-SHELL
-    git config --global user.name &quot;YOURNAME&quot;
-    git config --global user.email &quot;YOUREMAIL&quot;
-SHELL
-</code></pre>
-<p>Of course this will only work if git is installed, but you've added git to the <code>apk add</code> line in the previous provision block already so it will be installed.</p>
-<h2 id="a-sample-project-and-repository"><a class="header" href="#a-sample-project-and-repository">A sample project and repository</a></h2>
-<p>Let's say you want to start developing a C program. Let's make a folder:</p>
-<pre><code>mkdir project1
-cd project1
-git init
-</code></pre>
-<p>The last command created an empty git repository in a subfolder called <code>.git</code>. We can check with <code>git status</code> to see whether there are any changes, and git reports <code>nothing to commit</code>.</p>
-<p>Create a file, for example with <code>nano main.c</code> and add some sample content like this (you should be able to copy-paste into your terminal):</p>
-<pre><code class="language-C">// file: main.c
-#include &lt;stdio.h&gt;
-
-int main() {
-    puts(&quot;Hi&quot;);
-    return 0;
-}
-</code></pre>
-<div class="advanced container">
-<header><span class="advanced-title"></span></header>
-<div class="container-content">
-<p>If you install the <code>nano-syntax</code> package, you get syntax highlighting in nano, but you need to configure this first. The syntax files themselves live in <code>/usr/share/nano</code>, for example <code>c.nanorc</code> for the C language, but you have to include the ones you want in a file <code>~/.nanorc</code>. For example, if this file contains the line <code>include /usr/share/nano/c.nanorc</code> then nano will do syntax highlighting on C files. You can turn this on and off with Alt+Y.</p>
-<p>On another note - if you just want to print a simple string in C, then please use puts not printf. Printf with one argument is silly and, depending on how you write it, also insecure.</p>
-</div>
-</div>
-<p>Do a <code>git status</code> and you will see <code>main.c</code> in red under <em>untracked files</em> - this is a new file that git does not know about yet. Do <code>git add main.c</code> followed by another <code>git status</code> and the file is now green under <em>files to be committed</em>.</p>
-<p>Commit the file with <code>git commit -m &quot;first file&quot;</code> or something like that - you need double quotes if you want spaces in your commit message. Try <code>git status</code> again and you should see <em>nothing to commit, working tree clean</em> which means git is up to date with your files. Try <code>git log</code> and you will see that there is now one commit in the log.</p>
-<div class="advanced container">
-<header><span class="advanced-title"></span></header>
-<div class="container-content">
-<p>Every git commit must have a commit message. You can either add one with the <code>-m</code> flag, or leave that off and git will drop you into the system default editor to write one. That is normally vi, which has a unique set of keyboard commands (the command to quit is <code>:q</code> followed by ENTER). You can run the shell command <code>export EDITOR=nano</code> to change your default editor, then a raw <code>git commit</code> will launch nano. If you want to keep this setting when you relaunch your shell next time you log in, then the export line has to go in a file called <code>.profile</code> in your home directory, which is a file that the bash shell processes when it starts up.</p>
-<p>To keep a profile file around when vagrant rebuilds your VM if you're on a lab machine, you should put the file in <code>/vagrant/.profile</code> as that is backed up (it ends up in the folder on the host machine with the Vagrantfile) and then put the following command in your non-privileged provisioning block from the last advanced note: <code>ln -s /vagrant/.profile /home/vagrant/.profile</code>. This creates a soft link like you have already seen in <code>/bin</code> earlier.</p>
-</div>
-</div>
-<h2 id="ignoring-files"><a class="header" href="#ignoring-files">Ignoring files</a></h2>
-<p>Compile your code with <code>gcc main.c -o program</code>, and check with <code>./program</code> that it runs and prints <em>Hi</em>. (If you get an error that <code>stdio.h</code> doesn't exist, then you have installed gcc but not <code>musl-dev</code> which is the package that contains the header files.)</p>
-<p>If you look at <code>git status</code> now, the program file shows as untracked, but we do not want to commit it: the repository works best when you store only your source code, and anyone who needs to can check out a copy and build from there. Among other things this means that people on different platforms e.g. linux and mac, intel and ARM and so on can each compile the version that works for them.</p>
-<p>So we want to tell git to ignore the program and changes in it, which we do by creating a file called <code>.gitignore</code> and adding an expression on each line to say which file(s) or folders to ignore - you can use <code>*.o</code> to select all object code files, for example.</p>
-<ul>
-<li>Create a file <code>.gitignore</code> and add the single line <code>program</code> to it.</li>
-<li>Do another <code>git status</code> and notice that while the program is now ignored, the ignore file is marked as new. This file does belong in the repository, so add it and commit it.</li>
-<li>Check that <code>git status</code> reports <em>clean</em> again, and that <code>git log</code> contains two commits.</li>
-</ul>
-<h2 id="commit-and-checkout"><a class="header" href="#commit-and-checkout">Commit and checkout</a></h2>
-<p>As you develop, you should regularly code, commit, repeat. To practice this, change <em>Hi</em> to <em>Hello</em> in the program, rebuild and run the program, then add and commit the source file again - check with <code>git status</code> at the end that you get <em>clean</em> again.</p>
-<p>The command <code>git add .</code> adds all new and changed files and folders in the current folder in one go, and is typically the quickest way to add things when you want to commit all your changes since the last commit.</p>
-<p>Sometimes you want to go back and look at another commit, or undo a commit that broke something - this is when you want a checkout.</p>
-<ul>
-<li>Use <code>git log</code> to show the history of your commits. (When you have more than one screen, <code>git log |less</code> lets you scroll.)</li>
-<li>Note the first 6 or so characters of the commit hash of the commit where you added the ignore file, but before changing <em>Hi</em> to <em>Hello</em>. You need at least 6 characters, but only as many so that it's not ambiguous to git which commit you mean.</li>
-<li>Run <code>git checkout HASH</code> where HASH is the 6 or however many you need characters of the commit in question. Git will print a warning about the HEAD pointer.</li>
-<li>Check the source file, and notice that it is now back on <em>Hi</em>.</li>
-<li>Use <code>git checkout master</code> to return to the latest version of your files, and git will set up the HEAD pointer again ready to accept new commits.</li>
-</ul>
-<div class="advanced container">
-<header><span class="advanced-title"></span></header>
-<div class="container-content">
-<p>If you actually want to undo a commit, then you have two options:</p>
-<ul>
-<li><code>git revert HASH</code> adds a new commit that returns the files to the state they were before the commit with the given hash. This is safe to use during team development, as it's just adding a new commit. If you have commits A, B and do <code>git revert B</code> then you get a new commit C so anyone else using the repository sees a sequence of commits A, B, C; but the state of the files in C is the same as in A.</li>
-<li><code>git reset HASH</code> undoes commits by moving the HEAD pointer back to the commit with the given hash, but leaves the working copy alone (you can use the <code>--hard</code> option to change the files as well). This will break things if you have shared your newer commits with other developers, but it's safe to use to undo changes that you haven't pushed yet (we'll learn about this next time). The effect is as if the commits which you've reset had never happened.</li>
-</ul>
-<p>Note: if you want to revert a commit because you accidentally commited a file with secret information, and you've already pushed the commit, then you also have to look up online how to &quot;force push&quot; your changes to erase all traces of the file on github (or other online providers). If the secret file contained any passwords, even if you reverted the commit immediately, then you should consider the passwords compromised and change them at once.</p>
-</div>
-</div>
 
                     </main>
 
@@ -232,7 +183,7 @@ int main() {
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next" href="../git/git2.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../git/git2.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -246,7 +197,7 @@ int main() {
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next" href="../git/git2.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../git/git2.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
