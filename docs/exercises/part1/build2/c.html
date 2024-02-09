@@ -180,7 +180,7 @@
 <div class="advanced container">
 <header><span class="advanced-title"></span></header>
 <div class="container-content">
-<p>What's that weird <code>zxvf</code> bit in the <code>tar</code> command?  Read the man pages; but it is an older convention for passing command flags that lives on in a few commands.  The <code>z</code> means decompress it with <code>gunzip</code> first, <code>x</code> is for extract, <code>v</code> is for verbose (list the files it is expanding) and <code>f</code> is for read the archive from a file as opposed to standard input. </p>
+<p>What's that weird <code>zxvf</code> bit in the <code>tar</code> command?  Read the man pages; but it is an older convention for passing command flags that lives on in a few commands.  The <code>z</code> means decompress it with <code>gunzip</code> first, <code>x</code> is for extract, <code>v</code> is for verbose (list the files it is expanding) and <code>f</code> is for read the archive from a file as opposed to standard input.</p>
 </div>
 </div>
 <p>You can see a file called <code>INSTALL</code> which you can open in a text editor to find the standard instructions:</p>
@@ -202,7 +202,7 @@
 <blockquote>
 <p><code># Use test -z because SunOS4 sh mishandles braces in ${var-val}.</code></p>
 <p><code># It thinks the first close brace ends the variable substitution.</code></p>
-<p><code>test -z &quot;$INSTALL_PROGRAM&quot; &amp;&amp; INSTALL_PROGRAM='${INSTALL}'</code></p>
+<p><code>test -z "$INSTALL_PROGRAM" &amp;&amp; INSTALL_PROGRAM='${INSTALL}'</code></p>
 </blockquote>
 <h2 id="make"><a class="header" href="#make">Make</a></h2>
 <p>Type <code>make</code> to build sqlite. If it's not installed, <code>sudo apt install make</code> will fix that.</p>
