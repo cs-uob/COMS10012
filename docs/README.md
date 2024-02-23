@@ -17,3 +17,11 @@ The workshop materials are here:
   - [Part 1, weeks 13-17](exercises/part1/)
   - [Part 2, weeks 19-23](exercises/part2/)
 
+
+## Past Exams
+
+**WARNING:** Material has changed over the years but the style is the same!
+
+- [Paper 1](https://cs-uob.github.io/COMS10012/main.pdf) [(Answers)](https://cs-uob.github.io/COMS10012/main-answers.pdf)
+- [Paper 2](https://cs-uob.github.io/COMS10012/resit.pdf) [(Answers)](https://cs-uob.github.io/COMS10012/resit-answers.pdf)
+  
