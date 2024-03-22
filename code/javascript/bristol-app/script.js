@@ -1,5 +1,5 @@
 window.onload = function () {
-  let wards = fetch('https://opendata.bristol.gov.uk/api/v2/catalog/datasets/wards/records?limit=50&select=name,ward_id')
+  let wards = fetch('https://maps2.bristol.gov.uk/server2/rest/services/ext/ward_profiles/MapServer/21/query?where=1%3D1&outFields=ward_code,ward_name&f=json')
     .then(response => response.json())
     .then(populateWards)
     .catch(err => console.log(err));
@@ -58,7 +58,7 @@ function displayData(id, name) {
   }
 
   return function () {
-    let wards = fetch(`https://opendata.bristol.gov.uk/api/v2/catalog/datasets/population-estimates-time-series-ward/records?limit=20&select=mid_year,population_estimate&refine=ward_2016_code:${id}`)
+    let wards = fetch(`https://maps2.bristol.gov.uk/server2/rest/services/ext/ward_profiles/MapServer/21/query?where=WARD_CODE%20%3D%${id}'&outFields=ALL_AGES_VB_ALL&f=json`)
       .then(response => response.json())
       .then(data => {
         let heading = document.createElement('h1');
