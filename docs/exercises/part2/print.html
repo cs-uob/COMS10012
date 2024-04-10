@@ -817,9 +817,8 @@ normal and get data sent back in a suitable format (usually <code>JSON</code> or
 <p>APIs are important components of modern software development due to several reasons. An API provides a standardized way for different applications to access each other's data, even when they have different implementations. Additionally, APIs are utilized to enforce security measures in our development process. They ensure that only authorized users or applications can access certain data, enhancing the overall security of the system.</p>
 <p>Feel free to make any changes to the CSS and HTML files by adding or
 modifying elements, colors.</p>
-<p>For this lab we will use a free API from
-<a href="https://www.themoviedb.org/">themoviedb.org</a>. This is a large database with movie data. To get an API key we must register to the site and create an account. Then from here we can request our API key.</p>
-<p>To get an API key sign up at: https://developer.themoviedb.org/docs/getting-started.</p>
+<p>For this lab we will use a free API from <a href="https://www.themoviedb.org/">themoviedb.org</a>. This is a large database with movie data. To get an API key we must register to the site and create an account. Then from here we can request our API key.</p>
+<p>To get an API key sign up at: <a href="https://developer.themoviedb.org/docs/getting-started">https://developer.themoviedb.org/docs/getting-started</a>.</p>
 <p>Once the account is ready, <a href="https://www.themoviedb.org/settings/api/new/form?type=developer">create a new
 app</a>:</p>
 <ul>
@@ -830,10 +829,10 @@ app</a>:</p>
 test against</li>
 </ul>
 <p>Once the application is created it will give an <em>API Key</em> and an
-<em>API Read Access Token</em> on the (API
-page)[https://www.themoviedb.org/settings/api]: <em>make a note of these!</em></p>
-<p>This API is well-documented, and we can find all relevant information about how to make calls and use API methods in the following link: https://developer.themoviedb.org/reference/intro/getting-started</p>
-<p>In the lab we will make HTTP <code>GET</code> requests  to: https://api.themoviedb.org/3/discover/movie</p>
+<em>API Read Access Token</em> on the [API
+page]<a href="https://www.themoviedb.org/settings/api">https://www.themoviedb.org/settings/api</a>: <em>make a note of these!</em></p>
+<p>This API is well-documented, and we can find all relevant information about how to make calls and use API methods in the following link: <a href="https://developer.themoviedb.org/reference/intro/getting-started">https://developer.themoviedb.org/reference/intro/getting-started</a></p>
+<p>In the lab we will make HTTP <code>GET</code> requests to: <a href="https://api.themoviedb.org/3/discover/movie">https://api.themoviedb.org/3/discover/movie</a></p>
 <p>We will create an app that fetches all the new and latest movies along with their details such as title, overview, and score. Instead of using a button, we will incorporate a search bar on our site to filter movies based on text input. The HTML code will not contain anything special, as we will populate the DOM with our JavaScript code.</p>
 <h3 id="test-it-is-working"><a class="header" href="#test-it-is-working">Test it is working</a></h3>
 <p>At this stage, before we add any external functionality, lets check
@@ -842,7 +841,7 @@ root directory.  If you don't have a webserver handy, Python has a
 simple one you can use for testing.  Bring it up with:</p>
 <pre><code class="language-.sh">python -m http.server
 </code></pre>
-<p>This will create a server listening on [http://localhost:8000].  Check
+<p>This will create a server listening on <a href="http://localhost:8000">http://localhost:8000</a>.  Check
 you can access it in a web browser; then leave it running in the
 background.</p>
 <p><strong>Hint</strong>: You don't need to open a new terminal to run something in
@@ -855,7 +854,7 @@ more information.</p>
 taken it from the GitHub repository you'll find your server is
 returning <code>404 File not found</code>.  We need to create it.</p>
 <p>Then, add your API key at the end, or use the one provided above by replacing the <code>XXX</code>.</p>
-<p><em>(Tip: Refer to the example on this page: [https://developer.themoviedb.org/reference/discover-movie])</em></p>
+<p><em>(Tip: Refer to the example on this page: <a href="https://developer.themoviedb.org/reference/discover-movie">https://developer.themoviedb.org/reference/discover-movie</a>)</em></p>
 <h3 id="code"><a class="header" href="#code">Code</a></h3>
 <pre><code class="language-javascript">const API_URL =XXX
 const IMG_PATH = 'https://image.tmdb.org/t/p/w500'
@@ -879,7 +878,7 @@ const search = XXX
         });
 }
 </code></pre>
-<p>For this lab, we want to improve our code by using the async/await method discussed in our lectures. We can find more theoretical details here: https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch. The Fetch API returns a promise, and we'll ensure our code waits for the API response before proceeding, using async/await.</p>
+<p>For this lab, we want to improve our code by using the async/await method discussed in our lectures. We can find more theoretical details here: <a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch">https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch</a>. The Fetch API returns a promise, and we'll ensure our code waits for the API response before proceeding, using async/await.</p>
 <p>Replace the preceding code block containing the function getMovies(url) with a block that utilizes the async/await method.</p>
 <p>After enhancing our code with asynchronous programming, let's observe the disparities compared to synchronous programming. What are the benefits of asynchronous methods? Why are asynchronous methods generally preferred and considered advantageous?</p>
 <p>To display results on the DOM, we'll use a function called showMovies(). We'll create a constant to extract the desired data from the movie object. Then, we'll construct a <div> for each movie element in the DOM using innerHTML.</p>
