@@ -11,7 +11,7 @@ The basic of the application can be found in the GitHub repository. Three files 
 
 First, download the folder with the files and folders. A way to do it is by using wget:
 
-wget <https://cs-uob.github.io/COMS10012/exercises/part2/src/movie-search.tar.gz>
+wget <https://github.com/cs-uob/COMS10012/raw/master/exercises/part2/src/movie-search.tar.gz>
 
 Then extract the contents using the command:
 ~~~~.sh 
