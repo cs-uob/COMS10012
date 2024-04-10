@@ -13,6 +13,7 @@ First, download the folder with the files and folders. A way to do it is by usin
 
 wget <https://cs-uob.github.io/COMS10012/exercises/part2/resources/movie-search.tar.gz>
 
+
 Then extract the contents using the command:
 ~~~~.sh 
  tar -xzf movie-search.tar.gz
@@ -44,10 +45,9 @@ APIs are important components of modern software development due to several reas
 Feel free to make any changes to the CSS and HTML files by adding or
 modifying elements, colors.  
 
-For this lab we will use a free API from
-[themoviedb.org](https://www.themoviedb.org/). This is a large database with movie data. To get an API key we must register to the site and create an account. Then from here we can request our API key. 
+For this lab we will use a free API from [themoviedb.org](https://www.themoviedb.org/). This is a large database with movie data. To get an API key we must register to the site and create an account. Then from here we can request our API key. 
 
-To get an API key sign up at: https://developer.themoviedb.org/docs/getting-started.
+To get an API key sign up at: <https://developer.themoviedb.org/docs/getting-started>.
 
 Once the account is ready, [create a new
 app](https://www.themoviedb.org/settings/api/new/form?type=developer):
@@ -59,12 +59,12 @@ app](https://www.themoviedb.org/settings/api/new/form?type=developer):
   test against
   
 Once the application is created it will give an *API Key* and an
-*API Read Access Token* on the (API
-page)[https://www.themoviedb.org/settings/api]: *make a note of these!*
+*API Read Access Token* on the [API
+page]<https://www.themoviedb.org/settings/api>: *make a note of these!*
 
-This API is well-documented, and we can find all relevant information about how to make calls and use API methods in the following link: https://developer.themoviedb.org/reference/intro/getting-started
+This API is well-documented, and we can find all relevant information about how to make calls and use API methods in the following link: <https://developer.themoviedb.org/reference/intro/getting-started>
 
-In the lab we will make HTTP `GET` requests  to: https://api.themoviedb.org/3/discover/movie
+In the lab we will make HTTP `GET` requests to: <https://api.themoviedb.org/3/discover/movie>
 
 We will create an app that fetches all the new and latest movies along with their details such as title, overview, and score. Instead of using a button, we will incorporate a search bar on our site to filter movies based on text input. The HTML code will not contain anything special, as we will populate the DOM with our JavaScript code.
 
@@ -79,7 +79,7 @@ simple one you can use for testing.  Bring it up with:
 python -m http.server
 ~~~~
 
-This will create a server listening on [http://localhost:8000].  Check
+This will create a server listening on <http://localhost:8000>.  Check
 you can access it in a web browser; then leave it running in the
 background.
 
@@ -98,7 +98,7 @@ returning `404 File not found`.  We need to create it.
 
 Then, add your API key at the end, or use the one provided above by replacing the `XXX`.
 
-*(Tip: Refer to the example on this page: [https://developer.themoviedb.org/reference/discover-movie])*
+*(Tip: Refer to the example on this page: <https://developer.themoviedb.org/reference/discover-movie>)*
 
 ### Code
 
@@ -133,7 +133,7 @@ function getMovies(url) {
 }
 ```
 
-For this lab, we want to improve our code by using the async/await method discussed in our lectures. We can find more theoretical details here: https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch. The Fetch API returns a promise, and we'll ensure our code waits for the API response before proceeding, using async/await.
+For this lab, we want to improve our code by using the async/await method discussed in our lectures. We can find more theoretical details here: <https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch>. The Fetch API returns a promise, and we'll ensure our code waits for the API response before proceeding, using async/await.
 
 Replace the preceding code block containing the function getMovies(url) with a block that utilizes the async/await method.
 
