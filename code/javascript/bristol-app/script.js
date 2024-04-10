@@ -1,5 +1,5 @@
 window.onload = function () {
-  let wards = fetch('https://maps2.bristol.gov.uk/server2/rest/services/ext/ward_profiles/MapServer/21/query?where=1%3D1&outFields=ward_code,ward_name&f=json')
+  let wards = fetch('https://maps2.bristol.gov.uk/server2/rest/services/ext/ward_profiles/MapServer/21/query?where=1%3D1&outFields=ward_code,ward_name&f=json', {method: 'GET', mode: 'cors', headers: {'Content-Type': 'application/json'}})
     .then(response => response.json())
     .then(populateWards)
     .catch(err => console.log(err));

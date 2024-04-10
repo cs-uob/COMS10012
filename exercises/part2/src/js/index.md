@@ -40,4 +40,4 @@ The following references go significantly beyond the curriculum.
 
 ## Exercises
 
-- [My Cool App](./MyCoolApp.html)
+- [My Cool App](./js/MyCoolApp.md)
