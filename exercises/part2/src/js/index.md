@@ -12,10 +12,6 @@
 | [Object Oriented Programming](https://web.microsoftstream.com/video/176400ab-6bd8-40cb-999a-8e7bfdc7ee3e) | 11 minutes |[Slides](https://uob-my.sharepoint.com/:b:/g/personal/me17847_bristol_ac_uk/EXKvkOEwbmBNpw9Cmx8iiwUBkFJ1fv8t_qK8shkrVBsQtQ?e=hCMG3L)|
 | [Asynchronous JavaScript](https://web.microsoftstream.com/video/049c0b63-181f-4c08-bf3e-59ac55b46589) | 12 minutes |[Slides](https://uob-my.sharepoint.com/:b:/g/personal/me17847_bristol_ac_uk/ERxtlsuDqslLtKOvIPCkxPwBWjsg85cJjoQIp6JdKeXUuA?e=Fm1PiJ)|
 
-Some example code can be found in the
-[`code/javascript`](https://github.com/cs-uob/COMS10012/tree/master/code/javascript)
-folder of the repository.
-
 ## Readings
 
 ### Essential
@@ -44,8 +40,4 @@ The following references go significantly beyond the curriculum.
 
 ## Exercises
 
- - [A single-page app](./single.md)
- - [Static structure](./static.md)
- - [Dynamic structure, part 1](./dynamic1.md)
- - [Dynamic structure, part 2](./dynamic2.md)
- - [Further exercises](./exercises.md)
+- [My Cool App](./MyCoolApp.md)
