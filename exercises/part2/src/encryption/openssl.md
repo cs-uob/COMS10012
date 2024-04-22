@@ -20,41 +20,33 @@ Use your VM to install `openssl` with the appropriate command. On Debian that is
 $ sudo apt install openssl 
 ~~~~
 
-Alternatively, we build from the source [https://www.openssl.org/source/](https://www.openssl.org/source/) with `wget` or other method:
+Alternatively, you could build from the source [https://www.openssl.org/source/](https://www.openssl.org/source/) after obtaining and extracting it:
 
 ~~~~.sh 
 $ ./config
-
 $ make
-
 $ make test # This step is optional.
-
-$ su # You need to be root to *make install*
-
-$ make install
+$ sudo make install
 ~~~~
 
-If you want to use your Vagrantfile in a similar way to the previous labs. you can do it as follows: 
+Remember that you can add the `apt install` line to your Vagrantfile to use OpenSSL on Vagrant.
 
-```ruby
-Vagrant.configure("2") do |config|
-  config.vm.box = "generic/debian12"
-  config.vm.synced_folder ".", "/vagrant"
-
-  config.vm.provision "shell", inline: <<-SHELL
-    apt-get update -y
-    apt install openssl 
-  SHELL
-end
-```
 
 Use OpenSSL to encrypt files with symmetric encryption
 ======================================================
-Create a text file and write a message you want to send inside it. Then, encrypt this file with OpenSSL using AES 256 with a symmetric key. The output will be named, for example, `mytext.enc`. Be sure not to forget your passphrase.
+
+Create a text file called `mytext.txt` and write a message you want to send inside it. 
+Then, encrypt this file with a symmetric AES 256 key using OpenSSL:
+
+```bash
+ openssl aes256 -in mytext.txt -out mytext.enc
+```
+
+You'll be asked for a passphrase to create the key. The output will be named `mytext.enc`. Be sure not to forget your passphrase.
 
 #### What is the difference between your unencrypted file and the encrypted one? Try and read an ecrypted file. 
 
-Alternatively, you can encode the encrypted file with `base64`. This option creates a file with ASCII characters instead of a pure binary stream, making it suitable for sending via email. To do this, encrypt again with the `-a` parameter.
+Alternatively, you can encode the encrypted file with `base64`. This option creates a file with ASCII characters instead of a pure binary stream, making it suitable for sending via email. To do this, encrypt again specifying base64 instead of AES 256, and also passing the `-a` flag.
 
 #### Is the file size larger than before? If so, why?
 
@@ -62,29 +54,28 @@ Now, you can send your encrypted sensitive information to the recipient.
 
 How to decrypt using OpenSSL
 -----------------------------
-Use SCP or another method to send your encrypted file to someone. Utilize the `-d` parameter to decrypt the file, whether it's a binary stream or consists only of ASCII characters. You'll need your passphrase for this
+
+Use email or another method to swap encrypted files with someone. Utilize the `-d` parameter to decrypt the file, whether it's a binary stream or consists only of ASCII characters. You'll need to use the same passphrase for this as was used to encrypt the file.
 
 #### Once decrypted, can you read the correct message?
 
 Use OpenSSL to encrypt files with asymmetric encryption
 ==================================================
-Asymmetric encryption uses two sets of keys, called a key pair. A public key that can be freely distributed with the entity you want to communicate with, and a private key that is never shared. Keep note of the passphrase! Use `cat` or `head` to inspect the `.pem` file. 
 
-#### Why it has that format? 
+Asymmetric encryption uses two sets of keys, called a key pair. A public key that can be freely distributed with the entity you want to communicate with, and a private key that is never shared. 
+
 
 Generate key pairs
 ------------------
-Generate a pair of keys with OpenSSL using the AES-128 parameter key algorithm. Use `genrsa` to generate a 1024-bit public-private key pair.
+Using the `openssl` man pages, figure out how to use `genrsa` to generate a 1024-bit public-private key pair.
 
 Distribute the public key
 --------------------------
 The public key is meant to be shared with others. Extract your public key with the OpenSSL tool into a `.pem` file using the `-pubout` parameter.
 
-Exchange public your keys
+Exchange your public keys
 -------------------------
-Try to exchange the public keys using the method you prefer. Copy the stream or use the `scp` command.
-
-Create an encrypted message using the OpenSSL `-encrypt` command. You will need the following to formulate the command:
+Exchange public keys with someoone else. Next, create an encrypted message using the OpenSSL `-encrypt` command. You will need the following to formulate the command:
 
 - Name of the file
 - Other's person public key to encrypt 
@@ -92,10 +83,11 @@ Create an encrypted message using the OpenSSL `-encrypt` command. You will need 
 
 #### Try and view the file, what is the format? 
 
-Send the file to the other party using the method you want. The other person can decrypt the file and read the message using the private key and the parameter `-decrypt`. The recipient can write a response encrypt it with the other party key and send it back. 
+Send the file to the other party using your preferred method. The other person can decrypt the file and read the message using the private key and the parameter `-decrypt`. The recipient can write a response, encrypt it with your public key and send it back. 
 
 Why do we need HTTPS? 
 --------------------------
+
 Websites with HTTPS provide assurance to customers that their connections are secure. HTTPS, or Hypertext Transfer Protocol Secure, is a protected version of HTTP, the protocol used for data transmission between your browser and the website you're accessing. Prioritizing the safeguarding of users' privacy and data security is crucial for instilling trust in people connected to the web services we develop online
 
 Why will we use HTTPS locally? 

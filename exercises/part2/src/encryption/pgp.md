@@ -19,17 +19,21 @@ Use your VM to install `gnupg` with the appropriate command (if not already inst
 sudo apt-get install gnupg
 ```
 
-First, create a keypair with the command above based on system’s entropy. 
+First, create a keypair with the command:
+
+```bash
+gpg --generate-key
+``` 
 
 *Tip: Don’t forget the passphrase, use a strong one!*
 
 You can send your public key by exporting it through the GPG application: 
 
 ```bash
-$ gpg --output ~/mypub.key --armor --export email@mail.com
+$ gpg --output ~/mypub.key --armor --export youremail@mail.com
 ```
 
-You can send the key by using copy or other way of your choice. 
+You can send the key by email or any method of your choice. 
 
 How to import locally foreign public keys
 -----------------------------------------
@@ -41,7 +45,7 @@ We need to accept other users' public keys if we want to communicate with them. 
 While it's generally safe to distribute your public keys, caution should be exercised when obtaining keys from other users. Therefore, it's crucial to verify the identity of others before importing their keys and initiating communication. A quick method to accomplish this is by comparing the fingerprints derived from those keys. Use the following command: 
 
 ```bash
-$ gpg --fingerprint mail@mail.com
+$ gpg --fingerprint youremail@mail.com
 ```
 
 This will result in a more concise string of numbers, making it easier to compare. We can then verify this string either with the individual themselves or with another party who has access to the person in question.
@@ -52,16 +56,16 @@ Now sign the keys
 By signing each other's keys, we essentially indicate trust in the keys we possess and confirm the identity of the individual associated with that key.
 
 ```bash
-$ gpg --sign-key mail@mail.com
+$ gpg --sign-key youremail@mail.com
 ```
 
 To ensure that the person whose key you're signing benefits from your trusted relationship, send them back the signed key. You can accomplish this by typing:
 
 ```bash
-$ gpg --output ~/signed.key --export --armor mail@mail.com
+$ gpg --output ~/signed.key --export --armor youremail@mail.com
 ```
 
-Upon receiving this newly signed key, they can import it, incorporating the signing information you've generated into their GPG database. They can achieve this by using the import parameter.
+Upon receiving this newly signed key, they can import it, incorporating the signing information you've generated into their GPG database. They can achieve this by using the `import` parameter.
 
 Now that you have established a secure channel to communicate with trusted ends, you can send and receive encrypted messages with each other!
 
@@ -75,37 +79,36 @@ This command encrypts the message and signs it with your private key to ensure t
 
 Keep in mind that this message will be encrypted using the recipient's public key, making it unreadable to you (Unless you somehow obtain the recipient's private key!).
 
-*Tip: You can modify the command above to read the message by decrypting it using your private key.*
+*Tip: You can modify the command above to generate a message only you can read, using your private key. Think about how.*
 
 Decrypt received messages
 -------------------------
-Upon message receipt, you would be able to read with the `GPG` command and the decrypt parameter.
-
+Upon message receipt, you would be able to read with the `gpg` command and the `decrypt` parameter.
 
 *Tip: In case you have a raw stream text message, paste the message after typing `gpg` with no arguments. Then press `CTRL+D` to end the message.*
 
 If you've completed all the above steps correctly, you can now communicate securely with different individuals. You can send your public key to multiple recipients and import multiple keys as well. This is an essential step to keep your messages private and protect your sensitive information from eavesdropping attacks.
 
-Import other persons' public keys from a public key server
+Import other people's public keys from a public key server
 ---------------------------------------------------------
-An alternative method to share your GPG keys is through a public key server. Anyone can upload a key to a public server, making it accessible to others who may need to communicate securely with you.
+An alternative method to share your GPG keys is through a public keyserver. Anyone can upload a key to a public server, making it accessible to others who may need to communicate securely with you.
 
 Export your public key using: 
 ```bash
 $ gpg --armor --export email
 ```
 
-Send your public key on a Public server using the `--send-key parameter`. By default, your key is sent to the [https://keys.openpgp.org/](https://keys.openpgp.org/), or you can specify a different key server using the `--keyserver`.  
+Send your public key to a public server using the `--send-key` parameter. By default, your key is sent to [https://keys.openpgp.org/](https://keys.openpgp.org/), or you can specify a different key server using the `--keyserver` option.  
 
-Before importing a user's key verify the validity with the command `gpg --list-sigs user_id` where the `user_id` is for example the email address you want to communicate with. To find the key on the public server you want to download, use the `--search` parameter. 
+Before importing a user's key, verify its validity with the command `gpg --list-sigs user_id` where the `user_id` is for example the email address you want to communicate with. To find a key on a public keyserver, use the `--search` parameter. 
 
-Import the key you want with the `--import` parameter. You can once again verify the sender's identity using the  `--fingerprint` parameter. Then, similarly, sign the key obtained from the public key server.
+Import the key you want with the `--import` parameter. You can once again verify the sender's identity using the  `--fingerprint` parameter and checking its validity via a second channel. Then, similarly, sign the key obtained from the public key server.
 
 ### Here you can find some key IDs of people you may certainly know: 
 
- **413109AF27CBFBF9**, 
- **9A88F479F6D1BBBA**, 
- **1C29680110FA7E87**
++ **413109AF27CBFBF9**, 
++ **9A88F479F6D1BBBA**, 
++ **1C29680110FA7E87**
 
 These keys are on the [http://keyserver.ubuntu.com//](http://keyserver.ubuntu.com//) public keyserver. 
 
