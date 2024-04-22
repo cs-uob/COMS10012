@@ -1318,54 +1318,41 @@ are designed for cases like this.</p>
 <p>Use your VM to install <code>openssl</code> with the appropriate command. On Debian that is:</p>
 <pre><code class="language-.sh">$ sudo apt install openssl 
 </code></pre>
-<p>Alternatively, we build from the source <a href="https://www.openssl.org/source/">https://www.openssl.org/source/</a> with <code>wget</code> or other method:</p>
+<p>Alternatively, you could build from the source <a href="https://www.openssl.org/source/">https://www.openssl.org/source/</a> after obtaining and extracting it:</p>
 <pre><code class="language-.sh">$ ./config
-
 $ make
-
 $ make test # This step is optional.
-
-$ su # You need to be root to *make install*
-
-$ make install
+$ sudo make install
 </code></pre>
-<p>If you want to use your Vagrantfile in a similar way to the previous labs. you can do it as follows:</p>
-<pre><code class="language-ruby">Vagrant.configure("2") do |config|
-  config.vm.box = "generic/debian12"
-  config.vm.synced_folder ".", "/vagrant"
-
-  config.vm.provision "shell", inline: &lt;&lt;-SHELL
-    apt-get update -y
-    apt install openssl 
-  SHELL
-end
-</code></pre>
+<p>Remember that you can add the <code>apt install</code> line to your Vagrantfile to use OpenSSL on Vagrant.</p>
 <h1 id="use-openssl-to-encrypt-files-with-symmetric-encryption"><a class="header" href="#use-openssl-to-encrypt-files-with-symmetric-encryption">Use OpenSSL to encrypt files with symmetric encryption</a></h1>
-<p>Create a text file and write a message you want to send inside it. Then, encrypt this file with OpenSSL using AES 256 with a symmetric key. The output will be named, for example, <code>mytext.enc</code>. Be sure not to forget your passphrase.</p>
+<p>Create a text file called <code>mytext.txt</code> and write a message you want to send inside it.
+Then, encrypt this file with a symmetric AES 256 key using OpenSSL:</p>
+<pre><code class="language-bash"> openssl aes256 -in mytext.txt -out mytext.enc
+</code></pre>
+<p>You'll be asked for a passphrase to create the key. The output will be named <code>mytext.enc</code>. Be sure not to forget your passphrase.</p>
 <h4 id="what-is-the-difference-between-your-unencrypted-file-and-the-encrypted-one-try-and-read-an-ecrypted-file"><a class="header" href="#what-is-the-difference-between-your-unencrypted-file-and-the-encrypted-one-try-and-read-an-ecrypted-file">What is the difference between your unencrypted file and the encrypted one? Try and read an ecrypted file.</a></h4>
-<p>Alternatively, you can encode the encrypted file with <code>base64</code>. This option creates a file with ASCII characters instead of a pure binary stream, making it suitable for sending via email. To do this, encrypt again with the <code>-a</code> parameter.</p>
+<p>Alternatively, you can encode the encrypted file with <code>base64</code>. This option creates a file with ASCII characters instead of a pure binary stream, making it suitable for sending via email. To do this, encrypt again specifying base64 instead of AES 256, and also passing the <code>-a</code> flag.</p>
 <h4 id="is-the-file-size-larger-than-before-if-so-why"><a class="header" href="#is-the-file-size-larger-than-before-if-so-why">Is the file size larger than before? If so, why?</a></h4>
 <p>Now, you can send your encrypted sensitive information to the recipient.</p>
 <h2 id="how-to-decrypt-using-openssl"><a class="header" href="#how-to-decrypt-using-openssl">How to decrypt using OpenSSL</a></h2>
-<p>Use SCP or another method to send your encrypted file to someone. Utilize the <code>-d</code> parameter to decrypt the file, whether it's a binary stream or consists only of ASCII characters. You'll need your passphrase for this</p>
+<p>Use email or another method to swap encrypted files with someone. Utilize the <code>-d</code> parameter to decrypt the file, whether it's a binary stream or consists only of ASCII characters. You'll need to use the same passphrase for this as was used to encrypt the file.</p>
 <h4 id="once-decrypted-can-you-read-the-correct-message"><a class="header" href="#once-decrypted-can-you-read-the-correct-message">Once decrypted, can you read the correct message?</a></h4>
 <h1 id="use-openssl-to-encrypt-files-with-asymmetric-encryption"><a class="header" href="#use-openssl-to-encrypt-files-with-asymmetric-encryption">Use OpenSSL to encrypt files with asymmetric encryption</a></h1>
-<p>Asymmetric encryption uses two sets of keys, called a key pair. A public key that can be freely distributed with the entity you want to communicate with, and a private key that is never shared. Keep note of the passphrase! Use <code>cat</code> or <code>head</code> to inspect the <code>.pem</code> file.</p>
-<h4 id="why-it-has-that-format"><a class="header" href="#why-it-has-that-format">Why it has that format?</a></h4>
+<p>Asymmetric encryption uses two sets of keys, called a key pair. A public key that can be freely distributed with the entity you want to communicate with, and a private key that is never shared.</p>
 <h2 id="generate-key-pairs"><a class="header" href="#generate-key-pairs">Generate key pairs</a></h2>
-<p>Generate a pair of keys with OpenSSL using the AES-128 parameter key algorithm. Use <code>genrsa</code> to generate a 1024-bit public-private key pair.</p>
+<p>Using the <code>openssl</code> man pages, figure out how to use <code>genrsa</code> to generate a 1024-bit public-private key pair.</p>
 <h2 id="distribute-the-public-key"><a class="header" href="#distribute-the-public-key">Distribute the public key</a></h2>
 <p>The public key is meant to be shared with others. Extract your public key with the OpenSSL tool into a <code>.pem</code> file using the <code>-pubout</code> parameter.</p>
-<h2 id="exchange-public-your-keys"><a class="header" href="#exchange-public-your-keys">Exchange public your keys</a></h2>
-<p>Try to exchange the public keys using the method you prefer. Copy the stream or use the <code>scp</code> command.</p>
-<p>Create an encrypted message using the OpenSSL <code>-encrypt</code> command. You will need the following to formulate the command:</p>
+<h2 id="exchange-your-public-keys"><a class="header" href="#exchange-your-public-keys">Exchange your public keys</a></h2>
+<p>Exchange public keys with someoone else. Next, create an encrypted message using the OpenSSL <code>-encrypt</code> command. You will need the following to formulate the command:</p>
 <ul>
 <li>Name of the file</li>
 <li>Other's person public key to encrypt</li>
 <li>The name of the output file</li>
 </ul>
 <h4 id="try-and-view-the-file-what-is-the-format"><a class="header" href="#try-and-view-the-file-what-is-the-format">Try and view the file, what is the format?</a></h4>
-<p>Send the file to the other party using the method you want. The other person can decrypt the file and read the message using the private key and the parameter <code>-decrypt</code>. The recipient can write a response encrypt it with the other party key and send it back.</p>
+<p>Send the file to the other party using your preferred method. The other person can decrypt the file and read the message using the private key and the parameter <code>-decrypt</code>. The recipient can write a response, encrypt it with your public key and send it back.</p>
 <h2 id="why-do-we-need-https"><a class="header" href="#why-do-we-need-https">Why do we need HTTPS?</a></h2>
 <p>Websites with HTTPS provide assurance to customers that their connections are secure. HTTPS, or Hypertext Transfer Protocol Secure, is a protected version of HTTP, the protocol used for data transmission between your browser and the website you're accessing. Prioritizing the safeguarding of users' privacy and data security is crucial for instilling trust in people connected to the web services we develop online</p>
 <h2 id="why-will-we-use-https-locally"><a class="header" href="#why-will-we-use-https-locally">Why will we use HTTPS locally?</a></h2>
@@ -1467,50 +1454,54 @@ $ sudo cp cert.key /etc/ssl/private/
 <p>Use your VM to install <code>gnupg</code> with the appropriate command (if not already installed). On Debian that is:</p>
 <pre><code class="language-bash">sudo apt-get install gnupg
 </code></pre>
-<p>First, create a keypair with the command above based on system’s entropy.</p>
+<p>First, create a keypair with the command:</p>
+<pre><code class="language-bash">gpg --generate-key
+</code></pre>
 <p><em>Tip: Don’t forget the passphrase, use a strong one!</em></p>
 <p>You can send your public key by exporting it through the GPG application:</p>
-<pre><code class="language-bash">$ gpg --output ~/mypub.key --armor --export email@mail.com
+<pre><code class="language-bash">$ gpg --output ~/mypub.key --armor --export youremail@mail.com
 </code></pre>
-<p>You can send the key by using copy or other way of your choice.</p>
+<p>You can send the key by email or any method of your choice.</p>
 <h2 id="how-to-import-locally-foreign-public-keys"><a class="header" href="#how-to-import-locally-foreign-public-keys">How to import locally foreign public keys</a></h2>
 <p>We need to accept other users' public keys if we want to communicate with them. When you receive others' public keys, import them using the <code>import</code> parameter.</p>
 <p><em>Tip: There are other options to share your public key, such as using a public key server. Here's how to verify other keys.</em></p>
 <p>While it's generally safe to distribute your public keys, caution should be exercised when obtaining keys from other users. Therefore, it's crucial to verify the identity of others before importing their keys and initiating communication. A quick method to accomplish this is by comparing the fingerprints derived from those keys. Use the following command:</p>
-<pre><code class="language-bash">$ gpg --fingerprint mail@mail.com
+<pre><code class="language-bash">$ gpg --fingerprint youremail@mail.com
 </code></pre>
 <p>This will result in a more concise string of numbers, making it easier to compare. We can then verify this string either with the individual themselves or with another party who has access to the person in question.</p>
 <h2 id="now-sign-the-keys"><a class="header" href="#now-sign-the-keys">Now sign the keys</a></h2>
 <p>By signing each other's keys, we essentially indicate trust in the keys we possess and confirm the identity of the individual associated with that key.</p>
-<pre><code class="language-bash">$ gpg --sign-key mail@mail.com
+<pre><code class="language-bash">$ gpg --sign-key youremail@mail.com
 </code></pre>
 <p>To ensure that the person whose key you're signing benefits from your trusted relationship, send them back the signed key. You can accomplish this by typing:</p>
-<pre><code class="language-bash">$ gpg --output ~/signed.key --export --armor mail@mail.com
+<pre><code class="language-bash">$ gpg --output ~/signed.key --export --armor youremail@mail.com
 </code></pre>
-<p>Upon receiving this newly signed key, they can import it, incorporating the signing information you've generated into their GPG database. They can achieve this by using the import parameter.</p>
+<p>Upon receiving this newly signed key, they can import it, incorporating the signing information you've generated into their GPG database. They can achieve this by using the <code>import</code> parameter.</p>
 <p>Now that you have established a secure channel to communicate with trusted ends, you can send and receive encrypted messages with each other!</p>
 <p>After sharing your key with the other party, you can now send and receive encrypted messages. You can encrypt your messages with the following command:</p>
 <pre><code class="language-bash">$ gpg --encrypt --sign --armor -r other_person@mail.com file_name
 </code></pre>
 <p>This command encrypts the message and signs it with your private key to ensure that the message originates from you. The output will be an encrypted file with the extension <code>.asc</code>. You can use the <code>cat</code> command to view the file.</p>
 <p>Keep in mind that this message will be encrypted using the recipient's public key, making it unreadable to you (Unless you somehow obtain the recipient's private key!).</p>
-<p><em>Tip: You can modify the command above to read the message by decrypting it using your private key.</em></p>
+<p><em>Tip: You can modify the command above to generate a message only you can read, using your private key. Think about how.</em></p>
 <h2 id="decrypt-received-messages"><a class="header" href="#decrypt-received-messages">Decrypt received messages</a></h2>
-<p>Upon message receipt, you would be able to read with the <code>GPG</code> command and the decrypt parameter.</p>
+<p>Upon message receipt, you would be able to read with the <code>gpg</code> command and the <code>decrypt</code> parameter.</p>
 <p><em>Tip: In case you have a raw stream text message, paste the message after typing <code>gpg</code> with no arguments. Then press <code>CTRL+D</code> to end the message.</em></p>
 <p>If you've completed all the above steps correctly, you can now communicate securely with different individuals. You can send your public key to multiple recipients and import multiple keys as well. This is an essential step to keep your messages private and protect your sensitive information from eavesdropping attacks.</p>
-<h2 id="import-other-persons-public-keys-from-a-public-key-server"><a class="header" href="#import-other-persons-public-keys-from-a-public-key-server">Import other persons' public keys from a public key server</a></h2>
-<p>An alternative method to share your GPG keys is through a public key server. Anyone can upload a key to a public server, making it accessible to others who may need to communicate securely with you.</p>
+<h2 id="import-other-peoples-public-keys-from-a-public-key-server"><a class="header" href="#import-other-peoples-public-keys-from-a-public-key-server">Import other people's public keys from a public key server</a></h2>
+<p>An alternative method to share your GPG keys is through a public keyserver. Anyone can upload a key to a public server, making it accessible to others who may need to communicate securely with you.</p>
 <p>Export your public key using:</p>
 <pre><code class="language-bash">$ gpg --armor --export email
 </code></pre>
-<p>Send your public key on a Public server using the <code>--send-key parameter</code>. By default, your key is sent to the <a href="https://keys.openpgp.org/">https://keys.openpgp.org/</a>, or you can specify a different key server using the <code>--keyserver</code>.</p>
-<p>Before importing a user's key verify the validity with the command <code>gpg --list-sigs user_id</code> where the <code>user_id</code> is for example the email address you want to communicate with. To find the key on the public server you want to download, use the <code>--search</code> parameter.</p>
-<p>Import the key you want with the <code>--import</code> parameter. You can once again verify the sender's identity using the  <code>--fingerprint</code> parameter. Then, similarly, sign the key obtained from the public key server.</p>
+<p>Send your public key to a public server using the <code>--send-key</code> parameter. By default, your key is sent to <a href="https://keys.openpgp.org/">https://keys.openpgp.org/</a>, or you can specify a different key server using the <code>--keyserver</code> option.</p>
+<p>Before importing a user's key, verify its validity with the command <code>gpg --list-sigs user_id</code> where the <code>user_id</code> is for example the email address you want to communicate with. To find a key on a public keyserver, use the <code>--search</code> parameter.</p>
+<p>Import the key you want with the <code>--import</code> parameter. You can once again verify the sender's identity using the  <code>--fingerprint</code> parameter and checking its validity via a second channel. Then, similarly, sign the key obtained from the public key server.</p>
 <h3 id="here-you-can-find-some-key-ids-of-people-you-may-certainly-know"><a class="header" href="#here-you-can-find-some-key-ids-of-people-you-may-certainly-know">Here you can find some key IDs of people you may certainly know:</a></h3>
-<p><strong>413109AF27CBFBF9</strong>,
-<strong>9A88F479F6D1BBBA</strong>,
-<strong>1C29680110FA7E87</strong></p>
+<ul>
+<li><strong>413109AF27CBFBF9</strong>,</li>
+<li><strong>9A88F479F6D1BBBA</strong>,</li>
+<li><strong>1C29680110FA7E87</strong></li>
+</ul>
 <p>These keys are on the <a href="http://keyserver.ubuntu.com//">http://keyserver.ubuntu.com//</a> public keyserver.</p>
 <ul>
 <li>Use the <code>gpg</code> command with the <code>--search</code> parameter to find out, for each key, the associated email address or User ID (username).</li>
